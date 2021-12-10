@@ -1,0 +1,5 @@
+#+begin_src latex
+  \section*{Introduction}
+  The program \ty{ego} reads a list of genes, maps these onto
+  GO-categories and tests for enrichment of GO categories.
+#+end_src

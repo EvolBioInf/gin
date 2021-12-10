@@ -1,0 +1,6 @@
+git lfs track gene2go
+git lfs track Homo_sapiens.gene_info
+git lfs track hsRefGene.txt
+data/gene2go filter=lfs diff=lfs merge=lfs -text
+data/Homo_sapiens.gene_info filter=lfs diff=lfs merge=lfs -text
+data/hsRefGene.txt filter=lfs diff=lfs merge=lfs -text

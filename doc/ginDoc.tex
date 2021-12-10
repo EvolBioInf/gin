@@ -1,0 +1,24 @@
+\documentclass[a4paper]{report}
+\input{header}
+\begin{document}
+\pagestyle{noweb}
+
+\title{\texttt{gin}: Analyze Genome Intervals\\
+\small\texttt{github.com/evolbioinf/gin}}
+\author{Bernhard Haubold}
+\maketitle
+\tableofcontents
+
+\chapter{Introduction}
+\input{intro}
+\chapter{Program \ty{annotate}: Annotate Intervals}\label{ch:an}
+\input{annotate}
+\chapter{Program \ty{shuffle}: Shuffle Intervals}\label{ch:sh}
+\input{shuffle}
+\chapter{Program \ty{ego}: Enrichment of GO-Terms}\label{ch:eg}
+\input{ego}
+%\section{List of code chunks}
+% \nowebchunks
+% \bibliography{ref}
+\end{document}
+

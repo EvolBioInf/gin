@@ -1,0 +1,6 @@
+#+begin_src latex
+  \section*{Introduction}
+  The program \ty{shuffle} reads a list of genome intervals and a file
+  of chromosome lengths. It then shuffles the intervals among the
+  chromosomes and prints the shuffled intervals.
+#+end_src
