@@ -1,6 +1,435 @@
 #+begin_src latex
   \section*{Introduction}
-  The program \ty{shuffle} reads a list of genome intervals and a file
-  of chromosome lengths. It then shuffles the intervals among the
-  chromosomes and prints the shuffled intervals.
+  The program \ty{shuffle} reads list of focus intervals that is
+  shuffles among a list of template intervals and then prints the
+  shuffled intervals. For example, the templates might look like
+  Table~\ref{tab:sh}A. Notice that a chromosome can consist of an
+  arbitrary number of intervals. Three focus intervals are listed in
+  Table~\ref{tab:sh}B. When shuffled twice among the templates, we get,
+  for example, Table~\ref{tab:sh}C, where the two shuffled lists are
+  separated by a blank line. During the shuffle, the lengths of the
+  intervals are preserved, but they can be placed anywhere on any of the
+  templates. This means the chromosome designations on the focus
+  intervals play no role in their assignment. I have kept them in the
+  interval format to make it easier for us to keep track of what's going
+  on.
+
+  \begin{table}
+    \begin{tabular}{cc}
+      \textbf{A} & \textbf{B}\\
+      \input{sh1} & \input{sh2}\\
+      \textbf{C}\\
+      \input{sh3}
+    \end{tabular}
+    \caption{A set of example templates (\textbf{A}); the focus intervals
+      (\textbf{B}) are shuffled twice among the templates to give
+      (\textbf{C}).}\label{tab:sh}
+  \end{table}
+  \section*{Implementation}
+  The outline of our program has hooks for imports, types, functions,
+  and the logic of the main function.
+#+end_src
+#+begin_src go <<shuffle.go>>=
+  package main
+
+  import (
+	  //<<Imports, Ch.~\ref{ch:sh}>>
+  )
+  //<<Types, Ch.~\ref{ch:sh}>>
+  //<<Functions, Ch.~\ref{ch:sh}>>
+  func main() {
+	  //<<Main function, Ch.~\ref{ch:sh}>>
+  }
+#+end_src
+#+begin_src latex
+  In the main function, we set the usage, declare the options, parse the
+  options, and parse the input files.
+#+end_src
+#+begin_src go <<Main function, Ch.~\ref{ch:sh}>>=
+  //<<Set usage, Ch.~\ref{ch:sh}>>
+  //<<Declare options, Ch.~\ref{ch:sh}>>
+  //<<Parse options, Ch.~\ref{ch:sh}>>
+  //<<Parse input files, Ch.~\ref{ch:sh}>>
+#+end_src
+#+begin_src latex
+  The usage consists of the actual usage message, an explanation of the
+  purpose of \ty{shuffle}, and an example command.
+#+end_src
+#+begin_src go <<Set usage, Ch.~\ref{ch:sh}>>=
+  u := "shuffle [-h] [option]... templates.txt [focus.txt]..."
+  p := "Shuffle a set of focus intervals among the " +
+	  "template intervals."
+  e := "shuffle -n 10000 tmpl.txt f1.txt"
+  clio.Usage(u, p, e)
+#+end_src
+#+begin_src latex
+  We import \ty{clio}.
+#+end_src
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
+  "github.com/evolbioinf/clio"
+#+end_src
+#+begin_src latex
+  Apart from the version, \ty{-v}, we declare two options, the number of
+  iterations, \ty{-n}, and the seed for the random number generator, \ty{-s}.
+#+end_src
+#+begin_src go <<Declare options, Ch.~\ref{ch:sh}>>=
+  var optV = flag.Bool("v", false, "print program version " +
+	  "and other information")
+  var optN = flag.Int("n", 1, "number of iterations")
+  var optS = flag.Int("s", 0, "seed for random number " +
+	  "generator")
+#+end_src
+#+begin_src latex
+  We import \ty{flag}.
+#+end_src
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
+  "flag"
+#+end_src
+#+begin_src latex
+  We parse the options and first respond to \ty{-v} as this stops the
+  program. Then we seed the random number generator.
+#+end_src
+#+begin_src go <<Parse options, Ch.~\ref{ch:sh}>>=
+  flag.Parse()
+  if *optV {
+	  util.PrintInfo("shuffle")
+  }
+  //<<Seed random number generator, Ch.~\ref{ch:sh}>>
+#+end_src
+#+begin_src latex
+  We import \ty{util}.
+#+end_src
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
+  "github.com/evolbioinf/biobox/util"
+#+end_src
+#+begin_src latex
+  If the user didn't set a seed, we take the current time.
+#+end_src
+#+begin_src go <<Seed random number generator, Ch.~\ref{ch:sh}>>=
+  seed := int64(*optS)
+  if seed == 0 {
+	  seed = time.Now().UnixNano()
+  }
+  ran := rand.New(rand.NewSource(seed))
+#+end_src
+#+begin_src latex
+  We import \ty{time} and \ty{rand}.
+#+end_src
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
+  "time"
+  "math/rand"
+#+end_src
+#+begin_src latex
+  The remaining tokens on the command line are taken as the names of
+  input files. The first of these is the template file. If it exists, we
+  read it, otherwise we bail with a friendly message. Then we read the templates.
+#+end_src
+#+begin_src go <<Parse input files, Ch.~\ref{ch:sh}>>=
+  files := flag.Args()
+  if len(files) < 1 {
+	  log.Fatal("please provide a template file")
+  }
+  templates := make([]*interval, 0)
+  //<<Read templates, Ch.~\ref{ch:sh}>>
+#+end_src
+#+begin_src latex
+  We import \ty{log}.
+#+end_src
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
+  "log"
+#+end_src
+#+begin_src latex
+  An \ty{interval} has a chromosme, a start, and an end.
+#+end_src
+#+begin_src go <<Types, Ch.~\ref{ch:sh}>>=
+  type interval struct {
+	  chr string
+	  start, end int
+  }
+#+end_src
+#+begin_src latex
+  To read the templates, we open the template file and iterate across
+  its lines, each of which represents a template. We can directly set
+  the template chromosome, setting the template coordinates requires a
+  bit more work.
+#+end_src
+#+begin_src go <<Read templates, Ch.~\ref{ch:sh}>>=
+  file, err := os.Open(files[0])
+  if err != nil {
+	  log.Fatalf("can't open %q", files[0])
+  }
+  defer file.Close()
+  sc := bufio.NewScanner(file)
+  for sc.Scan() {
+	  fields := strings.Fields(sc.Text())
+	  t := &interval{chr: fields[0]}
+	  //<<Set template start and end, Ch.~\ref{ch:sh}>>
+	  templates = append(templates, t)
+  }
+#+end_src
+#+begin_src latex
+  We import \ty{os}, \ty{bufio}, and \ty{strings}.
+#+end_src
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
+  "os"
+  "bufio"
+  "strings"
+#+end_src
+#+begin_src latex
+  We get the start and end of the template by converting the second and
+  third field of the input line to integers.
+#+end_src
+#+begin_src go <<Set template start and end, Ch.~\ref{ch:sh}>>=
+  s, err := strconv.Atoi(fields[1])
+  if err != nil {
+	  log.Fatalf("can't read %q", fields[1])
+  }
+  t.start = s
+  e, err := strconv.Atoi(fields[2])
+  if err != nil {
+	  log.Fatalf("can't read %q", fields[2])
+  }
+  t.end = e
+#+end_src
+#+begin_src latex
+  We import \ty{strconv}.
+#+end_src
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
+  "strconv"
+#+end_src
+#+begin_src latex
+  To actually pick random templates later on, we use an auxiliary array,
+  which consists of the cumulative fraction each template contributes to
+  the total length of the templates. Later, we can use a this array
+  together with a uniformly distributed number between zero and one to
+  draw intervals weighted by their lengths.
+#+end_src
+#+begin_src go <<Parse input files, Ch.~\ref{ch:sh}>>=
+  pick := make([]float64, len(templates))
+  sum := 0.0
+  for _, t := range templates {
+	  sum += float64(t.end - t.start + 1)
+  }
+  pick[0] = float64(templates[0].end - templates[0].start + 1) / sum
+  for i := 1; i < len(templates); i++ {
+	  f := float64(templates[i].end -
+		  templates[i].start + 1) / sum
+	  pick[i] = pick[i-1] + f
+  }
+#+end_src
+#+begin_src latex
+  The remaining files contain the focus intervals. The sets of shuffled
+  intervals are preceded by a blank line, except for the very first set,
+  so we declare a variable for marking the very first input set. Moreover,
+  the shuffled intervals are written in a table, which we format using a
+  tab writer. Then we call \ty{scan} on each of the focus interval
+  files, with a rather long list of arguments consisting of the number
+  of iterations, the templates, the pick file, the random number
+  generator, the indicator of the first data set, and the tab writer.
+#+end_src
+#+begin_src go <<Parse input files, Ch.~\ref{ch:sh}>>=
+  files = files[1:]
+  first := true
+  w := tabwriter.NewWriter(os.Stdout, 1, 0, 2, ' ', 0)
+  clio.ParseFiles(files, scan, *optN, templates,
+	  pick, ran, &first, w)
+#+end_src
+#+begin_src latex
+  We import \ty{tabwriter}.
+#+end_src
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
+  "text/tabwriter"
+#+end_src
+#+begin_src latex
+  We are now ready to implement the function \ty{scan}. Inside it, we
+  first retrieve its arguments, then collect the focus intervals, and
+  shuffle them.
+#+end_src
+#+begin_src go <<Functions, Ch.~\ref{ch:sh}>>=
+  func scan(r io.Reader, args ...interface{}) {
+	  //<<Retrieve arguments, Ch.~\ref{ch:sh}>>
+	  //<<Read focus intervals, Ch.~\ref{ch:sh}>>
+	  //<<Shuffle intervals, Ch.~\ref{ch:sh}>>
+  }
+#+end_src
+#+begin_src latex
+  We import \ty{io}.
+#+end_src
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
+  "io"
+#+end_src
+#+begin_src latex
+  We retrieve the arguments passed to \ty{scan} using type assertion.
+#+end_src
+#+begin_src go <<Retrieve arguments, Ch.~\ref{ch:sh}>>=
+  n := args[0].(int)
+  templates := args[1].([]*interval)
+  pick := args[2].([]float64)
+  ran := args[3].(*rand.Rand)
+  first := args[4].(*bool)
+  w := args[5].(*tabwriter.Writer)
+#+end_src
+#+begin_src latex
+  We use a scanner to read the focus intervals and save them in a slice
+  of intervals after we have determined their start and end coordinates.
+#+end_src
+#+begin_src go <<Read focus intervals, Ch.~\ref{ch:sh}>>=
+  sc := bufio.NewScanner(r)
+  intervals := make([]*interval, 0)
+  for sc.Scan() {
+	  fields := strings.Fields(sc.Text())
+	  in := new(interval)
+	  //<<Find start and end of focus interval, Ch.~\ref{ch:sh}>>
+	  intervals = append(intervals, in)
+  }
+#+end_src
+#+begin_src go <<Find start and end of focus interval, Ch.~\ref{ch:sh}>>=
+  s, err := strconv.Atoi(fields[1])
+  if err != nil {
+	  log.Fatalf("can't read %q", fields[1])
+  }
+  in.start = s
+  e, err := strconv.Atoi(fields[2])
+  if err != nil {
+	  log.Fatalf("can't read %q", fields[2])
+  }
+  in.end = e
+#+end_src
+#+begin_src latex
+  We shuffle the set of intervals $n$ times. Each of the $n$ sets is
+  preceded by a blank line, except for the first, where we just note
+  that the next one won't be the first. After each of the $n$
+  iterations, we flush the tab writer so that the result of each
+  iteration its is formatted as an independent table.
+#+end_src
+#+begin_src go <<Shuffle intervals, Ch.~\ref{ch:sh}>>=
+  for i := 0; i < n; i++ {
+	  if *first {
+		  *first = false
+	  } else {
+		  fmt.Fprintf(w, "\n")
+	  }
+	  for _, in := range  intervals {
+		  //<<Shuffle template, Ch.~\ref{ch:sh}>>
+	  }
+	  w.Flush()
+  }
+#+end_src
+#+begin_src latex
+  We import \ty{fmt}.
+#+end_src
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
+  "fmt"
+#+end_src
+#+begin_src latex
+  To shuffle an individual interval, we pick a template and on that
+  template a random position on which the interval may land. Then we
+  print the new interval.
+#+end_src
+#+begin_src go <<Shuffle template, Ch.~\ref{ch:sh}>>=
+  //<<Pick template, Ch.~\ref{ch:sh}>>
+  //<<Pick position on template, Ch.~\ref{ch:sh}>>
+  //<<Print shuffled interval, Ch.~\ref{ch:sh}>>
+#+end_src
+#+begin_src latex
+  We pick a template by searching a random number in our array
+  \ty{pick}. The index returned by that search is the index of the template.
+#+end_src
+#+begin_src go <<Pick template, Ch.~\ref{ch:sh}>>=
+  r := ran.Float64()
+  i := sort.SearchFloat64s(pick, r)
+  template := templates[i]
+#+end_src
+#+begin_src latex
+  We import \ty{sort}.
+#+end_src
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
+  "sort"
+#+end_src
+#+begin_src latex
+  We pick a position on the template or take the whole template if it is
+  shorter than the interval.
+#+end_src
+#+begin_src go <<Pick position on template, Ch.~\ref{ch:sh}>>=
+  il := in.end - in.start + 1
+  tl := template.end - template.start + 1
+  c := template.chr
+  var s, e int
+  if il >= tl {
+	  s = template.start
+	  e = template.end
+  } else {
+	  s = template.start + ran.Intn(tl - il)
+	  e  = s + il - 1
+  }
+#+end_src
+#+begin_src latex
+  We print the shuffled interval to the tab writer.
+#+end_src
+#+begin_src go <<Print shuffled interval, Ch.~\ref{ch:sh}>>=
+  fmt.Fprintf(w, "%s\t%d\t%d\n", c, s, e)
+#+end_src
+#+begin_src latex
+  We've finished \ty{shuffle}, let's test it.
+  \section*{Testing}
+  Our testing code has hooks for imports and the testing logic.
+#+end_src
+#+begin_src go <<shuffle_test.go>>=
+  package main
+
+  import (
+	  "testing"
+	  //<<Testing imports, Ch.~\ref{ch:sh}>>
+  )
+
+  func TestShuffle(t *testing.T) {
+	  //<<Testing, Ch.~\ref{ch:sh}>>
+  }
+#+end_src
+#+begin_src latex
+  We construct  a single test and then run it.
+#+end_src
+#+begin_src go <<Testing, Ch.~\ref{ch:sh}>>=
+  //<<Construct test, Ch.~\ref{ch:sh}>>
+  //<<Run test, Ch.~\ref{ch:sh}>>
+#+end_src
+#+begin_src latex
+  We run the program on a small set of templates (\ty{tmpl.txt}) and
+  focus intervals (\ty{iv.txt}). We use an external seed for the random
+  number generator so we can reproduce our results.
+#+end_src
+#+begin_src go <<Construct test, Ch.~\ref{ch:sh}>>=
+  test := exec.Command("./shuffle", "-s", "13",
+	  "-n", "2", "tmpl.txt", "iv.txt")
+#+end_src
+#+begin_src latex
+  We import \ty{exec}.
+#+end_src
+#+begin_src go <<Testing imports, Ch.~\ref{ch:sh}>>=
+  "os/exec"
+#+end_src
+#+begin_src latex
+  We run the test and compare what we get with what we want, which is
+  contained in file \ty{r.txt}.
+#+end_src
+#+begin_src go <<Run test, Ch.~\ref{ch:sh}>>=
+  get, err := test.Output()
+  if err != nil {
+	  t.Errorf("can't run %q", test)
+  }
+  f := "r.txt"
+  want, err := ioutil.ReadFile(f)
+  if err != nil {
+	  t.Errorf("can't open %q", f)
+  }
+  if !bytes.Equal(get, want) {
+	  t.Errorf("get:\n%s\nwant:\n%s", get, want)
+  }
+#+end_src
+#+begin_src latex
+  We import \ty{ioutil} and \ty{bytes}.
+#+end_src
+#+begin_src go <<Testing imports, Ch.~\ref{ch:sh}>>=
+  "io/ioutil"
+  "bytes"
 #+end_src
