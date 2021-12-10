@@ -6,6 +6,6 @@ all:
 doc:
 	make -C doc
 clean:
-	make clean -C src
+	make clean -C annotate
 test:
-	make test -C src
+	make test -C annotate
