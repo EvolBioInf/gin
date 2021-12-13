@@ -159,21 +159,38 @@
   "strings"
 #+end_src
 #+begin_src latex
-  From the GO file we extract a map of gene IDs in column 2 to to GO
-  terms in column 3. Again, we skip the hashed header.
+  To read the GO file, we open and scan it.
 #+end_src
 #+begin_src go <<Read GO file, Ch.~\ref{ch:eg}>>=
-  id2go := make(map[string]string)
+  //<<Open GO file, Ch.~\ref{ch:eg}>>
+  //<<Scan GO file, Ch.~\ref{ch:eg}>>
+#+end_src
+#+begin_src latex
+  If we can't open the GO file, we bail with message.
+#+end_src
+#+begin_src go <<Open GO file, Ch.~\ref{ch:eg}>>=
   f, err := os.Open(*optG)
   if err != nil {
 	  log.Fatalf("can't open %q", *optG)
   }
   defer f.Close()
   sc := bufio.NewScanner(f)
+#+end_src
+#+begin_src latex
+  In the GO file, the gene ID is in column 2, the GO ID in column 3,
+  and the GO term in column 6.
+#+end_src
+#+begin_src go <<Scan GO file, Ch.~\ref{ch:eg}>>=
+  id2go := make(map[string]string)
+  go2descr := make(map[string]string)
   for sc.Scan() {
 	  if sc.Text()[0] == '#' { continue }
-	  fields := strings.Fields(sc.Text())
-	  id2go[fields[1]] = fields[2]
+	  fields := strings.Split(sc.Text(), "\t")
+	  geneId := fields[1]
+	  goId := fields[2]
+	  goDescr := fields[5]
+	  id2go[geneId] = goId
+	  go2descr[goId] = goDescr
   }
 #+end_src
 #+begin_src latex
@@ -250,12 +267,13 @@
 #+begin_src latex
   The remaining files contain expected sets of symbols. They are scanned
   in turn using the function \ty{scan}, which takes as arguments the
-  observed GO counts, the map from symbol to ID, the map from ID to
-  GO, and the minimum occupancy of a GO term.
+  observed GO counts, the map from symbol to ID, the map from ID to GO,
+  the map from GO to its description, and the minimum occupancy of a GO
+  term.
 #+end_src
 #+begin_src go <<Parse input files, Ch.~\ref{ch:eg}>>=
   files = files[1:]
-  clio.ParseFiles(files, scan, obsGOcounts, sym2id, id2go, *optM)
+  clio.ParseFiles(files, scan, obsGOcounts, sym2id, id2go, go2descr, *optM)
 #+end_src
 #+begin_src latex
   Inside \ty{scan}, we retrieve the arguments, prepare the enrichment
@@ -288,7 +306,8 @@
   obsGOcounts := args[0].(map[string]int)
   sym2id := args[1].(map[string]string)
   id2go := args[2].(map[string]string)
-  minOcc := args[3].(int)
+  go2descr := args[3].(map[string]string)
+  minOcc := args[4].(int)
 #+end_src
 #+begin_src latex
   The enrichment analysis depends on the number of samples we analyze
@@ -351,12 +370,13 @@
 #+begin_src latex
   We can now report the results of our enrichment analysis. We'd like to
   sort the output by $P$-value. So we declare a type that holds one GO
-  term, \ty{GOterm}. It is a structure containing the accession, the
-  observed occupancy, the expected occupancy, and the $P$-value.
+  term, \ty{GOterm}. It is a structure containing the accession and
+  description, the observed occupancy, the expected occupancy, and the
+  $P$-value.
 #+end_src
 #+begin_src go <<Types, Ch.~\ref{ch:eg}>>=
   type GOterm struct {
-	  a string
+	  a, d string
 	  o, e, p float64
   }
 #+end_src
@@ -371,6 +391,7 @@
   for a, o := range obsGOcounts {
 	  gt := new(GOterm)
 	  gt.a = a
+	  gt.d = go2descr[a]
 	  gt.o = float64(o)
 	  gt.e = float64(expGOcounts[a]) / float64(n)
 	  gt.p = float64(eCounts[a]) / float64(n)
@@ -404,11 +425,11 @@
 #+begin_src go <<Report enrichment analysis, Ch.~\ref{ch:eg}>>=
   sort.Sort(GOslice(GOterms))
   w := tabwriter.NewWriter(os.Stdout, 1, 0, 2, ' ', 0)
-  fmt.Fprintf(w, "#GO\tO\tE\tO/E\tP\n")
+  fmt.Fprintf(w, "#GO\tO\tE\tO/E\tP\tDescription\n")
   for _, g := range GOterms {
 	  if int(g.o) < minOcc { continue }
-	  fmt.Fprintf(w, "%s\t%.3g\t%.3g\t%.3g\t%.3g\n",
-		  g.a, g.o, g.e, g.o/g.e, g.p)
+	  fmt.Fprintf(w, "%s\t%.3g\t%.3g\t%.3g\t%.3g\t%s\n",
+		  g.a, g.o, g.e, g.o/g.e, g.p, g.d)
   }
   w.Flush()
 #+end_src
