@@ -11,9 +11,8 @@
 
   Table~\ref{tab:an}A gives example gene data, Table~\ref{tab:an}B is a
   n single interval, and Table~\ref{tab:an}C shows the result when
-  intersecting the interval with the genes. Notice that only the first
-  of the four redundant accessions is returned. Multiple sets of
-  intervals are separated by single blanks.
+  intersecting the interval with the genes. Multiple sets of intervals
+  are separated by single blanks.
 
   \begin{table}
     \caption{Gene coordinates (\textbf{A}), an interval (\textbf{B}),
@@ -123,6 +122,7 @@
   the variable holding the genes as an argument. The intersecting
   intervals are written to a table using a \ty{tabwriter}. So we
   construct one and also pass it as the an argument of \ty{scan}. The
+  table has a header, which we construct and pass as argument. The
   format of the table we print is determined by \ty{-c}, so we pass that
   as well.
 #+end_src
@@ -137,7 +137,8 @@
   }
   files = files[1:]
   w := tabwriter.NewWriter(os.Stdout, 1, 0, 2, ' ', 0)
-  clio.ParseFiles(files, scan, genes, w, *optC)
+  //<<Construct header, Ch.~\ref{ch:an}>>
+  clio.ParseFiles(files, scan, genes, w, header, *optC)
 #+end_src
 #+begin_src latex
   We import \ty{log} and \ty{tabwriter}.
@@ -200,6 +201,18 @@
 #+end_src
 #+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
   "strings"
+#+end_src
+#+begin_src latex
+  A row in the output table either ends in symbols or in accessions. We
+  construct the header accordingly.
+#+end_src
+#+begin_src go <<Construct header, Ch.~\ref{ch:an}>>=
+  header := "#Chr\tStart\tEnd\t"
+  if *optS {
+	  header += "Sym...\n"
+  } else {
+	  header += "Acc...\n"
+  }
 #+end_src
 #+begin_src latex
   We extract the gene information. The accession is either the actual
@@ -286,16 +299,15 @@
   "sort"
 #+end_src
 #+begin_src latex
-  Inside scan, we retrieve the arguments just passed, write a header for
-  the new annotations unless printing a single column, and iterate over
-  the intervals.
+  Inside scan, we retrieve the arguments just passed, print a header for
+  the new annotations unless the output is single column, and iterate
+  over the intervals.
 #+end_src
 #+begin_src go <<Functions, Ch.~\ref{ch:an}>>=
   func scan(r io.Reader, args ...interface{}) {
 	  //<<Retrieve arguments, Ch.~\ref{ch:an}>>
 	  sc := bufio.NewScanner(r)
 	  gm := make(map[string]bool)
-	  header := "#Chr\tStart\tEnd\tAcc...\n"
 	  if !col { fmt.Fprint(w, header) }
 	  for sc.Scan() {
 		  //<<Scan interval, Ch.~\ref{ch:an}>>
@@ -315,7 +327,8 @@
 #+begin_src go <<Retrieve arguments, Ch.~\ref{ch:an}>>=
   genes := args[0].(map[string][]*interval)
   w := args[1].(*tabwriter.Writer)
-  col := args[2].(bool)
+  header := args[2].(string)
+  col := args[3].(bool)
 #+end_src
 #+begin_src latex
   While scanning intervals, a new set of intervals might start, marked
@@ -328,9 +341,9 @@
   if len(sc.Text()) == 0 {
 	  w.Flush()
 	  if col {
-		  fmt.Fprint(w, header)
-	  } else {
 		  fmt.Fprint(w, "\n")
+	  } else {
+		  fmt.Fprint(w, header)
 	  }
 	  continue
   }
