@@ -75,8 +75,9 @@
 #+begin_src latex
   Apart from the version, \ty{-v}, we declare an option for intersecting
   the full transcript instead of the promoter, \ty{-t}. The user can
-  also set the promoter length, \ty{-l}, and get gene symbols instead of
-  accessions, \ty{-s}.
+  also set the promoter length, \ty{-l}, get gene symbols instead of
+  accessions, \ty{-s}, and print the accessions or symbols in a single
+  column, \ty{-c}.
 #+end_src
 #+begin_src go <<Declare options, Ch.~\ref{ch:an}>>=
   var optV = flag.Bool("v", false, "print program version " +
@@ -84,7 +85,10 @@
   var optT = flag.Bool("t", false, "intersect transcript " +
 	  "instead of promoter")
   var optL = flag.Int("l", 2000, "promoter length")
-  var optS = flag.Bool("s", false, "gene symbols instead of accessions")
+  var optS = flag.Bool("s", false, "gene symbols instead of " +
+	  "accessions")
+  var optC = flag.Bool("c", false, "print accessions or symbols " +
+	  "in a single column")
 #+end_src
 #+begin_src latex
   We import \ty{flag}.
@@ -118,7 +122,9 @@
   The interval files are parsed by the function \ty{scan}, which takes
   the variable holding the genes as an argument. The intersecting
   intervals are written to a table using a \ty{tabwriter}. So we
-  construct one and also pass it as the an argument of \ty{scan}.
+  construct one and also pass it as the an argument of \ty{scan}. The
+  format of the table we print is determined by \ty{-c}, so we pass that
+  as well.
 #+end_src
 #+begin_src go <<Parse input files, Ch.~\ref{ch:an}>>=
   files := flag.Args()
@@ -131,7 +137,7 @@
   }
   files = files[1:]
   w := tabwriter.NewWriter(os.Stdout, 1, 0, 2, ' ', 0)
-  clio.ParseFiles(files, scan, genes, w)
+  clio.ParseFiles(files, scan, genes, w, *optC)
 #+end_src
 #+begin_src latex
   We import \ty{log} and \ty{tabwriter}.
@@ -281,7 +287,8 @@
 #+end_src
 #+begin_src latex
   Inside scan, we retrieve the arguments just passed, write a header for
-  the new annotations, and iterate over the intervals.
+  the new annotations unless printing a single column, and iterate over
+  the intervals.
 #+end_src
 #+begin_src go <<Functions, Ch.~\ref{ch:an}>>=
   func scan(r io.Reader, args ...interface{}) {
@@ -289,7 +296,7 @@
 	  sc := bufio.NewScanner(r)
 	  gm := make(map[string]bool)
 	  header := "#Chr\tStart\tEnd\tAcc...\n"
-	  fmt.Fprint(w, header)
+	  if !col { fmt.Fprint(w, header) }
 	  for sc.Scan() {
 		  //<<Scan interval, Ch.~\ref{ch:an}>>
 	  }
@@ -308,20 +315,27 @@
 #+begin_src go <<Retrieve arguments, Ch.~\ref{ch:an}>>=
   genes := args[0].(map[string][]*interval)
   w := args[1].(*tabwriter.Writer)
+  col := args[2].(bool)
 #+end_src
 #+begin_src latex
   While scanning intervals, a new set of intervals might start, marked
   by an empty line. In that case, we flush the tabwriter and write a new
-  header. Each interval is then intersected with the genes.
+  header, unless we are asked to print the annotations in a single
+  column, in which case we print a blank. Each interval is then
+  intersected with the genes.
 #+end_src
 #+begin_src go <<Scan interval, Ch.~\ref{ch:an}>>=
   if len(sc.Text()) == 0 {
 	  w.Flush()
-	  fmt.Fprint(w, header)
+	  if col {
+		  fmt.Fprint(w, header)
+	  } else {
+		  fmt.Fprint(w, "\n")
+	  }
 	  continue
   }
-  <<Extract interval, Ch.~\ref{ch:an}>>
-  <<Intersect interval with genes, Ch.~\ref{ch:an}>>
+  //<<Extract interval, Ch.~\ref{ch:an}>>
+  //<<Intersect interval with genes, Ch.~\ref{ch:an}>>
 #+end_src
 #+begin_src latex
   The interval consists of a chromosome, a start, and an end. We extract
@@ -393,10 +407,19 @@
   }
 #+end_src
 #+begin_src latex
-  We print the annotated interval to the tab writer.
+  We print the annotated interval to the tab writer. If \ty{-c} was set,
+  we just print a single column.
 #+end_src
 #+begin_src go <<Print annotated interval, Ch.~\ref{ch:an}>>=
-  fmt.Fprintf(w, "%s\t%d\t%d%s\n", chr, s, e, acc)
+  if col {
+	  fields := strings.Split(acc, ",")
+	  for _, f := range fields {
+		  if f[0] == '\t' { f = f[1:] }
+		  fmt.Fprintf(w, "%s\n", f)
+	  }
+  } else {
+	  fmt.Fprintf(w, "%s\t%d\t%d%s\n", chr, s, e, acc)
+  }
 #+end_src
 #+begin_src latex
   We import \ty{fmt}.

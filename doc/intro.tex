@@ -16,8 +16,6 @@ Now test for enrichment of GO terms among the symbols contained
 in \ty{obsSym.txt}:
 \begin{verbatim}
 $ shuffle -n 100000 hsTmpl.txt i1.txt |
-annotate -s hsRefGene.txt |
-awk '/^#/&&NR>1{print ""}!/^#/{print $4}' |
-tr ',' '\n' |
+annotate -s -c hsRefGene.txt |
 ego -i Homo_sapiens.gene_info -g gene2go obsSym.txt
 \end{verbatim}
