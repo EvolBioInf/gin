@@ -76,7 +76,9 @@
   the full transcript instead of the promoter, \ty{-t}. The user can
   also set the promoter length, \ty{-l}, get gene symbols instead of
   accessions, \ty{-s}, and print the accessions or symbols in a single
-  column, \ty{-c}.
+  column, \ty{-c}. There is also fast gene lookup, which relies on genes
+  not being proper subintervals of each other. This is not strictly
+  true, but most of the time.
 #+end_src
 #+begin_src go <<Declare options, Ch.~\ref{ch:an}>>=
   var optV = flag.Bool("v", false, "print program version " +
@@ -88,6 +90,7 @@
 	  "accessions")
   var optC = flag.Bool("c", false, "print accessions or symbols " +
 	  "in a single column")
+  var optF = flag.Bool("f", false, "fast gene lookup")
 #+end_src
 #+begin_src latex
   We import \ty{flag}.
@@ -120,11 +123,12 @@
 
   The interval files are parsed by the function \ty{scan}, which takes
   the variable holding the genes as an argument. The intersecting
-  intervals are written to a table using a \ty{tabwriter}. So we
+  intervals are written to a table using a buffered writer. So we
   construct one and also pass it as the an argument of \ty{scan}. The
   table has a header, which we construct and pass as argument. The
   format of the table we print is determined by \ty{-c}, so we pass that
-  as well.
+  as well. During the scan can may use the fast method for gene lookup
+  (\ty{-f}), our last option.
 #+end_src
 #+begin_src go <<Parse input files, Ch.~\ref{ch:an}>>=
   files := flag.Args()
@@ -136,16 +140,16 @@
 	  //<<Read genes, Ch.~\ref{ch:an}>>
   }
   files = files[1:]
-  w := tabwriter.NewWriter(os.Stdout, 1, 0, 2, ' ', 0)
+  w := bufio.NewWriter(os.Stdout)
   //<<Construct header, Ch.~\ref{ch:an}>>
-  clio.ParseFiles(files, scan, genes, w, header, *optC)
+  clio.ParseFiles(files, scan, genes, w, header, *optC, *optF)
 #+end_src
 #+begin_src latex
-  We import \ty{log} and \ty{tabwriter}.
+  We import \ty{log} and \ty{bufio}.
 #+end_src
 #+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
   "log"
-  "text/tabwriter"
+  "bufio"
 #+end_src
 #+begin_src latex
   Before we read the intervals, we declare an interval.
@@ -301,7 +305,7 @@
 #+begin_src latex
   Inside scan, we retrieve the arguments just passed, print a header for
   the new annotations unless the output is single column, and iterate
-  over the intervals.
+  over the intervals. At the end of each file, we flush the writer.
 #+end_src
 #+begin_src go <<Functions, Ch.~\ref{ch:an}>>=
   func scan(r io.Reader, args ...interface{}) {
@@ -326,20 +330,19 @@
 #+end_src
 #+begin_src go <<Retrieve arguments, Ch.~\ref{ch:an}>>=
   genes := args[0].(map[string][]*interval)
-  w := args[1].(*tabwriter.Writer)
+  w := args[1].(*bufio.Writer)
   header := args[2].(string)
   col := args[3].(bool)
+  fast := args[4].(bool)
 #+end_src
 #+begin_src latex
   While scanning intervals, a new set of intervals might start, marked
-  by an empty line. In that case, we flush the tabwriter and write a new
-  header, unless we are asked to print the annotations in a single
-  column, in which case we print a blank. Each interval is then
-  intersected with the genes.
+  by an empty line. In that case, we write a new header, unless we are
+  asked to print the annotations in a single column, in which case we
+  print a blank. Each interval is then intersected with the genes.
 #+end_src
 #+begin_src go <<Scan interval, Ch.~\ref{ch:an}>>=
   if len(sc.Text()) == 0 {
-	  w.Flush()
 	  if col {
 		  fmt.Fprint(w, "\n")
 	  } else {
@@ -377,11 +380,8 @@
   g := genes[chr]
   n := len(g)
   acc := ""
-  gc := 0
   //<<Reset gene map, Ch.~\ref{ch:an}>>
-  for i := 0; i < n && g[i].start <= e; i++ {
-	  //<<Collect accessions of intersecting genes, Ch.~\ref{ch:an}>>
-  }
+  //<<Collect accessions, Ch.~\ref{ch:an}>>
   if acc != "" {
 	  //<<Print annotated interval, Ch.~\ref{ch:an}>>
   }
@@ -398,12 +398,55 @@
 	  delete(gm, k)
   }
 #+end_src
-#+begin_src go <<Collect accessions of intersecting genes, Ch.~\ref{ch:an}>>=
-  if g[i].end >= s && g[i].start <= e {
+#+begin_src latex
+  We either use the faster method for looking up the intersecting genes
+  or the slower, more accurate one. Both start from the first position
+  beyond the last intersecting gene, from where we move to the
+  left. Accessions are separated by commas, except for the first one,
+  which is separated by a tab. So we count the intersecting genes to
+  distinguish between the first and all subsequent ones.
+#+end_src
+#+begin_src go <<Collect accessions, Ch.~\ref{ch:an}>>=
+  i := sort.Search(n, func(i int) bool {
+	  return g[i].start >= e
+  })
+  i--
+  gc := 0
+  //<<Fast search, Ch.~\ref{ch:an}>>
+  if ! fast {
+	  //<<Slow search, Ch.~\ref{ch:an}>>
+  }
+#+end_src
+#+begin_src latex
+  In the fast search, we walk to the left until we reach the first gene
+  whose end is to the left of the intersection start.
+#+end_src
+#+begin_src go <<Fast search, Ch.~\ref{ch:an}>>=
+  for i >= 0 && g[i].end >= s {
 	  gc++
 	  if !gm[g[i].acc] {
 		  //<<Add accession, Ch.~\ref{ch:an}>>
 	  }
+	  i--
+  }
+#+end_src
+#+begin_src latex
+  We end the fast search on a non-overlapping gene. But there is no
+  guarantee that there aren't more overlapping genes somewhere to the
+  left of that. So the slow search continues the search to the first
+  gene in the list. This is bound to be excessive, but guaranteed to be
+  correct.
+#+end_src
+#+begin_src go <<Slow search, Ch.~\ref{ch:an}>>=
+  i--
+  for i >= 0 {
+	  if g[i].start <= e && g[i].end >= s {
+		  gc++
+		  if !gm[g[i].acc] {
+			  //<<Add accession, Ch.~\ref{ch:an}>>
+		  }
+	  }
+	  i--
   }
 #+end_src
 #+begin_src latex
@@ -475,8 +518,8 @@
   "os/exec"
 #+end_src
 #+begin_src latex
-  We run three tests. The first two are on the large data set in
-  \ty{i1.txt}, the third on two segments out of this data set to test
+  We run four tests. The first three are on the large data set in
+  \ty{i1.txt}, the fourth on two segments out of this data set to test
   the analysis of multiple lists of intervals stored in \ty{i2}.
 #+end_src
 #+begin_src go <<Construct tests, Ch.~\ref{ch:an}>>=
@@ -486,6 +529,8 @@
   test := exec.Command("./annotate", "-s", g, i1)
   tests = append(tests, test)
   test  = exec.Command("./annotate", "-s", "-t", g, i1)
+  tests = append(tests, test)
+  test = exec.Command("./annotate", "-s", "-f", g, i1)
   tests = append(tests, test)
   test = exec.Command("./annotate", "-s", "-t", g, i2)
 #+end_src

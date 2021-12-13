@@ -7,9 +7,7 @@ among an observed set of gene symbols.
 To use these programs, first annotate a list of intervals and from
 that compute the observed list of gene symbols:
 \begin{verbatim}
-$ annotate -s hsRefGene.txt i1.txt | 
-awk '{print $4}' | 
-tr ',' '\n' > obsSym.txt
+$ annotate -c -s hsRefGene.txt i1.txt > obsSym.txt
 \end{verbatim}
 
 Now test for enrichment of GO terms among the symbols contained
