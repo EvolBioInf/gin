@@ -3,7 +3,11 @@
   The program \ty{annotate} reads a list of genome intervals and a file
   of reference genes, and returns the genes that intersect the
   intervals. The genes files are distributed via the UCSC genome
-  browser, for example \ty{hsRefGene.txt}.
+  browser, for example \ty{hsRefGene.txt} available from
+  \begin{verbatim}
+  http://hgdownload.soe.ucsc.edu/goldenPath/hg38/\
+  database/refGene.txt.gz
+  \end{verbatim}
 
   Table~\ref{tab:an}A gives example gene data, Table~\ref{tab:an}B is a
   n single interval, and Table~\ref{tab:an}C shows the result when

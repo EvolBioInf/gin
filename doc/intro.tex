@@ -1,2 +1,23 @@
 The package \ty{gin} contains programs for investigating the
-functional content of genome intervals.
+functional content of genome intervals. The package consists of three
+programs, \ty{annotate} annotates a set of intervals, \ty{shuffle}
+shuffles a set of intervals, and \ty{ego} tests for GO term enrichment
+among an observed set of gene symbols.
+
+To use these programs, first annotate a list of intervals and from
+that compute the observed list of gene symbols:
+\begin{verbatim}
+$ annotate -s hsRefGene.txt i1.txt | 
+awk '{print $4}' | 
+tr ',' '\n' > obsSym.txt
+\end{verbatim}
+
+Now test for enrichment of GO terms among the symbols contained
+in \ty{obsSym.txt}:
+\begin{verbatim}
+$ shuffle -n 100000 hsTmpl.txt i1.txt |
+annotate -s hsRefGene.txt |
+awk '/^#/&&NR>1{print ""}!/^#/{print $4}' |
+tr ',' '\n' |
+ego -i Homo_sapiens.gene_info -g gene2go obsSym.txt
+\end{verbatim}
