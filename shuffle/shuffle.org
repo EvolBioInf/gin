@@ -220,25 +220,20 @@
 #+begin_src latex
   The remaining files contain the focus intervals. The sets of shuffled
   intervals are preceded by a blank line, except for the very first set,
-  so we declare a variable for marking the very first input set. Moreover,
-  the shuffled intervals are written in a table, which we format using a
-  tab writer. Then we call \ty{scan} on each of the focus interval
-  files, with a rather long list of arguments consisting of the number
-  of iterations, the templates, the pick file, the random number
-  generator, the indicator of the first data set, and the tab writer.
+  so we declare a variable for marking the very first input
+  set. Moreover, the shuffled intervals are written to a buffered writer
+  without any special formatting, to make this as fast as possible. Then
+  we call \ty{scan} on each of the focus interval files, with a rather
+  long list of arguments consisting of the number of iterations, the
+  templates, the pick file, the random number generator, the indicator
+  of the first data set, and the tab writer.
 #+end_src
 #+begin_src go <<Parse input files, Ch.~\ref{ch:sh}>>=
   files = files[1:]
   first := true
-  w := tabwriter.NewWriter(os.Stdout, 1, 0, 2, ' ', 0)
+  w := bufio.NewWriter(os.Stdout)
   clio.ParseFiles(files, scan, *optN, templates,
 	  pick, ran, &first, w)
-#+end_src
-#+begin_src latex
-  We import \ty{tabwriter}.
-#+end_src
-#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
-  "text/tabwriter"
 #+end_src
 #+begin_src latex
   We are now ready to implement the function \ty{scan}. Inside it, we
@@ -267,7 +262,7 @@
   pick := args[2].([]float64)
   ran := args[3].(*rand.Rand)
   first := args[4].(*bool)
-  w := args[5].(*tabwriter.Writer)
+  w := args[5].(*bufio.Writer)
 #+end_src
 #+begin_src latex
   We use a scanner to read the focus intervals and save them in a slice
@@ -312,8 +307,8 @@
 	  for _, in := range  intervals {
 		  //<<Shuffle template, Ch.~\ref{ch:sh}>>
 	  }
-	  w.Flush()
   }
+  w.Flush()
 #+end_src
 #+begin_src latex
   We import \ty{fmt}.
