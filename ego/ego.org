@@ -90,8 +90,7 @@
   GO term to be included in the final result (\ty{-m}).
 #+end_src
 #+begin_src go <<Declare options, Ch.~\ref{ch:eg}>>=
-  var optV = flag.Bool("v", false, "print program option " +
-	  "and other information")
+  var optV = flag.Bool("v", false, "version")
   var optI = flag.String("i", "", "information file of gene " +
 	  "symbols and IDs")
   var optG = flag.String("g", "gene2go", "GO file of gene " +
@@ -113,14 +112,13 @@
 #+end_src
 #+begin_src go <<Parse options, Ch.~\ref{ch:eg}>>=
   flag.Parse()
-  if *optV {
-	  util.PrintInfo("ego")
-  }
+  if *optV { util.PrintInfo("ego") }
   sym2id := make(map[string]string)
   if *optI != "" {
 	  //<<Read gene-info file, Ch.~\ref{ch:eg}>>
   } else {
-	  fmt.Fprintf(os.Stderr, "please enter a gene-info file\n")
+	  m := "please enter a gene-info file\n"
+	  fmt.Fprintf(os.Stderr, m)
 	  os.Exit(-1)
   }
   //<<Read GO file, Ch.~\ref{ch:eg}>>
@@ -177,11 +175,13 @@
   sc := bufio.NewScanner(f)
 #+end_src
 #+begin_src latex
-  In the GO file, the gene ID is in column 2, the GO ID in column 3,
-  and the GO term in column 6.
+  In the GO file, the gene ID is in column 2, the GO ID in column 3, and
+  the description of the GO term in column 6. Since a gene ID typically
+  maps to many GO IDs, we store the relationship between gene IDs and
+  GO ID in a map between gene IDs and maps of GO IDs.
 #+end_src
 #+begin_src go <<Scan GO file, Ch.~\ref{ch:eg}>>=
-  id2go := make(map[string]string)
+  id2go := make(map[string]map[string]bool)
   go2descr := make(map[string]string)
   for sc.Scan() {
 	  if sc.Text()[0] == '#' { continue }
@@ -189,17 +189,27 @@
 	  geneId := fields[1]
 	  goId := fields[2]
 	  goDescr := fields[5]
-	  id2go[geneId] = goId
+	  //<<Store GO ID, Ch.~\ref{ch:eg}>>
 	  go2descr[goId] = goDescr
   }
 #+end_src
 #+begin_src latex
+  We check whether a given gene ID already has an associated map of GO
+  IDs. If not, we make it. Then we store the GO ID.
+#+end_src
+#+begin_src go <<Store GO ID, Ch.~\ref{ch:eg}>>=
+  if id2go[geneId] == nil {
+	  id2go[geneId] = make(map[string]bool)
+  }
+  id2go[geneId][goId] = true
+#+end_src
+#+begin_src latex
   The remaining tokens on the command line are taken as the names of
-  input files. The first of these contains the observed symbols. If it
-  doesn't exist, we bail. Otherwise, we open it and scan the observed
-  symbols. But, remember, what we are really interested in, is their GO
-  occupancy. So once we've read the gene symbols, we convert them to GO
-  counts.
+  input files. The first of these contains the observed symbols. If the
+  symbols file doesn't exist, we bail. Otherwise, we open it and scan
+  the observed symbols. But, remember, what we are really interested in,
+  is their GO occupancy. So once we've read the gene symbols, we convert
+  them to GO counts.
 #+end_src
 #+begin_src go <<Parse input files, Ch.~\ref{ch:eg}>>=
   files := flag.Args()
@@ -223,7 +233,7 @@
 #+end_src
 #+begin_src latex
   We scan the observed symbols, which we assume to be presented in a
-  single column. If there are more than one column, we bail with a message.
+  single column. If there is more than one column, we bail with a message.
 #+end_src
 #+begin_src go <<Scan observed symbols file, Ch.~\ref{ch:eg}>>=
   sc = bufio.NewScanner(f)
@@ -240,8 +250,8 @@
 #+end_src
 #+begin_src latex
   The conversion between symbol lists and GO occupancy is carried out
-  here and later when we read the expected lists. So we delegate it to a
-  function call.
+  here and again later when we read the expected lists. So we delegate
+  it to a function call.
 #+end_src
 #+begin_src go <<Convert observed symbols to GO counts, Ch.~\ref{ch:eg}>>=
   obsGOcounts := sym2go(symbols, sym2id, id2go)
@@ -249,19 +259,27 @@
 #+begin_src latex
   Inside \ty{sym2go}, we allocate a map for the GO counts and iterate over
   the symbols. For each symbol, we first look up its gene ID and then
-  its GO term, which we count. We skip the symbols for which we cannot
-  look up a GO term.
+  its GO IDs, which we count.
 #+end_src
 #+begin_src go <<Functions, Ch.~\ref{ch:eg}>>=
-  func sym2go(sym []string, sym2id, id2go map[string]string) map[string]int {
+  func sym2go(sym []string, sym2id map[string]string,
+	  id2go map[string]map[string]bool) map[string]int {
 	  og := make(map[string]int)
 	  for _, s := range sym {
 		  id := sym2id[s]
-		  g := id2go[id]
-		  if g == "" { continue }
-		  og[g]++
+		  //<<Count GO IDs for gene, Ch.~\ref{ch:eg}>>
 	  }
 	  return og
+  }
+#+end_src
+#+begin_src latex
+  We skip the symbols for which we cannot look up GO IDs.
+#+end_src
+#+begin_src go <<Count GO IDs for gene, Ch.~\ref{ch:eg}>>=
+  gm := id2go[id]
+  if gm == nil { continue }
+  for g, _ := range gm {
+	  og[g]++
   }
 #+end_src
 #+begin_src latex
@@ -273,7 +291,8 @@
 #+end_src
 #+begin_src go <<Parse input files, Ch.~\ref{ch:eg}>>=
   files = files[1:]
-  clio.ParseFiles(files, scan, obsGOcounts, sym2id, id2go, go2descr, *optM)
+  clio.ParseFiles(files, scan, obsGOcounts, sym2id,
+	  id2go, go2descr, *optM)
 #+end_src
 #+begin_src latex
   Inside \ty{scan}, we retrieve the arguments, prepare the enrichment
@@ -305,7 +324,7 @@
 #+begin_src go  <<Retrieve arguments, Ch.~\ref{ch:eg}>>=
   obsGOcounts := args[0].(map[string]int)
   sym2id := args[1].(map[string]string)
-  id2go := args[2].(map[string]string)
+  id2go := args[2].(map[string]map[string]bool)
   go2descr := args[3].(map[string]string)
   minOcc := args[4].(int)
 #+end_src
@@ -313,7 +332,7 @@
   The enrichment analysis depends on the number of samples we analyze
   and the symbols they contain, so we declare variables for these two
   things. In addition, there are two statistics we produce, the expected
-  occupancy of the observed GO terms, and the frequency, with which a
+  occupancy of the observed GO terms, and the frequency with which a
   random occupancy is at least as great as that observed
   (Table~\ref{tab:eg}B). So we allocate a map to sum up the expected GO
   counts, and another map to count excessive GO counts.
@@ -345,9 +364,9 @@
 #+end_src
 #+begin_src latex
   We iterate over the GO terms found in the expected sample and
-  concentrate on those contained in the observed sample. Their occupancy
-  is summed and terms where the expected occupancy is at least as great
-  as that observed are counted.
+  concentrate on those also contained in the observed sample. Their
+  occupancy is summed and terms where the expected occupancy is at least
+  as great as that observed are counted.
 #+end_src
 #+begin_src go <<Analyze GO counts, Ch.~\ref{ch:eg}>>=
   for k, e := range eg {
@@ -406,8 +425,8 @@
   type GOslice []*GOterm
 #+end_src
 #+begin_src latex
-  To make the slice sortable, we implement the methods that fulfill the
-  \ty{Sort} interface, \ty{Len}, \ty{Less}, and \ty{Swap}.
+  To make the slice sortable, we implement the methods of the \ty{Sort}
+  interface, \ty{Len}, \ty{Less}, and \ty{Swap}.
 #+end_src
 #+begin_src go <<Methods, Ch.~\ref{ch:eg}>>=
   func (g GOslice) Len() int { return len(g) }
@@ -419,8 +438,8 @@
   }
 #+end_src
 #+begin_src latex
-  We sort the results and print the terms with minimum occupancy them to
-  a table.
+  We sort the results and print the terms with minimum occupancy to a
+  table.
 #+end_src
 #+begin_src go <<Report enrichment analysis, Ch.~\ref{ch:eg}>>=
   sort.Sort(GOslice(GOterms))
@@ -495,14 +514,60 @@
   if err != nil {
 	  t.Errorf("can't open %q", f)
   }
-  if !bytes.Equal(get, want) {
-	  t.Errorf("get:\n%s\nwant:\n%s", get, want)
-  }
+  //<<Compare results, Ch.~\ref{ch:eg}>>
 #+end_src
 #+begin_src latex
-  We import \ty{ioutil} and \ty{bytes}.
+  We import \ty{ioutil}.
 #+end_src
 #+begin_src go <<Testing imports, Ch.~\ref{ch:eg}>>=
   "io/ioutil"
-  "bytes"
+#+end_src
+#+begin_src latex
+  I've had some trouble comparing the result I get with the one I want,
+  so this comparison is more detailed than usual. First, we convert the
+  results to sorted strings, then count the strings to make sure the
+  sets are of equal size, and finally compare each line individually.
+#+end_src
+#+begin_src go <<Compare results, Ch.~\ref{ch:eg}>>=
+  //<<Convert results to sorted strings, Ch.~\ref{ch:eg}>>
+  //<<Count results strings, Ch.~\ref{ch:eg}>>
+  //<<Compare result lines, Ch.~\ref{ch:eg}>>
+#+end_src
+#+begin_src latex
+  We split the byte array we get into strings, remove the header, and
+  sort the rest. We also convert the byte array we want to strings.
+#+end_src
+#+begin_src go <<Convert results to sorted strings, Ch.~\ref{ch:eg}>>=
+  gs := strings.Split(string(get), "\n")
+  sort.Strings(gs)
+  gs = gs[2:]
+  want = want[0:len(want)-1]
+  ws := strings.Split(string(want), "\n")
+#+end_src
+#+begin_src latex
+  We import \ty{strings} and \ty{sort}.
+#+end_src
+#+begin_src go <<Testing imports, Ch.~\ref{ch:eg}>>=
+  "strings"
+  "sort"
+#+end_src
+#+begin_src latex
+  We make sure we get as many lines as we want.
+#+end_src
+#+begin_src go <<Count results strings, Ch.~\ref{ch:eg}>>=
+  nw := len(ws)
+  ng := len(gs)
+  if nw != ng {
+	  t.Errorf("get %d lines, want %d\n", ng, nw)
+  }
+#+end_src
+#+begin_src latex
+  We compare each line individually.
+#+end_src
+#+begin_src go <<Compare result lines, Ch.~\ref{ch:eg}>>=
+  for i, w := range ws {
+	  if w != gs[i] {
+		  t.Errorf("get:\n%s\nwant:\n%s\n", gs[i], w)
+	  }
+  }
 #+end_src
