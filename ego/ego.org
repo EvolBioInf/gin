@@ -211,7 +211,7 @@
 #+end_src
 #+begin_src go <<Store GO description, Ch.~\ref{ch:eg}>>=
   li := strings.LastIndex(goDescr, "[")
-  if li > -1 {
+  if li > -1 && strings.Contains(goDescr, "GO:") {
 	  if li > 0 {
 		  goDescr = goDescr[:li-1]
 	  } else {
