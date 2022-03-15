@@ -178,7 +178,8 @@
   In the GO file, the gene ID is in column 2, the GO ID in column 3, and
   the description of the GO term in column 6. Since a gene ID typically
   maps to many GO IDs, we store the relationship between gene IDs and
-  GO ID in a map between gene IDs and maps of GO IDs.
+  GO ID in a map between gene IDs and maps of GO IDs. We also store the
+  GO description.
 #+end_src
 #+begin_src go <<Scan GO file, Ch.~\ref{ch:eg}>>=
   id2go := make(map[string]map[string]bool)
@@ -190,7 +191,7 @@
 	  goId := fields[2]
 	  goDescr := fields[5]
 	  //<<Store GO ID, Ch.~\ref{ch:eg}>>
-	  go2descr[goId] = goDescr
+	  //<<Store GO description, Ch.~\ref{ch:eg}>>
   }
 #+end_src
 #+begin_src latex
@@ -202,6 +203,22 @@
 	  id2go[geneId] = make(map[string]bool)
   }
   id2go[geneId][goId] = true
+#+end_src
+#+begin_src latex
+  GO descriptions may end with \verb+[GO-ID]+, which is redundant, so we
+  cut it off before storing the description. We also make sure the
+  remaining description doesn't end in a blank.
+#+end_src
+#+begin_src go <<Store GO description, Ch.~\ref{ch:eg}>>=
+  li := strings.LastIndex(goDescr, "[")
+  if li > -1 {
+	  if li > 0 {
+		  goDescr = goDescr[:li-1]
+	  } else {
+		  goDescr = goDescr[:li]
+	  }
+  }
+  go2descr[goId] = goDescr
 #+end_src
 #+begin_src latex
   The remaining tokens on the command line are taken as the names of
