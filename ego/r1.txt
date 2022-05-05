@@ -1,0 +1,61 @@
+#GO         O    E   O/E   P   Category   Description
+GO:0000978  36   0   +Inf  -1  Function   RNA polymerase II proximal promoter sequence-specific DNA binding
+GO:0001078  11   0   +Inf  -1  Function   transcriptional repressor activity, RNA polymerase II proximal promoter sequence-specific DNA binding
+GO:0001228  21   0   +Inf  -1  Function   transcriptional activator activity, RNA polymerase II transcription regulatory region sequence-specific DNA binding
+GO:0001501  12   0   +Inf  -1  Process    skeletal system development
+GO:0001701  11   0   +Inf  -1  Process    in utero embryonic development
+GO:0001764  11   0   +Inf  -1  Process    neuron migration
+GO:0003682  22   0   +Inf  -1  Function   chromatin binding
+GO:0003713  10   0   +Inf  -1  Function   transcription coactivator activity
+GO:0005667  20   0   +Inf  -1  Component  transcription factor complex
+GO:0007411  11   0   +Inf  -1  Process    axon guidance
+GO:0007420  11   0   +Inf  -1  Process    brain development
+GO:0007507  12   0   +Inf  -1  Process    heart development
+GO:0008284  17   0   +Inf  -1  Process    positive regulation of cell proliferation
+GO:0008285  10   0   +Inf  -1  Process    negative regulation of cell proliferation
+GO:0009653  18   0   +Inf  -1  Process    anatomical structure morphogenesis
+GO:0009887  10   0   +Inf  -1  Process    animal organ morphogenesis
+GO:0009952  32   0   +Inf  -1  Process    anterior/posterior pattern specification
+GO:0009954  11   0   +Inf  -1  Process    proximal/distal pattern formation
+GO:0010628  15   0   +Inf  -1  Process    positive regulation of gene expression
+GO:0042472  11   0   +Inf  -1  Process    inner ear morphogenesis
+GO:0042475  10   0   +Inf  -1  Process    odontogenesis of dentin-containing tooth
+GO:0042733  10   0   +Inf  -1  Process    embryonic digit morphogenesis
+GO:0043066  18   0   +Inf  -1  Process    negative regulation of apoptotic process
+GO:0043565  60   0   +Inf  -1  Function   sequence-specific DNA binding
+GO:0048704  15   0   +Inf  -1  Process    embryonic skeletal system morphogenesis
+GO:0051216  10   0   +Inf  -1  Process    cartilage development
+GO:0060021  10   0   +Inf  -1  Process    roof of mouth development
+GO:0045944  85   1   85    -1  Process    positive regulation of transcription by RNA polymerase II
+GO:0006366  58   1   58    -1  Process    transcription by RNA polymerase II
+GO:0001077  35   1   35    -1  Function   transcriptional activator activity, RNA polymerase II proximal promoter sequence-specific DNA binding
+GO:0000981  129  4   32.2  -1  Function   RNA polymerase II transcription factor activity, sequence-specific DNA binding
+GO:0006357  57   2   28.5  -1  Process    regulation of transcription by RNA polymerase II
+GO:0000122  49   2   24.5  -1  Process    negative regulation of transcription by RNA polymerase II
+GO:0007275  23   1   23    -1  Process    multicellular organism development
+GO:0003700  40   2   20    -1  Function   DNA binding transcription factor activity
+GO:0006351  67   4   16.8  -1  Process    transcription, DNA-templated
+GO:0008134  16   1   16    -1  Function   transcription factor binding
+GO:0000977  28   2   14    -1  Function   RNA polymerase II regulatory region sequence-specific DNA binding
+GO:0030154  24   2   12    -1  Process    cell differentiation
+GO:0044212  12   1   12    -1  Function   transcription regulatory region DNA binding
+GO:0045893  33   3   11    -1  Process    positive regulation of transcription, DNA-templated
+GO:0070062  11   1   11    -1  Component  extracellular exosome
+GO:0005634  129  12  10.8  -1  Component  nucleus
+GO:0045892  21   2   10.5  -1  Process    negative regulation of transcription, DNA-templated
+GO:0003677  38   4   9.5   -1  Function   DNA binding
+GO:0006355  18   2   9     -1  Process    regulation of transcription, DNA-templated
+GO:0042803  15   2   7.5   -1  Function   protein homodimerization activity
+GO:0005615  18   3   6     -1  Component  extracellular space
+GO:0005654  54   10  5.4   -1  Component  nucleoplasm
+GO:0005576  15   3   5     -1  Component  extracellular region
+GO:0007399  15   3   5     -1  Process    nervous system development
+GO:0046872  32   7   4.57  -1  Function   metal ion binding
+GO:0005515  111  29  3.83  -1  Function   protein binding
+GO:0007165  10   3   3.33  -1  Process    signal transduction
+GO:0005887  13   4   3.25  -1  Component  integral component of plasma membrane
+GO:0005829  32   11  2.91  -1  Component  cytosol
+GO:0005737  36   13  2.77  -1  Component  cytoplasm
+GO:0016020  11   4   2.75  -1  Component  membrane
+GO:0016021  16   8   2     -1  Component  integral component of membrane
+GO:0005886  28   17  1.65  -1  Component  plasma membrane

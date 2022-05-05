@@ -1,0 +1,2190 @@
+GO:0005634	129	Component	nucleus	AATF AGAP3 AKT1 ARX BARHL1 BARHL2 BARX1 BCOR CBX2 CBX8 CCND1 DLX1 DLX2 DMRTA2 EBF2 EBF3 EMX1 EMX2 EN1 EN2 EOMES EVX2 FAM120B FOXA1 FOXA2 FOXB1 FOXC1 FOXF1 FOXF2 GATA2 GATA3 GBX2 HCFC1 HLX HMX1 HMX2 HMX3 HOXA1 HOXA10 HOXA13 HOXA2 HOXA5 HOXA6 HOXA7 HOXA9 HOXB3 HOXB4 HOXB5 HOXB6 HOXB7 HOXC12 HOXC4 HOXD12 HOXD13 HOXD3 HOXD4 HOXD8 HOXD9 INTS11 IRX1 IRX2 IRX4 IRX5 KDM6B LBX1 LHX1 LHX2 LHX3 LHX5 LHX9 LMX1B MBD1 MNX1 MSX1 NAA38 NKX2-1 NKX2-3 NKX3-2 NR4A2 NUBP2 NUDT16L1 ONECUT1 ONECUT2 OSR1 OTP OTX1 OTX2 PAX1 PAX2 PAX6 PAX7 PAX9 PITX1 PITX2 POU3F2 POU4F1 PRDM16 PRDM6 RECQL4 SALL3 SATB2 SCX SIM1 SIM2 SIX1 SIX3 SKOR1 SKOR2 SOX1 SP9 SRPK3 SRRM2 STUB1 TAF10 TBX1 TBX2 TBX3 TBX4 TBX5 TFAP2A TSHZ1 UNCX ZBTB42 ZIC1 ZIC2 ZIC4 ZIC4 ZIC5 ZNF503
+GO:0000981	129	Function	RNA polymerase II transcription factor activity, sequence-specific DNA binding	ARX BARHL1 BARHL2 BARX1 DLX1 DLX2 DMRTA2 EBF2 EBF3 EMX1 EMX2 EN1 EN2 EOMES EVX2 FOXA1 FOXA2 FOXB1 FOXC1 FOXF1 FOXF2 GATA2 GATA3 GBX2 HAND2 HES5 HLX HMX1 HMX2 HMX3 HOXA1 HOXA10 HOXA11 HOXA13 HOXA2 HOXA4 HOXA5 HOXA6 HOXA7 HOXA9 HOXB3 HOXB4 HOXB5 HOXB6 HOXB7 HOXB8 HOXB9 HOXC10 HOXC11 HOXC12 HOXC4 HOXC5 HOXC6 HOXC8 HOXC9 HOXD10 HOXD11 HOXD12 HOXD13 HOXD3 HOXD4 HOXD8 HOXD9 IRX1 IRX2 IRX4 IRX5 LBX1 LHX1 LHX2 LHX3 LHX5 LHX8 LHX9 LMX1B MBD1 MNX1 MSX1 NKX2-1 NKX2-2 NKX2-3 NKX3-2 NR2E1 NR4A2 ONECUT1 ONECUT2 OSR1 OTP OTX1 OTX2 PAX1 PAX2 PAX3 PAX5 PAX6 PAX7 PAX9 PITX1 PITX2 POU3F2 POU4F1 PRDM16 PRDM6 SALL3 SATB2 SCX SIM1 SIM2 SIX1 SIX3 SKOR1 SKOR2 SOX1 SP9 TBX1 TBX15 TBX2 TBX3 TBX4 TBX5 TFAP2A TSHZ1 UNCX ZBTB42 ZIC1 ZIC2 ZIC4 ZIC4 ZIC5
+GO:0005515	111	Function	protein binding	AATF ADGRB1 ADGRB2 ADRA2C AKT1 BARHL2 BCOR BUB3 C17orf82 CACNA1H CBX2 CBX8 CCND1 CELSR3 CENPX CFAP53 COL7A1 CRIP2 DLL1 DLX1 DLX2 EME2 EMX1 EMX2 FAM120B FASN FOXA1 FOXB1 FOXC1 GATA2 GATA3 GDF7 GDNF GFER GNAS HAND2 HCFC1 HLX HOXA1 HOXA10 HOXA5 HOXA9 HOXB5 HOXB6 HOXB7 HOXB9 HOXC4 HOXC9 HOXD12 HOXD3 HTRA3 IGF2 INHBB INTS11 KDM6B LHX8 LHX9 LMX1B LRRC26 LRRC45 MBD1 NAA38 NKX2-1 NME3 NOXO1 NR4A2 NUBP2 NUDT16L1 OSR1 OTX1 OTX2 PAX1 PAX2 PAX3 PAX5 PAX6 PAX9 PIM3 PITX1 PITX2 PLXNB1 POU3F2 PRDM16 PWWP2B RAC3 RECQL4 RHOT2 RNF220 SATB2 SCRG1 SCRIB SHH SIX1 SIX3 SLC16A3 SOX1 SPSB3 SRPK3 SRRM2 STUB1 TAF10 TBX15 TBX2 TBX3 TBX5 TEDC1 TFAP2A THBD TMEM88 TPP1 WNT5A
+GO:0045944	85	Process	positive regulation of transcription by RNA polymerase II	AATF AKT1 BARHL1 BARHL2 BARX1 DLL1 DLX1 DLX2 EBF2 EBF3 EN1 EN2 EOMES FOXA1 FOXA2 FOXC1 FOXF1 FOXF2 GATA2 GATA3 GBX2 GDNF HAND2 HCFC1 HES5 HOXA1 HOXA10 HOXA2 HOXA5 HOXA7 HOXB3 HOXB4 HOXB5 HOXB7 HOXB9 HOXC10 HOXC11 HOXC4 HOXD10 HOXD13 HOXD3 HOXD4 HOXD8 HOXD9 IGF2 KDM6B LHX2 LHX3 LMX1B MSX1 NKX2-1 NKX2-2 NKX2-3 NR2E1 NR4A2 ONECUT1 ONECUT2 OSR1 OTX1 OTX2 PAX1 PAX2 PAX3 PAX5 PAX6 PAX7 PAX9 PITX1 PITX2 POU3F2 POU4F1 PRDM16 SATB2 SCX SHH SIM1 SIM2 SIX1 SIX3 SOX1 TBX1 TBX5 TFAP2A WNT5A ZIC1
+GO:0006351	67	Process	transcription, DNA-templated	ARX BCOR CBX2 CBX8 DLX1 EOMES FAM120B FOXA2 FOXB1 GATA2 HES5 HLX HMX1 HMX2 HMX3 HOXA11 HOXA13 HOXA2 HOXA4 HOXA6 HOXA9 HOXB4 HOXB6 HOXB8 HOXB9 HOXC12 HOXC5 HOXC6 HOXC8 HOXC9 HOXD11 HOXD12 HOXD3 HOXD9 IRX5 LBX1 LHX5 LHX8 LMX1B MN1 MNX1 NKX2-1 NKX2-2 NKX2-3 NR4A2 OSR1 OTP PAX2 PAX7 PRDM16 PRDM6 SCX SIM1 SIM2 SKOR1 SKOR2 SP9 TBX1 TBX15 TBX2 TBX3 TBX4 TSHZ1 UNCX ZBTB42 ZIC2 ZNF503
+GO:0043565	60	Function	sequence-specific DNA binding	DMRTA2 EMX1 EMX2 EN2 EOMES EVX2 FOXA1 FOXB1 FOXC1 FOXF1 FOXF2 HLX HMX2 HOXA1 HOXA11 HOXA13 HOXA4 HOXA6 HOXA7 HOXA9 HOXB4 HOXB6 HOXB8 HOXC12 HOXC5 HOXC6 HOXC8 HOXC9 HOXD11 HOXD12 IRX1 IRX2 IRX4 IRX5 KDM6B LBX1 LHX1 LHX3 LHX5 LHX8 LHX9 MNX1 NKX2-3 NR2E1 NR4A2 OTP PAX3 PAX7 POU4F1 PRDM16 SALL3 SATB2 SCX SIX1 TBX1 TBX2 TBX3 TBX5 TFAP2A UNCX
+GO:0006366	58	Process	transcription by RNA polymerase II	BARHL1 BARHL2 BARX1 DLX2 EBF2 EBF3 FOXA1 FOXC1 FOXF1 FOXF2 GATA3 GBX2 HAND2 HCFC1 HOXA1 HOXA10 HOXA5 HOXA7 HOXB3 HOXB5 HOXB7 HOXC10 HOXC11 HOXC4 HOXD10 HOXD13 HOXD3 HOXD4 HOXD8 LHX1 LHX2 LHX3 MBD1 MSX1 NKX3-2 ONECUT1 ONECUT2 OTX1 OTX2 PAX1 PAX2 PAX3 PAX5 PAX6 PAX9 PITX1 PITX2 POU3F2 POU4F1 SALL3 SATB2 SCX SIX1 SIX3 SOX1 TAF10 TFAP2A ZIC1
+GO:0006357	57	Process	regulation of transcription by RNA polymerase II	AATF ABCA2 BARHL1 BARHL2 BARX1 DMRTA2 EMX1 EMX2 EVX2 FOXA1 FOXA2 FOXB1 FOXC1 FOXF1 FOXF2 HLX HMX2 HMX3 HOXA11 HOXA13 HOXA4 HOXA6 HOXA9 HOXB6 HOXC12 HOXC5 HOXC6 HOXC9 HOXD11 HOXD12 IRX4 IRX5 LHX1 LHX5 LHX8 LHX9 MBD1 MNX1 OTP PITX2 POU3F2 PRDM6 SALL3 SATB2 SIM1 SIM2 SP9 TBX1 TBX3 TBX4 TFAP2A TSHZ1 UNCX ZIC2 ZIC4 ZIC4 ZIC5
+GO:0005654	54	Component	nucleoplasm	AKT1 BAHCC1 BUB3 CBX2 CBX8 CCND1 CENPX FOXA1 FOXA2 FOXC1 GATA2 GATA3 HCFC1 HES5 HOXA11 HOXA7 HOXB7 HOXB8 HOXB9 HOXC10 HOXC11 HOXC5 HOXC6 HOXC8 HOXC9 HOXD10 HOXD11 HOXD3 HOXD4 INTS11 KDM6B LRRC45 MSX1 NKX2-1 NKX2-2 NR2E1 NR4A2 ONECUT2 PAX3 PAX5 PAX6 PITX2 POU4F1 PRDM16 PWWP2B SATB2 SCRIB SIM2 SRRM2 STUB1 TAF10 TBX5 TFAP2A ZBTB42
+GO:0000122	49	Process	negative regulation of transcription by RNA polymerase II	ARX BCOR CBX2 CBX8 CCND1 DLX1 DLX2 EN1 EOMES FOXA1 FOXC1 FOXF1 GATA2 GATA3 HCFC1 HES5 HMX1 HOXA2 HOXA7 HOXB3 HOXB4 HOXB8 HOXC8 HOXD8 HOXD9 IGF2 IRX1 IRX2 MBD1 MSX1 NKX2-1 NKX3-2 NR2E1 NR4A2 OSR1 PAX5 PAX6 POU4F1 PRDM16 SATB2 SHH SIM2 SIX1 TBX15 TBX2 TBX3 TFAP2A TSHZ1 ZBTB42
+GO:0003700	40	Function	DNA binding transcription factor activity	AATF BARX1 DLX2 DMRTA2 FOXA1 FOXA2 FOXC1 FOXF2 GATA2 GATA3 GBX2 HCFC1 HOXA5 HOXB7 HOXC5 HOXD13 LHX1 LMX1B MNX1 NKX2-1 PAX3 PAX6 PAX7 PITX1 PITX2 POU3F2 PRDM16 SALL3 SIM1 SIM2 SIX1 SIX3 SOX1 TAF10 TBX1 TBX4 TBX5 WNT5A ZIC1 ZIC2
+GO:0003677	38	Function	DNA binding	CBX2 CENPX EME2 EOMES FOXA1 FOXA2 FOXC1 FOXF1 FOXF2 GATA3 HMX1 HOXA13 HOXA5 HOXD13 MBD1 NKX2-1 NR4A2 ONECUT1 ONECUT2 PAX2 PAX6 RECQL4 SCX SIM1 SIM2 SIX1 SOX1 SP9 TAF10 TBX2 TBX4 TBX5 TSHZ1 ZBTB42 ZIC2 ZIC4 ZIC4 ZIC5
+GO:0005737	36	Component	cytoplasm	AATF ADRA2C AGAP3 AKT1 CRIP1 CYP26B1 EMX1 FOXA2 GATA2 HCFC1 HOXA10 IGF2 INTS11 LRRC14 LRRC26 NAA38 NR4A2 PANK4 PAX6 PIM3 PITX1 PITX2 POU4F1 RAC3 RECQL4 RNF220 SIX1 SKOR2 SRPK3 SSTR4 STUB1 TAF10 TBX5 ZBTB42 ZIC1 ZIC2
+GO:0000978	36	Function	RNA polymerase II proximal promoter sequence-specific DNA binding	EBF2 EBF3 EN1 FOXA2 GATA2 HOXA10 HOXA2 HOXA5 HOXA7 HOXB3 HOXB7 HOXC11 HOXD13 KDM6B LHX2 LHX3 NKX3-2 NR4A2 ONECUT2 OTX1 OTX2 PAX1 PAX5 PAX6 PITX1 PITX2 POU3F2 SATB2 SIX1 SOX1 TBX15 TBX2 TBX3 TBX5 TFAP2A ZIC1
+GO:0001077	35	Function	transcriptional activator activity, RNA polymerase II proximal promoter sequence-specific DNA binding	BARHL1 BARHL2 EBF2 EBF3 FOXA1 GATA2 GATA3 HAND2 HOXA10 HOXA5 HOXA7 HOXB3 HOXB7 HOXC11 HOXD13 LHX2 LHX3 NR2E1 NR4A2 ONECUT1 ONECUT2 OTX1 OTX2 PAX1 PAX5 PAX6 PITX1 PITX2 POU3F2 POU4F1 SATB2 SIX1 SOX1 TFAP2A ZIC1
+GO:0045893	33	Process	positive regulation of transcription, DNA-templated	AKT1 EBF3 EOMES FOXA2 FOXC1 FOXF1 FOXF2 GATA3 GDF7 HAND2 HCFC1 HES5 HOXA11 LHX1 LHX2 LHX3 LHX5 NKX2-1 OTX2 PAX2 PAX3 PAX6 PRDM16 SCX SHH SIX1 TBX1 TBX3 TBX5 TFAP2A WNT5A ZIC1 ZIC2
+GO:0046872	32	Function	metal ion binding	AGAP3 CACNA1H CYB5D1 DMRTA2 EBF2 EBF3 GNAS KDM6B LHX1 LHX2 LHX3 LHX5 LHX8 LHX9 LMX1B NME3 NUBP2 OSR1 PRDM16 PRDM6 RNF220 SALL3 SP9 TPP1 TSHZ1 ZBTB42 ZIC1 ZIC2 ZIC4 ZIC4 ZIC5 ZNF503
+GO:0009952	32	Process	anterior/posterior pattern specification	BARX1 CYP26C1 EMX2 HOXA10 HOXA11 HOXA2 HOXA5 HOXA6 HOXA7 HOXB3 HOXB4 HOXB5 HOXB6 HOXB7 HOXB8 HOXB9 HOXC10 HOXC11 HOXC4 HOXC5 HOXC6 HOXC8 HOXC9 HOXD10 HOXD13 HOXD3 HOXD9 LHX1 MSX1 OTX1 TBX1 TSHZ1
+GO:0005829	32	Component	cytosol	AGAP3 AKT1 BUB3 CCND1 CPTP FASN FOXC1 GFER GNAS GPT HOXB5 HOXB7 HOXC11 HOXC6 HOXD10 INTS11 LRRC45 MNX1 NME3 OSR1 PAX5 PAX6 PIM3 PRDM16 RAC3 RHOT2 SHH SPSB3 STUB1 TFAP2A TMEM88 WDR1
+GO:0005886	28	Component	plasma membrane	ADGRB1 ADGRB2 ADRA2C AKT1 CACNA1H CBARP CELSR3 CPTP DLL1 FASN IGF2 LRRC45 NOXO1 NRN1 PLXNB1 RAC3 RHOT2 SCRIB SHH SLC16A3 SSTR4 TAS1R3 THBD TMEM88 WDR1 WNT5A WNT7B ZBTB42
+GO:0000977	28	Function	RNA polymerase II regulatory region sequence-specific DNA binding	BARHL1 BARHL2 BARX1 BCOR DLX1 DLX2 EOMES FOXC1 FOXF1 FOXF2 GATA2 GATA3 HAND2 HMX1 HMX3 HOXB9 HOXC10 HOXD10 HOXD3 HOXD4 HOXD8 HOXD9 LMX1B MSX1 NKX2-1 NR4A2 PAX9 TFAP2A
+GO:0030154	24	Process	cell differentiation	AKT1 CBX2 DLK1 DLL1 FOXA1 FOXA2 FOXB1 FOXC1 FOXF1 FOXF2 HLX HMX2 HMX3 INHBB ONECUT1 ONECUT2 OSR1 SCX SIM1 SIM2 SRPK3 ZIC1 ZIC2 ZIC5
+GO:0007275	23	Process	multicellular organism development	EBF3 EN2 HLX HMX1 HOXA1 HOXA10 HOXA11 HOXA4 HOXA9 HOXB7 HOXC12 HOXC6 HOXD13 HOXD4 IGF2 LMX1B MN1 PAX5 RECQL4 SALL3 TBX4 TMEM88 TSHZ1
+GO:0003682	22	Function	chromatin binding	ARX BAHCC1 CBX2 DLX1 DLX2 EBF2 EOMES GATA2 GATA3 HCFC1 HES5 HOXD10 HOXD13 KDM6B LHX2 NKX2-2 PAX6 POU4F1 SATB2 SIX1 TFAP2A TSHZ1
+GO:0045892	21	Process	negative regulation of transcription, DNA-templated	BCOR GATA3 HMX1 HOXA7 LHX1 LHX9 MBD1 NKX2-1 PAX2 PAX9 PITX1 PRDM16 PRDM6 SCX SIX3 SKOR1 TBX2 TBX3 TFAP2A WNT5A ZIC2
+GO:0001228	21	Function	transcriptional activator activity, RNA polymerase II transcription regulatory region sequence-specific DNA binding	BARHL1 BARHL2 BARX1 DLX2 FOXC1 FOXF1 FOXF2 GATA2 GATA3 GBX2 HOXA1 HOXC10 HOXD10 HOXD13 HOXD3 HOXD4 HOXD8 LHX3 MSX1 PAX9 TBX5
+GO:0005667	20	Component	transcription factor complex	FOXF1 FOXF2 GATA2 GATA3 HAND2 HOXA10 HOXA11 HOXD12 LBX1 LHX3 NKX2-1 NR4A2 PITX1 PITX2 POU3F2 SATB2 SCX SIX1 SKOR1 TBX2
+GO:0043066	18	Process	negative regulation of apoptotic process	AATF AKT1 GDNF IGF2 LHX3 MSX1 NAA38 NKX3-2 NR2E1 OSR1 PAX2 PAX7 PIM3 SCX SHH TBX3 TFAP2A WNT5A
+GO:0009653	18	Process	anatomical structure morphogenesis	EN1 FOXA1 FOXA2 FOXB1 FOXC1 FOXF1 FOXF2 GATA3 HOXA1 HOXA11 HOXA4 HOXB5 LBX1 LHX1 MNX1 ONECUT1 PAX7 PITX1
+GO:0006355	18	Process	regulation of transcription, DNA-templated	FAM120B FOXC1 HCFC1 HOXB7 HOXD13 IGF2 LMX1B MN1 ONECUT1 PITX2 SALL3 SIX1 SKOR1 SKOR2 SOX1 TAF10 TBX4 ZNF503
+GO:0005615	18	Component	extracellular space	ADGRB1 COL7A1 DLK1 GDF7 IGF2 INHBB METRNL MIR1-1 MIR10A MIR10B MIR133A2 MIR937 SCRG1 SHH THBD TPSG1 WNT5A WNT7B
+GO:0008284	17	Process	positive regulation of cell proliferation	AKT1 CBX8 CRIP2 DLL1 GDNF HES5 HLX HMX2 HOXC10 IGF2 MIR711 POU3F2 SCX SHH TBX1 TBX2 TBX3
+GO:0016021	16	Component	integral component of membrane	ABCA2 ADGRB1 ADGRB2 CACNA1H CBARP CELSR3 CYP26C1 DLK1 FAM163B LRRC24 SLC16A3 SYNGR3 TAS1R3 TMEM187 TMEM210 TMEM88
+GO:0008134	16	Function	transcription factor binding	BCOR CCND1 FOXA1 FOXA2 FOXC1 FOXF2 GATA2 GATA3 HAND2 HES5 HOXA7 NKX2-2 PAX2 PAX6 PITX2 TBX5
+GO:0048704	15	Process	embryonic skeletal system morphogenesis	HOXA5 HOXA6 HOXA7 HOXB3 HOXB4 HOXB5 HOXB6 HOXB7 HOXB8 HOXC9 HOXD10 HOXD3 HOXD9 SATB2 SIX1
+GO:0042803	15	Function	protein homodimerization activity	ADRA2C AKT1 DMRTA2 FASN GDF7 GDNF HAND2 INHBB NR4A2 NUDT16L1 PRDM6 STUB1 TBX1 TBX15 TFAP2A
+GO:0010628	15	Process	positive regulation of gene expression	AKT1 ARX CYP26B1 GATA2 HAND2 HCFC1 HOXD3 MIR133A2 NKX2-1 OSR1 PAX6 POU4F1 SCX TFAP2A WNT5A
+GO:0007399	15	Process	nervous system development	BARHL1 BARHL2 BARX1 GBX2 GDNF LHX1 NR2E1 NRN1 PAX3 POU3F2 SCRG1 SIM1 SIM2 TPP1 ZIC5
+GO:0005576	15	Component	extracellular region	C5orf38 COL7A1 DLL1 GDNF GFER HTRA3 IGF2 INHBB NRN1 PLXNB1 SFTA3 SHH WDR1 WNT5A WNT7B
+GO:0005887	13	Component	integral component of plasma membrane	ADGRB1 ADRA2C CACNA1H DLL1 LRRC26 MFSD3 PLXNB1 RHBDL1 SLC16A3 SSTR4 TAS1R3 THBD TPSG1
+GO:0044212	12	Function	transcription regulatory region DNA binding	BCOR FOXA1 FOXA2 FOXC1 GATA3 HAND2 NKX2-1 PAX2 SALL3 SIX1 TFAP2A WNT5A
+GO:0007507	12	Process	heart development	BCOR CRIP1 FOXC1 FOXF1 GATA2 GATA3 HAND2 IRX4 OSR1 SHH TBX1 TBX5
+GO:0001501	12	Process	skeletal system development	EN1 HOXA10 HOXA11 HOXA13 HOXC10 HOXD12 HOXD13 IGF2 NKX3-2 PAX1 PITX1 TBX3
+GO:0070062	11	Component	extracellular exosome	FASN GNAS GPT LRRC26 METRNL RAC3 SCRIB TPP1 WDR1 WNT5A WNT7B
+GO:0042472	11	Process	inner ear morphogenesis	GATA2 GATA3 GBX2 HMX2 HMX3 OTX1 PAX2 SIX1 TBX1 TFAP2A ZIC1
+GO:0016020	11	Component	membrane	ABCA2 AGAP3 CCND1 EN2 FASN GNAS HCFC1 RECQL4 RHBDL1 RHOT2 SLC16A3
+GO:0009954	11	Process	proximal/distal pattern formation	CYP26B1 DLL1 DLX1 DLX2 EN1 HOXA10 HOXA11 HOXC10 HOXC11 HOXD10 HOXD9
+GO:0007420	11	Process	brain development	DLX2 DMRTA2 EOMES HES5 HMX2 HMX3 NKX2-1 NKX2-2 SIX3 ZIC1 ZIC2
+GO:0007411	11	Process	axon guidance	ARX GATA3 GBX2 GDF7 GDNF LHX2 NKX2-1 OTX2 PAX6 SHH WNT5A
+GO:0001764	11	Process	neuron migration	BARHL1 BARHL2 CELSR3 GATA2 GATA3 NKX2-1 NR4A2 PAX6 PITX2 SATB2 SOX1
+GO:0001701	11	Process	in utero embryonic development	EMX1 FOXC1 FOXF1 GATA3 HAND2 IGF2 LMX1B MSX1 PITX2 TBX3 WNT7B
+GO:0001078	11	Function	transcriptional repressor activity, RNA polymerase II proximal promoter sequence-specific DNA binding	EN1 GATA3 HES5 HOXA2 NKX3-2 NR2E1 TBX15 TBX2 TBX3 TFAP2A TSHZ1
+GO:0060021	10	Process	roof of mouth development	BCOR FOXF2 MSX1 OSR1 PRDM16 SATB2 SHH TBX2 TBX3 TFAP2A
+GO:0051216	10	Process	cartilage development	DLX2 GNAS HES5 HOXB3 HOXC4 HOXD3 PAX7 PITX1 SATB2 WNT5A
+GO:0042733	10	Process	embryonic digit morphogenesis	HAND2 HOXA11 HOXC11 HOXD12 HOXD13 OSR1 SHH TBX2 TBX3 WNT5A
+GO:0042475	10	Process	odontogenesis of dentin-containing tooth	DLX1 DLX2 FOXC1 HAND2 LHX8 MSX1 NKX2-3 PITX2 SHH TBX1
+GO:0009887	10	Process	animal organ morphogenesis	GATA2 GATA3 IGF2 LHX1 LHX3 ONECUT2 PAX3 PAX5 PAX6 TBX3
+GO:0008285	10	Process	negative regulation of cell proliferation	ADGRB1 DLL1 GATA3 LBX1 MIR711 MSX1 SSTR4 TBX5 TFAP2A ZNF503
+GO:0007165	10	Process	signal transduction	ADGRB1 AGAP3 AKT1 GATA3 GDNF NR4A2 PLXNB1 RHBDL1 SALL3 THBD
+GO:0003713	10	Function	transcription coactivator activity	FOXC1 GATA3 HAND2 HCFC1 NKX2-2 POU4F1 PRDM16 SIX3 TAF10 TFAP2A
+GO:0055114	9	Process	oxidation-reduction process	CYP26A1 CYP26B1 CYP26C1 FASN GFER KDM6B NOXO1 PAX2 ZADH2
+GO:0048706	9	Process	embryonic skeletal system development	DLX1 HOXB9 HOXC5 HOXC6 NKX3-2 PAX7 SCX SHH WNT5A
+GO:0046982	9	Function	protein heterodimerization activity	ADRA2C DMRTA2 HAND2 NR4A2 SCX SIM1 SIM2 TAS1R3 TBX15
+GO:0045165	9	Process	cell fate commitment	GATA2 GATA3 GDF7 KDM6B NR2E1 ONECUT1 ONECUT2 WNT5A WNT7B
+GO:0043524	9	Process	negative regulation of neuron apoptotic process	BARHL1 DLX1 EN1 EN2 FOXB1 GDNF NR4A2 POU4F1 SIX1
+GO:0035195	9	Process	gene silencing by miRNA	MIR1-1 MIR10A MIR10B MIR129-2 MIR133A2 MIR196A1 MIR196A2 MIR483 MIR711
+GO:0035115	9	Process	embryonic forelimb morphogenesis	EN1 HOXA11 HOXD9 MSX1 OSR1 SHH TBX3 TBX5 TFAP2A
+GO:0030901	9	Process	midbrain development	BARHL1 EN1 EN2 FOXB1 GDF7 MSX1 OTX1 OTX2 SHH
+GO:0030326	9	Process	embryonic limb morphogenesis	CYP26B1 HOXA10 HOXA11 HOXC10 HOXD10 SHH SP9 TBX4 TBX5
+GO:0030324	9	Process	lung development	FOXF1 LHX3 NKX2-1 SHH SIM2 TBX4 TBX5 WNT5A WNT7B
+GO:0010469	9	Process	regulation of signaling receptor activity	GDF7 GDNF GFER IGF2 INHBB METRNL SHH WNT5A WNT7B
+GO:0008283	9	Process	cell proliferation	AKT1 CRIP1 FOXC1 HOXB4 LHX9 PAX1 SCRIB SIX1 TBX1
+GO:0008270	9	Function	zinc ion binding	CRIP1 CRIP2 GATA2 GATA3 MBD1 NR2E1 NR4A2 SHH ZADH2
+GO:0005524	9	Function	ATP binding	ABCA2 AKT1 ATP5F1D NME3 NUBP2 PANK4 PIM3 RECQL4 SRPK3
+GO:0001709	9	Process	cell fate determination	BARHL2 CYP26B1 DLL1 EBF2 GATA2 GATA3 HOXA2 PAX2 PAX6
+GO:1903231	8	Function	mRNA binding involved in posttranscriptional gene silencing	MIR1-1 MIR10A MIR10B MIR129-2 MIR133A2 MIR196A1 MIR196A2 MIR483
+GO:0071542	8	Process	dopaminergic neuron differentiation	DMRTA2 EN1 FOXA1 FOXA2 LMX1B NR4A2 OTX2 SHH
+GO:0048701	8	Process	embryonic cranial skeleton morphogenesis	DLX2 GNAS IRX5 PAX5 SIX1 TBX1 TBX15 TFAP2A
+GO:0045665	8	Process	negative regulation of neuron differentiation	DLL1 HES5 HOXA2 LBX1 NKX2-2 NR2E1 PAX6 SIX3
+GO:0032991	8	Component	protein-containing complex	AKT1 HAND2 HCFC1 HOXA11 LHX1 OTX2 PAX2 TBX5
+GO:0030512	8	Process	negative regulation of transforming growth factor beta receptor signaling pathway	HTRA3 NKX2-1 ONECUT1 ONECUT2 PRDM16 SKOR1 SKOR2 STUB1
+GO:0030054	8	Component	cell junction	CBARP FOXA2 HOXC5 HOXD4 NRN1 SCRIB SYNGR3 WDR1
+GO:0009953	8	Process	dorsal/ventral pattern formation	EN1 HOXA11 HOXA2 HOXD11 LHX1 LHX2 LMX1B SHH
+GO:0007389	8	Process	pattern specification process	HOXD12 LHX1 SHH SIX1 TBX1 TBX5 UNCX ZIC1
+GO:0007186	8	Process	G-protein coupled receptor signaling pathway	ADGRB1 ADGRB2 ADRA2C AKT1 CELSR3 PLXNB1 SSTR4 TAS1R3
+GO:0005730	8	Component	nucleolus	AATF EMX1 EN2 HOXD9 MNX1 PAX2 PITX1 SIX1
+GO:0003714	8	Function	transcription corepressor activity	BCOR CCND1 HOXC6 LHX1 LHX9 POU4F1 SKOR1 SKOR2
+GO:0071300	7	Process	cellular response to retinoic acid	CYP26B1 HOXA2 OSR1 PAX2 TBX1 WNT5A WNT7B
+GO:0048665	7	Process	neuron fate specification	DLL1 DMRTA2 FOXA1 NKX2-2 POU3F2 POU4F1 SIX1
+GO:0042474	7	Process	middle ear morphogenesis	HOXA2 MSX1 NKX3-2 OSR1 SIX1 TBX1 TSHZ1
+GO:0035116	7	Process	embryonic hindlimb morphogenesis	GNAS MSX1 OSR1 PITX1 PITX2 SHH TBX3
+GO:0030878	7	Process	thyroid gland development	HOXA5 HOXB3 HOXD3 NKX2-1 SHH SIX1 TBX1
+GO:0030182	7	Process	neuron differentiation	BARHL2 EMX2 HOXC8 LMX1B POU3F2 WNT5A WNT7B
+GO:0021983	7	Process	pituitary gland development	GATA2 LHX3 MSX1 NKX2-1 PAX6 PITX1 SIX3
+GO:0019899	7	Function	enzyme binding	AKT1 CCND1 HOXA9 NKX2-1 NOXO1 STUB1 TAF10
+GO:0008344	7	Process	adult locomotory behavior	EN1 FOXA2 GDNF HOXB8 HOXD10 HOXD9 NR4A2
+GO:0007605	7	Process	sensory perception of sound	BARHL1 HOXA1 PAX3 SIX1 TBX1 TFAP2A WDR1
+GO:0007517	7	Process	muscle organ development	ADGRB1 CACNA1H LBX1 MSX1 PAX3 TBX1 ZBTB42
+GO:0007219	7	Process	Notch signaling pathway	DLL1 FOXA1 FOXC1 HES5 HOXD3 ONECUT1 TBX2
+GO:0005622	7	Component	intracellular	CCND1 GDNF MIR1-1 MIR133A2 NME3 NOXO1 PLXNB1
+GO:0001947	7	Process	heart looping	DLL1 HAND2 LBX1 SHH TBX2 TBX3 WNT5A
+GO:0001658	7	Process	branching involved in ureteric bud morphogenesis	GDNF HOXA11 HOXD11 LHX1 PAX2 SHH SIX1
+GO:0000980	7	Function	RNA polymerase II distal enhancer sequence-specific DNA binding	ARX GATA2 HOXB5 HOXC4 POU4F1 SCX SIX3
+GO:0000790	7	Component	nuclear chromatin	CBX8 EME2 GATA3 HAND2 KDM6B PAX6 POU4F1
+GO:0060070	6	Process	canonical Wnt signaling pathway	CCND1 HOXB9 NR4A2 SHH WNT5A WNT7B
+GO:0048538	6	Process	thymus development	GATA3 HAND2 PAX1 SHH SIX1 TBX1
+GO:0048536	6	Process	spleen development	BARX1 HOXB4 NKX2-3 NKX3-2 ONECUT1 PITX2
+GO:0045666	6	Process	positive regulation of neuron differentiation	ADRA2C FOXA1 GATA2 GDF7 HOXD3 NKX2-2
+GO:0042802	6	Function	identical protein binding	AKT1 COL7A1 HCFC1 HOXA1 NOXO1 POU3F2
+GO:0042127	6	Process	regulation of cell proliferation	ARX HOXD13 NKX2-3 SHH SIX3 TFAP2A
+GO:0031018	6	Process	endocrine pancreas development	AKT1 FOXA2 MNX1 NKX2-2 ONECUT1 ONECUT2
+GO:0016604	6	Component	nuclear body	HOXA4 HOXB7 HOXC10 HOXD3 SIM2 ZIC2
+GO:0016477	6	Process	cell migration	FOXC1 HOXA5 PLXNB1 RAC3 SCRIB SSTR4
+GO:0008584	6	Process	male gonad development	GATA3 HOXA10 HOXA11 LHX9 PITX2 WNT5A
+GO:0007601	6	Process	visual perception	IRX5 NR2E1 PAX2 PAX6 SIX3 ZIC2
+GO:0007368	6	Process	determination of left/right symmetry	CFAP53 DLL1 FOXF1 NKX3-2 PITX2 TBX1
+GO:0005794	6	Component	Golgi apparatus	AATF CPTP FASN PAX2 SCRG1 TFAP2A
+GO:0005739	6	Component	mitochondrion	AKT1 ATP5F1D GFER HOXB9 MRPS34 RHOT2
+GO:0005509	6	Function	calcium ion binding	CELSR3 DLK1 DLL1 RHOT2 SHH THBD
+GO:0003723	6	Function	RNA binding	AATF FASN HOXB6 NUDT16L1 SLC16A3 SRRM2
+GO:0003674	6	Function	molecular_function	DLK1 METRNL MN1 NKX2-3 TMEM187 ZADH2
+GO:0001756	6	Process	somitogenesis	DLL1 FOXB1 FOXC1 FOXF1 PAX1 WNT5A
+GO:0001525	6	Process	angiogenesis	FOXC1 HAND2 HOXA7 HOXB3 TBX1 TBX4
+GO:0001227	6	Function	transcriptional repressor activity, RNA polymerase II transcription regulatory region sequence-specific DNA binding	HMX1 HOXD9 IRX1 IRX2 MSX1 PAX6
+GO:0001205	6	Function	transcriptional activator activity, RNA polymerase II distal enhancer sequence-specific DNA binding	HCFC1 HOXB5 HOXC4 POU4F1 SCX SIX3
+GO:2000543	5	Process	positive regulation of gastrulation	FOXA2 LHX1 OSR1 OTX2 SCX
+GO:0090190	5	Process	positive regulation of branching involved in ureteric bud morphogenesis	GDNF HOXB7 LHX1 PAX2 SIX1
+GO:0090103	5	Process	cochlea morphogenesis	HOXA1 PAX2 SIX1 TBX1 WNT5A
+GO:0060065	5	Process	uterus development	GATA3 HOXA10 HOXA11 LHX1 WNT5A
+GO:0048935	5	Process	peripheral nervous system neuron development	HAND2 HOXD10 HOXD9 ONECUT2 POU4F1
+GO:0048839	5	Process	inner ear development	DLL1 HOXA1 LHX3 SHH SIX1
+GO:0048666	5	Process	neuron development	EN1 EN2 POU3F2 SKOR1 SKOR2
+GO:0048646	5	Process	anatomical structure formation involved in morphogenesis	FOXA1 GATA2 GATA3 LHX1 NKX2-1
+GO:0048468	5	Process	cell development	GATA2 GATA3 GDF7 INHBB SHH
+GO:0046983	5	Function	protein dimerization activity	EBF2 EBF3 GATA3 HES5 TFAP2A
+GO:0045599	5	Process	negative regulation of fat cell differentiation	GATA2 GATA3 MIR483 WNT5A ZADH2
+GO:0045596	5	Process	negative regulation of cell differentiation	DLL1 SHH SKOR1 SKOR2 TBX1
+GO:0045444	5	Process	fat cell differentiation	CCND1 FAM120B INHBB METRNL NR4A2
+GO:0043231	5	Component	intracellular membrane-bounded organelle	ABCA2 AGAP3 HOXA2 PAX5 TFAP2A
+GO:0043065	5	Process	positive regulation of apoptotic process	AKT1 FOXA1 HOXA5 POU4F1 SCRIB
+GO:0043010	5	Process	camera-type eye development	FOXC1 HES5 PAX2 PITX2 SHH
+GO:0042826	5	Function	histone deacetylase binding	BCOR CCND1 HOXA10 NR2E1 SIX3
+GO:0042493	5	Process	response to drug	ABCA2 CCND1 EMX1 EMX2 GNAS
+GO:0030855	5	Process	epithelial cell differentiation	BARX1 GDF7 SIX1 TBX1 TPP1
+GO:0030514	5	Process	negative regulation of BMP signaling pathway	DLX1 HTRA3 SKOR1 SKOR2 WNT5A
+GO:0021796	5	Process	cerebral cortex regionalization	DMRTA2 EMX1 EMX2 EOMES PAX6
+GO:0021766	5	Process	hippocampus development	DLX1 DLX2 KDM6B LHX5 NKX2-1
+GO:0021527	5	Process	spinal cord association neuron differentiation	GDF7 LHX1 LHX3 LHX5 PAX7
+GO:0019901	5	Function	protein kinase binding	AKT1 CCND1 OSR1 PAX6 RAC3
+GO:0016567	5	Process	protein ubiquitination	AKT1 PAX6 RNF220 SPSB3 STUB1
+GO:0016525	5	Process	negative regulation of angiogenesis	ADGRB1 ADGRB2 FOXC1 HOXA5 MIR10A
+GO:0010629	5	Process	negative regulation of gene expression	AKT1 GATA2 HAND2 POU3F2 ZNF503
+GO:0010468	5	Process	regulation of gene expression	CRIP1 GDNF IGF2 LHX1 SRPK3
+GO:0009888	5	Process	tissue development	BARHL1 BARHL2 BARX1 GATA2 GATA3
+GO:0008150	5	Process	biological_process	EVX2 MN1 NKX2-3 TMEM187 ZADH2
+GO:0008083	5	Function	growth factor activity	GDF7 GDNF GFER IGF2 INHBB
+GO:0007519	5	Process	skeletal muscle tissue development	HLX HOXD10 HOXD9 SIX1 SRPK3
+GO:0007267	5	Process	cell-cell signaling	ADRA2C BARX1 LHX1 SHH TBX5
+GO:0007224	5	Process	smoothened signaling pathway	FOXF1 HES5 NKX2-2 PAX6 SHH
+GO:0006915	5	Process	apoptotic process	NME3 PAX3 PIM3 SIX1 TAF10
+GO:0006367	5	Process	transcription initiation from RNA polymerase II promoter	CCND1 NR2E1 NR4A2 TAF10 TBX5
+GO:0006338	5	Process	chromatin remodeling	FOXA1 GATA3 KDM6B PAX7 SATB2
+GO:0005575	5	Component	cellular_component	CFAP53 HES5 MN1 NKX2-3 SRPK3
+GO:0004930	5	Function	G-protein coupled receptor activity	ADGRB1 ADGRB2 CELSR3 SSTR4 TAS1R3
+GO:0004842	5	Function	ubiquitin-protein transferase activity	BCOR PAX6 RNF220 SPSB3 STUB1
+GO:0003705	5	Function	transcription factor activity, RNA polymerase II distal enhancer sequence-specific binding	FOXC1 FOXF1 FOXF2 NKX2-1 POU4F1
+GO:0001934	5	Process	positive regulation of protein phosphorylation	AKT1 CCND1 IGF2 MIR1-1 TBX1
+GO:0001822	5	Process	kidney development	FOXC1 GATA3 LHX1 SIX1 TFAP2A
+GO:0001657	5	Process	ureteric bud development	FOXC1 LHX1 OSR1 SIM1 SIX1
+GO:0001655	5	Process	urogenital system development	FOXB1 GATA2 LHX1 OSR1 PAX2
+GO:0001085	5	Function	RNA polymerase II transcription factor binding	GATA2 GATA3 LHX3 PITX1 TBX3
+GO:0090102	4	Process	cochlea development	GATA2 GATA3 HOXA1 PAX2
+GO:0090090	4	Process	negative regulation of canonical Wnt signaling pathway	MIR1-1 SHH TMEM88 WNT5A
+GO:0090009	4	Process	primitive streak formation	FOXA2 LHX1 OTX2 WNT5A
+GO:0071837	4	Function	HMG box domain binding	GATA3 HOXC4 PAX3 PAX6
+GO:0060441	4	Process	epithelial tube branching involved in lung morphogenesis	FOXA1 FOXF1 HOXA5 NKX2-1
+GO:0060349	4	Process	bone morphogenesis	CYP26B1 MSX1 PAX1 TFAP2A
+GO:0060325	4	Process	face morphogenesis	MSX1 PAX9 SCX TBX1
+GO:0060271	4	Process	cilium assembly	CELSR3 CFAP53 ONECUT1 ONECUT2
+GO:0060041	4	Process	retina development in camera-type eye	DLL1 LHX2 NR2E1 PAX6
+GO:0051091	4	Process	positive regulation of DNA binding transcription factor activity	AKT1 FOXA1 NKX2-2 ZIC2
+GO:0050767	4	Process	regulation of neurogenesis	DLL1 HES5 HOXB3 POU4F1
+GO:0048863	4	Process	stem cell differentiation	HOXA7 MSX1 OSR1 PAX2
+GO:0048812	4	Process	neuron projection morphogenesis	MNX1 PLXNB1 RAC3 WNT7B
+GO:0048705	4	Process	skeletal system morphogenesis	HOXC8 HOXD8 NKX3-2 TBX4
+GO:0048663	4	Process	neuron fate commitment	PAX6 PAX7 POU3F2 SHH
+GO:0048565	4	Process	digestive tract development	FOXF1 GATA2 GATA3 NKX2-2
+GO:0048557	4	Process	embryonic digestive tract morphogenesis	FOXF1 HLX PITX2 SHH
+GO:0048471	4	Component	perinuclear region of cytoplasm	ADGRB1 INHBB RAC3 TAF10
+GO:0046332	4	Function	SMAD binding	PRDM16 SKOR1 SKOR2 STUB1
+GO:0045787	4	Process	positive regulation of cell cycle	CCND1 HCFC1 NR2E1 TBX3
+GO:0045746	4	Process	negative regulation of Notch signaling pathway	DLK1 DLX1 DLX2 GATA2
+GO:0045597	4	Process	positive regulation of cell differentiation	DLX1 DLX2 EOMES GDNF
+GO:0043410	4	Process	positive regulation of MAPK cascade	ADRA2C IGF2 SSTR4 TBX1
+GO:0043161	4	Process	proteasome-mediated ubiquitin-dependent protein catabolic process	AGAP3 BUB3 SPSB3 STUB1
+GO:0042981	4	Process	regulation of apoptotic process	AKT1 GDF7 INHBB NME3
+GO:0042593	4	Process	glucose homeostasis	AKT1 FOXA1 IGF2 PAX6
+GO:0042476	4	Process	odontogenesis	BCOR OSR1 PAX9 PITX2
+GO:0035914	4	Process	skeletal muscle cell differentiation	DMRTA2 EOMES PAX5 SCX
+GO:0035556	4	Process	intracellular signal transduction	AKT1 PLXNB1 RAC3 SRPK3
+GO:0035264	4	Process	multicellular organism growth	EN1 GNAS HOXA5 TAF10
+GO:0035136	4	Process	forelimb morphogenesis	HOXD10 SALL3 TBX3 TBX5
+GO:0030900	4	Process	forebrain development	NKX2-1 OTX2 SHH SSTR4
+GO:0030879	4	Process	mammary gland development	FASN HOXB9 HOXD9 TBX3
+GO:0030857	4	Process	negative regulation of epithelial cell differentiation	CCND1 DLL1 OSR1 TBX3
+GO:0030425	4	Component	dendrite	ADGRB1 GNAS HCFC1 SKOR1
+GO:0030335	4	Process	positive regulation of cell migration	FOXF1 MIR711 ONECUT1 ONECUT2
+GO:0030334	4	Process	regulation of cell migration	AKT1 PAX6 PITX2 PLXNB1
+GO:0021846	4	Process	cell proliferation in forebrain	ARX EMX2 LHX5 SIX3
+GO:0021772	4	Process	olfactory bulb development	DLX2 EOMES LHX2 NR2E1
+GO:0021549	4	Process	cerebellum development	EN1 FOXC1 GBX2 LHX1
+GO:0021520	4	Process	spinal cord motor neuron cell fate specification	HOXC10 HOXD10 LHX3 MNX1
+GO:0021510	4	Process	spinal cord development	AKT1 DLL1 FOXB1 ZIC1
+GO:0016055	4	Process	Wnt signaling pathway	PITX2 TMEM88 WNT5A WNT7B
+GO:0010719	4	Process	negative regulation of epithelial to mesenchymal transition	FOXA1 FOXA2 NKX2-1 TBX5
+GO:0009880	4	Process	embryonic pattern specification	LHX1 SATB2 SHH SIM2
+GO:0009791	4	Process	post-embryonic development	EMX1 GATA3 LHX1 NR4A2
+GO:0007596	4	Process	blood coagulation	GATA2 GATA3 SHH THBD
+GO:0007492	4	Process	endoderm development	HOXC11 NKX2-1 ONECUT1 PAX9
+GO:0007417	4	Process	central nervous system development	CYP26C1 PAX6 SHH TPP1
+GO:0007338	4	Process	single fertilization	HOXA10 HOXA11 HOXD10 HOXD9
+GO:0007283	4	Process	spermatogenesis	CYP26B1 HOXA10 HOXA11 PAX5
+GO:0007155	4	Process	cell adhesion	AATF ADGRB1 COL7A1 HES5
+GO:0006468	4	Process	protein phosphorylation	AKT1 CCND1 PIM3 SRPK3
+GO:0005911	4	Component	cell-cell junction	ADGRB1 AKT1 SCRIB WDR1
+GO:0005813	4	Component	centrosome	ADGRB2 HOXB4 LRRC45 TFAP2A
+GO:0005789	4	Component	endoplasmic reticulum membrane	CYP26A1 CYP26B1 CYP26C1 SFTA3
+GO:0005788	4	Component	endoplasmic reticulum lumen	COL7A1 SHH WNT5A WNT7B
+GO:0005525	4	Function	GTP binding	AGAP3 GNAS RAC3 RHOT2
+GO:0004674	4	Function	protein serine/threonine kinase activity	AKT1 OSR1 PIM3 SRPK3
+GO:0004252	4	Function	serine-type endopeptidase activity	HTRA3 RHBDL1 TPP1 TPSG1
+GO:0003924	4	Function	GTPase activity	AGAP3 GNAS RAC3 RHOT2
+GO:0003151	4	Process	outflow tract morphogenesis	SIX1 TBX1 TBX2 TBX3
+GO:0002088	4	Process	lens development in camera-type eye	GATA3 PAX6 SIX3 WNT5A
+GO:0002052	4	Process	positive regulation of neuroblast proliferation	DMRTA2 OTP PAX6 SHH
+GO:0001889	4	Process	liver development	GFER HLX ONECUT1 ONECUT2
+GO:0001759	4	Process	organ induction	GDNF HOXA11 HOXC11 SIX1
+GO:0001755	4	Process	neural crest cell migration	GBX2 GDNF SHH TBX1
+GO:0001656	4	Process	metanephros development	GDNF HOXA11 HOXC11 SHH
+GO:0001650	4	Component	fibrillar center	EN2 FOXA1 HOXB5 PAX5
+GO:0001568	4	Process	blood vessel development	FOXF1 PAX6 TBX1 TBX3
+GO:0000987	4	Function	proximal promoter sequence-specific DNA binding	GATA3 NKX2-2 PAX2 TFAP2A
+GO:0000976	4	Function	transcription regulatory region sequence-specific DNA binding	BAHCC1 GATA3 PITX2 TFAP2A
+GO:2000679	3	Process	positive regulation of transcription regulatory region DNA binding	GATA3 HAND2 POU4F1
+GO:2000378	3	Process	negative regulation of reactive oxygen species metabolic process	AATF PAX2 TFAP2A
+GO:2000178	3	Process	negative regulation of neural precursor cell proliferation	GATA2 NR2E1 PAX6
+GO:2000049	3	Process	positive regulation of cell-cell adhesion mediated by cadherin	FOXA1 FOXA2 WNT5A
+GO:1903589	3	Process	positive regulation of blood vessel endothelial cell proliferation involved in sprouting angiogenesis	GATA2 MIR10A MIR10B
+GO:1901796	3	Process	regulation of signal transduction by p53 class mediator	AKT1 POU4F1 TAF10
+GO:0090051	3	Process	negative regulation of cell migration involved in sprouting angiogenesis	MIR196A1 MIR196A2 MIR483
+GO:0090050	3	Process	positive regulation of cell migration involved in sprouting angiogenesis	GATA2 MIR10A MIR10B
+GO:0072207	3	Process	metanephric epithelium development	OSR1 PAX2 WNT7B
+GO:0072107	3	Process	positive regulation of ureteric bud formation	GATA3 GDNF SIX1
+GO:0072086	3	Process	specification of loop of Henle identity	HES5 IRX1 IRX2
+GO:0072075	3	Process	metanephric mesenchyme development	OSR1 PAX2 SIX1
+GO:0072001	3	Process	renal system development	EMX2 FOXF1 SHH
+GO:0071944	3	Component	cell periphery	AGAP3 INHBB RAC3
+GO:0071560	3	Process	cellular response to transforming growth factor beta stimulus	DLX1 SCX WNT5A
+GO:0071407	3	Process	cellular response to organic cyclic compound	AKT1 FOXF1 HCFC1
+GO:0071364	3	Process	cellular response to epidermal growth factor stimulus	AKT1 FOXC1 PAX2
+GO:0070888	3	Function	E-box binding	GATA3 HAND2 SCX
+GO:0070301	3	Process	cellular response to hydrogen peroxide	CBX8 KDM6B PAX2
+GO:0060412	3	Process	ventricular septum morphogenesis	MIR1-1 PITX2 TBX3
+GO:0060272	3	Process	embryonic skeletal joint morphogenesis	HOXA11 HOXC11 OSR1
+GO:0060216	3	Process	definitive hemopoiesis	GATA2 HOXB3 HOXB4
+GO:0060037	3	Process	pharyngeal system development	GATA3 SIX1 TBX1
+GO:0060017	3	Process	parathyroid gland development	GATA3 PAX1 TBX1
+GO:0051965	3	Process	positive regulation of synapse assembly	ADGRB1 ADGRB2 LRRC24
+GO:0051301	3	Process	cell division	BUB3 CCND1 CENPX
+GO:0050905	3	Process	neuromuscular process	HOXA1 HOXC10 HOXD10
+GO:0050900	3	Process	leukocyte migration	NKX2-3 SLC16A3 THBD
+GO:0050885	3	Process	neuromuscular process controlling balance	HMX3 RAC3 TPP1
+GO:0050873	3	Process	brown fat cell differentiation	EBF2 METRNL PRDM16
+GO:0050821	3	Process	protein stabilization	HCFC1 MSX1 TMEM88
+GO:0050728	3	Process	negative regulation of inflammatory response	FOXF1 GATA3 METRNL
+GO:0050679	3	Process	positive regulation of epithelial cell proliferation	OSR1 PAX2 TBX1
+GO:0048844	3	Process	artery morphogenesis	FOXC1 HOXA1 TBX1
+GO:0048793	3	Process	pronephros development	LHX1 OSR1 PAX2
+GO:0048715	3	Process	negative regulation of oligodendrocyte differentiation	DLX1 DLX2 HES5
+GO:0048708	3	Process	astrocyte differentiation	HES5 NKX2-2 PAX6
+GO:0048703	3	Process	embryonic viscerocranium morphogenesis	HOXA2 LHX1 TBX1
+GO:0048589	3	Process	developmental growth	GATA3 GNAS HOXA11
+GO:0048513	3	Process	animal organ development	BARHL1 BARHL2 BARX1
+GO:0048485	3	Process	sympathetic nervous system development	GATA3 GDNF HAND2
+GO:0048469	3	Process	cell maturation	GATA2 GATA3 HES5
+GO:0048387	3	Process	negative regulation of retinoic acid receptor signaling pathway	CYP26A1 CYP26B1 CYP26C1
+GO:0048018	3	Function	receptor ligand activity	IGF2 WNT5A WNT7B
+GO:0046622	3	Process	positive regulation of organ growth	AKT1 ARX HLX
+GO:0045766	3	Process	positive regulation of angiogenesis	GATA2 NR2E1 WNT5A
+GO:0045638	3	Process	negative regulation of myeloid cell differentiation	DLL1 HOXA9 HOXB8
+GO:0045595	3	Process	regulation of cell differentiation	HES5 TFAP2A UNCX
+GO:0045296	3	Function	cadherin binding	FASN HCFC1 SCRIB
+GO:0043433	3	Process	negative regulation of DNA binding transcription factor activity	FOXA2 HAND2 MIR1-1
+GO:0043085	3	Process	positive regulation of catalytic activity	IGF2 NOXO1 NR4A2
+GO:0043025	3	Component	neuronal cell body	HCFC1 RAC3 SKOR1
+GO:0043005	3	Component	neuron projection	POU4F1 RAC3 SSTR4
+GO:0042481	3	Process	regulation of odontogenesis	MSX1 PAX9 SHH
+GO:0042277	3	Function	peptide binding	CRIP1 SSTR4 TPP1
+GO:0040019	3	Process	positive regulation of embryonic development	FOXA2 LHX1 OTX2
+GO:0035924	3	Process	cellular response to vascular endothelial growth factor stimulus	AKT1 MIR196A1 MIR196A2
+GO:0035909	3	Process	aorta morphogenesis	SIX1 TBX1 TBX2
+GO:0035176	3	Process	social behavior	EN1 NR2E1 TBX1
+GO:0035137	3	Process	hindlimb morphogenesis	HOXD10 HOXD9 SALL3
+GO:0035019	3	Process	somatic stem cell population maintenance	GATA2 NR2E1 PRDM16
+GO:0034653	3	Process	retinoic acid catabolic process	CYP26A1 CYP26B1 CYP26C1
+GO:0034504	3	Process	protein localization to nucleus	MSX1 SHH SIX1
+GO:0033613	3	Function	activating transcription factor binding	HAND2 HCFC1 PRDM16
+GO:0033189	3	Process	response to vitamin A	CYP26A1 CYP26B1 PITX2
+GO:0032993	3	Component	protein-DNA complex	HOXA11 PAX2 TBX5
+GO:0032148	3	Process	activation of protein kinase B activity	ADRA2C AKT1 WNT5A
+GO:0031519	3	Component	PcG protein complex	BCOR CBX2 CBX8
+GO:0031490	3	Function	chromatin DNA binding	KDM6B PITX2 ZIC2
+GO:0031175	3	Process	neuron projection development	GDNF POU4F1 RAC3
+GO:0031016	3	Process	pancreas development	FOXF1 NKX3-2 SHH
+GO:0030539	3	Process	male genitalia development	HOXD13 SHH TBX3
+GO:0030426	3	Component	growth cone	CBARP OTX2 RAC3
+GO:0030336	3	Process	negative regulation of cell migration	NKX2-1 SHH TBX5
+GO:0030198	3	Process	extracellular matrix organization	COL7A1 FOXF1 NR2E1
+GO:0030178	3	Process	negative regulation of Wnt signaling pathway	BARX1 CCND1 SIX3
+GO:0022008	3	Process	neurogenesis	PRDM16 PRDM6 SALL3
+GO:0021986	3	Process	habenula development	NR4A2 PAX6 POU4F1
+GO:0021978	3	Process	telencephalon regionalization	LHX2 SHH SIX3
+GO:0021904	3	Process	dorsal/ventral neural tube patterning	FOXA1 PAX7 SHH
+GO:0021902	3	Process	commitment of neuronal cell to specific neuron type in forebrain	GATA2 PAX6 SATB2
+GO:0021895	3	Process	cerebral cortex neuron differentiation	EMX1 EOMES NR2E1
+GO:0021884	3	Process	forebrain neuron development	GBX2 LHX8 SOX1
+GO:0021798	3	Process	forebrain dorsal/ventral pattern formation	NKX2-1 PAX6 SIX3
+GO:0021794	3	Process	thalamus development	FOXB1 GBX2 SHH
+GO:0021537	3	Process	telencephalon development	HES5 LHX1 SIX3
+GO:0021522	3	Process	spinal cord motor neuron differentiation	LBX1 NKX2-2 SHH
+GO:0020037	3	Function	heme binding	CYP26A1 CYP26B1 CYP26C1
+GO:0019904	3	Function	protein domain specific binding	FOXA1 FOXA2 WNT5A
+GO:0019221	3	Process	cytokine-mediated signaling pathway	AKT1 CCND1 GATA3
+GO:0016607	3	Component	nuclear speck	MBD1 NR4A2 SRRM2
+GO:0016579	3	Process	protein deubiquitination	GATA3 HCFC1 TAF10
+GO:0016491	3	Function	oxidoreductase activity	CYP26A1 CYP26B1 CYP26C1
+GO:0016235	3	Component	aggresome	HOXC9 HOXD3 PRDM16
+GO:0016125	3	Process	sterol metabolic process	CYP26A1 CYP26B1 CYP26C1
+GO:0014003	3	Process	oligodendrocyte development	HES5 NKX2-2 SHH
+GO:0010033	3	Process	response to organic substance	CRIP1 IGF2 WNT5A
+GO:0009986	3	Component	cell surface	SHH THBD WNT5A
+GO:0008595	3	Process	anterior/posterior axis specification, embryo	HOXD8 TBX3 WNT5A
+GO:0008585	3	Process	female gonad development	LHX8 LHX9 PITX2
+GO:0008401	3	Function	retinoic acid 4-hydroxylase activity	CYP26A1 CYP26B1 CYP26C1
+GO:0008236	3	Function	serine-type peptidase activity	HTRA3 TPP1 TPSG1
+GO:0008045	3	Process	motor neuron axon guidance	HOXA2 LHX1 LHX3
+GO:0007568	3	Process	aging	AKT1 PAX2 PAX5
+GO:0007498	3	Process	mesoderm development	LHX2 POU4F1 TBX1
+GO:0007409	3	Process	axonogenesis	ADGRB1 PAX2 POU4F1
+GO:0006974	3	Process	cellular response to DNA damage stimulus	AATF AKT1 CCND1
+GO:0006959	3	Process	humoral immune response	GATA3 MNX1 PAX5
+GO:0006766	3	Process	vitamin metabolic process	CYP26A1 CYP26B1 CYP26C1
+GO:0006508	3	Process	proteolysis	HTRA3 TPP1 TPSG1
+GO:0006325	3	Process	chromatin organization	CBX2 FOXA2 SOX1
+GO:0006006	3	Process	glucose metabolic process	AKT1 IGF2 ONECUT1
+GO:0005764	3	Component	lysosome	ABCA2 PAX2 TPP1
+GO:0005543	3	Function	phospholipid binding	CPTP NOXO1 WNT5A
+GO:0005506	3	Function	iron ion binding	CYP26A1 CYP26B1 CYP26C1
+GO:0005179	3	Function	hormone activity	IGF2 INHBB METRNL
+GO:0005125	3	Function	cytokine activity	GDF7 INHBB WNT5A
+GO:0003676	3	Function	nucleic acid binding	OSR1 PRDM6 ZNF503
+GO:0003323	3	Process	type B pancreatic cell development	DLL1 NKX2-2 WNT5A
+GO:0002076	3	Process	osteoblast development	HOXA2 SATB2 SHH
+GO:0002062	3	Process	chondrocyte differentiation	HES5 OSR1 SCX
+GO:0002053	3	Process	positive regulation of mesenchymal cell proliferation	FOXF1 TBX1 WNT5A
+GO:0001972	3	Function	retinoic acid binding	CYP26A1 CYP26B1 CYP26C1
+GO:0001958	3	Process	endochondral ossification	FOXC1 GNAS SCX
+GO:0001843	3	Process	neural tube closure	LHX2 PAX2 SCRIB
+GO:0001823	3	Process	mesonephros development	GATA3 OSR1 PAX2
+GO:0001708	3	Process	cell fate specification	FOXA2 SHH TBX1
+GO:0001654	3	Process	eye development	FOXC1 PAX6 SIX3
+GO:0001649	3	Process	osteoblast differentiation	AKT1 FASN IGF2
+GO:0001570	3	Process	vasculogenesis	FOXF1 PITX2 SHH
+GO:0001569	3	Process	branching involved in blood vessel morphogenesis	GBX2 PITX2 SHH
+GO:0001190	3	Function	transcriptional activator activity, RNA polymerase II transcription factor binding	GBX2 KDM6B PITX1
+GO:0001158	3	Function	enhancer sequence-specific DNA binding	GATA2 GATA3 HOXD13
+GO:0001102	3	Function	RNA polymerase II activating transcription factor binding	EOMES PITX2 TBX3
+GO:0000979	3	Function	RNA polymerase II core promoter sequence-specific DNA binding	GBX2 PAX6 TFAP2A
+GO:0000060	3	Process	protein import into nucleus, translocation	AGAP3 AKT1 SIX3
+GO:2001240	2	Process	negative regulation of extrinsic apoptotic signaling pathway in absence of ligand	AKT1 GDNF
+GO:2001054	2	Process	negative regulation of mesenchymal cell apoptotic process	SHH TBX1
+GO:2001037	2	Process	positive regulation of tongue muscle cell differentiation	CYP26B1 TBX1
+GO:2000818	2	Process	negative regulation of myoblast proliferation	MIR1-1 MIR133A2
+GO:2000729	2	Process	positive regulation of mesenchymal cell proliferation involved in ureter development	SHH SIX1
+GO:2000678	2	Process	negative regulation of transcription regulatory region DNA binding	LHX2 MSX1
+GO:2000648	2	Process	positive regulation of stem cell proliferation	NR2E1 TBX3
+GO:2000352	2	Process	negative regulation of endothelial cell apoptotic process	GATA2 GATA3
+GO:2000288	2	Process	positive regulation of myoblast proliferation	PAX7 PITX2
+GO:1990830	2	Process	cellular response to leukemia inhibitory factor	PAX6 SOX1
+GO:1990403	2	Process	embryonic brain development	EN1 EN2
+GO:1905032	2	Process	negative regulation of membrane repolarization during cardiac muscle cell action potential	MIR1-1 MIR133A2
+GO:1904938	2	Process	planar cell polarity pathway involved in axon guidance	CELSR3 WNT5A
+GO:1903672	2	Process	positive regulation of sprouting angiogenesis	DLL1 MIR1-1
+GO:1903507	2	Process	negative regulation of nucleic acid-templated transcription	HOXC6 SKOR2
+GO:1902871	2	Process	positive regulation of amacrine cell differentiation	DLX1 DLX2
+GO:1902260	2	Process	negative regulation of delayed rectifier potassium channel activity	MIR1-1 MIR133A2
+GO:1902036	2	Process	regulation of hematopoietic stem cell differentiation	GATA2 GATA3
+GO:0098609	2	Process	cell-cell adhesion	FOXF1 SCRIB
+GO:0097150	2	Process	neuronal stem cell population maintenance	DLL1 HES5
+GO:0097110	2	Function	scaffold protein binding	CACNA1H DLL1
+GO:0097009	2	Process	energy homeostasis	DLL1 METRNL
+GO:0090630	2	Process	activation of GTPase activity	SCRIB WNT5A
+GO:0090398	2	Process	cellular senescence	TBX2 TBX3
+GO:0090336	2	Process	positive regulation of brown fat cell differentiation	METRNL PRDM16
+GO:0090263	2	Process	positive regulation of canonical Wnt signaling pathway	RNF220 WNT5A
+GO:0072513	2	Process	positive regulation of secondary heart field cardioblast proliferation	SIX1 TBX5
+GO:0072272	2	Process	proximal/distal pattern formation involved in metanephric nephron development	IRX1 IRX2
+GO:0072205	2	Process	metanephric collecting duct development	PAX2 WNT7B
+GO:0072189	2	Process	ureter development	FOXF1 PAX2
+GO:0072179	2	Process	nephric duct formation	GATA3 PAX2
+GO:0072178	2	Process	nephric duct morphogenesis	GATA3 LHX1
+GO:0072162	2	Process	metanephric mesenchymal cell differentiation	OSR1 PAX2
+GO:0072108	2	Process	positive regulation of mesenchymal to epithelial transition involved in metanephros morphogenesis	GDNF PAX2
+GO:0072050	2	Process	S-shaped body morphogenesis	HES5 LHX1
+GO:0072049	2	Process	comma-shaped body morphogenesis	HES5 LHX1
+GO:0071773	2	Process	cellular response to BMP stimulus	DLX1 GATA3
+GO:0071599	2	Process	otic vesicle development	GATA3 SIX1
+GO:0071456	2	Process	cellular response to hypoxia	AKT1 STUB1
+GO:0071356	2	Process	cellular response to tumor necrosis factor	AKT1 GATA3
+GO:0071353	2	Process	cellular response to interleukin-4	FASN GATA3
+GO:0071345	2	Process	cellular response to cytokine stimulus	FOXF1 POU4F1
+GO:0071310	2	Process	cellular response to organic substance	POU3F2 SATB2
+GO:0071260	2	Process	cellular response to mechanical stimulus	AKT1 SCX
+GO:0071013	2	Component	catalytic step 2 spliceosome	NAA38 SRRM2
+GO:0070986	2	Process	left/right axis specification	DLL1 PITX2
+GO:0070742	2	Function	C2H2 zinc finger domain binding	GATA2 SRRM2
+GO:0070141	2	Process	response to UV-A	AKT1 CCND1
+GO:0065003	2	Process	protein-containing complex assembly	HES5 OTX2
+GO:0061630	2	Function	ubiquitin protein ligase activity	RNF220 STUB1
+GO:0061325	2	Process	cell proliferation involved in outflow tract morphogenesis	HAND2 PITX2
+GO:0061180	2	Process	mammary gland epithelium development	MSX1 WNT7B
+GO:0061072	2	Process	iris morphogenesis	PAX6 PITX2
+GO:0061056	2	Process	sclerotome development	PAX1 SCX
+GO:0061036	2	Process	positive regulation of cartilage development	SCX WNT5A
+GO:0061030	2	Process	epithelial cell differentiation involved in mammary gland alveolus development	FOXB1 FOXF1
+GO:0060982	2	Process	coronary artery morphogenesis	HAND2 TBX1
+GO:0060980	2	Process	cell migration involved in coronary vasculogenesis	MIR1-1 TBX5
+GO:0060840	2	Process	artery development	HOXA1 SHH
+GO:0060809	2	Process	mesodermal to mesenchymal transition involved in gastrulation	EOMES WNT5A
+GO:0060749	2	Process	mammary gland alveolus development	CCND1 HOXA5
+GO:0060741	2	Process	prostate gland stromal morphogenesis	CRIP1 FOXA1
+GO:0060738	2	Process	epithelial-mesenchymal signaling involved in prostate gland development	FOXA1 SHH
+GO:0060676	2	Process	ureteric bud formation	GATA3 GDNF
+GO:0060669	2	Process	embryonic placenta morphogenesis	IGF2 WNT7B
+GO:0060644	2	Process	mammary gland epithelial cell differentiation	AKT1 HOXA5
+GO:0060638	2	Process	mesenchymal-epithelial cell signaling	HOXA5 WNT5A
+GO:0060596	2	Process	mammary placode formation	TBX2 TBX3
+GO:0060571	2	Process	morphogenesis of an epithelial fold	GDF7 HOXD13
+GO:0060560	2	Process	developmental growth involved in morphogenesis	TBX2 WNT7B
+GO:0060536	2	Process	cartilage morphogenesis	HAND2 MSX1
+GO:0060535	2	Process	trachea cartilage morphogenesis	HOXA5 WNT7B
+GO:0060484	2	Process	lung-associated mesenchyme development	HOXA5 SHH
+GO:0060463	2	Process	lung lobe morphogenesis	FOXF1 SHH
+GO:0060428	2	Process	lung epithelium development	SHH WNT7B
+GO:0060415	2	Process	muscle tissue morphogenesis	PAX7 TBX1
+GO:0060395	2	Process	SMAD protein signal transduction	GDF7 INHBB
+GO:0060324	2	Process	face development	HOXB3 WNT5A
+GO:0060307	2	Process	regulation of ventricular cardiac muscle cell membrane repolarization	MIR133A2 WDR1
+GO:0060231	2	Process	mesenchymal to epithelial transition	GATA3 PAX2
+GO:0060071	2	Process	Wnt signaling pathway, planar cell polarity pathway	CELSR3 WNT5A
+GO:0060068	2	Process	vagina development	LHX1 WNT5A
+GO:0060067	2	Process	cervix development	LHX1 WNT5A
+GO:0060045	2	Process	positive regulation of cardiac muscle cell proliferation	TBX2 TBX5
+GO:0060044	2	Process	negative regulation of cardiac muscle cell proliferation	MIR1-1 TBX5
+GO:0060023	2	Process	soft palate development	TBX1 TSHZ1
+GO:0055007	2	Process	cardiac muscle cell differentiation	KDM6B TBX5
+GO:0051897	2	Process	positive regulation of protein kinase B signaling	GATA3 IGF2
+GO:0051865	2	Process	protein autoubiquitination	RNF220 STUB1
+GO:0051781	2	Process	positive regulation of cell division	IGF2 SHH
+GO:0051146	2	Process	striated muscle cell differentiation	AKT1 IGF2
+GO:0051056	2	Process	regulation of small GTPase mediated signal transduction	RAC3 RHOT2
+GO:0050890	2	Process	cognition	GNAS HOXA1
+GO:0050680	2	Process	negative regulation of epithelial cell proliferation	PAX6 WNT5A
+GO:0050678	2	Process	regulation of epithelial cell proliferation	HES5 SIX1
+GO:0048873	2	Process	homeostasis of number of cells within a tissue	GATA2 RAC3
+GO:0048856	2	Process	anatomical structure development	PRDM16 TFAP2A
+GO:0048854	2	Process	brain morphogenesis	EMX1 PAX2
+GO:0048806	2	Process	genitalia development	FOXF2 WNT5A
+GO:0048754	2	Process	branching morphogenesis of an epithelial tube	GDF7 SHH
+GO:0048714	2	Process	positive regulation of oligodendrocyte differentiation	NKX2-2 SHH
+GO:0048712	2	Process	negative regulation of astrocyte differentiation	HES5 NR2E1
+GO:0048675	2	Process	axon extension	LHX2 PLXNB1
+GO:0048661	2	Process	positive regulation of smooth muscle cell proliferation	AKT1 HES5
+GO:0048645	2	Process	animal organ formation	NKX3-2 SHH
+GO:0048617	2	Process	embryonic foregut morphogenesis	FOXF1 SHH
+GO:0048596	2	Process	embryonic camera-type eye morphogenesis	PAX6 TBX2
+GO:0048484	2	Process	enteric nervous system development	GDNF HLX
+GO:0048384	2	Process	retinoic acid receptor signaling pathway	CYP26B1 TBX1
+GO:0048341	2	Process	paraxial mesoderm formation	FOXC1 WNT5A
+GO:0048286	2	Process	lung alveolus development	FOXF1 HOXA5
+GO:0047485	2	Function	protein N-terminus binding	SRRM2 SYNGR3
+GO:0046777	2	Process	protein autophosphorylation	AKT1 PIM3
+GO:0046533	2	Process	negative regulation of photoreceptor cell differentiation	DLX1 DLX2
+GO:0045930	2	Process	negative regulation of mitotic cell cycle	FOXC1 SCRIB
+GO:0045907	2	Process	positive regulation of vasoconstriction	ADRA2C AKT1
+GO:0045880	2	Process	positive regulation of smoothened signaling pathway	FOXA1 SHH
+GO:0045807	2	Process	positive regulation of endocytosis	DLL1 WNT5A
+GO:0045747	2	Process	positive regulation of Notch signaling pathway	DLL1 HES5
+GO:0045725	2	Process	positive regulation of glycogen biosynthetic process	AKT1 IGF2
+GO:0045672	2	Process	positive regulation of osteoclast differentiation	GNAS POU4F1
+GO:0045669	2	Process	positive regulation of osteoblast differentiation	GNAS WNT7B
+GO:0045668	2	Process	negative regulation of osteoblast differentiation	HAND2 HOXA2
+GO:0045664	2	Process	regulation of neuron differentiation	EOMES SIX1
+GO:0045662	2	Process	negative regulation of myoblast differentiation	DLL1 TBX3
+GO:0045471	2	Process	response to ethanol	CCND1 GATA3
+GO:0045446	2	Process	endothelial cell differentiation	HOXB5 KDM6B
+GO:0045211	2	Component	postsynaptic membrane	ADGRB1 SCRIB
+GO:0045202	2	Component	synapse	NRN1 SCRIB
+GO:0045199	2	Process	maintenance of epithelial cell apical/basal polarity	LHX2 WDR1
+GO:0045198	2	Process	establishment of epithelial cell apical/basal polarity	FOXF1 WNT5A
+GO:0045121	2	Component	membrane raft	DLL1 SHH
+GO:0045087	2	Process	innate immune response	ADGRB1 GATA3
+GO:0044344	2	Process	cellular response to fibroblast growth factor stimulus	LHX1 TBX1
+GO:0044325	2	Function	ion channel binding	CBARP LRRC26
+GO:0044267	2	Process	cellular protein metabolic process	IGF2 SFTA3
+GO:0043652	2	Process	engulfment of apoptotic cell	ADGRB1 RAC3
+GO:0043627	2	Process	response to estrogen	CCND1 GATA3
+GO:0043587	2	Process	tongue morphogenesis	CYP26B1 TBX1
+GO:0043586	2	Process	tongue development	HAND2 PRDM16
+GO:0043547	2	Process	positive regulation of GTPase activity	AGAP3 PLXNB1
+GO:0043537	2	Process	negative regulation of blood vessel endothelial cell migration	MIR10A MIR129-2
+GO:0043491	2	Process	protein kinase B signaling	AKT1 PAX2
+GO:0043408	2	Process	regulation of MAPK cascade	GDF7 INHBB
+GO:0043401	2	Process	steroid hormone mediated signaling pathway	NR2E1 NR4A2
+GO:0043388	2	Process	positive regulation of DNA binding	FOXC1 PITX2
+GO:0043367	2	Process	CD4-positive, alpha-beta T cell differentiation	NKX2-3 PAX1
+GO:0043154	2	Process	negative regulation of cysteine-type endopeptidase activity involved in apoptotic process	AKT1 PAX2
+GO:0043069	2	Process	negative regulation of programmed cell death	PAX2 POU4F1
+GO:0042551	2	Process	neuron maturation	IRX5 NR4A2
+GO:0042473	2	Process	outer ear morphogenesis	HOXA1 TBX1
+GO:0042470	2	Component	melanosome	FASN TPP1
+GO:0042307	2	Process	positive regulation of protein import into nucleus	SHH ZIC1
+GO:0042060	2	Process	wound healing	SCRIB WNT5A
+GO:0040037	2	Process	negative regulation of fibroblast growth factor receptor signaling pathway	MIR1-1 WNT5A
+GO:0040018	2	Process	positive regulation of multicellular organism growth	IGF2 POU3F2
+GO:0038023	2	Function	signaling receptor activity	PLXNB1 THBD
+GO:0035993	2	Process	deltoid tuberosity development	PITX2 SCX
+GO:0035799	2	Process	ureter maturation	GATA3 PAX2
+GO:0035278	2	Process	miRNA mediated inhibition of translation	MIR1-1 MIR483
+GO:0035255	2	Function	ionotropic glutamate receptor binding	GNAS SCRIB
+GO:0035108	2	Process	limb morphogenesis	EVX2 TBX4
+GO:0035102	2	Component	PRC1 complex	CBX2 CBX8
+GO:0035064	2	Function	methylated histone binding	CBX2 CBX8
+GO:0035050	2	Process	embryonic heart tube development	FOXC1 TBX2
+GO:0034968	2	Process	histone lysine methylation	PRDM16 PRDM6
+GO:0034614	2	Process	cellular response to reactive oxygen species	AGAP3 AKT1
+GO:0033327	2	Process	Leydig cell differentiation	CCND1 NKX2-1
+GO:0033138	2	Process	positive regulation of peptidyl-serine phosphorylation	AKT1 WNT5A
+GO:0032967	2	Process	positive regulation of collagen biosynthetic process	CBX8 SCX
+GO:0032924	2	Process	activin receptor signaling pathway	GDF7 INHBB
+GO:0032880	2	Process	regulation of protein localization	CELSR3 SIX1
+GO:0032869	2	Process	cellular response to insulin stimulus	AKT1 INHBB
+GO:0032808	2	Process	lacrimal gland development	FOXC1 PAX6
+GO:0032436	2	Process	positive regulation of proteasomal ubiquitin-dependent protein catabolic process	AKT1 STUB1
+GO:0032355	2	Process	response to estradiol	CCND1 FOXA1
+GO:0032091	2	Process	negative regulation of protein binding	AKT1 STUB1
+GO:0031965	2	Component	nuclear membrane	HOXA7 SLC16A3
+GO:0031929	2	Process	TOR signaling	AKT1 GATA3
+GO:0031667	2	Process	response to nutrient levels	IGF2 PAX2
+GO:0031641	2	Process	regulation of myelination	AKT1 HES5
+GO:0031625	2	Function	ubiquitin protein ligase binding	PAX6 STUB1
+GO:0031410	2	Component	cytoplasmic vesicle	ABCA2 DLL1
+GO:0031398	2	Process	positive regulation of protein ubiquitination	CENPX STUB1
+GO:0031397	2	Process	negative regulation of protein ubiquitination	ADGRB1 AKT1
+GO:0031297	2	Process	replication fork processing	CENPX EME2
+GO:0031090	2	Component	organelle membrane	CYP26A1 CYP26B1
+GO:0031072	2	Function	heat shock protein binding	BCOR STUB1
+GO:0030968	2	Process	endoplasmic reticulum unfolded protein response	CCND1 STUB1
+GO:0030949	2	Process	positive regulation of vascular endothelial growth factor receptor signaling pathway	MIR10A MIR10B
+GO:0030902	2	Process	hindbrain development	EN2 SHH
+GO:0030674	2	Function	protein binding, bridging	HCFC1 STUB1
+GO:0030672	2	Component	synaptic vesicle membrane	CBARP SYNGR3
+GO:0030666	2	Component	endocytic vesicle membrane	WNT5A WNT7B
+GO:0030513	2	Process	positive regulation of BMP signaling pathway	HES5 MSX1
+GO:0030509	2	Process	BMP signaling pathway	GDF7 SCX
+GO:0030501	2	Process	positive regulation of bone mineralization	OSR1 TFAP2A
+GO:0030216	2	Process	keratinocyte differentiation	PAX6 WNT5A
+GO:0030199	2	Process	collagen fibril organization	FOXC1 SCX
+GO:0030168	2	Process	platelet activation	ADRA2C AKT1
+GO:0030165	2	Function	PDZ domain binding	ADGRB1 TMEM88
+GO:0030163	2	Process	protein catabolic process	AKT1 TPP1
+GO:0030097	2	Process	hemopoiesis	CRIP2 DLL1
+GO:0030030	2	Process	cell projection organization	AKT1 NUBP2
+GO:0030027	2	Component	lamellipodium	RAC3 SCRIB
+GO:0023019	2	Process	signal transduction involved in regulation of gene expression	MSX1 PAX6
+GO:0022612	2	Process	gland morphogenesis	GDF7 NKX2-3
+GO:0021987	2	Process	cerebral cortex development	LHX2 PAX5
+GO:0021985	2	Process	neurohypophysis development	OTP POU3F2
+GO:0021979	2	Process	hypothalamus cell differentiation	OTP POU3F2
+GO:0021953	2	Process	central nervous system neuron differentiation	NR4A2 POU4F1
+GO:0021937	2	Process	cerebellar Purkinje cell-granule cell precursor cell signaling involved in regulation of granule cell precursor cell proliferation	LHX1 LHX5
+GO:0021930	2	Process	cerebellar granule cell precursor proliferation	GBX2 SHH
+GO:0021893	2	Process	cerebral cortex GABAergic interneuron fate commitment	DLX1 DLX2
+GO:0021891	2	Process	olfactory bulb interneuron development	SALL3 WNT5A
+GO:0021882	2	Process	regulation of transcription from RNA polymerase II promoter involved in forebrain neuron fate commitment	DLX1 DLX2
+GO:0021879	2	Process	forebrain neuron differentiation	LHX5 OTP
+GO:0021871	2	Process	forebrain regionalization	LHX1 WNT7B
+GO:0021855	2	Process	hypothalamus cell migration	FOXB1 PITX2
+GO:0021759	2	Process	globus pallidus development	ARX NKX2-1
+GO:0021702	2	Process	cerebellar Purkinje cell differentiation	LHX1 LHX5
+GO:0021615	2	Process	glossopharyngeal nerve morphogenesis	HOXB3 HOXD3
+GO:0021568	2	Process	rhombomere 2 development	GBX2 HOXA2
+GO:0021559	2	Process	trigeminal nerve development	POU4F1 TFAP2A
+GO:0021554	2	Process	optic nerve development	NKX2-2 PAX2
+GO:0021544	2	Process	subpallium development	DLX1 DLX2
+GO:0021542	2	Process	dentate gyrus development	EMX2 NR2E1
+GO:0021521	2	Process	ventral spinal cord interneuron specification	LHX3 SOX1
+GO:0021516	2	Process	dorsal spinal cord development	HOXB8 UNCX
+GO:0019900	2	Function	kinase binding	LRRC14 STUB1
+GO:0019827	2	Process	stem cell population maintenance	EOMES TBX3
+GO:0018107	2	Process	peptidyl-threonine phosphorylation	AKT1 OSR1
+GO:0018024	2	Function	histone-lysine N-methyltransferase activity	PRDM16 PRDM6
+GO:0017053	2	Component	transcriptional repressor complex	CCND1 PRDM16
+GO:0016887	2	Function	ATPase activity	ABCA2 ATP5F1D
+GO:0016709	2	Function	oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen, NAD(P)H as one donor, and incorporation of one atom of oxygen	CYP26A1 CYP26B1
+GO:0016363	2	Component	nuclear matrix	MBD1 SATB2
+GO:0016324	2	Component	apical plasma membrane	DLL1 GNAS
+GO:0016310	2	Process	phosphorylation	AKT1 PANK4
+GO:0015630	2	Component	microtubule cytoskeleton	AKT1 HOXC8
+GO:0014069	2	Component	postsynaptic density	ADGRB1 SCRIB
+GO:0014068	2	Process	positive regulation of phosphatidylinositol 3-kinase signaling	IGF2 PLXNB1
+GO:0014065	2	Process	phosphatidylinositol 3-kinase signaling	AKT1 GATA3
+GO:0014032	2	Process	neural crest cell development	CYP26C1 FOXC1
+GO:0014002	2	Process	astrocyte development	DLL1 POU3F2
+GO:0010975	2	Process	regulation of neuron projection development	AKT1 GATA3
+GO:0010951	2	Process	negative regulation of endopeptidase activity	AKT1 COL7A1
+GO:0010881	2	Process	regulation of cardiac muscle contraction by regulation of the release of sequestered calcium ion	MIR1-1 MIR133A2
+GO:0010862	2	Process	positive regulation of pathway-restricted SMAD protein phosphorylation	GDF7 INHBB
+GO:0010842	2	Process	retina layer formation	LHX1 TFAP2A
+GO:0010831	2	Process	positive regulation of myotube differentiation	MIR1-1 MIR133A2
+GO:0010667	2	Process	negative regulation of cardiac muscle cell apoptotic process	HAND2 MIR133A2
+GO:0010614	2	Process	negative regulation of cardiac muscle hypertrophy	MIR1-1 MIR133A2
+GO:0010595	2	Process	positive regulation of endothelial cell migration	GATA3 WNT5A
+GO:0010593	2	Process	negative regulation of lamellipodium assembly	MIR196A1 MIR196A2
+GO:0010507	2	Process	negative regulation of autophagy	AKT1 CPTP
+GO:0010463	2	Process	mesenchymal cell proliferation	HAND2 MSX1
+GO:0010455	2	Process	positive regulation of cell fate commitment	MIR1-1 MIR133A2
+GO:0010165	2	Process	response to X-ray	CCND1 THBD
+GO:0010008	2	Component	endosome membrane	ABCA2 CPTP
+GO:0009749	2	Process	response to glucose	IGF2 NKX2-2
+GO:0009725	2	Process	response to hormone	NKX2-1 PITX2
+GO:0009611	2	Process	response to wounding	INHBB PAX6
+GO:0008589	2	Process	regulation of smoothened signaling pathway	OTX2 ZIC1
+GO:0008544	2	Process	epidermis development	COL7A1 POU3F2
+GO:0008406	2	Process	gonad development	IRX5 OSR1
+GO:0008360	2	Process	regulation of cell shape	PLXNB1 WDR1
+GO:0008301	2	Function	DNA binding, bending	CRIP1 FOXC1
+GO:0008286	2	Process	insulin receptor signaling pathway	AKT1 IGF2
+GO:0008233	2	Function	peptidase activity	SHH TPP1
+GO:0008016	2	Process	regulation of heart contraction	CACNA1H TBX2
+GO:0008013	2	Function	beta-catenin binding	KDM6B NR4A2
+GO:0007595	2	Process	lactation	CCND1 FOXB1
+GO:0007569	2	Process	cell aging	TBX2 TBX3
+GO:0007565	2	Process	female pregnancy	ADRA2C THBD
+GO:0007520	2	Process	myoblast fusion	CACNA1H PITX2
+GO:0007501	2	Process	mesodermal cell fate specification	HOXA11 PAX2
+GO:0007494	2	Process	midgut development	FOXF1 WNT5A
+GO:0007442	2	Process	hindgut morphogenesis	SHH WNT5A
+GO:0007422	2	Process	peripheral nervous system development	ADGRB1 ADGRB2
+GO:0007346	2	Process	regulation of mitotic cell cycle	AATF PIM3
+GO:0007268	2	Process	chemical synaptic transmission	SCRIB SSTR4
+GO:0007266	2	Process	Rho protein signal transduction	RAC3 RHOT2
+GO:0007257	2	Process	activation of JUN kinase activity	WNT5A WNT7B
+GO:0007188	2	Process	adenylate cyclase-modulating G-protein coupled receptor signaling pathway	ADRA2C GNAS
+GO:0007166	2	Process	cell surface receptor signaling pathway	ADGRB1 ADGRB2
+GO:0007049	2	Process	cell cycle	HCFC1 PIM3
+GO:0007005	2	Process	mitochondrion organization	HCFC1 RHOT2
+GO:0006954	2	Process	inflammatory response	AKT1 CYP26B1
+GO:0006952	2	Process	defense response	GATA3 INHBB
+GO:0006897	2	Process	endocytosis	RAC3 SHH
+GO:0006805	2	Process	xenobiotic metabolic process	CYP26A1 CYP26B1
+GO:0006629	2	Process	lipid metabolic process	ABCA2 TPP1
+GO:0006281	2	Process	DNA repair	RECQL4 STUB1
+GO:0005929	2	Component	cilium	CFAP53 NUBP2
+GO:0005856	2	Component	cytoskeleton	LRRC26 RAC3
+GO:0005815	2	Component	microtubule organizing center	ABCA2 PAX2
+GO:0005796	2	Component	Golgi lumen	WNT5A WNT7B
+GO:0005768	2	Component	endosome	ABCA2 ADRA2C
+GO:0005743	2	Component	mitochondrial inner membrane	ATP5F1D MRPS34
+GO:0005694	2	Component	chromosome	MBD1 RECQL4
+GO:0005215	2	Function	transporter activity	ATP5F1D SLC16A3
+GO:0005160	2	Function	transforming growth factor beta receptor binding	GDF7 INHBB
+GO:0005159	2	Function	insulin-like growth factor receptor binding	GNAS IGF2
+GO:0005109	2	Function	frizzled binding	WNT5A WNT7B
+GO:0005102	2	Function	signaling receptor binding	GDNF SIX3
+GO:0005096	2	Function	GTPase activator activity	AGAP3 PLXNB1
+GO:0004888	2	Function	transmembrane signaling receptor activity	PLXNB1 THBD
+GO:0004497	2	Function	monooxygenase activity	CYP26A1 CYP26C1
+GO:0004175	2	Function	endopeptidase activity	HTRA3 TPP1
+GO:0003727	2	Function	single-stranded RNA binding	CBX8 DLX2
+GO:0003707	2	Function	steroid hormone receptor activity	NR2E1 NR4A2
+GO:0003690	2	Function	double-stranded DNA binding	CENPX HES5
+GO:0003680	2	Function	AT DNA binding	CRIP1 HAND2
+GO:0003404	2	Process	optic vesicle morphogenesis	SIX3 TFAP2A
+GO:0003337	2	Process	mesenchymal to epithelial transition involved in metanephros morphogenesis	GDNF PAX2
+GO:0003281	2	Process	ventricular septum development	GATA3 TBX5
+GO:0003253	2	Process	cardiac neural crest cell migration involved in outflow tract morphogenesis	HAND2 PITX2
+GO:0003197	2	Process	endocardial cushion development	FOXF1 TBX5
+GO:0003148	2	Process	outflow tract septum morphogenesis	TBX1 TBX2
+GO:0002576	2	Process	platelet degranulation	IGF2 WDR1
+GO:0002102	2	Component	podosome	NOXO1 WDR1
+GO:0002064	2	Process	epithelial cell development	ONECUT1 ONECUT2
+GO:0002009	2	Process	morphogenesis of an epithelium	TBX4 TBX5
+GO:0001967	2	Process	suckling behavior	HAND2 POU4F1
+GO:0001952	2	Process	regulation of cell-matrix adhesion	ONECUT1 ONECUT2
+GO:0001945	2	Process	lymph vessel development	FOXC1 TBX1
+GO:0001938	2	Process	positive regulation of endothelial cell proliferation	AKT1 WNT5A
+GO:0001894	2	Process	tissue homeostasis	GNAS SCX
+GO:0001892	2	Process	embryonic placenta development	GATA2 IGF2
+GO:0001837	2	Process	epithelial to mesenchymal transition	FOXF2 WNT5A
+GO:0001707	2	Process	mesoderm formation	EOMES SCX
+GO:0001706	2	Process	endoderm formation	EOMES LHX1
+GO:0001664	2	Function	G-protein coupled receptor binding	GNAS STUB1
+GO:0001541	2	Process	ovarian follicle development	FOXC1 INHBB
+GO:0001105	2	Function	RNA polymerase II transcription coactivator activity	PITX2 POU3F2
+GO:0001076	2	Function	transcription factor activity, RNA polymerase II transcription factor binding	LHX2 LHX3
+GO:0001046	2	Function	core promoter sequence-specific DNA binding	GATA3 SOX1
+GO:0000983	2	Function	transcription factor activity, RNA polymerase II core promoter sequence-specific DNA binding	LMX1B PAX7
+GO:0000982	2	Function	transcription factor activity, RNA polymerase II proximal promoter sequence-specific DNA binding	MSX1 TFAP2A
+GO:0000902	2	Process	cell morphogenesis	MSX1 RAC3
+GO:0000792	2	Component	heterochromatin	CBX2 CBX8
+GO:0000777	2	Component	condensed chromosome kinetochore	BUB3 CENPX
+GO:0000712	2	Process	resolution of meiotic recombination intermediates	CENPX EME2
+GO:0000398	2	Process	mRNA splicing, via spliceosome	NAA38 SRRM2
+GO:0000187	2	Process	activation of MAPK activity	IGF2 WNT5A
+GO:0000166	2	Function	nucleotide binding	ABCA2 NUBP2
+GO:0000082	2	Process	G1/S transition of mitotic cell cycle	CCND1 TAF10
+GO:2001235	1	Process	positive regulation of apoptotic signaling pathway	INHBB
+GO:2001234	1	Process	negative regulation of apoptotic signaling pathway	NR4A2
+GO:2001208	1	Process	negative regulation of transcription elongation by RNA polymerase I	POU4F1
+GO:2001055	1	Process	positive regulation of mesenchymal cell apoptotic process	MSX1
+GO:2001051	1	Process	positive regulation of tendon cell differentiation	GDF7
+GO:2001033	1	Process	negative regulation of double-strand break repair via nonhomologous end joining	NUDT16L1
+GO:2001016	1	Process	positive regulation of skeletal muscle cell differentiation	MIR1-1
+GO:2001014	1	Process	regulation of skeletal muscle cell differentiation	SIX1
+GO:2000981	1	Process	negative regulation of inner ear receptor cell differentiation	HES5
+GO:2000978	1	Process	negative regulation of forebrain neuron differentiation	HES5
+GO:2000977	1	Process	regulation of forebrain neuron differentiation	GATA2
+GO:2000974	1	Process	negative regulation of pro-B cell differentiation	HES5
+GO:2000971	1	Process	negative regulation of detection of glucose	FOXA2
+GO:2000828	1	Process	regulation of parathyroid hormone secretion	GNAS
+GO:2000774	1	Process	positive regulation of cellular senescence	MIR10A
+GO:2000768	1	Process	positive regulation of nephron tubule epithelial cell differentiation	LHX1
+GO:2000764	1	Process	positive regulation of semaphorin-plexin signaling pathway involved in outflow tract morphogenesis	HAND2
+GO:2000763	1	Process	positive regulation of transcription from RNA polymerase II promoter involved in norepinephrine biosynthetic process	HAND2
+GO:2000744	1	Process	positive regulation of anterior head development	LHX1
+GO:2000738	1	Process	positive regulation of stem cell differentiation	HOXB4
+GO:2000737	1	Process	negative regulation of stem cell differentiation	HES5
+GO:2000736	1	Process	regulation of stem cell differentiation	GDNF
+GO:2000734	1	Process	negative regulation of glial cell-derived neurotrophic factor receptor signaling pathway involved in ureteric bud formation	GATA3
+GO:2000727	1	Process	positive regulation of cardiac muscle cell differentiation	MIR1-1
+GO:2000726	1	Process	negative regulation of cardiac muscle cell differentiation	DLL1
+GO:2000724	1	Process	positive regulation of cardiac vascular smooth muscle cell differentiation	MIR1-1
+GO:2000703	1	Process	negative regulation of fibroblast growth factor receptor signaling pathway involved in ureteric bud formation	GATA3
+GO:2000683	1	Process	regulation of cellular response to X-ray	GATA3
+GO:2000667	1	Process	positive regulation of interleukin-13 secretion	GATA3
+GO:2000664	1	Process	positive regulation of interleukin-5 secretion	GATA3
+GO:2000650	1	Process	negative regulation of sodium ion transmembrane transporter activity	OSR1
+GO:2000617	1	Process	positive regulation of histone H3-K9 acetylation	GATA3
+GO:2000611	1	Process	positive regulation of thyroid hormone generation	GATA3
+GO:2000607	1	Process	negative regulation of cell proliferation involved in mesonephros development	GATA3
+GO:2000597	1	Process	positive regulation of optic nerve formation	PAX2
+GO:2000594	1	Process	positive regulation of metanephric DCT cell differentiation	PAX2
+GO:2000553	1	Process	positive regulation of T-helper 2 cell cytokine production	GATA3
+GO:2000484	1	Process	positive regulation of interleukin-8 secretion	WNT5A
+GO:2000480	1	Process	negative regulation of cAMP-dependent protein kinase activity	MIR133A2
+GO:2000467	1	Process	positive regulation of glycogen (starch) synthase activity	IGF2
+GO:2000358	1	Process	positive regulation of kidney smooth muscle cell differentiation	SHH
+GO:2000357	1	Process	negative regulation of kidney smooth muscle cell differentiation	SHH
+GO:2000344	1	Process	positive regulation of acrosome reaction	CACNA1H
+GO:2000179	1	Process	positive regulation of neural precursor cell proliferation	NR2E1
+GO:2000177	1	Process	regulation of neural precursor cell proliferation	SIX3
+GO:2000146	1	Process	negative regulation of cell motility	GATA3
+GO:2000134	1	Process	negative regulation of G1/S transition of mitotic cell cycle	MIR133A2
+GO:2000114	1	Process	regulation of establishment of cell polarity	GATA3
+GO:2000063	1	Process	positive regulation of ureter smooth muscle cell differentiation	SHH
+GO:2000062	1	Process	negative regulation of ureter smooth muscle cell differentiation	SHH
+GO:2000052	1	Process	positive regulation of non-canonical Wnt signaling pathway	WNT5A
+GO:2000027	1	Process	regulation of organ morphogenesis	TBX1
+GO:2000010	1	Process	positive regulation of protein localization to cell surface	AKT1
+GO:1990869	1	Process	cellular response to chemokine	FOXC1
+GO:1990841	1	Function	promoter-specific chromatin binding	FOXC1
+GO:1990418	1	Process	response to insulin-like growth factor stimulus	AKT1
+GO:1990298	1	Component	bub1-bub3 complex	BUB3
+GO:1990266	1	Process	neutrophil migration	WDR1
+GO:1990138	1	Process	neuron projection extension	EMX1
+GO:1990090	1	Process	cellular response to nerve growth factor stimulus	AKT1
+GO:1990086	1	Process	lens fiber cell apoptotic process	SIX3
+GO:1905913	1	Process	negative regulation of calcium ion export across plasma membrane	MIR1-1
+GO:1905904	1	Process	positive regulation of mesoderm formation	MIR1-1
+GO:1905563	1	Process	negative regulation of vascular endothelial cell proliferation	MIR129-2
+GO:1905461	1	Process	positive regulation of vascular associated smooth muscle cell apoptotic process	MIR1-1
+GO:1905408	1	Process	negative regulation of creatine transmembrane transporter activity	OSR1
+GO:1905327	1	Process	tracheoesophageal septum formation	SHH
+GO:1905283	1	Process	negative regulation of epidermal growth factor receptor signaling pathway involved in heart process	MIR133A2
+GO:1905243	1	Process	cellular response to 3,3',5-triiodo-L-thyronine	SIX1
+GO:1905209	1	Process	positive regulation of cardiocyte differentiation	MIR133A2
+GO:1905024	1	Process	regulation of membrane repolarization during ventricular cardiac muscle cell action potential	MIR133A2
+GO:1904955	1	Process	planar cell polarity pathway involved in midbrain dopaminergic neuron differentiation	WNT5A
+GO:1904953	1	Process	Wnt signaling pathway involved in midbrain dopaminergic neuron differentiation	WNT5A
+GO:1904948	1	Process	midbrain dopaminergic neuron differentiation	NR4A2
+GO:1904934	1	Process	negative regulation of cell proliferation in midbrain	WNT5A
+GO:1904879	1	Process	positive regulation of calcium ion transmembrane transport via high voltage-gated calcium channel	MIR1-1
+GO:1904862	1	Process	inhibitory synapse assembly	WNT5A
+GO:1904861	1	Process	excitatory synapse assembly	WNT5A
+GO:1904798	1	Process	positive regulation of core promoter binding	FOXC1
+GO:1904706	1	Process	negative regulation of vascular smooth muscle cell proliferation	MIR1-1
+GO:1904469	1	Process	positive regulation of tumor necrosis factor secretion	WNT5A
+GO:1904339	1	Process	negative regulation of dopaminergic neuron differentiation	SHH
+GO:1903929	1	Process	primary palate development	HAND2
+GO:1903845	1	Process	negative regulation of cellular response to transforming growth factor beta stimulus	DLX1
+GO:1903827	1	Process	regulation of cellular protein localization	WNT5A
+GO:1903818	1	Process	positive regulation of voltage-gated potassium channel activity	LRRC26
+GO:1903780	1	Process	negative regulation of cardiac conduction	MIR1-1
+GO:1903769	1	Process	negative regulation of cell proliferation in bone marrow	MIR10A
+GO:1903767	1	Component	sweet taste receptor complex	TAS1R3
+GO:1903762	1	Process	positive regulation of voltage-gated potassium channel activity involved in ventricular cardiac muscle cell action potential repolarization	MIR1-1
+GO:1903721	1	Process	positive regulation of I-kappaB phosphorylation	AKT1
+GO:1903588	1	Process	negative regulation of blood vessel endothelial cell proliferation involved in sprouting angiogenesis	MIR483
+GO:1903428	1	Process	positive regulation of reactive oxygen species biosynthetic process	ADGRB1
+GO:1903206	1	Process	negative regulation of hydrogen peroxide-induced cell death	MIR133A2
+GO:1903170	1	Process	negative regulation of calcium ion transmembrane transport	CBARP
+GO:1903078	1	Process	positive regulation of protein localization to plasma membrane	AKT1
+GO:1902807	1	Process	negative regulation of cell cycle G1/S phase transition	MIR10A
+GO:1902742	1	Process	apoptotic process involved in development	SIX3
+GO:1902692	1	Process	regulation of neuroblast proliferation	SIX3
+GO:1902691	1	Process	respiratory basal cell differentiation	FOXA1
+GO:1902600	1	Process	proton transmembrane transport	MFSD3
+GO:1902474	1	Process	positive regulation of protein localization to synapse	WNT5A
+GO:1902389	1	Process	ceramide 1-phosphate transport	CPTP
+GO:1902388	1	Function	ceramide 1-phosphate transporter activity	CPTP
+GO:1902387	1	Function	ceramide 1-phosphate binding	CPTP
+GO:1902379	1	Function	chemoattractant activity involved in axon guidance	WNT5A
+GO:1902287	1	Process	semaphorin-plexin signaling pathway involved in axon guidance	PLXNB1
+GO:1902257	1	Process	negative regulation of apoptotic process involved in outflow tract morphogenesis	FOXC1
+GO:1902255	1	Process	positive regulation of intrinsic apoptotic signaling pathway by p53 class mediator	MSX1
+GO:1902176	1	Process	negative regulation of oxidative stress-induced intrinsic apoptotic signaling pathway	AKT1
+GO:1902038	1	Process	positive regulation of hematopoietic stem cell differentiation	FOXC1
+GO:1901987	1	Process	regulation of cell cycle phase transition	SIX3
+GO:1901741	1	Process	positive regulation of myoblast fusion	ADGRB1
+GO:1901536	1	Process	negative regulation of DNA demethylation	GATA3
+GO:1901534	1	Process	positive regulation of hematopoietic progenitor cell differentiation	FOXC1
+GO:1901491	1	Process	negative regulation of lymphangiogenesis	FOXC1
+GO:1901386	1	Process	negative regulation of voltage-gated calcium channel activity	CBARP
+GO:1901216	1	Process	positive regulation of neuron death	WNT5A
+GO:1901215	1	Process	negative regulation of neuron death	AKT1
+GO:1901211	1	Process	negative regulation of cardiac chamber formation	TBX2
+GO:1901208	1	Process	negative regulation of heart looping	TBX2
+GO:1900746	1	Process	regulation of vascular endothelial growth factor signaling pathway	DLL1
+GO:1900745	1	Process	positive regulation of p38MAPK cascade	HAND2
+GO:1900226	1	Process	negative regulation of NLRP3 inflammasome complex assembly	CPTP
+GO:1900220	1	Process	semaphorin-plexin signaling pathway involved in bone trabecula morphogenesis	PLXNB1
+GO:1900218	1	Process	negative regulation of apoptotic process involved in metanephric nephron tubule development	PAX2
+GO:1900215	1	Process	negative regulation of apoptotic process involved in metanephric collecting duct development	PAX2
+GO:1900212	1	Process	negative regulation of mesenchymal cell apoptotic process involved in metanephros development	PAX2
+GO:1900182	1	Process	positive regulation of protein localization to nucleus	AKT1
+GO:1900180	1	Process	regulation of protein localization to nucleus	SHH
+GO:1900175	1	Process	regulation of nodal signaling pathway involved in determination of lateral mesoderm left/right asymmetry	SHH
+GO:1900026	1	Process	positive regulation of substrate adhesion-dependent cell spreading	RAC3
+GO:1900020	1	Process	positive regulation of protein kinase C activity	WNT5A
+GO:0150012	1	Process	positive regulation of neuron projection arborization	WNT5A
+GO:0120013	1	Function	intermembrane lipid transfer activity	CPTP
+GO:0120009	1	Process	intermembrane lipid transfer	CPTP
+GO:0110059	1	Process	negative regulation of blood vessel endothelial cell differentiation	MIR10A
+GO:0110023	1	Process	negative regulation of cardiac muscle myoblast proliferation	MIR10A
+GO:0102132	1	Function	3-oxo-pimeloyl-[acp] methyl ester reductase activity	FASN
+GO:0102131	1	Function	3-oxo-glutaryl-[acp] methyl ester reductase activity	FASN
+GO:0101031	1	Component	chaperone complex	STUB1
+GO:0100002	1	Process	negative regulation of protein kinase activity by protein phosphorylation	AKT1
+GO:0099132	1	Process	ATP hydrolysis coupled cation transmembrane transport	ATP5F1D
+GO:0099104	1	Function	potassium channel activator activity	LRRC26
+GO:0099068	1	Process	postsynapse assembly	WNT5A
+GO:0099054	1	Process	presynapse assembly	WNT5A
+GO:0098968	1	Process	neurotransmitter receptor transport postsynaptic membrane to endosome	SCRIB
+GO:0098887	1	Process	neurotransmitter receptor transport, endosome to postsynaptic membrane	SCRIB
+GO:0098794	1	Component	postsynapse	AKT1
+GO:0098773	1	Process	skin epidermis development	DLL1
+GO:0098662	1	Process	inorganic cation transmembrane transport	CACNA1H
+GO:0097477	1	Process	lateral motor column neuron migration	LHX1
+GO:0097421	1	Process	liver regeneration	CCND1
+GO:0097402	1	Process	neuroblast migration	SIX3
+GO:0097380	1	Process	dorsal spinal cord interneuron anterior axon guidance	LHX9
+GO:0097379	1	Process	dorsal spinal cord interneuron posterior axon guidance	LHX1
+GO:0097345	1	Process	mitochondrial outer membrane permeabilization	RHOT2
+GO:0097325	1	Process	melanocyte proliferation	WNT5A
+GO:0097194	1	Process	execution phase of apoptosis	AKT1
+GO:0097190	1	Process	apoptotic signaling pathway	SHH
+GO:0097154	1	Process	GABAergic neuron differentiation	GATA2
+GO:0097152	1	Process	mesenchymal cell apoptotic process	TBX1
+GO:0097120	1	Process	receptor localization to synapse	SCRIB
+GO:0097102	1	Process	endothelial tip cell fate specification	DLL1
+GO:0097070	1	Process	ductus arteriosus closure	FOXF1
+GO:0097060	1	Component	synaptic membrane	SCRIB
+GO:0097027	1	Function	ubiquitin-protein transferase activator activity	CBX8
+GO:0097011	1	Process	cellular response to granulocyte macrophage colony-stimulating factor stimulus	AKT1
+GO:0090677	1	Process	reversible differentiation	MIR1-1
+GO:0090575	1	Component	RNA polymerase II transcription factor complex	HOXB9
+GO:0090427	1	Process	activation of meiosis	MSX1
+GO:0090370	1	Process	negative regulation of cholesterol efflux	SHH
+GO:0090305	1	Process	nucleic acid phosphodiester bond hydrolysis	EME2
+GO:0090201	1	Process	negative regulation of release of cytochrome c from mitochondria	AKT1
+GO:0090191	1	Process	negative regulation of branching involved in ureteric bud morphogenesis	SIX1
+GO:0090179	1	Process	planar cell polarity pathway involved in neural tube closure	WNT5A
+GO:0090162	1	Process	establishment of epithelial cell polarity	HES5
+GO:0090131	1	Process	mesenchyme migration	FOXF1
+GO:0090094	1	Process	metanephric cap mesenchymal cell proliferation involved in metanephros development	OSR1
+GO:0090049	1	Process	regulation of cell migration involved in sprouting angiogenesis	NR2E1
+GO:0090037	1	Process	positive regulation of protein kinase C signaling	WNT5A
+GO:0090035	1	Process	positive regulation of chaperone-mediated protein complex assembly	STUB1
+GO:0086094	1	Process	positive regulation of ryanodine-sensitive calcium-release channel activity by adrenergic receptor signaling pathway involved in positive regulation of cardiac muscle contraction	MIR1-1
+GO:0086010	1	Process	membrane depolarization during action potential	CACNA1H
+GO:0072676	1	Process	lymphocyte migration	GATA3
+GO:0072659	1	Process	protein localization to plasma membrane	TMEM88
+GO:0072656	1	Process	maintenance of protein location in mitochondrion	AKT1
+GO:0072655	1	Process	establishment of protein localization to mitochondrion	AKT1
+GO:0072643	1	Process	interferon-gamma secretion	GATA3
+GO:0072602	1	Process	interleukin-4 secretion	GATA3
+GO:0072593	1	Process	reactive oxygen species metabolic process	PAX2
+GO:0072583	1	Process	clathrin-dependent endocytosis	DLL1
+GO:0072562	1	Component	blood microparticle	INTS11
+GO:0072498	1	Process	embryonic skeletal joint development	OSR1
+GO:0072332	1	Process	intrinsic apoptotic signaling pathway by p53 class mediator	POU4F1
+GO:0072307	1	Process	regulation of metanephric nephron tubule epithelial cell differentiation	PAX2
+GO:0072305	1	Process	negative regulation of mesenchymal cell apoptotic process involved in metanephric nephron morphogenesis	PAX2
+GO:0072300	1	Process	positive regulation of metanephric glomerulus development	PAX2
+GO:0072289	1	Process	metanephric nephron tubule formation	PAX2
+GO:0072284	1	Process	metanephric S-shaped body morphogenesis	LHX1
+GO:0072283	1	Process	metanephric renal vesicle morphogenesis	LHX1
+GO:0072282	1	Process	metanephric nephron tubule morphogenesis	HES5
+GO:0072278	1	Process	metanephric comma-shaped body morphogenesis	LHX1
+GO:0072268	1	Process	pattern specification involved in metanephros development	OSR1
+GO:0072259	1	Process	metanephric interstitial fibroblast development	OSR1
+GO:0072239	1	Process	metanephric glomerulus vasculature development	OSR1
+GO:0072236	1	Process	metanephric loop of Henle development	WNT7B
+GO:0072234	1	Process	metanephric nephron tubule development	OSR1
+GO:0072224	1	Process	metanephric glomerulus development	LHX1
+GO:0072221	1	Process	metanephric distal convoluted tubule development	PAX2
+GO:0072208	1	Process	metanephric smooth muscle tissue development	OSR1
+GO:0072201	1	Process	negative regulation of mesenchymal cell proliferation	WNT5A
+GO:0072193	1	Process	ureter smooth muscle cell differentiation	SIX1
+GO:0072190	1	Process	ureter urothelium development	OSR1
+GO:0072184	1	Process	renal vesicle progenitor cell differentiation	OSR1
+GO:0072183	1	Process	negative regulation of nephron tubule epithelial cell differentiation	OSR1
+GO:0072182	1	Process	regulation of nephron tubule epithelial cell differentiation	GATA3
+GO:0072180	1	Process	mesonephric duct morphogenesis	OSR1
+GO:0072177	1	Process	mesonephric duct development	LHX1
+GO:0072172	1	Process	mesonephric tubule formation	SIX1
+GO:0072169	1	Process	specification of posterior mesonephric tubule identity	OSR1
+GO:0072168	1	Process	specification of anterior mesonephric tubule identity	OSR1
+GO:0072166	1	Process	posterior mesonephric tubule development	OSR1
+GO:0072148	1	Process	epithelial cell fate commitment	ARX
+GO:0072143	1	Process	mesangial cell development	OSR1
+GO:0072136	1	Process	metanephric mesenchymal cell proliferation involved in metanephros development	SHH
+GO:0072133	1	Process	metanephric mesenchyme morphogenesis	OSR1
+GO:0072111	1	Process	cell proliferation involved in kidney development	OSR1
+GO:0072095	1	Process	regulation of branch elongation involved in ureteric bud branching	SIX1
+GO:0072089	1	Process	stem cell proliferation	WNT7B
+GO:0072077	1	Process	renal vesicle morphogenesis	LHX1
+GO:0072070	1	Process	loop of Henle development	DLL1
+GO:0072061	1	Process	inner medullary collecting duct development	WNT7B
+GO:0072060	1	Process	outer medullary collecting duct development	WNT7B
+GO:0072054	1	Process	renal outer medulla development	WNT7B
+GO:0072053	1	Process	renal inner medulla development	WNT7B
+GO:0072014	1	Process	proximal tubule development	DLL1
+GO:0072010	1	Process	glomerular epithelium development	FOXC1
+GO:0072006	1	Process	nephron development	DLL1
+GO:0071902	1	Process	positive regulation of protein serine/threonine kinase activity	IGF2
+GO:0071901	1	Process	negative regulation of protein serine/threonine kinase activity	AKT1
+GO:0071896	1	Process	protein localization to adherens junction	SCRIB
+GO:0071889	1	Function	14-3-3 protein binding	AKT1
+GO:0071880	1	Process	adenylate cyclase-activating adrenergic receptor signaling pathway	ADRA2C
+GO:0071877	1	Process	regulation of adenylate cyclase-inhibiting adrenergic receptor signaling pathway	MIR133A2
+GO:0071875	1	Process	adrenergic receptor signaling pathway	ADRA2C
+GO:0071821	1	Component	FANCM-MHF complex	CENPX
+GO:0071805	1	Process	potassium ion transmembrane transport	LRRC26
+GO:0071800	1	Process	podosome assembly	NOXO1
+GO:0071558	1	Function	histone demethylase activity (H3-K27 specific)	KDM6B
+GO:0071557	1	Process	histone H3-K27 demethylation	KDM6B
+GO:0071526	1	Process	semaphorin-plexin signaling pathway	PLXNB1
+GO:0071514	1	Process	genetic imprinting	GNAS
+GO:0071493	1	Process	cellular response to UV-B	CRIP1
+GO:0071442	1	Process	positive regulation of histone H3-K14 acetylation	GATA3
+GO:0071425	1	Process	hematopoietic stem cell proliferation	WNT5A
+GO:0071392	1	Process	cellular response to estradiol stimulus	POU4F1
+GO:0071385	1	Process	cellular response to glucocorticoid stimulus	SSTR4
+GO:0071380	1	Process	cellular response to prostaglandin E stimulus	AKT1
+GO:0071376	1	Process	cellular response to corticotropin-releasing hormone stimulus	NR4A2
+GO:0071363	1	Process	cellular response to growth factor stimulus	PAX9
+GO:0071346	1	Process	cellular response to interferon-gamma	WNT5A
+GO:0071339	1	Component	MLL1 complex	HCFC1
+GO:0071333	1	Process	cellular response to glucose stimulus	PAX2
+GO:0071316	1	Process	cellular response to nicotine	MSX1
+GO:0071285	1	Process	cellular response to lithium ion	SHH
+GO:0071281	1	Process	cellular response to iron ion	TFAP2A
+GO:0071277	1	Process	cellular response to calcium ion	WNT5A
+GO:0071276	1	Process	cellular response to cadmium ion	AKT1
+GO:0071236	1	Process	cellular response to antibiotic	CRIP1
+GO:0071222	1	Process	cellular response to lipopolysaccharide	WNT5A
+GO:0071218	1	Process	cellular response to misfolded protein	STUB1
+GO:0071158	1	Process	positive regulation of cell cycle arrest	POU4F1
+GO:0071157	1	Process	negative regulation of cell cycle arrest	CCND1
+GO:0071007	1	Component	U2-type catalytic step 2 spliceosome	SRRM2
+GO:0071004	1	Component	U2-type prespliceosome	NAA38
+GO:0070741	1	Process	response to interleukin-6	FOXA2
+GO:0070723	1	Process	response to cholesterol	ABCA2
+GO:0070722	1	Component	Tle3-Aes complex	TBX15
+GO:0070588	1	Process	calcium ion transmembrane transport	CACNA1H
+GO:0070534	1	Process	protein K63-linked ubiquitination	STUB1
+GO:0070527	1	Process	platelet aggregation	GNAS
+GO:0070509	1	Process	calcium ion import	CACNA1H
+GO:0070473	1	Process	negative regulation of uterine smooth muscle contraction	ADRA2C
+GO:0070461	1	Component	SAGA-type complex	HCFC1
+GO:0070445	1	Process	regulation of oligodendrocyte progenitor proliferation	EMX1
+GO:0070412	1	Function	R-SMAD binding	PAX6
+GO:0070410	1	Function	co-SMAD binding	PAX6
+GO:0070402	1	Function	NADPH binding	FASN
+GO:0070374	1	Process	positive regulation of ERK1 and ERK2 cascade	HAND2
+GO:0070373	1	Process	negative regulation of ERK1 and ERK2 cascade	MIR133A2
+GO:0070365	1	Process	hepatocyte differentiation	TAF10
+GO:0070345	1	Process	negative regulation of fat cell proliferation	GATA2
+GO:0070315	1	Process	G1 to G0 transition involved in cell differentiation	ZNF503
+GO:0070307	1	Process	lens fiber cell development	WNT7B
+GO:0070306	1	Process	lens fiber cell differentiation	SIX3
+GO:0070268	1	Process	cornification	CYP26B1
+GO:0070245	1	Process	positive regulation of thymocyte apoptotic process	WNT5A
+GO:0070172	1	Process	positive regulation of tooth mineralization	TFAP2A
+GO:0070171	1	Process	negative regulation of tooth mineralization	BCOR
+GO:0070166	1	Process	enamel mineralization	TBX1
+GO:0070126	1	Process	mitochondrial translational termination	MRPS34
+GO:0070125	1	Process	mitochondrial translational elongation	MRPS34
+GO:0070098	1	Process	chemokine-mediated signaling pathway	FOXC1
+GO:0070064	1	Function	proline-rich region binding	CCND1
+GO:0070063	1	Function	RNA polymerase binding	TAF10
+GO:0065001	1	Process	specification of axis polarity	BCOR
+GO:0062009	1	Process	secondary palate development	WNT5A
+GO:0061987	1	Process	negative regulation of transcription from RNA polymerase II promoter by glucose	FOXA2
+GO:0061821	1	Function	telomeric D-loop binding	RECQL4
+GO:0061820	1	Process	telomeric D-loop disassembly	RECQL4
+GO:0061743	1	Process	motor learning	EN1
+GO:0061614	1	Process	pri-miRNA transcription by RNA polymerase II	GATA2
+GO:0061551	1	Process	trigeminal ganglion development	SIX1
+GO:0061436	1	Process	establishment of skin barrier	CYP26B1
+GO:0061381	1	Process	cell migration in diencephalon	FOXB1
+GO:0061379	1	Process	inferior colliculus development	FOXB1
+GO:0061377	1	Process	mammary gland lobule development	FOXB1
+GO:0061374	1	Process	mammillothalamic axonal tract development	FOXB1
+GO:0061360	1	Process	optic chiasma development	PAX2
+GO:0061354	1	Process	planar cell polarity pathway involved in pericardium morphogenesis	WNT5A
+GO:0061351	1	Process	neural precursor cell proliferation	ZNF503
+GO:0061350	1	Process	planar cell polarity pathway involved in cardiac muscle tissue morphogenesis	WNT5A
+GO:0061349	1	Process	planar cell polarity pathway involved in cardiac right atrium morphogenesis	WNT5A
+GO:0061348	1	Process	planar cell polarity pathway involved in ventricular septum morphogenesis	WNT5A
+GO:0061347	1	Process	planar cell polarity pathway involved in outflow tract morphogenesis	WNT5A
+GO:0061312	1	Process	BMP signaling pathway involved in heart development	MSX1
+GO:0061309	1	Process	cardiac neural crest cell development involved in outflow tract morphogenesis	HAND2
+GO:0061303	1	Process	cornea development in camera-type eye	PAX6
+GO:0061290	1	Process	canonical Wnt signaling pathway involved in metanephric kidney development	GATA3
+GO:0061205	1	Process	paramesonephric duct development	LHX1
+GO:0061197	1	Process	fungiform papilla morphogenesis	SIX1
+GO:0061189	1	Process	positive regulation of sclerotome development	SHH
+GO:0061179	1	Process	negative regulation of insulin secretion involved in cellular response to glucose stimulus	PIM3
+GO:0061178	1	Process	regulation of insulin secretion involved in cellular response to glucose stimulus	FOXA2
+GO:0061144	1	Process	alveolar secondary septum development	FOXA1
+GO:0061085	1	Process	regulation of histone H3-K27 methylation	GATA3
+GO:0061074	1	Process	regulation of neural retina development	SIX3
+GO:0061055	1	Process	myotome development	SIX1
+GO:0061053	1	Process	somite development	SHH
+GO:0061035	1	Process	regulation of cartilage development	SCX
+GO:0061032	1	Process	visceral serous pericardium development	HAND2
+GO:0061031	1	Process	endodermal digestive tract morphogenesis	PITX2
+GO:0061029	1	Process	eyelid development in camera-type eye	TFAP2A
+GO:0061024	1	Process	membrane organization	WNT5A
+GO:0060992	1	Process	response to fungicide	KDM6B
+GO:0060931	1	Process	sinoatrial node cell development	TBX3
+GO:0060923	1	Process	cardiac muscle cell fate commitment	TBX3
+GO:0060916	1	Process	mesenchymal cell proliferation involved in lung development	SHH
+GO:0060907	1	Process	positive regulation of macrophage cytokine production	WNT5A
+GO:0060876	1	Process	semicircular canal formation	HOXA1
+GO:0060872	1	Process	semicircular canal development	GATA2
+GO:0060853	1	Process	Notch signaling pathway involved in arterial endothelial cell fate commitment	DLL1
+GO:0060841	1	Process	venous blood vessel development	FOXF1
+GO:0060789	1	Process	hair follicle placode formation	GNAS
+GO:0060783	1	Process	mesenchymal smoothened signaling pathway involved in prostate gland development	SHH
+GO:0060782	1	Process	regulation of mesenchymal cell proliferation involved in prostate gland development	SHH
+GO:0060775	1	Process	planar cell polarity pathway involved in gastrula mediolateral intercalation	WNT5A
+GO:0060769	1	Process	positive regulation of epithelial cell proliferation involved in prostate gland development	SHH
+GO:0060764	1	Process	cell-cell signaling involved in mammary gland development	HOXA5
+GO:0060762	1	Process	regulation of branching involved in mammary gland duct morphogenesis	WNT5A
+GO:0060760	1	Process	positive regulation of response to cytokine stimulus	WNT5A
+GO:0060750	1	Process	epithelial cell proliferation involved in mammary gland duct elongation	WNT5A
+GO:0060744	1	Process	mammary gland branching involved in thelarche	WNT5A
+GO:0060743	1	Process	epithelial cell maturation involved in prostate gland development	FOXA1
+GO:0060740	1	Process	prostate gland epithelium morphogenesis	FOXA1
+GO:0060716	1	Process	labyrinthine layer blood vessel development	AKT1
+GO:0060710	1	Process	chorio-allantoic fusion	WNT7B
+GO:0060709	1	Process	glycogen cell differentiation involved in embryonic placenta development	AKT1
+GO:0060706	1	Process	cell differentiation involved in embryonic placenta development	EOMES
+GO:0060688	1	Process	regulation of morphogenesis of a branching structure	GDNF
+GO:0060687	1	Process	regulation of branching involved in prostate gland morphogenesis	HOXD13
+GO:0060686	1	Process	negative regulation of prostatic bud formation	WNT5A
+GO:0060685	1	Process	regulation of prostatic bud formation	SHH
+GO:0060664	1	Process	epithelial cell proliferation involved in salivary gland morphogenesis	SHH
+GO:0060662	1	Process	salivary gland cavitation	SHH
+GO:0060612	1	Process	adipose tissue development	EBF2
+GO:0060603	1	Process	mammary gland duct morphogenesis	SCRIB
+GO:0060602	1	Process	branch elongation of an epithelium	HOXD13
+GO:0060599	1	Process	lateral sprouting involved in mammary gland duct morphogenesis	WNT5A
+GO:0060580	1	Process	ventral spinal cord interneuron fate determination	NKX2-2
+GO:0060578	1	Process	superior vena cava morphogenesis	PITX2
+GO:0060577	1	Process	pulmonary vein morphogenesis	PITX2
+GO:0060576	1	Process	intestinal epithelial cell development	NKX3-2
+GO:0060574	1	Process	intestinal epithelial cell maturation	HOXA5
+GO:0060563	1	Process	neuroepithelial cell differentiation	EMX1
+GO:0060561	1	Process	apoptotic process involved in morphogenesis	SCRIB
+GO:0060537	1	Process	muscle tissue development	SRPK3
+GO:0060528	1	Process	secretory columnal luminar epithelial cell differentiation involved in prostate glandular acinus development	FOXA1
+GO:0060527	1	Process	prostate epithelial cord arborization involved in prostate glandular acinus morphogenesis	HOXD13
+GO:0060523	1	Process	prostate epithelial cord elongation	SHH
+GO:0060516	1	Process	primary prostatic bud elongation	SHH
+GO:0060510	1	Process	Type II pneumocyte differentiation	NKX2-1
+GO:0060487	1	Process	lung epithelial cell differentiation	FOXA1
+GO:0060486	1	Process	Clara cell differentiation	NKX2-1
+GO:0060482	1	Process	lobar bronchus development	WNT7B
+GO:0060480	1	Process	lung goblet cell differentiation	HOXA5
+GO:0060465	1	Process	pharynx development	TBX2
+GO:0060461	1	Process	right lung morphogenesis	FOXF1
+GO:0060460	1	Process	left lung morphogenesis	PITX2
+GO:0060459	1	Process	left lung development	SHH
+GO:0060458	1	Process	right lung development	SHH
+GO:0060452	1	Process	positive regulation of cardiac muscle contraction	MIR1-1
+GO:0060447	1	Process	bud outgrowth involved in lung branching	SHH
+GO:0060445	1	Process	branching involved in salivary gland morphogenesis	SHH
+GO:0060444	1	Process	branching involved in mammary gland duct morphogenesis	TBX3
+GO:0060439	1	Process	trachea morphogenesis	SHH
+GO:0060438	1	Process	trachea development	FOXF1
+GO:0060435	1	Process	bronchiole development	HOXA5
+GO:0060430	1	Process	lung saccule development	NKX2-1
+GO:0060429	1	Process	epithelium development	LHX1
+GO:0060426	1	Process	lung vasculature development	FOXF1
+GO:0060425	1	Process	lung morphogenesis	WNT7B
+GO:0060416	1	Process	response to growth hormone	AKT1
+GO:0060413	1	Process	atrial septum morphogenesis	TBX5
+GO:0060389	1	Process	pathway-restricted SMAD protein phosphorylation	GDF7
+GO:0060384	1	Process	innervation	POU4F1
+GO:0060374	1	Process	mast cell differentiation	GATA3
+GO:0060373	1	Process	regulation of ventricular cardiac muscle cell membrane depolarization	MIR1-1
+GO:0060351	1	Process	cartilage development involved in endochondral bone morphogenesis	HOXA11
+GO:0060348	1	Process	bone development	GNAS
+GO:0060340	1	Process	positive regulation of type I interferon-mediated signaling pathway	WNT5A
+GO:0060326	1	Process	cell chemotaxis	HOXB9
+GO:0060322	1	Process	head development	LHX1
+GO:0060298	1	Process	positive regulation of sarcomere organization	MIR1-1
+GO:0060291	1	Process	long-term synaptic potentiation	NR2E1
+GO:0060287	1	Process	epithelial cilium movement involved in determination of left/right asymmetry	CFAP53
+GO:0060279	1	Process	positive regulation of ovulation	INHBB
+GO:0060263	1	Process	regulation of respiratory burst	NOXO1
+GO:0060235	1	Process	lens induction in camera-type eye	SIX3
+GO:0060218	1	Process	hematopoietic stem cell differentiation	HOXB4
+GO:0060174	1	Process	limb bud formation	SHH
+GO:0060164	1	Process	regulation of timing of neuron differentiation	NR2E1
+GO:0060157	1	Process	urinary bladder development	WNT5A
+GO:0060135	1	Process	maternal process involved in female pregnancy	HMX3
+GO:0060127	1	Process	prolactin secreting cell differentiation	PITX2
+GO:0060126	1	Process	somatotropin secreting cell differentiation	PITX2
+GO:0060122	1	Process	inner ear receptor cell stereocilium organization	HES5
+GO:0060100	1	Process	positive regulation of phagocytosis, engulfment	GATA2
+GO:0060088	1	Process	auditory receptor cell stereocilium organization	SCRIB
+GO:0060079	1	Process	excitatory postsynaptic potential	AKT1
+GO:0060066	1	Process	oviduct development	LHX1
+GO:0060059	1	Process	embryonic retina morphogenesis in camera-type eye	LHX1
+GO:0060042	1	Process	retina morphogenesis in camera-type eye	DLL1
+GO:0060040	1	Process	retinal bipolar neuron differentiation	IRX5
+GO:0060039	1	Process	pericardium development	TBX5
+GO:0060038	1	Process	cardiac muscle cell proliferation	FOXC1
+GO:0060029	1	Process	convergent extension involved in organogenesis	WNT5A
+GO:0060028	1	Process	convergent extension involved in axis elongation	WNT5A
+GO:0060020	1	Process	Bergmann glial cell differentiation	SHH
+GO:0060019	1	Process	radial glial cell differentiation	EMX1
+GO:0060008	1	Process	Sertoli cell differentiation	SCX
+GO:0055123	1	Process	digestive system development	BARX1
+GO:0055085	1	Process	transmembrane transport	ABCA2
+GO:0055015	1	Process	ventricular cardiac muscle cell development	PITX2
+GO:0055010	1	Process	ventricular cardiac muscle tissue morphogenesis	FOXC1
+GO:0055009	1	Process	atrial cardiac muscle tissue morphogenesis	PITX2
+GO:0051964	1	Process	negative regulation of synapse assembly	WNT5A
+GO:0051932	1	Process	synaptic transmission, GABAergic	RAC3
+GO:0051930	1	Process	regulation of sensory perception of pain	ADRA2C
+GO:0051918	1	Process	negative regulation of fibrinolysis	THBD
+GO:0051898	1	Process	negative regulation of protein kinase B signaling	AKT1
+GO:0051891	1	Process	positive regulation of cardioblast differentiation	TBX5
+GO:0051885	1	Process	positive regulation of timing of anagen	WNT5A
+GO:0051879	1	Function	Hsp90 protein binding	STUB1
+GO:0051866	1	Process	general adaptation syndrome	NR4A2
+GO:0051787	1	Function	misfolded protein binding	STUB1
+GO:0051604	1	Process	protein maturation	STUB1
+GO:0051592	1	Process	response to calcium ion	CCND1
+GO:0051591	1	Process	response to cAMP	THBD
+GO:0051584	1	Process	regulation of dopamine uptake involved in synaptic transmission	GDNF
+GO:0051573	1	Process	negative regulation of histone H3-K9 methylation	PAX5
+GO:0051572	1	Process	negative regulation of histone H3-K4 methylation	BCOR
+GO:0051569	1	Process	regulation of histone H3-K4 methylation	GATA3
+GO:0051539	1	Function	4 iron, 4 sulfur cluster binding	NUBP2
+GO:0051493	1	Process	regulation of cytoskeleton organization	PLXNB1
+GO:0051451	1	Process	myoblast migration	SIX1
+GO:0051443	1	Process	positive regulation of ubiquitin-protein transferase activity	STUB1
+GO:0051430	1	Function	corticotropin-releasing hormone receptor 1 binding	GNAS
+GO:0051412	1	Process	response to corticosterone	CCND1
+GO:0051384	1	Process	response to glucocorticoid	WNT7B
+GO:0051382	1	Process	kinetochore assembly	CENPX
+GO:0051379	1	Function	epinephrine binding	ADRA2C
+GO:0051355	1	Process	proprioception involved in equilibrioception	POU4F1
+GO:0051321	1	Process	meiotic cell cycle	BUB3
+GO:0051302	1	Process	regulation of cell division	DLL1
+GO:0051260	1	Process	protein homooligomerization	TAF10
+GO:0051213	1	Function	dioxygenase activity	KDM6B
+GO:0051186	1	Process	cofactor metabolic process	AKT1
+GO:0051155	1	Process	positive regulation of striated muscle cell differentiation	SHH
+GO:0051154	1	Process	negative regulation of striated muscle cell differentiation	MSX1
+GO:0051151	1	Process	negative regulation of smooth muscle cell differentiation	PRDM6
+GO:0051150	1	Process	regulation of smooth muscle cell differentiation	FOXF1
+GO:0051147	1	Process	regulation of muscle cell differentiation	IGF2
+GO:0051145	1	Process	smooth muscle cell differentiation	FOXF1
+GO:0051101	1	Process	regulation of DNA binding	TAF10
+GO:0051092	1	Process	positive regulation of NF-kappaB transcription factor activity	WNT5A
+GO:0051090	1	Process	regulation of DNA binding transcription factor activity	POU4F1
+GO:0051087	1	Function	chaperone binding	STUB1
+GO:0051020	1	Function	GTPase binding	POU4F1
+GO:0051015	1	Function	actin filament binding	WDR1
+GO:0051000	1	Process	positive regulation of nitric-oxide synthase activity	AKT1
+GO:0050999	1	Process	regulation of nitric-oxide synthase activity	AKT1
+GO:0050918	1	Process	positive chemotaxis	SCRIB
+GO:0050917	1	Process	sensory perception of umami taste	TAS1R3
+GO:0050916	1	Process	sensory perception of sweet taste	TAS1R3
+GO:0050896	1	Process	response to stimulus	IRX5
+GO:0050880	1	Process	regulation of blood vessel size	FOXC1
+GO:0050872	1	Process	white fat cell differentiation	PRDM16
+GO:0050855	1	Process	regulation of B cell receptor signaling pathway	PAX5
+GO:0050852	1	Process	T cell receptor signaling pathway	GATA3
+GO:0050829	1	Process	defense response to Gram-negative bacterium	ADGRB1
+GO:0050808	1	Process	synapse organization	WNT7B
+GO:0050796	1	Process	regulation of insulin secretion	ADRA2C
+GO:0050795	1	Process	regulation of behavior	HOXA1
+GO:0050790	1	Process	regulation of catalytic activity	CBX8
+GO:0050772	1	Process	positive regulation of axonogenesis	PLXNB1
+GO:0050770	1	Process	regulation of axonogenesis	POU3F2
+GO:0050768	1	Process	negative regulation of neurogenesis	PAX6
+GO:0050766	1	Process	positive regulation of phagocytosis	GATA2
+GO:0050731	1	Process	positive regulation of peptidyl-tyrosine phosphorylation	IGF2
+GO:0050729	1	Process	positive regulation of inflammatory response	WNT5A
+GO:0050727	1	Process	regulation of inflammatory response	WNT5A
+GO:0050718	1	Process	positive regulation of interleukin-1 beta secretion	WNT5A
+GO:0050713	1	Process	negative regulation of interleukin-1 beta secretion	CPTP
+GO:0050684	1	Process	regulation of mRNA processing	SRPK3
+GO:0050660	1	Function	flavin adenine dinucleotide binding	GFER
+GO:0050072	1	Function	m7G(5')pppN diphosphatase activity	NUDT16L1
+GO:0048880	1	Process	sensory system development	POU4F1
+GO:0048872	1	Process	homeostasis of number of cells	EMX1
+GO:0048864	1	Process	stem cell development	SHH
+GO:0048859	1	Process	formation of anatomical boundary	SHH
+GO:0048853	1	Process	forebrain morphogenesis	GDF7
+GO:0048852	1	Process	diencephalon morphogenesis	OTX1
+GO:0048850	1	Process	hypophysis morphogenesis	WNT5A
+GO:0048843	1	Process	negative regulation of axon extension involved in axon guidance	WNT5A
+GO:0048814	1	Process	regulation of dendrite morphogenesis	NR2E1
+GO:0048755	1	Process	branching morphogenesis of a nerve	DLX2
+GO:0048752	1	Process	semicircular canal morphogenesis	TBX1
+GO:0048738	1	Process	cardiac muscle tissue development	TBX2
+GO:0048731	1	Process	system development	ONECUT1
+GO:0048713	1	Process	regulation of oligodendrocyte differentiation	WDR1
+GO:0048709	1	Process	oligodendrocyte differentiation	NKX2-1
+GO:0048702	1	Process	embryonic neurocranium morphogenesis	HOXA1
+GO:0048699	1	Process	generation of neurons	SIX1
+GO:0048664	1	Process	neuron fate determination	LBX1
+GO:0048644	1	Process	muscle organ morphogenesis	TBX1
+GO:0048643	1	Process	positive regulation of skeletal muscle tissue development	SHH
+GO:0048633	1	Process	positive regulation of skeletal muscle tissue growth	DLL1
+GO:0048631	1	Process	regulation of skeletal muscle tissue growth	DLL1
+GO:0048630	1	Process	skeletal muscle tissue growth	DLL1
+GO:0048625	1	Process	myoblast fate commitment	PITX1
+GO:0048621	1	Process	post-embryonic digestive tract morphogenesis	NKX2-3
+GO:0048619	1	Process	embryonic hindgut morphogenesis	HOXD13
+GO:0048613	1	Process	embryonic ectodermal digestive tract morphogenesis	FOXF1
+GO:0048608	1	Process	reproductive structure development	GDF7
+GO:0048599	1	Process	oocyte development	INHBB
+GO:0048570	1	Process	notochord morphogenesis	WNT5A
+GO:0048568	1	Process	embryonic organ development	WNT7B
+GO:0048562	1	Process	embryonic organ morphogenesis	HOXC4
+GO:0048561	1	Process	establishment of animal organ orientation	IRX4
+GO:0048545	1	Process	response to steroid hormone	ABCA2
+GO:0048541	1	Process	Peyer's patch development	NKX2-3
+GO:0048539	1	Process	bone marrow development	HOXB4
+GO:0048535	1	Process	lymph node development	NKX2-3
+GO:0048514	1	Process	blood vessel morphogenesis	TBX1
+GO:0048512	1	Process	circadian behavior	SIX3
+GO:0048511	1	Process	rhythmic process	NKX2-1
+GO:0048505	1	Process	regulation of timing of cell differentiation	PAX6
+GO:0048488	1	Process	synaptic vesicle endocytosis	SCRIB
+GO:0048483	1	Process	autonomic nervous system development	GBX2
+GO:0048476	1	Component	Holliday junction resolvase complex	EME2
+GO:0048389	1	Process	intermediate mesoderm development	OSR1
+GO:0048371	1	Process	lateral mesodermal cell differentiation	FOXF1
+GO:0048333	1	Process	mesodermal cell differentiation	KDM6B
+GO:0048332	1	Process	mesoderm morphogenesis	TBX3
+GO:0048306	1	Function	calcium-dependent protein binding	RAC3
+GO:0048284	1	Process	organelle fusion	CYP26C1
+GO:0048255	1	Process	mRNA stabilization	GDNF
+GO:0048208	1	Process	COPII vesicle coating	COL7A1
+GO:0048188	1	Component	Set1C/COMPASS complex	HCFC1
+GO:0048178	1	Process	negative regulation of hepatocyte growth factor biosynthetic process	INHBB
+GO:0048167	1	Process	regulation of synaptic plasticity	ADGRB1
+GO:0048146	1	Process	positive regulation of fibroblast proliferation	WNT5A
+GO:0048144	1	Process	fibroblast proliferation	WNT7B
+GO:0048103	1	Process	somatic stem cell division	HOXB4
+GO:0048026	1	Process	positive regulation of mRNA splicing, via spliceosome	HMX2
+GO:0048022	1	Process	negative regulation of melanin biosynthetic process	WNT5A
+GO:0048010	1	Process	vascular endothelial growth factor receptor signaling pathway	FOXC1
+GO:0048009	1	Process	insulin-like growth factor receptor signaling pathway	AKT1
+GO:0047522	1	Function	15-oxoprostaglandin 13-oxidase activity	ZADH2
+GO:0047497	1	Process	mitochondrion transport along microtubule	RHOT2
+GO:0047451	1	Function	3-hydroxyoctanoyl-[acyl-carrier-protein] dehydratase activity	FASN
+GO:0047117	1	Function	enoyl-[acyl-carrier-protein] reductase (NADPH, A-specific) activity	FASN
+GO:0046972	1	Function	histone acetyltransferase activity (H4-K16 specific)	HCFC1
+GO:0046965	1	Function	retinoid X receptor binding	NR4A2
+GO:0046949	1	Process	fatty-acyl-CoA biosynthetic process	FASN
+GO:0046933	1	Function	proton-transporting ATP synthase activity, rotational mechanism	ATP5F1D
+GO:0046889	1	Process	positive regulation of lipid biosynthetic process	AKT1
+GO:0046884	1	Process	follicle-stimulating hormone secretion	TBX3
+GO:0046882	1	Process	negative regulation of follicle-stimulating hormone secretion	INHBB
+GO:0046881	1	Process	positive regulation of follicle-stimulating hormone secretion	INHBB
+GO:0046836	1	Process	glycolipid transport	CPTP
+GO:0046789	1	Function	host cell surface receptor binding	INHBB
+GO:0046710	1	Process	GDP metabolic process	SCRIB
+GO:0046688	1	Process	response to copper ion	ATP5F1D
+GO:0046676	1	Process	negative regulation of insulin secretion	INHBB
+GO:0046639	1	Process	negative regulation of alpha-beta T cell differentiation	SHH
+GO:0046638	1	Process	positive regulation of alpha-beta T cell differentiation	SHH
+GO:0046628	1	Process	positive regulation of insulin receptor signaling pathway	IGF2
+GO:0046620	1	Process	regulation of organ growth	FOXC1
+GO:0046540	1	Component	U4/U6 x U5 tri-snRNP complex	NAA38
+GO:0046427	1	Process	positive regulation of JAK-STAT cascade	HES5
+GO:0046331	1	Process	lateral inhibition	DLL1
+GO:0046330	1	Process	positive regulation of JNK cascade	WNT7B
+GO:0046329	1	Process	negative regulation of JNK cascade	AKT1
+GO:0046326	1	Process	positive regulation of glucose import	AKT1
+GO:0046037	1	Process	GMP metabolic process	SCRIB
+GO:0045956	1	Process	positive regulation of calcium ion-dependent exocytosis	CACNA1H
+GO:0045955	1	Process	negative regulation of calcium ion-dependent exocytosis	CBARP
+GO:0045931	1	Process	positive regulation of mitotic cell cycle	FOXA1
+GO:0045918	1	Process	negative regulation of cytolysis	PAX2
+GO:0045879	1	Process	negative regulation of smoothened signaling pathway	SALL3
+GO:0045861	1	Process	negative regulation of proteolysis	AKT1
+GO:0045840	1	Process	positive regulation of mitotic nuclear division	IGF2
+GO:0045836	1	Process	positive regulation of meiotic nuclear division	WNT5A
+GO:0045792	1	Process	negative regulation of cell size	AKT1
+GO:0045786	1	Process	negative regulation of cell cycle	GATA3
+GO:0045778	1	Process	positive regulation of ossification	WNT5A
+GO:0045742	1	Process	positive regulation of epidermal growth factor receptor signaling pathway	AKT1
+GO:0045739	1	Process	positive regulation of DNA repair	CBX8
+GO:0045737	1	Process	positive regulation of cyclin-dependent protein serine/threonine kinase activity	CCND1
+GO:0045732	1	Process	positive regulation of protein catabolic process	WNT5A
+GO:0045727	1	Process	positive regulation of translation	BARHL2
+GO:0045656	1	Process	negative regulation of monocyte differentiation	HOXA7
+GO:0045654	1	Process	positive regulation of megakaryocyte differentiation	GATA2
+GO:0045650	1	Process	negative regulation of macrophage differentiation	GATA2
+GO:0045648	1	Process	positive regulation of erythrocyte differentiation	GATA2
+GO:0045647	1	Process	negative regulation of erythrocyte differentiation	HOXA5
+GO:0045639	1	Process	positive regulation of myeloid cell differentiation	HOXA5
+GO:0045629	1	Process	negative regulation of T-helper 2 cell differentiation	HLX
+GO:0045627	1	Process	positive regulation of T-helper 1 cell differentiation	HLX
+GO:0045618	1	Process	positive regulation of keratinocyte differentiation	FOXC1
+GO:0045617	1	Process	negative regulation of keratinocyte differentiation	HOXA7
+GO:0045608	1	Process	negative regulation of inner ear auditory receptor cell differentiation	DLL1
+GO:0045607	1	Process	regulation of inner ear auditory receptor cell differentiation	HES5
+GO:0045605	1	Process	negative regulation of epidermal cell differentiation	DLL1
+GO:0045602	1	Process	negative regulation of endothelial cell differentiation	MIR1-1
+GO:0045600	1	Process	positive regulation of fat cell differentiation	AKT1
+GO:0045582	1	Process	positive regulation of T cell differentiation	GATA3
+GO:0045580	1	Process	regulation of T cell differentiation	CYP26B1
+GO:0045540	1	Process	regulation of cholesterol biosynthetic process	FASN
+GO:0045453	1	Process	bone resorption	TPP1
+GO:0045445	1	Process	myoblast differentiation	SHH
+GO:0045429	1	Process	positive regulation of nitric oxide biosynthetic process	AKT1
+GO:0045334	1	Component	clathrin-coated endocytic vesicle	SFTA3
+GO:0045214	1	Process	sarcomere organization	WDR1
+GO:0045197	1	Process	establishment or maintenance of epithelial cell apical/basal polarity	SCRIB
+GO:0045137	1	Process	development of primary sexual characteristics	CBX2
+GO:0045109	1	Process	intermediate filament organization	SHH
+GO:0045080	1	Process	positive regulation of chemokine biosynthetic process	WNT5A
+GO:0045064	1	Process	T-helper 2 cell differentiation	GATA3
+GO:0045061	1	Process	thymic T cell selection	GATA3
+GO:0045060	1	Process	negative thymic T cell selection	SHH
+GO:0045059	1	Process	positive thymic T cell selection	SHH
+GO:0045055	1	Process	regulated exocytosis	SYNGR3
+GO:0044666	1	Component	MLL3/4 complex	KDM6B
+GO:0044650	1	Process	adhesion of symbiont to host cell	INHBB
+GO:0044321	1	Process	response to leptin	CCND1
+GO:0044320	1	Process	cellular response to leptin stimulus	INHBB
+GO:0044306	1	Component	neuron projection terminus	SCRG1
+GO:0044291	1	Component	cell-cell contact zone	SCRIB
+GO:0044241	1	Process	lipid digestion	ARX
+GO:0044237	1	Process	cellular metabolic process	WNT7B
+GO:0044213	1	Function	intronic transcription regulatory region DNA binding	NKX2-1
+GO:0043996	1	Function	histone acetyltransferase activity (H4-K8 specific)	HCFC1
+GO:0043995	1	Function	histone acetyltransferase activity (H4-K5 specific)	HCFC1
+GO:0043984	1	Process	histone H4-K16 acetylation	HCFC1
+GO:0043982	1	Process	histone H4-K8 acetylation	HCFC1
+GO:0043981	1	Process	histone H4-K5 acetylation	HCFC1
+GO:0043966	1	Process	histone H3 acetylation	TAF10
+GO:0043931	1	Process	ossification involved in bone maturation	PLXNB1
+GO:0043687	1	Process	post-translational protein modification	SPSB3
+GO:0043679	1	Component	axon terminus	ADRA2C
+GO:0043615	1	Process	astrocyte cell migration	SCRIB
+GO:0043583	1	Process	ear development	GATA3
+GO:0043576	1	Process	regulation of respiratory gaseous exchange	NR4A2
+GO:0043569	1	Process	negative regulation of insulin-like growth factor receptor signaling pathway	MIR1-1
+GO:0043539	1	Function	protein serine/threonine kinase activator activity	IGF2
+GO:0043536	1	Process	positive regulation of blood vessel endothelial cell migration	AKT1
+GO:0043531	1	Function	ADP binding	ATP5F1D
+GO:0043525	1	Process	positive regulation of neuron apoptotic process	TFAP2A
+GO:0043523	1	Process	regulation of neuron apoptotic process	GATA3
+GO:0043522	1	Function	leucine zipper domain binding	AATF
+GO:0043517	1	Process	positive regulation of DNA damage response, signal transduction by p53 class mediator	MSX1
+GO:0043488	1	Process	regulation of mRNA stability	AKT1
+GO:0043473	1	Process	pigmentation	EN1
+GO:0043457	1	Process	regulation of cellular respiration	PRDM16
+GO:0043425	1	Function	bHLH transcription factor binding	SCX
+GO:0043403	1	Process	skeletal muscle tissue regeneration	PAX7
+GO:0043393	1	Process	regulation of protein binding	PAX7
+GO:0043392	1	Process	negative regulation of DNA binding	HAND2
+GO:0043374	1	Process	CD8-positive, alpha-beta T cell differentiation	PAX1
+GO:0043370	1	Process	regulation of CD4-positive, alpha-beta T cell differentiation	GATA3
+GO:0043369	1	Process	CD4-positive or CD8-positive, alpha-beta T cell lineage commitment	SHH
+GO:0043325	1	Function	phosphatidylinositol-3,4-bisphosphate binding	AKT1
+GO:0043306	1	Process	positive regulation of mast cell degranulation	GATA2
+GO:0043305	1	Process	negative regulation of mast cell degranulation	FOXF1
+GO:0043297	1	Process	apical junction assembly	WDR1
+GO:0043277	1	Process	apoptotic cell clearance	ADGRB1
+GO:0043276	1	Process	anoikis	AKT1
+GO:0043254	1	Process	regulation of protein complex assembly	HCFC1
+GO:0043240	1	Component	Fanconi anaemia nuclear complex	CENPX
+GO:0043237	1	Function	laminin-1 binding	SHH
+GO:0043209	1	Component	myelin sheath	WDR1
+GO:0043202	1	Component	lysosomal lumen	TPP1
+GO:0043197	1	Component	dendritic spine	ADGRB1
+GO:0043190	1	Component	ATP-binding cassette (ABC) transporter complex	ABCA2
+GO:0043171	1	Process	peptide catabolic process	TPP1
+GO:0043140	1	Function	ATP-dependent 3'-5' DNA helicase activity	RECQL4
+GO:0043130	1	Function	ubiquitin binding	BUB3
+GO:0043122	1	Process	regulation of I-kappaB kinase/NF-kappaB signaling	WNT5A
+GO:0043113	1	Process	receptor clustering	SCRIB
+GO:0043087	1	Process	regulation of GTPase activity	PLXNB1
+GO:0043032	1	Process	positive regulation of macrophage activation	WNT5A
+GO:0043020	1	Component	NADPH oxidase complex	NOXO1
+GO:0042995	1	Component	cell projection	WDR1
+GO:0042985	1	Process	negative regulation of amyloid precursor protein biosynthetic process	AATF
+GO:0042923	1	Function	neuropeptide binding	SSTR4
+GO:0042853	1	Process	L-alanine catabolic process	GPT
+GO:0042795	1	Process	snRNA transcription by RNA polymerase II	INTS11
+GO:0042776	1	Process	mitochondrial ATP synthesis coupled proton transport	ATP5F1D
+GO:0042756	1	Process	drinking behavior	EN1
+GO:0042753	1	Process	positive regulation of circadian rhythm	NKX2-1
+GO:0042734	1	Component	presynaptic membrane	SCRIB
+GO:0042693	1	Process	muscle cell fate commitment	TBX1
+GO:0042668	1	Process	auditory receptor cell fate determination	HES5
+GO:0042643	1	Component	actomyosin, actin portion	WDR1
+GO:0042632	1	Process	cholesterol homeostasis	ABCA2
+GO:0042626	1	Function	ATPase activity, coupled to transmembrane movement of substances	ABCA2
+GO:0042599	1	Component	lamellar body	SFTA3
+GO:0042592	1	Process	homeostatic process	WNT7B
+GO:0042587	1	Component	glycogen granule	FASN
+GO:0042573	1	Process	retinoic acid metabolic process	CYP26A1
+GO:0042531	1	Process	positive regulation of tyrosine phosphorylation of STAT protein	HES5
+GO:0042491	1	Process	inner ear auditory receptor cell differentiation	HES5
+GO:0042471	1	Process	ear morphogenesis	TBX1
+GO:0042462	1	Process	eye photoreceptor cell development	PAX6
+GO:0042445	1	Process	hormone metabolic process	FOXA1
+GO:0042421	1	Process	norepinephrine biosynthetic process	GATA3
+GO:0042416	1	Process	dopamine biosynthetic process	NR4A2
+GO:0042407	1	Process	cristae formation	ATP5F1D
+GO:0042405	1	Component	nuclear inclusion body	STUB1
+GO:0042391	1	Process	regulation of membrane potential	CACNA1H
+GO:0042254	1	Process	ribosome biogenesis	AATF
+GO:0042247	1	Process	establishment of planar polarity of follicular epithelium	WDR1
+GO:0042177	1	Process	negative regulation of protein catabolic process	ADGRB1
+GO:0042169	1	Function	SH2 domain binding	SYNGR3
+GO:0042130	1	Process	negative regulation of T cell proliferation	SHH
+GO:0042118	1	Process	endothelial cell activation	HOXA9
+GO:0042104	1	Process	positive regulation of activated T cell proliferation	IGF2
+GO:0042053	1	Process	regulation of dopamine metabolic process	NR4A2
+GO:0042035	1	Process	regulation of cytokine biosynthetic process	GATA3
+GO:0040036	1	Process	regulation of fibroblast growth factor receptor signaling pathway	OTX2
+GO:0040032	1	Process	post-embryonic body morphogenesis	GNAS
+GO:0040016	1	Process	embryonic cleavage	AATF
+GO:0040011	1	Process	locomotion	WDR1
+GO:0040008	1	Process	regulation of growth	DLL1
+GO:0039564	1	Process	suppression by virus of host STAT2 activity	SCRIB
+GO:0039563	1	Process	suppression by virus of host STAT1 activity	SCRIB
+GO:0039502	1	Process	suppression by virus of host type I interferon-mediated signaling pathway	SCRIB
+GO:0039003	1	Process	pronephric field specification	PAX2
+GO:0038170	1	Process	somatostatin signaling pathway	SSTR4
+GO:0038128	1	Process	ERBB2 signaling pathway	STUB1
+GO:0038084	1	Process	vascular endothelial growth factor signaling pathway	FOXC1
+GO:0038061	1	Process	NIK/NF-kappaB signaling	AKT1
+GO:0038031	1	Process	non-canonical Wnt signaling pathway via JNK cascade	WNT5A
+GO:0038028	1	Process	insulin receptor signaling pathway via phosphatidylinositol 3-kinase	IGF2
+GO:0036518	1	Process	chemorepulsion of dopaminergic neuron axon	WNT5A
+GO:0036517	1	Process	chemoattraction of serotonergic neuron axon	WNT5A
+GO:0036515	1	Process	serotonergic neuron axon guidance	CELSR3
+GO:0036514	1	Process	dopaminergic neuron axon guidance	CELSR3
+GO:0036498	1	Process	IRE1-mediated unfolded protein response	TPP1
+GO:0036464	1	Component	cytoplasmic ribonucleoprotein granule	HOXD10
+GO:0036459	1	Function	thiol-dependent ubiquitinyl hydrolase activity	TAF10
+GO:0036438	1	Process	maintenance of lens transparency	FOXC1
+GO:0036342	1	Process	post-anal tail morphogenesis	WNT5A
+GO:0036310	1	Function	annealing helicase activity	RECQL4
+GO:0036302	1	Process	atrioventricular canal development	TBX2
+GO:0036297	1	Process	interstrand cross-link repair	CENPX
+GO:0036132	1	Function	13-prostaglandin reductase activity	ZADH2
+GO:0036064	1	Component	ciliary basal body	AKT1
+GO:0036023	1	Process	embryonic skeletal limb joint morphogenesis	OSR1
+GO:0035992	1	Process	tendon formation	SCX
+GO:0035990	1	Process	tendon cell differentiation	SCX
+GO:0035989	1	Process	tendon development	SCX
+GO:0035987	1	Process	endodermal cell differentiation	COL7A1
+GO:0035898	1	Process	parathyroid hormone secretion	GATA3
+GO:0035886	1	Process	vascular smooth muscle cell differentiation	PITX2
+GO:0035880	1	Process	embryonic nail plate morphogenesis	MSX1
+GO:0035879	1	Process	plasma membrane lactate transport	SLC16A3
+GO:0035865	1	Process	cellular response to potassium ion	CACNA1H
+GO:0035854	1	Process	eosinophil fate commitment	GATA2
+GO:0035852	1	Process	horizontal cell localization	LHX1
+GO:0035849	1	Process	nephric duct elongation	LHX1
+GO:0035847	1	Process	uterine epithelium development	LHX1
+GO:0035846	1	Process	oviduct epithelium development	LHX1
+GO:0035748	1	Component	myelin sheath abaxonal region	SCRIB
+GO:0035726	1	Process	common myeloid progenitor cell proliferation	UNCX
+GO:0035725	1	Process	sodium ion transmembrane transport	CACNA1H
+GO:0035655	1	Process	interleukin-18-mediated signaling pathway	AKT1
+GO:0035625	1	Process	epidermal growth factor-activated receptor transactivation by G-protein coupled receptor signaling pathway	ADRA2C
+GO:0035567	1	Process	non-canonical Wnt signaling pathway	WNT5A
+GO:0035566	1	Process	regulation of metanephros size	PAX2
+GO:0035563	1	Process	positive regulation of chromatin binding	EBF2
+GO:0035518	1	Process	histone H2A monoubiquitination	BCOR
+GO:0035502	1	Process	metanephric part of ureteric bud development	LHX1
+GO:0035457	1	Process	cellular response to interferon-alpha	GATA3
+GO:0035357	1	Process	peroxisome proliferator activated receptor signaling pathway	FAM120B
+GO:0035333	1	Process	Notch receptor processing, ligand-dependent	DLL1
+GO:0035326	1	Function	enhancer binding	MSX1
+GO:0035315	1	Process	hair cell differentiation	PITX2
+GO:0035284	1	Process	brain segmentation	HOXA2
+GO:0035265	1	Process	organ growth	DLL1
+GO:0035262	1	Process	gonad morphogenesis	LHX9
+GO:0035259	1	Function	glucocorticoid receptor binding	NR4A2
+GO:0035162	1	Process	embryonic hemopoiesis	GATA3
+GO:0035091	1	Function	phosphatidylinositol binding	NOXO1
+GO:0035089	1	Process	establishment of apical/basal cell polarity	SCRIB
+GO:0035065	1	Process	regulation of histone acetylation	GATA2
+GO:0035035	1	Function	histone acetyltransferase binding	PAX6
+GO:0034765	1	Process	regulation of ion transmembrane transport	CACNA1H
+GO:0034750	1	Component	Scrib-APC-beta-catenin complex	SCRIB
+GO:0034651	1	Process	cortisol biosynthetic process	CACNA1H
+GO:0034622	1	Process	cellular protein-containing complex assembly	TAF10
+GO:0034613	1	Process	cellular protein localization	WNT5A
+GO:0034605	1	Process	cellular response to heat	STUB1
+GO:0034599	1	Process	cellular response to oxidative stress	NR4A2
+GO:0034451	1	Component	centriolar satellite	PAX2
+GO:0034450	1	Function	ubiquitin-ubiquitin ligase activity	STUB1
+GO:0034405	1	Process	response to fluid shear stress	AKT1
+GO:0034351	1	Process	negative regulation of glial cell apoptotic process	DLL1
+GO:0034244	1	Process	negative regulation of transcription elongation from RNA polymerase II promoter	SHH
+GO:0034122	1	Process	negative regulation of toll-like receptor signaling pathway	LRRC14
+GO:0034103	1	Process	regulation of tissue remodeling	HAND2
+GO:0034101	1	Process	erythrocyte homeostasis	HOXB6
+GO:0034080	1	Process	CENP-A containing nucleosome assembly	CENPX
+GO:0033993	1	Process	response to lipid	GATA2
+GO:0033689	1	Process	negative regulation of osteoblast proliferation	PLXNB1
+GO:0033630	1	Process	positive regulation of cell adhesion mediated by integrin	RAC3
+GO:0033603	1	Process	positive regulation of dopamine secretion	GDNF
+GO:0033601	1	Process	positive regulation of mammary gland epithelial cell proliferation	CCND1
+GO:0033600	1	Process	negative regulation of mammary gland epithelial cell proliferation	GATA3
+GO:0033599	1	Process	regulation of mammary gland epithelial cell proliferation	HOXA5
+GO:0033598	1	Process	mammary gland epithelial cell proliferation	CCND1
+GO:0033597	1	Component	mitotic checkpoint complex	BUB3
+GO:0033574	1	Process	response to testosterone	HOXD13
+GO:0033504	1	Process	floor plate development	FOXB1
+GO:0033365	1	Process	protein localization to organelle	PAX6
+GO:0033276	1	Component	transcription factor TFTC complex	TAF10
+GO:0033197	1	Process	response to vitamin E	CCND1
+GO:0033173	1	Process	calcineurin-NFAT signaling cascade	ADGRB2
+GO:0033148	1	Process	positive regulation of intracellular estrogen receptor signaling pathway	FOXA1
+GO:0033132	1	Process	negative regulation of glucokinase activity	FOXA2
+GO:0033116	1	Component	endoplasmic reticulum-Golgi intermediate compartment membrane	COL7A1
+GO:0033092	1	Process	positive regulation of immature T cell proliferation in thymus	SHH
+GO:0033089	1	Process	positive regulation of T cell differentiation in thymus	SHH
+GO:0033077	1	Process	T cell differentiation in thymus	SHH
+GO:0033041	1	Function	sweet taste receptor activity	TAS1R3
+GO:0032929	1	Process	negative regulation of superoxide anion generation	AATF
+GO:0032870	1	Process	cellular response to hormone stimulus	CACNA1H
+GO:0032868	1	Process	response to insulin	IGF2
+GO:0032811	1	Process	negative regulation of epinephrine secretion	ADRA2C
+GO:0032794	1	Function	GTPase activating protein binding	PLXNB1
+GO:0032770	1	Process	positive regulation of monooxygenase activity	GDNF
+GO:0032755	1	Process	positive regulation of interleukin-6 production	WNT5A
+GO:0032753	1	Process	positive regulation of interleukin-4 production	GATA3
+GO:0032729	1	Process	positive regulation of interferon-gamma production	WNT5A
+GO:0032703	1	Process	negative regulation of interleukin-2 production	GATA3
+GO:0032693	1	Process	negative regulation of interleukin-10 production	DLL1
+GO:0032689	1	Process	negative regulation of interferon-gamma production	GATA3
+GO:0032609	1	Process	interferon-gamma production	EOMES
+GO:0032570	1	Process	response to progesterone	NKX2-2
+GO:0032543	1	Process	mitochondrial translation	MRPS34
+GO:0032536	1	Process	regulation of cell projection size	WNT7B
+GO:0032526	1	Process	response to retinoic acid	CYP26A1
+GO:0032525	1	Process	somite rostral/caudal axis specification	LHX1
+GO:0032508	1	Process	DNA duplex unwinding	RECQL4
+GO:0032496	1	Process	response to lipopolysaccharide	THBD
+GO:0032452	1	Function	histone demethylase activity	KDM6B
+GO:0032435	1	Process	negative regulation of proteasomal ubiquitin-dependent protein catabolic process	SHH
+GO:0032411	1	Process	positive regulation of transporter activity	SYNGR3
+GO:0032383	1	Process	regulation of intracellular cholesterol transport	ABCA2
+GO:0032364	1	Process	oxygen homeostasis	WNT7B
+GO:0032357	1	Function	oxidized purine DNA binding	RECQL4
+GO:0032342	1	Process	aldosterone biosynthetic process	CACNA1H
+GO:0032332	1	Process	positive regulation of chondrocyte differentiation	HOXA11
+GO:0032331	1	Process	negative regulation of chondrocyte differentiation	NKX3-2
+GO:0032287	1	Process	peripheral nervous system myelin maintenance	AKT1
+GO:0032275	1	Process	luteinizing hormone secretion	TBX3
+GO:0032270	1	Process	positive regulation of cellular protein metabolic process	AKT1
+GO:0032094	1	Process	response to food	AKT1
+GO:0032092	1	Process	positive regulation of protein binding	WNT5A
+GO:0032088	1	Process	negative regulation of NF-kappaB transcription factor activity	LRRC14
+GO:0032079	1	Process	positive regulation of endodeoxyribonuclease activity	AKT1
+GO:0032039	1	Component	integrator complex	INTS11
+GO:0032026	1	Process	response to magnesium ion	CCND1
+GO:0032012	1	Process	regulation of ARF protein signal transduction	AGAP3
+GO:0031999	1	Process	negative regulation of fatty acid beta-oxidation	AKT1
+GO:0031982	1	Component	vesicle	AKT1
+GO:0031943	1	Process	regulation of glucocorticoid metabolic process	STUB1
+GO:0031941	1	Component	filamentous actin	RAC3
+GO:0031852	1	Function	mu-type opioid receptor binding	GNAS
+GO:0031748	1	Function	D1 dopamine receptor binding	GNAS
+GO:0031698	1	Function	beta-2 adrenergic receptor binding	GNAS
+GO:0031694	1	Function	alpha-2A adrenergic receptor binding	ADRA2C
+GO:0031683	1	Function	G-protein beta/gamma-subunit complex binding	GNAS
+GO:0031668	1	Process	cellular response to extracellular stimulus	NR4A2
+GO:0031663	1	Process	lipopolysaccharide-mediated signaling pathway	AKT1
+GO:0031659	1	Process	positive regulation of cyclin-dependent protein serine/threonine kinase activity involved in G1/S transition of mitotic cell cycle	AKT1
+GO:0031658	1	Process	negative regulation of cyclin-dependent protein serine/threonine kinase activity involved in G1/S transition of mitotic cell cycle	MIR711
+GO:0031647	1	Process	regulation of protein stability	STUB1
+GO:0031616	1	Component	spindle pole centrosome	NUBP2
+GO:0031594	1	Component	neuromuscular junction	SYNGR3
+GO:0031593	1	Function	polyubiquitin modification-dependent protein binding	AGAP3
+GO:0031586	1	Process	negative regulation of inositol 1,4,5-trisphosphate-sensitive calcium-release channel activity	MIR133A2
+GO:0031573	1	Process	intra-S DNA damage checkpoint	EME2
+GO:0031571	1	Process	mitotic G1 DNA damage checkpoint	CCND1
+GO:0031532	1	Process	actin cytoskeleton reorganization	RAC3
+GO:0031507	1	Process	heterochromatin assembly	BAHCC1
+GO:0031417	1	Component	NatC complex	NAA38
+GO:0031371	1	Component	ubiquitin conjugating enzyme complex	STUB1
+GO:0031325	1	Process	positive regulation of cellular metabolic process	FASN
+GO:0031307	1	Component	integral component of mitochondrial outer membrane	RHOT2
+GO:0031295	1	Process	T cell costimulation	AKT1
+GO:0031267	1	Function	small GTPase binding	AGAP3
+GO:0031252	1	Component	cell leading edge	SCRIB
+GO:0031225	1	Component	anchored component of membrane	NRN1
+GO:0031177	1	Function	phosphopantetheine binding	FASN
+GO:0031145	1	Process	anaphase-promoting complex-dependent catabolic process	BUB3
+GO:0031128	1	Process	developmental induction	NKX2-1
+GO:0031093	1	Component	platelet alpha granule lumen	IGF2
+GO:0031076	1	Process	embryonic camera-type eye development	PITX2
+GO:0031069	1	Process	hair follicle morphogenesis	SHH
+GO:0031062	1	Process	positive regulation of histone methylation	PAX7
+GO:0031056	1	Process	regulation of histone modification	IGF2
+GO:0031017	1	Process	exocrine pancreas development	IGF2
+GO:0031012	1	Component	extracellular matrix	COL7A1
+GO:0030957	1	Function	Tat protein binding	DLL1
+GO:0030917	1	Process	midbrain-hindbrain boundary development	EN1
+GO:0030914	1	Component	STAGA complex	TAF10
+GO:0030911	1	Function	TPR domain binding	STUB1
+GO:0030910	1	Process	olfactory placode formation	SIX1
+GO:0030865	1	Process	cortical cytoskeleton organization	WDR1
+GO:0030864	1	Component	cortical actin cytoskeleton	WDR1
+GO:0030858	1	Process	positive regulation of epithelial cell differentiation	PAX6
+GO:0030850	1	Process	prostate gland development	SHH
+GO:0030838	1	Process	positive regulation of actin filament polymerization	RAC3
+GO:0030836	1	Process	positive regulation of actin filament depolymerization	WDR1
+GO:0030834	1	Process	regulation of actin filament depolymerization	WDR1
+GO:0030825	1	Process	positive regulation of cGMP metabolic process	WNT5A
+GO:0030815	1	Process	negative regulation of cAMP metabolic process	SSTR4
+GO:0030669	1	Component	clathrin-coated endocytic vesicle membrane	WNT5A
+GO:0030665	1	Component	clathrin-coated vesicle membrane	WNT5A
+GO:0030579	1	Process	ubiquitin-dependent SMAD protein catabolic process	STUB1
+GO:0030574	1	Process	collagen catabolic process	COL7A1
+GO:0030546	1	Function	receptor activator activity	IGF2
+GO:0030544	1	Function	Hsp70 protein binding	STUB1
+GO:0030540	1	Process	female genitalia development	TBX3
+GO:0030534	1	Process	adult behavior	PAX5
+GO:0030522	1	Process	intracellular receptor signaling pathway	NR4A2
+GO:0030516	1	Process	regulation of axon extension	BARHL2
+GO:0030515	1	Function	snoRNA binding	NUDT16L1
+GO:0030502	1	Process	negative regulation of bone mineralization	BCOR
+GO:0030433	1	Process	ubiquitin-dependent ERAD pathway	STUB1
+GO:0030432	1	Process	peristalsis	GDNF
+GO:0030424	1	Component	axon	HCFC1
+GO:0030331	1	Function	estrogen receptor binding	TAF10
+GO:0030323	1	Process	respiratory tube development	FOXF1
+GO:0030308	1	Process	negative regulation of cell growth	MSX1
+GO:0030307	1	Process	positive regulation of cell growth	AKT1
+GO:0030235	1	Function	nitric-oxide synthase regulator activity	AKT1
+GO:0030225	1	Process	macrophage differentiation	NKX2-3
+GO:0030220	1	Process	platelet formation	WDR1
+GO:0030218	1	Process	erythrocyte differentiation	GATA3
+GO:0030215	1	Function	semaphorin receptor binding	PLXNB1
+GO:0030212	1	Process	hyaluronan metabolic process	AKT1
+GO:0030203	1	Process	glycosaminoglycan metabolic process	FOXC1
+GO:0030195	1	Process	negative regulation of blood coagulation	THBD
+GO:0030193	1	Process	regulation of blood coagulation	FOXA2
+GO:0030183	1	Process	B cell differentiation	ONECUT1
+GO:0030177	1	Process	positive regulation of Wnt signaling pathway	SHH
+GO:0030170	1	Function	pyridoxal phosphate binding	GPT
+GO:0030162	1	Process	regulation of proteolysis	SHH
+GO:0030155	1	Process	regulation of cell adhesion	DLL1
+GO:0030141	1	Component	secretory granule	CBARP
+GO:0030134	1	Component	COPII-coated ER to Golgi transport vesicle	COL7A1
+GO:0030133	1	Component	transport vesicle	TMEM187
+GO:0030099	1	Process	myeloid cell differentiation	HOXB7
+GO:0030043	1	Process	actin filament fragmentation	WDR1
+GO:0030042	1	Process	actin filament depolymerization	WDR1
+GO:0030036	1	Process	actin cytoskeleton organization	RAC3
+GO:0030031	1	Process	cell projection assembly	RAC3
+GO:0030018	1	Component	Z disc	STUB1
+GO:0030010	1	Process	establishment of cell polarity	SHH
+GO:0023016	1	Process	signal transduction by trans-phosphorylation	OSR1
+GO:0022857	1	Function	transmembrane transporter activity	ATP5F1D
+GO:0022617	1	Process	extracellular matrix disassembly	NOXO1
+GO:0022037	1	Process	metencephalon development	OTX1
+GO:0022029	1	Process	telencephalon cell migration	FOXB1
+GO:0022011	1	Process	myelination in peripheral nervous system	POU3F2
+GO:0022010	1	Process	central nervous system myelination	HES5
+GO:0022009	1	Process	central nervous system vasculogenesis	WNT7B
+GO:0021960	1	Process	anterior commissure morphogenesis	NR2E1
+GO:0021954	1	Process	central nervous system neuron development	GATA2
+GO:0021952	1	Process	central nervous system projection neuron axonogenesis	NR4A2
+GO:0021938	1	Process	smoothened signaling pathway involved in regulation of cerebellar granule cell precursor cell proliferation	SHH
+GO:0021920	1	Process	regulation of transcription from RNA polymerase II promoter involved in spinal cord association neuron specification	LBX1
+GO:0021918	1	Process	regulation of transcription from RNA polymerase II promoter involved in somatic motor neuron fate commitment	PAX6
+GO:0021915	1	Process	neural tube development	HES5
+GO:0021913	1	Process	regulation of transcription from RNA polymerase II promoter involved in ventral spinal cord interneuron specification	PAX6
+GO:0021912	1	Process	regulation of transcription from RNA polymerase II promoter involved in spinal cord motor neuron fate specification	PAX6
+GO:0021905	1	Process	forebrain-midbrain boundary formation	PAX6
+GO:0021894	1	Process	cerebral cortex GABAergic interneuron development	RAC3
+GO:0021892	1	Process	cerebral cortex GABAergic interneuron differentiation	NKX2-1
+GO:0021889	1	Process	olfactory bulb interneuron differentiation	UNCX
+GO:0021885	1	Process	forebrain cell migration	EMX2
+GO:0021877	1	Process	forebrain neuron fate commitment	NKX2-1
+GO:0021872	1	Process	forebrain generation of neurons	NR2E1
+GO:0021869	1	Process	forebrain ventricular zone progenitor cell division	POU3F2
+GO:0021861	1	Process	forebrain radial glial cell differentiation	HES5
+GO:0021853	1	Process	cerebral cortex GABAergic interneuron migration	ARX
+GO:0021831	1	Process	embryonic olfactory bulb interneuron precursor migration	ARX
+GO:0021819	1	Process	layer formation in cerebral cortex	NR2E1
+GO:0021800	1	Process	cerebral cortex tangential migration	ARX
+GO:0021799	1	Process	cerebral cortex radially oriented cell migration	POU3F2
+GO:0021797	1	Process	forebrain anterior/posterior pattern specification	SIX3
+GO:0021795	1	Process	cerebral cortex cell migration	NKX2-1
+GO:0021784	1	Process	postganglionic parasympathetic fiber development	GDNF
+GO:0021781	1	Process	glial cell fate commitment	HES5
+GO:0021778	1	Process	oligodendrocyte cell fate specification	PAX6
+GO:0021767	1	Process	mammillary body development	FOXB1
+GO:0021764	1	Process	amygdala development	NR2E1
+GO:0021763	1	Process	subthalamic nucleus development	PITX2
+GO:0021762	1	Process	substantia nigra development	SYNGR3
+GO:0021761	1	Process	limbic system development	TBX3
+GO:0021747	1	Process	cochlear nucleus development	SCRIB
+GO:0021693	1	Process	cerebellar Purkinje cell layer structural organization	DLL1
+GO:0021688	1	Process	cerebellar molecular layer formation	DLL1
+GO:0021670	1	Process	lateral ventricle development	PAX5
+GO:0021658	1	Process	rhombomere 3 morphogenesis	HOXA2
+GO:0021650	1	Process	vestibulocochlear nerve formation	PAX2
+GO:0021644	1	Process	vagus nerve morphogenesis	TBX1
+GO:0021633	1	Process	optic nerve structural organization	PAX2
+GO:0021631	1	Process	optic nerve morphogenesis	PAX2
+GO:0021623	1	Process	oculomotor nerve formation	TFAP2A
+GO:0021610	1	Process	facial nerve morphogenesis	SIX1
+GO:0021599	1	Process	abducens nerve formation	HOXA1
+GO:0021555	1	Process	midbrain-hindbrain boundary morphogenesis	GBX2
+GO:0021546	1	Process	rhombomere development	HOXB3
+GO:0021535	1	Process	cell migration in hindbrain	POU4F1
+GO:0021533	1	Process	cell differentiation in hindbrain	GATA2
+GO:0021530	1	Process	spinal cord oligodendrocyte cell fate specification	NKX2-2
+GO:0021526	1	Process	medial motor column neuron differentiation	LHX3
+GO:0021517	1	Process	ventral spinal cord development	LHX1
+GO:0021514	1	Process	ventral spinal cord interneuron differentiation	GATA2
+GO:0021513	1	Process	spinal cord dorsal/ventral patterning	SHH
+GO:0021509	1	Process	roof plate formation	GDF7
+GO:0019907	1	Component	cyclin-dependent protein kinase activating kinase holoenzyme complex	HOXC10
+GO:0019898	1	Component	extrinsic component of membrane	OSR1
+GO:0019825	1	Function	oxygen binding	CYP26A1
+GO:0019725	1	Process	cellular homeostasis	RHOT2
+GO:0019369	1	Process	arachidonic acid metabolic process	SSTR4
+GO:0019233	1	Process	sensory perception of pain	HOXB8
+GO:0019228	1	Process	neuronal action potential	CACNA1H
+GO:0019046	1	Process	release from viral latency	HCFC1
+GO:0019005	1	Component	SCF ubiquitin ligase complex	SPSB3
+GO:0018105	1	Process	peptidyl-serine phosphorylation	AKT1
+GO:0017154	1	Function	semaphorin receptor activity	PLXNB1
+GO:0016971	1	Function	flavin-linked sulfhydryl oxidase activity	GFER
+GO:0016787	1	Function	hydrolase activity	INTS11
+GO:0016601	1	Process	Rac protein signal transduction	RAC3
+GO:0016578	1	Process	histone deubiquitination	TAF10
+GO:0016574	1	Process	histone ubiquitination	CBX8
+GO:0016539	1	Process	intein-mediated protein splicing	SHH
+GO:0016538	1	Function	cyclin-dependent protein serine/threonine kinase regulator activity	CCND1
+GO:0016485	1	Process	protein processing	RHBDL1
+GO:0016332	1	Process	establishment or maintenance of polarity of embryonic epithelium	WNT7B
+GO:0016327	1	Component	apicolateral plasma membrane	THBD
+GO:0016323	1	Component	basolateral plasma membrane	SCRIB
+GO:0016301	1	Function	kinase activity	AKT1
+GO:0016296	1	Function	palmitoyl-[acyl-carrier-protein] hydrolase activity	FASN
+GO:0016295	1	Function	myristoyl-[acyl-carrier-protein] hydrolase activity	FASN
+GO:0016242	1	Process	negative regulation of macroautophagy	AKT1
+GO:0016226	1	Process	iron-sulfur cluster assembly	NUBP2
+GO:0016192	1	Process	vesicle-mediated transport	AGAP3
+GO:0016180	1	Process	snRNA processing	INTS11
+GO:0016176	1	Function	superoxide-generating NADPH oxidase activator activity	NOXO1
+GO:0016175	1	Function	superoxide-generating NADPH oxidase activity	PAX2
+GO:0016080	1	Process	synaptic vesicle targeting	SCRIB
+GO:0016015	1	Function	morphogen activity	SHH
+GO:0015986	1	Process	ATP synthesis coupled proton transport	ATP5F1D
+GO:0015949	1	Process	nucleobase-containing small molecule interconversion	NME3
+GO:0015939	1	Process	pantothenate metabolic process	FASN
+GO:0015937	1	Process	coenzyme A biosynthetic process	PANK4
+GO:0015718	1	Process	monocarboxylic acid transport	SLC16A3
+GO:0015629	1	Component	actin cytoskeleton	ONECUT2
+GO:0015459	1	Function	potassium channel regulator activity	LRRC26
+GO:0015295	1	Function	solute:proton symporter activity	MFSD3
+GO:0015293	1	Function	symporter activity	SLC16A3
+GO:0015129	1	Function	lactate transmembrane transporter activity	SLC16A3
+GO:0015035	1	Function	protein disulfide oxidoreductase activity	GFER
+GO:0015030	1	Component	Cajal body	SRRM2
+GO:0014902	1	Process	myotube differentiation	SHH
+GO:0014858	1	Process	positive regulation of skeletal muscle cell proliferation	SHH
+GO:0014850	1	Process	response to muscle activity	METRNL
+GO:0014842	1	Process	regulation of skeletal muscle satellite cell proliferation	SIX1
+GO:0014823	1	Process	response to activity	KDM6B
+GO:0014822	1	Process	detection of wounding	FOXF1
+GO:0014813	1	Process	skeletal muscle satellite cell commitment	PAX7
+GO:0014807	1	Process	regulation of somitogenesis	DLL1
+GO:0014707	1	Process	branchiomeric skeletal muscle development	PITX1
+GO:0014706	1	Process	striated muscle tissue development	SHH
+GO:0014041	1	Process	regulation of neuron maturation	RAC3
+GO:0014031	1	Process	mesenchymal cell development	FOXC1
+GO:0014016	1	Process	neuroblast differentiation	SIX3
+GO:0012505	1	Component	endomembrane system	RAC3
+GO:0010976	1	Process	positive regulation of neuron projection development	WNT5A
+GO:0010971	1	Process	positive regulation of G2/M transition of mitotic cell cycle	CCND1
+GO:0010944	1	Process	negative regulation of transcription by competitive promoter binding	TFAP2A
+GO:0010918	1	Process	positive regulation of mitochondrial membrane potential	AKT1
+GO:0010907	1	Process	positive regulation of glucose metabolic process	AKT1
+GO:0010880	1	Process	regulation of release of sequestered calcium ion into cytosol by sarcoplasmic reticulum	MIR1-1
+GO:0010870	1	Process	positive regulation of receptor biosynthetic process	HOXA5
+GO:0010821	1	Process	regulation of mitochondrion organization	RHOT2
+GO:0010820	1	Process	positive regulation of T cell chemotaxis	WNT5A
+GO:0010811	1	Process	positive regulation of cell-substrate adhesion	FOXF1
+GO:0010800	1	Process	positive regulation of peptidyl-threonine phosphorylation	WNT5A
+GO:0010765	1	Process	positive regulation of sodium ion transport	AKT1
+GO:0010763	1	Process	positive regulation of fibroblast migration	AKT1
+GO:0010748	1	Process	negative regulation of plasma membrane long-chain fatty acid transport	AKT1
+GO:0010725	1	Process	regulation of primitive erythrocyte differentiation	GATA2
+GO:0010720	1	Process	positive regulation of cell development	HOXA11
+GO:0010718	1	Process	positive regulation of epithelial to mesenchymal transition	FOXC1
+GO:0010700	1	Process	negative regulation of norepinephrine secretion	ADRA2C
+GO:0010613	1	Process	positive regulation of cardiac muscle hypertrophy	HAND2
+GO:0010596	1	Process	negative regulation of endothelial cell migration	ADGRB1
+GO:0010544	1	Process	negative regulation of platelet activation	THBD
+GO:0010460	1	Process	positive regulation of heart rate	MIR1-1
+GO:0010453	1	Process	regulation of cell fate commitment	PAX7
+GO:0010385	1	Function	double-stranded methylated DNA binding	MBD1
+GO:0010332	1	Process	response to gamma radiation	GATA3
+GO:0010310	1	Process	regulation of hydrogen peroxide metabolic process	NOXO1
+GO:0010243	1	Process	response to organonitrogen compound	CCND1
+GO:0010159	1	Process	specification of animal organ position	TBX3
+GO:0010043	1	Process	response to zinc ion	CRIP1
+GO:0010039	1	Process	response to iron ion	CCND1
+GO:0010002	1	Process	cardioblast differentiation	EOMES
+GO:0010001	1	Process	glial cell differentiation	PAX2
+GO:0009967	1	Process	positive regulation of signal transduction	GATA3
+GO:0009950	1	Process	dorsal/ventral axis specification	PAX6
+GO:0009949	1	Process	polarity specification of anterior/posterior axis	SHH
+GO:0009948	1	Process	anterior/posterior axis specification	LHX1
+GO:0009946	1	Process	proximal/distal axis specification	SIX3
+GO:0009786	1	Process	regulation of asymmetric cell division	PAX6
+GO:0009615	1	Process	response to virus	GATA3
+GO:0009409	1	Process	response to cold	METRNL
+GO:0009408	1	Process	response to heat	AKT1
+GO:0009378	1	Function	four-way junction helicase activity	RECQL4
+GO:0009267	1	Process	cellular response to starvation	INHBB
+GO:0008821	1	Function	crossover junction endodeoxyribonuclease activity	EME2
+GO:0008652	1	Process	cellular amino acid biosynthetic process	GPT
+GO:0008643	1	Process	carbohydrate transport	AKT1
+GO:0008637	1	Process	apoptotic mitochondrial changes	AKT1
+GO:0008630	1	Process	intrinsic apoptotic signaling pathway in response to DNA damage	CRIP1
+GO:0008608	1	Process	attachment of spindle microtubules to kinetochore	BUB3
+GO:0008582	1	Process	regulation of synaptic growth at neuromuscular junction	SIX1
+GO:0008542	1	Process	visual learning	FOXB1
+GO:0008527	1	Function	taste receptor activity	TAS1R3
+GO:0008354	1	Process	germ cell migration	FOXC1
+GO:0008332	1	Function	low voltage-gated calcium channel activity	CACNA1H
+GO:0008328	1	Component	ionotropic glutamate receptor complex	SCRIB
+GO:0008327	1	Function	methyl-CpG binding	MBD1
+GO:0008240	1	Function	tripeptidyl-peptidase activity	TPP1
+GO:0008217	1	Process	regulation of blood pressure	DLL1
+GO:0008209	1	Process	androgen metabolic process	SHH
+GO:0008190	1	Function	eukaryotic initiation factor 4E binding	OTX2
+GO:0008144	1	Function	drug binding	FASN
+GO:0008076	1	Component	voltage-gated potassium channel complex	LRRC26
+GO:0008028	1	Function	monocarboxylic acid transmembrane transporter activity	SLC16A3
+GO:0008021	1	Component	synaptic vesicle	SYNGR3
+GO:0007634	1	Process	optokinetic behavior	HOXA1
+GO:0007628	1	Process	adult walking behavior	ZIC1
+GO:0007626	1	Process	locomotory behavior	NKX2-1
+GO:0007625	1	Process	grooming behavior	HOXB8
+GO:0007611	1	Process	learning or memory	LHX8
+GO:0007606	1	Process	sensory perception of chemical stimulus	GNAS
+GO:0007566	1	Process	embryo implantation	HMX3
+GO:0007548	1	Process	sex differentiation	DMRTA2
+GO:0007521	1	Process	muscle cell fate determination	TBX2
+GO:0007512	1	Process	adult heart development	HAND2
+GO:0007435	1	Process	salivary gland morphogenesis	PAX6
+GO:0007418	1	Process	ventral midline development	SHH
+GO:0007416	1	Process	synapse assembly	POU4F1
+GO:0007413	1	Process	axonal fasciculation	CELSR3
+GO:0007412	1	Process	axon target recognition	FOXB1
+GO:0007405	1	Process	neuroblast proliferation	SHH
+GO:0007398	1	Process	ectoderm development	SHH
+GO:0007386	1	Process	compartment pattern specification	DLL1
+GO:0007379	1	Process	segment specification	HOXA2
+GO:0007281	1	Process	germ cell development	AKT1
+GO:0007264	1	Process	small GTPase mediated signal transduction	RAC3
+GO:0007249	1	Process	I-kappaB kinase/NF-kappaB signaling	AKT1
+GO:0007231	1	Process	osmosensory signaling pathway	OSR1
+GO:0007228	1	Process	positive regulation of hh target transcription factor activity	SHH
+GO:0007223	1	Process	Wnt signaling pathway, calcium modulating pathway	WNT5A
+GO:0007220	1	Process	Notch receptor processing	DLL1
+GO:0007218	1	Process	neuropeptide signaling pathway	SSTR4
+GO:0007204	1	Process	positive regulation of cytosolic calcium ion concentration	GATA2
+GO:0007194	1	Process	negative regulation of adenylate cyclase activity	MIR133A2
+GO:0007191	1	Process	adenylate cyclase-activating dopamine receptor signaling pathway	GNAS
+GO:0007189	1	Process	adenylate cyclase-activating G-protein coupled receptor signaling pathway	GNAS
+GO:0007187	1	Process	G-protein coupled receptor signaling pathway, coupled to cyclic nucleotide second messenger	SSTR4
+GO:0007173	1	Process	epidermal growth factor receptor signaling pathway	AKT1
+GO:0007162	1	Process	negative regulation of cell adhesion	PLXNB1
+GO:0007160	1	Process	cell-matrix adhesion	HOXD3
+GO:0007156	1	Process	homophilic cell adhesion via plasma membrane adhesion molecules	CELSR3
+GO:0007140	1	Process	male meiotic nuclear division	CYP26B1
+GO:0007094	1	Process	mitotic spindle assembly checkpoint	BUB3
+GO:0007062	1	Process	sister chromatid cohesion	BUB3
+GO:0007040	1	Process	lysosome organization	TPP1
+GO:0007015	1	Process	actin filament organization	RAC3
+GO:0006979	1	Process	response to oxidative stress	AKT1
+GO:0006955	1	Process	immune response	CRIP1
+GO:0006936	1	Process	muscle contraction	CACNA1H
+GO:0006935	1	Process	chemotaxis	RAC3
+GO:0006924	1	Process	activation-induced cell death of T cells	AKT1
+GO:0006910	1	Process	phagocytosis, recognition	ADGRB1
+GO:0006909	1	Process	phagocytosis	GATA2
+GO:0006888	1	Process	ER to Golgi vesicle-mediated transport	COL7A1
+GO:0006869	1	Process	lipid transport	ABCA2
+GO:0006816	1	Process	calcium ion transport	CACNA1H
+GO:0006809	1	Process	nitric oxide biosynthetic process	AKT1
+GO:0006801	1	Process	superoxide metabolic process	NOXO1
+GO:0006754	1	Process	ATP biosynthetic process	ATP5F1D
+GO:0006693	1	Process	prostaglandin metabolic process	ZADH2
+GO:0006687	1	Process	glycosphingolipid metabolic process	CPTP
+GO:0006644	1	Process	phospholipid metabolic process	NKX2-1
+GO:0006641	1	Process	triglyceride metabolic process	NKX2-3
+GO:0006633	1	Process	fatty acid biosynthetic process	FASN
+GO:0006631	1	Process	fatty acid metabolic process	FASN
+GO:0006515	1	Process	protein quality control for misfolded or incompletely synthesized proteins	STUB1
+GO:0006511	1	Process	ubiquitin-dependent protein catabolic process	STUB1
+GO:0006501	1	Process	C-terminal protein lipidation	NRN1
+GO:0006469	1	Process	negative regulation of protein kinase activity	AKT1
+GO:0006464	1	Process	cellular protein modification process	AKT1
+GO:0006417	1	Process	regulation of translation	AKT1
+GO:0006412	1	Process	translation	AKT1
+GO:0006368	1	Process	transcription elongation from RNA polymerase II promoter	TAF10
+GO:0006352	1	Process	DNA-templated transcription, initiation	TAF10
+GO:0006349	1	Process	regulation of gene expression by genetic imprinting	IGF2
+GO:0006346	1	Process	methylation-dependent chromatin silencing	MBD1
+GO:0006342	1	Process	chromatin silencing	BAHCC1
+GO:0006310	1	Process	DNA recombination	RECQL4
+GO:0006306	1	Process	DNA methylation	GNAS
+GO:0006302	1	Process	double-strand break repair	EME2
+GO:0006284	1	Process	base-excision repair	RECQL4
+GO:0006260	1	Process	DNA replication	RECQL4
+GO:0006241	1	Process	CTP biosynthetic process	NME3
+GO:0006228	1	Process	UTP biosynthetic process	NME3
+GO:0006183	1	Process	GTP biosynthetic process	NME3
+GO:0006165	1	Process	nucleoside diphosphate phosphorylation	NME3
+GO:0006119	1	Process	oxidative phosphorylation	ATP5F1D
+GO:0006112	1	Process	energy reserve metabolic process	GNAS
+GO:0006090	1	Process	pyruvate metabolic process	SLC16A3
+GO:0006084	1	Process	acetyl-CoA metabolic process	FASN
+GO:0005979	1	Process	regulation of glycogen biosynthetic process	AKT1
+GO:0005978	1	Process	glycogen biosynthetic process	AKT1
+GO:0005938	1	Component	cell cortex	CRIP2
+GO:0005925	1	Component	focal adhesion	ADGRB1
+GO:0005923	1	Component	bicellular tight junction	CCND1
+GO:0005913	1	Component	cell-cell adherens junction	SCRIB
+GO:0005912	1	Component	adherens junction	DLL1
+GO:0005902	1	Component	microvillus	FOXA1
+GO:0005891	1	Component	voltage-gated calcium channel complex	CACNA1H
+GO:0005844	1	Component	polysome	NAA38
+GO:0005834	1	Component	heterotrimeric G-protein complex	GNAS
+GO:0005819	1	Component	spindle	AKT1
+GO:0005814	1	Component	centriole	NUBP2
+GO:0005783	1	Component	endoplasmic reticulum	STUB1
+GO:0005777	1	Component	peroxisome	ZADH2
+GO:0005774	1	Component	vacuolar membrane	THBD
+GO:0005765	1	Component	lysosomal membrane	ABCA2
+GO:0005763	1	Component	mitochondrial small ribosomal subunit	MRPS34
+GO:0005759	1	Component	mitochondrial matrix	ATP5F1D
+GO:0005758	1	Component	mitochondrial intermembrane space	GFER
+GO:0005753	1	Component	mitochondrial proton-transporting ATP synthase complex	ATP5F1D
+GO:0005720	1	Component	nuclear heterochromatin	FOXC1
+GO:0005687	1	Component	U4 snRNP	NAA38
+GO:0005686	1	Component	U2 snRNP	NAA38
+GO:0005685	1	Component	U1 snRNP	NAA38
+GO:0005682	1	Component	U5 snRNP	NAA38
+GO:0005677	1	Component	chromatin silencing complex	BAHCC1
+GO:0005671	1	Component	Ada2/Gcn5/Ada3 transcription activator complex	HCFC1
+GO:0005669	1	Component	transcription factor TFIID complex	TAF10
+GO:0005640	1	Component	nuclear outer membrane	CPTP
+GO:0005604	1	Component	basement membrane	COL7A1
+GO:0005590	1	Component	collagen type VII trimer	COL7A1
+GO:0005548	1	Function	phospholipid transporter activity	CPTP
+GO:0005547	1	Function	phosphatidylinositol-3,4,5-trisphosphate binding	AKT1
+GO:0005539	1	Function	glycosaminoglycan binding	SHH
+GO:0005520	1	Function	insulin-like growth factor binding	HTRA3
+GO:0005499	1	Function	vitamin D binding	IRX5
+GO:0005261	1	Function	cation channel activity	CACNA1H
+GO:0005249	1	Function	voltage-gated potassium channel activity	LRRC26
+GO:0005248	1	Function	voltage-gated sodium channel activity	CACNA1H
+GO:0005245	1	Function	voltage-gated calcium channel activity	CACNA1H
+GO:0005244	1	Function	voltage-gated ion channel activity	CACNA1H
+GO:0005178	1	Function	integrin binding	IGF2
+GO:0005158	1	Function	insulin receptor binding	IGF2
+GO:0005134	1	Function	interleukin-2 receptor binding	GATA3
+GO:0005115	1	Function	receptor tyrosine kinase-like orphan receptor binding	WNT5A
+GO:0005113	1	Function	patched binding	SHH
+GO:0005112	1	Function	Notch binding	DLL1
+GO:0005088	1	Function	Ras guanyl-nucleotide exchange factor activity	GDNF
+GO:0004994	1	Function	somatostatin receptor activity	SSTR4
+GO:0004938	1	Function	alpha2-adrenergic receptor activity	ADRA2C
+GO:0004935	1	Function	adrenergic receptor activity	ADRA2C
+GO:0004879	1	Function	nuclear receptor activity	NR4A2
+GO:0004867	1	Function	serine-type endopeptidase inhibitor activity	COL7A1
+GO:0004712	1	Function	protein serine/threonine/tyrosine kinase activity	AKT1
+GO:0004693	1	Function	cyclin-dependent protein serine/threonine kinase activity	CCND1
+GO:0004672	1	Function	protein kinase activity	AKT1
+GO:0004594	1	Function	pantothenate kinase activity	PANK4
+GO:0004550	1	Function	nucleoside diphosphate kinase activity	NME3
+GO:0004402	1	Function	histone acetyltransferase activity	TAF10
+GO:0004386	1	Function	helicase activity	RECQL4
+GO:0004385	1	Function	guanylate kinase activity	SCRIB
+GO:0004320	1	Function	oleoyl-[acyl-carrier-protein] hydrolase activity	FASN
+GO:0004316	1	Function	3-oxoacyl-[acyl-carrier-protein] reductase (NADPH) activity	FASN
+GO:0004315	1	Function	3-oxoacyl-[acyl-carrier-protein] synthase activity	FASN
+GO:0004314	1	Function	[acyl-carrier-protein] S-malonyltransferase activity	FASN
+GO:0004313	1	Function	[acyl-carrier-protein] S-acetyltransferase activity	FASN
+GO:0004312	1	Function	fatty acid synthase activity	FASN
+GO:0004021	1	Function	L-alanine:2-oxoglutarate aminotransferase activity	GPT
+GO:0003735	1	Function	structural constituent of ribosome	MRPS34
+GO:0003697	1	Function	single-stranded DNA binding	POU4F1
+GO:0003409	1	Process	optic cup structural organization	TFAP2A
+GO:0003408	1	Process	optic cup formation involved in camera-type eye development	WNT5A
+GO:0003406	1	Process	retinal pigment epithelium development	PAX2
+GO:0003402	1	Process	planar cell polarity pathway involved in axis elongation	WNT5A
+GO:0003357	1	Process	noradrenergic neuron differentiation	HAND2
+GO:0003350	1	Process	pulmonary myocardium development	PITX2
+GO:0003341	1	Process	cilium movement	CFAP53
+GO:0003338	1	Process	metanephros morphogenesis	WNT7B
+GO:0003329	1	Process	pancreatic PP cell fate commitment	NKX2-2
+GO:0003327	1	Process	type B pancreatic cell fate commitment	NKX2-2
+GO:0003326	1	Process	pancreatic A cell fate commitment	NKX2-2
+GO:0003322	1	Process	pancreatic A cell development	PAX6
+GO:0003309	1	Process	type B pancreatic cell differentiation	PAX6
+GO:0003278	1	Process	apoptotic process involved in heart morphogenesis	HAND2
+GO:0003266	1	Process	regulation of secondary heart field cardioblast proliferation	HAND2
+GO:0003256	1	Process	regulation of transcription from RNA polymerase II promoter involved in myocardial precursor cell differentiation	TBX2
+GO:0003223	1	Process	ventricular compact myocardium morphogenesis	POU4F1
+GO:0003219	1	Process	cardiac right ventricle formation	HAND2
+GO:0003218	1	Process	cardiac left ventricle formation	TBX5
+GO:0003215	1	Process	cardiac right ventricle morphogenesis	GATA3
+GO:0003214	1	Process	cardiac left ventricle morphogenesis	FOXF1
+GO:0003203	1	Process	endocardial cushion morphogenesis	TBX2
+GO:0003198	1	Process	epithelial to mesenchymal transition involved in endocardial cushion formation	MSX1
+GO:0003188	1	Process	heart valve formation	SCX
+GO:0003181	1	Process	atrioventricular valve morphogenesis	TBX5
+GO:0003180	1	Process	aortic valve morphogenesis	GATA3
+GO:0003179	1	Process	heart valve morphogenesis	SCX
+GO:0003171	1	Process	atrioventricular valve development	PITX2
+GO:0003167	1	Process	atrioventricular bundle cell differentiation	TBX3
+GO:0003166	1	Process	bundle of His development	TBX5
+GO:0003140	1	Process	determination of left/right asymmetry in lateral mesoderm	SHH
+GO:0003016	1	Process	respiratory system process	HOXA5
+GO:0003007	1	Process	heart morphogenesis	TBX1
+GO:0002931	1	Process	response to ischemia	STUB1
+GO:0002741	1	Process	positive regulation of cytokine secretion involved in immune response	WNT5A
+GO:0002686	1	Process	negative regulation of leukocyte migration	HOXA7
+GO:0002572	1	Process	pro-T cell differentiation	GATA3
+GO:0002446	1	Process	neutrophil mediated immunity	WDR1
+GO:0002437	1	Process	inflammatory response to antigenic stimulus	KDM6B
+GO:0002320	1	Process	lymphoid progenitor cell differentiation	SHH
+GO:0002317	1	Process	plasma cell differentiation	NKX2-3
+GO:0002315	1	Process	marginal zone B cell differentiation	DLL1
+GO:0002302	1	Process	CD8-positive, alpha-beta T cell differentiation involved in immune response	EOMES
+GO:0002250	1	Process	adaptive immune response	EOMES
+GO:0002244	1	Process	hematopoietic progenitor cell differentiation	HOXB3
+GO:0002118	1	Process	aggressive behavior	NR2E1
+GO:0002116	1	Component	semaphorin receptor complex	PLXNB1
+GO:0002089	1	Process	lens morphogenesis in camera-type eye	SOX1
+GO:0002074	1	Process	extraocular skeletal muscle development	PITX2
+GO:0002072	1	Process	optic cup morphogenesis involved in camera-type eye development	PAX2
+GO:0002070	1	Process	epithelial cell maturation	SIX3
+GO:0002039	1	Function	p53 binding	MSX1
+GO:0002027	1	Process	regulation of heart rate	IRX5
+GO:0002011	1	Process	morphogenesis of an epithelial sheet	HOXB4
+GO:0001975	1	Process	response to amphetamine	NR4A2
+GO:0001974	1	Process	blood vessel remodeling	FOXC1
+GO:0001957	1	Process	intramembranous ossification	MN1
+GO:0001953	1	Process	negative regulation of cell-matrix adhesion	HOXA7
+GO:0001942	1	Process	hair follicle development	LHX2
+GO:0001941	1	Process	postsynaptic membrane organization	GDNF
+GO:0001933	1	Process	negative regulation of protein phosphorylation	PAX6
+GO:0001932	1	Process	regulation of protein phosphorylation	CELSR3
+GO:0001921	1	Process	positive regulation of receptor recycling	SCRIB
+GO:0001893	1	Process	maternal placenta development	AKT1
+GO:0001891	1	Component	phagocytic cup	ADGRB1
+GO:0001890	1	Process	placenta development	LHX3
+GO:0001829	1	Process	trophectodermal cell differentiation	EOMES
+GO:0001806	1	Process	type IV hypersensitivity	GATA3
+GO:0001786	1	Function	phosphatidylserine binding	ADGRB1
+GO:0001776	1	Process	leukocyte homeostasis	NKX2-3
+GO:0001768	1	Process	establishment of T cell polarity	CYP26B1
+GO:0001763	1	Process	morphogenesis of a branching structure	FOXF1
+GO:0001757	1	Process	somite specification	DLL1
+GO:0001736	1	Process	establishment of planar polarity	WNT5A
+GO:0001714	1	Process	endodermal cell fate specification	EOMES
+GO:0001705	1	Process	ectoderm formation	LHX1
+GO:0001702	1	Process	gastrulation with mouth forming second	LHX1
+GO:0001674	1	Component	female germ cell nucleus	LHX8
+GO:0001666	1	Process	response to hypoxia	NR4A2
+GO:0001662	1	Process	behavioral fear response	NR2E1
+GO:0001582	1	Process	detection of chemical stimulus involved in sensory perception of sweet taste	TAS1R3
+GO:0001558	1	Process	regulation of cell growth	HTRA3
+GO:0001530	1	Function	lipopolysaccharide binding	ADGRB1
+GO:0001502	1	Process	cartilage condensation	UNCX
+GO:0001223	1	Function	transcription coactivator binding	FOXC1
+GO:0001222	1	Function	transcription corepressor binding	SIX3
+GO:0001206	1	Function	transcriptional repressor activity, RNA polymerase II distal enhancer sequence-specific binding	ARX
+GO:0001191	1	Function	transcriptional repressor activity, RNA polymerase II transcription factor binding	EOMES
+GO:0001161	1	Function	intronic transcription regulatory region sequence-specific DNA binding	NKX2-1
+GO:0001106	1	Function	RNA polymerase II transcription corepressor activity	TBX15
+GO:0001047	1	Function	core promoter binding	NKX2-1
+GO:0001012	1	Function	RNA polymerase II regulatory region DNA binding	NKX2-1
+GO:0000993	1	Function	RNA polymerase II core binding	MIR1-1
+GO:0000791	1	Component	euchromatin	CBX2
+GO:0000785	1	Component	chromatin	BAHCC1
+GO:0000781	1	Component	chromosome, telomeric region	RECQL4
+GO:0000776	1	Component	kinetochore	BUB3
+GO:0000733	1	Process	DNA strand renaturation	RECQL4
+GO:0000724	1	Process	double-strand break repair via homologous recombination	RECQL4
+GO:0000723	1	Process	telomere maintenance	RECQL4
+GO:0000432	1	Process	positive regulation of transcription from RNA polymerase II promoter by glucose	FOXA2
+GO:0000415	1	Process	negative regulation of histone H3-K36 methylation	BCOR
+GO:0000405	1	Function	bubble DNA binding	RECQL4
+GO:0000320	1	Process	re-entry into mitotic cell cycle	CCND1
+GO:0000307	1	Component	cyclin-dependent protein kinase holoenzyme complex	CCND1
+GO:0000275	1	Component	mitochondrial proton-transporting ATP synthase complex, catalytic core F(1)	ATP5F1D
+GO:0000245	1	Process	spliceosomal complex assembly	SRPK3
+GO:0000209	1	Process	protein polyubiquitination	STUB1
+GO:0000165	1	Process	MAPK cascade	GDNF
+GO:0000151	1	Component	ubiquitin ligase complex	STUB1
+GO:0000139	1	Component	Golgi membrane	COL7A1
+GO:0000132	1	Process	establishment of mitotic spindle orientation	PAX6
+GO:0000125	1	Component	PCAF complex	TAF10
+GO:0000123	1	Component	histone acetyltransferase complex	HCFC1
+GO:0000118	1	Component	histone deacetylase complex	SATB2
+GO:0000070	1	Process	mitotic sister chromatid segregation	BUB3

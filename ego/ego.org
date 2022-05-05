@@ -37,6 +37,24 @@
   ftp://ftp.ncbi.nih.gov/gene/DATA/gene2go.gz
   \end{verbatim}
 
+  As an auxiliary functionality \ty{ego} can also classify the input
+  symbols into their GO categories and print what I call a GO/sym table,
+  for example Table~\ref{tab:eg2}
+
+  \begin{table}
+    \caption{Example GO/sym table.}\label{tab:eg2}
+    \begin{center}
+      \resizebox{\textwidth}{!}{
+	\begin{tabular}{cclll}
+	\hline
+	GO & Count & Category & Description & Sym\\\hline
+	\input{egoTab3}
+	\hline
+	\end{tabular}
+      }
+    \end{center}
+  \end{table}
+
   \section*{Implementation}
   The outline of \ty{ego} contains hooks for imports, types, methods,
   functions, and the logic of the main function.
@@ -84,10 +102,10 @@
   "github.com/evolbioinf/clio"
 #+end_src
 #+begin_src latex
-  Apart from the version, \ty{-v}, we declare three options, the first
-  for the gene info file (\ty{-i}), the second for the file containing
-  the GO terms (\ty{-g}), and the third for the minimum occupancy of a
-  GO term to be included in the final result (\ty{-m}).
+  Apart from the version, \ty{-v}, we declare four options, the gene
+  info file (\ty{-i}), the file containing the GO terms (\ty{-g}), and
+  the minimum occupancy of a GO term to be included in the final result
+  (\ty{-m}), and whether or not the GO/sym table should be printed (\ty{-p}).
 #+end_src
 #+begin_src go <<Declare options, Ch.~\ref{ch:eg}>>=
   var optV = flag.Bool("v", false, "version")
@@ -96,6 +114,7 @@
   var optG = flag.String("g", "gene2go", "GO file of gene " +
 	  "IDs and GO terms")
   var optM = flag.Int("m", 10, "minimum occupancy of GO term")
+  var optP = flag.Bool("p", false, "print GO/sym table")
 #+end_src
 #+begin_src latex
   We import \ty{flag}.
@@ -106,7 +125,7 @@
 #+begin_src latex
   We parse the options and respond to \ty{-v} as this stops the
   program. We also read the gene-info file specified with \ty{-i} into a
-  variable that maps gene symbols to IDs, \ty{sym2id}. If the user didn't
+  variable that maps gene symbols to gene IDs, \ty{sym2id}. If the user didn't
   set a gene-info file, we bail with a friendly message. We also read
   the GO file specified with \ty{-g}.
 #+end_src
@@ -175,24 +194,35 @@
   sc := bufio.NewScanner(f)
 #+end_src
 #+begin_src latex
-  In the GO file, the gene ID is in column 2, the GO ID in column 3, and
-  the description of the GO term in column 6. Since a gene ID typically
-  maps to many GO IDs, we store the relationship between gene IDs and
-  GO ID in a map between gene IDs and maps of GO IDs. We also store the
-  GO description.
+  We extract the required GO attributes from the GO file. Then we store
+  the GO ID as a function of the gene ID. Since a gene ID typically maps
+  to many GO IDs, we store the relationship between gene IDs and GO ID
+  in a map between gene IDs and maps of GO IDs. We also store the GO
+  description and the GO category as functions of the GO ID.
 #+end_src
 #+begin_src go <<Scan GO file, Ch.~\ref{ch:eg}>>=
   id2go := make(map[string]map[string]bool)
   go2descr := make(map[string]string)
+  go2cat := make(map[string]string)
   for sc.Scan() {
 	  if sc.Text()[0] == '#' { continue }
-	  fields := strings.Split(sc.Text(), "\t")
-	  geneId := fields[1]
-	  goId := fields[2]
-	  goDescr := fields[5]
+	  //<<Extract GO attributes, Ch.~\ref{ch:eg}>>
 	  //<<Store GO ID, Ch.~\ref{ch:eg}>>
 	  //<<Store GO description, Ch.~\ref{ch:eg}>>
+	  //<<Store Go category, Ch.~\ref{ch:eg}>>
   }
+#+end_src
+#+begin_src latex
+  In the GO file, the gene ID is in column 2, the GO ID in column 3, the
+  description of the GO term in column 6, and its category in column
+  8.
+#+end_src
+#+begin_src go <<Extract GO attributes, Ch.~\ref{ch:eg}>>=
+  fields := strings.Split(sc.Text(), "\t")
+  geneId := fields[1]
+  goId := fields[2]
+  goDescr := fields[5]
+  goCat := fields[7]
 #+end_src
 #+begin_src latex
   We check whether a given gene ID already has an associated map of GO
@@ -221,12 +251,19 @@
   go2descr[goId] = goDescr
 #+end_src
 #+begin_src latex
+  We store the GO category.
+#+end_src
+#+begin_src go <<Store Go category, Ch.~\ref{ch:eg}>>=
+  go2cat[goId] = goCat
+#+end_src
+#+begin_src latex
   The remaining tokens on the command line are taken as the names of
   input files. The first of these contains the observed symbols. If the
   symbols file doesn't exist, we bail. Otherwise, we open it and scan
-  the observed symbols. But, remember, what we are really interested in,
-  is their GO occupancy. So once we've read the gene symbols, we convert
-  them to GO counts.
+  the observed symbols. If desired, we print these observed symbols in a
+  table next to their GO terms and exit. But, remember, what we are
+  really interested in, is the GO occupancy. So once we've read the gene
+  symbols, we convert them to GO counts.
 #+end_src
 #+begin_src go <<Parse input files, Ch.~\ref{ch:eg}>>=
   files := flag.Args()
@@ -235,6 +272,10 @@
   }
   //<<Open observed symbols file, Ch.~\ref{ch:eg}>>
   //<<Scan observed symbols file, Ch.~\ref{ch:eg}>>
+  if *optP {
+	  //<<Print GO/sym table, Ch.~\ref{ch:eg}>>
+	  os.Exit(0)
+  }
   //<<Convert observed symbols to GO counts, Ch.~\ref{ch:eg}>>
 #+end_src
 #+begin_src latex
@@ -263,6 +304,120 @@
 		  log.Fatal(m)
 	  }
 	  symbols = append(symbols, fields[0])
+  }
+#+end_src
+#+begin_src latex
+  We construct the GO/sym table, sort it, and print it.
+#+end_src
+#+begin_src go <<Print GO/sym table, Ch.~\ref{ch:eg}>>=
+  //<<Construct GO/sym table, Ch.~\ref{ch:eg}>>
+  //<<Sort GO/sym table, Ch.~\ref{ch:eg}>>
+  //<<Print sorted Go/sym table, Ch.~\ref{ch:eg}>>
+#+end_src
+#+begin_src latex
+  For each symbol, we iterate over its GO terms.
+#+end_src
+#+begin_src go <<Construct GO/sym table, Ch.~\ref{ch:eg}>>=
+  g2s := make(map[string][]string)
+  for _, symbol := range symbols {
+	  id := sym2id[symbol]
+	  gterms := id2go[id]
+	  //<<Iterate over GO terms for symbol, Ch.~\ref{ch:eg}>>
+  }
+#+end_src
+#+begin_src latex
+  Each GO term of a symbol is stored in the term's symbols slice.
+#+end_src
+#+begin_src go <<Iterate over GO terms for symbol, Ch.~\ref{ch:eg}>>=
+  for gterm, _ := range gterms {
+	  sl := g2s[gterm]
+	  if sl == nil {
+		  sl = make([]string, 0)
+	  }
+	  sl = append(sl, symbol)
+	  g2s[gterm] = sl
+  }
+#+end_src
+#+begin_src latex
+  To sort the GO/sym table by GO term, we store the GO terms and their
+  associated symbols in a slice of type \ty{gosym}. This can be sorted
+  when cast to type \ty{gosymSlice}. While constructing the \ty{gosym}
+  slice, we also sort the symbols slices alphabetically.
+#+end_src
+#+begin_src go <<Sort GO/sym table, Ch.~\ref{ch:eg}>>=
+  var gosyms []*gosym
+  for g, symbols := range g2s {
+	  gs := new(gosym)
+	  gs.g = g
+	  sort.Strings(symbols)
+	  gs.s = symbols
+	  gosyms = append(gosyms, gs)
+  }
+  sort.Sort(gosymSlice(gosyms))
+#+end_src
+#+begin_src latex
+  We import \ty{sort}.
+#+end_src
+#+begin_src go <<Imports, Ch.~\ref{ch:eg}>>=
+  "sort"
+#+end_src
+#+begin_src latex
+  We declare the type \ty{gosym} as a struct with a string to hold the
+  GO term and a slice of strings for the symbols.
+#+end_src
+#+begin_src go <<Types, Ch.~\ref{ch:eg}>>=
+  type gosym struct {
+	  g string
+	  s []string
+  }
+#+end_src
+#+begin_src latex
+  We also declare the type \ty{gosymSlice}.
+#+end_src
+#+begin_src go <<Types, Ch.~\ref{ch:eg}>>=
+  type gosymSlice []*gosym
+#+end_src
+#+begin_src latex
+  To make \ty{gosymSlice} sortable, we implement the three methods of
+  the \ty{Sort} interface, \ty{Len}, \ty{Less}, and \ty{Swap}. \ty{Len}
+  and \ty{Swap} are standard.
+#+end_src
+#+begin_src go <<Methods, Ch.~\ref{ch:eg}>>=
+  func (g gosymSlice) Len() int {
+	  return len(g)
+  }
+  func (g gosymSlice) Swap(i, j int) {
+	  g[i], g[j] = g[j], g[i]
+  }
+#+end_src
+#+begin_src latex
+  The actual sorting is done according to the number of symbols
+  associated with the GO term. In case of equal numbers, the GO term is
+  sorted alphabetically.
+#+end_src
+#+begin_src go <<Methods, Ch.~\ref{ch:eg}>>=
+  func (g gosymSlice) Less(i, j int) bool {
+	  l1 := len(g[i].s)
+	  l2 := len(g[j].s)
+	  if l1 != l2 {
+		  return l1 < l2
+	  }
+	  return g[i].g < g[j].g
+  }
+#+end_src
+#+begin_src latex
+  We print the sorted GO/sym table in order of descending symbol number.
+#+end_src
+#+begin_src go <<Print sorted Go/sym table, Ch.~\ref{ch:eg}>>=
+  for i := len(gosyms)-1; i >= 0; i-- {
+	  gosym := gosyms[i]
+	  fmt.Printf("%s\t%d\t%s\t%s\t", gosym.g, len(gosym.s),
+		  go2cat[gosym.g], go2descr[gosym.g])
+	  for i, symbol := range gosym.s {
+		  if i > 0 { fmt.Printf(" ") }
+		  fmt.Printf("%s", symbol)
+	  }
+	  fmt.Printf("\n")
   }
 #+end_src
 #+begin_src latex
@@ -303,13 +458,13 @@
   The remaining files contain expected sets of symbols. They are scanned
   in turn using the function \ty{scan}, which takes as arguments the
   observed GO counts, the map from symbol to ID, the map from ID to GO,
-  the map from GO to its description, and the minimum occupancy of a GO
-  term.
+  the map from GO to its description, the map from GO to its category,
+  and the minimum occupancy of a GO term.
 #+end_src
 #+begin_src go <<Parse input files, Ch.~\ref{ch:eg}>>=
   files = files[1:]
   clio.ParseFiles(files, scan, obsGOcounts, sym2id,
-	  id2go, go2descr, *optM)
+	  id2go, go2descr, go2cat, *optM)
 #+end_src
 #+begin_src latex
   Inside \ty{scan}, we retrieve the arguments, prepare the enrichment
@@ -336,14 +491,15 @@
   "io"
 #+end_src
 #+begin_src latex
-  We retrieve the three arguments passed to \ty{scan}.
+  We retrieve the six arguments passed to \ty{scan}.
 #+end_src
 #+begin_src go  <<Retrieve arguments, Ch.~\ref{ch:eg}>>=
   obsGOcounts := args[0].(map[string]int)
   sym2id := args[1].(map[string]string)
   id2go := args[2].(map[string]map[string]bool)
   go2descr := args[3].(map[string]string)
-  minOcc := args[4].(int)
+  go2cat := args[4].(map[string]string)
+  minOcc := args[5].(int)
 #+end_src
 #+begin_src latex
   The enrichment analysis depends on the number of samples we analyze
@@ -406,13 +562,13 @@
 #+begin_src latex
   We can now report the results of our enrichment analysis. We'd like to
   sort the output by $P$-value. So we declare a type that holds one GO
-  term, \ty{GOterm}. It is a structure containing the accession and
-  description, the observed occupancy, the expected occupancy, and the
-  $P$-value.
+  term, \ty{GOterm}. It is a structure containing the accession,
+  description, and category. It also contains the observed occupancy,
+  the expected occupancy, and the $P$-value.
 #+end_src
 #+begin_src go <<Types, Ch.~\ref{ch:eg}>>=
   type GOterm struct {
-	  a, d string
+	  a, d, c string
 	  o, e, p float64
   }
 #+end_src
@@ -428,6 +584,7 @@
 	  gt := new(GOterm)
 	  gt.a = a
 	  gt.d = go2descr[a]
+	  gt.c = go2cat[a]
 	  gt.o = float64(o)
 	  gt.e = float64(expGOcounts[a]) / float64(n)
 	  gt.p = float64(eCounts[a]) / float64(n)
@@ -443,15 +600,31 @@
 #+end_src
 #+begin_src latex
   To make the slice sortable, we implement the methods of the \ty{Sort}
-  interface, \ty{Len}, \ty{Less}, and \ty{Swap}.
+  interface, \ty{Len}, \ty{Less}, and \ty{Swap}. We do \ty{Len} and
+  \ty{Swap} first, as they are standard.
 #+end_src
 #+begin_src go <<Methods, Ch.~\ref{ch:eg}>>=
   func (g GOslice) Len() int { return len(g) }
-  func (g GOslice) Less(i, j int) bool {
-	  return g[i].p < g[j].p
-  }
   func (g GOslice) Swap(i, j int) {
 	  g[i], g[j] = g[j], g[i]
+  }
+#+end_src
+#+begin_src latex
+  The actual sorting is done according to $P$-value. If $P$-values are
+  identical, we sort by descending enrichment ratio. If all else fails,
+  we sort the GO accessions alphabetically.
+#+end_src
+#+begin_src go <<Methods, Ch.~\ref{ch:eg}>>=
+  func (g GOslice) Less(i, j int) bool {
+	  if g[i].p != g[j].p {
+		  return g[i].p < g[j].p
+	  }
+	  er1 := g[i].o / g[i].e
+	  er2 := g[j].o / g[j].e
+	  if er1 != er2 {
+		  return er1 > er2
+	  }
+	  return g[i].a < g[j].a
   }
 #+end_src
 #+begin_src latex
@@ -461,11 +634,11 @@
 #+begin_src go <<Report enrichment analysis, Ch.~\ref{ch:eg}>>=
   sort.Sort(GOslice(GOterms))
   w := tabwriter.NewWriter(os.Stdout, 1, 0, 2, ' ', 0)
-  fmt.Fprintf(w, "#GO\tO\tE\tO/E\tP\tDescription\n")
+  fmt.Fprintf(w, "#GO\tO\tE\tO/E\tP\tCategory\tDescription\n")
   for _, g := range GOterms {
 	  if int(g.o) < minOcc { continue }
-	  fmt.Fprintf(w, "%s\t%.3g\t%.3g\t%.3g\t%.3g\t%s\n",
-		  g.a, g.o, g.e, g.o/g.e, g.p, g.d)
+	  fmt.Fprintf(w, "%s\t%.3g\t%.3g\t%.3g\t%.3g\t%s\t%s\n",
+		  g.a, g.o, g.e, g.o/g.e, g.p, g.c, g.d)
   }
   w.Flush()
 #+end_src
@@ -494,22 +667,26 @@
   }
 #+end_src
 #+begin_src latex
-  We construct one test and run it.
+  We construct the tests and run them.
 #+end_src
 #+begin_src go <<Testing, Ch.~\ref{ch:eg}>>=
-  //<<Construct test, Ch.~\ref{ch:eg}>>
-  //<<Run test, Ch.~\ref{ch:eg}>>
+  var tests []*exec.Cmd
+  //<<Construct tests, Ch.~\ref{ch:eg}>>
+  for i, test := range tests {
+	  //<<Run test, Ch.~\ref{ch:eg}>>
+  }
 #+end_src
 #+begin_src latex
-  We run \ty{ego} on a list of symbols obtained by shuffling \ty{i1.txt}
-  and annotating the intervals.
+  To begin with, we run \ty{ego} on a list of symbols obtained by
+  shuffling \ty{i1.txt} and annotating the intervals.
 #+end_src
-#+begin_src go <<Construct test, Ch.~\ref{ch:eg}>>=
+#+begin_src go <<Construct tests, Ch.~\ref{ch:eg}>>=
   in := "../data/Homo_sapiens.gene_info"
   ge := "../data/gene2go"
   ob := "../data/obsSym.txt"
   ra := "../data/ranSym.txt"
   test := exec.Command("./ego", "-i", in, "-g", ge, ob, ra)
+  tests = append(tests, test)
 #+end_src
 #+begin_src latex
   We import \ty{exec}.
@@ -518,73 +695,35 @@
   "os/exec"
 #+end_src
 #+begin_src latex
+  As a second test, we print the GO/sym table.
+#+end_src
+#+begin_src go <<Construct tests, Ch.~\ref{ch:eg}>>=
+  test = exec.Command("./ego", "-i", in, "-g", ge, "-p", ob)
+  tests = append(tests, test)
+#+end_src
+#+begin_src latex
   We run the test and compare what we get with what we want, which is
-  contained in \ty{r.txt}.
+  contained in \ty{r1.txt} and \ty{r2.txt}.
 #+end_src
 #+begin_src go <<Run test, Ch.~\ref{ch:eg}>>=
   get, err := test.Output()
   if err != nil {
 	  t.Errorf("can't run %q", test)
   }
-  f := "r.txt"
+  f := "r" + strconv.Itoa(i+1) + ".txt"
   want, err := ioutil.ReadFile(f)
   if err != nil {
 	  t.Errorf("can't open %q", f)
   }
-  //<<Compare results, Ch.~\ref{ch:eg}>>
+  if !bytes.Equal(get, want) {
+	  t.Errorf("get:\n%s\nwant:\n%s\n", get, want)
+  }
 #+end_src
 #+begin_src latex
-  We import \ty{ioutil}.
+  We import \ty{strconv}, \ty{ioutil}, and \ty{bytes}.
 #+end_src
 #+begin_src go <<Testing imports, Ch.~\ref{ch:eg}>>=
+  "strconv"
   "io/ioutil"
-#+end_src
-#+begin_src latex
-  I've had some trouble comparing the result I get with the one I want,
-  so this comparison is more detailed than usual. First, we convert the
-  results to sorted strings, then count the strings to make sure the
-  sets are of equal size, and finally compare each line individually.
-#+end_src
-#+begin_src go <<Compare results, Ch.~\ref{ch:eg}>>=
-  //<<Convert results to sorted strings, Ch.~\ref{ch:eg}>>
-  //<<Count results strings, Ch.~\ref{ch:eg}>>
-  //<<Compare result lines, Ch.~\ref{ch:eg}>>
-#+end_src
-#+begin_src latex
-  We split the byte array we get into strings, remove the header, and
-  sort the rest. We also convert the byte array we want to strings.
-#+end_src
-#+begin_src go <<Convert results to sorted strings, Ch.~\ref{ch:eg}>>=
-  gs := strings.Split(string(get), "\n")
-  sort.Strings(gs)
-  gs = gs[2:]
-  want = want[0:len(want)-1]
-  ws := strings.Split(string(want), "\n")
-#+end_src
-#+begin_src latex
-  We import \ty{strings} and \ty{sort}.
-#+end_src
-#+begin_src go <<Testing imports, Ch.~\ref{ch:eg}>>=
-  "strings"
-  "sort"
-#+end_src
-#+begin_src latex
-  We make sure we get as many lines as we want.
-#+end_src
-#+begin_src go <<Count results strings, Ch.~\ref{ch:eg}>>=
-  nw := len(ws)
-  ng := len(gs)
-  if nw != ng {
-	  t.Errorf("get %d lines, want %d\n", ng, nw)
-  }
-#+end_src
-#+begin_src latex
-  We compare each line individually.
-#+end_src
-#+begin_src go <<Compare result lines, Ch.~\ref{ch:eg}>>=
-  for i, w := range ws {
-	  if w != gs[i] {
-		  t.Errorf("get:\n%s\nwant:\n%s\n", gs[i], w)
-	  }
-  }
+  "bytes"
 #+end_src
