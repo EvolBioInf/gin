@@ -48,7 +48,7 @@
 	\begin{tabular}{cclll}
 	\hline
 	GO & Count & Category & Description & Sym\\\hline
-	\input{egoTab3}
+	\input{egoTab3}\\
 	\hline
 	\end{tabular}
       }

@@ -9,4 +9,4 @@ ginDoc.pdf: $(src)
 	dvips ginDoc -o -q
 	ps2pdf ginDoc.ps
 clean:
-	rm -f $(src) *.pdf *.aux *.bbl *.blg *.dvi *.log
+	rm -f $(src) *.pdf *.aux *.bbl *.blg *.dvi *.log *.toc
