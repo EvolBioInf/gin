@@ -7,6 +7,6 @@ ginDoc.pdf: $(src)
 	latex ginDoc
 	latex ginDoc
 	dvips ginDoc -o -q
-	ps2pdf ginDoc.ps
+	ps2pdf -dALLOWPSTRANSPARENCY ginDoc.ps
 clean:
 	rm -f $(src) *.pdf *.aux *.bbl *.blg *.dvi *.log *.toc
