@@ -10,7 +10,7 @@
   \end{verbatim}
 
   Table~\ref{tab:an}A gives example gene data, Table~\ref{tab:an}B is a
-  n single interval, and Table~\ref{tab:an}C shows the result when
+  single interval, and Table~\ref{tab:an}C shows the result when
   intersecting the interval with the genes. Multiple sets of intervals
   are separated by single blanks.
 
@@ -19,9 +19,11 @@
       and the result of intersecting the genes with the interval,
       \textbf{C}.}\label{tab:an}
     \begin{center}
-      \begin{tabular}{cc}
-	\textbf{A} & \textbf{B}\\
-	\input{anTab1} & \input{anTab2}\\
+      \begin{tabular}{c}
+	\textbf{A}\\
+	\input{anTab1}\\\\
+	\textbf{B}\\
+	 \input{anTab2}\\\\
 	\textbf{C}\\
 	\input{anTab3}
       \end{tabular}
@@ -60,7 +62,7 @@
   explanation of the purpose of \ty{annotate}, and an example command.
 #+end_src
 #+begin_src go <<Set usage, Ch.~\ref{ch:an}>>=
-  u := "annotate [-h] [option].. refGene.txt [intervals.txt]..."
+  u := "annotate [-h] [option]... refGene.txt [intervals.txt]..."
   p := "Annotate genome intervals with intersecting genes."
   e := "annotate hsRefGene.txt inv.txt"
   clio.Usage(u, p, e)
