@@ -37,7 +37,7 @@
   ftp://ftp.ncbi.nih.gov/gene/DATA/gene2go.gz
   \end{verbatim}
 
-  As an auxiliary functionality \ty{ego} can also classify the input
+  As an auxiliary functionality, \ty{ego} can also classify the input
   symbols into their GO categories and print what I call a GO/sym table,
   for example Table~\ref{tab:eg2}
 
