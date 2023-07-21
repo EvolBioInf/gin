@@ -8,6 +8,7 @@ doc/ginDoc.*
 doc/annotate.tex
 doc/shuffle.tex
 doc/ego.tex
+doc/intro.tex
 doc/*.aux
 doc/*.bbl
 doc/*.blg
@@ -16,3 +17,8 @@ doc/*.log
 doc/*.pdf
 doc/*.toc
 doc/ginDoc.ps
+intro/iv.txt
+intro/ncbi_dataset*
+intro/README.md
+intro/obsId.txt
+intro/cli.sh
