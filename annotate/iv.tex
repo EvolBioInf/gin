@@ -1,0 +1,26 @@
+\begin{pspicture}(0,-1)(10,2.5)
+  \cnode*(0,0){2pt}{n1}
+  \cnode*(3,0){2pt}{n2}
+  \ncline{->}{n1}{n2}\naput{$g_2$}
+  \cnode*(0,1){2pt}{n3}
+  \cnode*(1,1){2pt}{n4}
+  \ncline{<-}{n3}{n4}\naput{$g_1$}
+  \cnode*(3,1){2pt}{n5}
+  \cnode*(4,1){2pt}{n6}
+  \ncline{->}{n5}{n6}\naput{$g_3$}
+  \cnode*(5,1){2pt}{n7}
+  \cnode*(6,1){2pt}{n8}
+  \ncline{->}{n7}{n8}\naput{$g_4$}
+  \cnode*(7,1){2pt}{n9}
+  \cnode*(8,1){2pt}{n10}
+  \ncline{->}{n9}{n10}\naput{$g_5$}
+  \cnode*(9,1){2pt}{n11}
+  \cnode*(10,1){2pt}{n12}
+  \ncline{->}{n11}{n12}\naput{$g_6$}
+  \cnode*(2,2){2pt}{n13}
+  \cnode*(7,2){2pt}{n14}
+  \ncline{n13}{n14}\naput{focus interval}
+  \rput(2,2.3){$s$}
+  \rput(7,2.3){$e$}
+  \psaxes[Ox=1](0,-1)(10,-1)
+\end{pspicture}

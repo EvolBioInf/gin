@@ -1,0 +1,145 @@
+#+begin_src latex
+  !The package \ty{util} collects utility functions for the package \ty{gin}.
+  Its outline
+  provides hooks for imports, variables, and functions.
+  \bpa{util}{pa:util}
+#+end_src
+#+begin_src go <<util.go>>=
+  package util
+
+  import (
+	  //<<Imports, Pa. \ref{pa:util}>>
+  )
+  //<<Variables, Pa. \ref{pa:util}>>
+  //<<Functions, Pa. \ref{pa:util}>>
+#+end_src
+#+begin_src latex
+  \epa
+  \section{\ty{Version}}
+  !\ty{Version} prints program information and exits.
+#+end_src
+#+begin_src go <<Functions, Pa. \ref{pa:util}>>=
+  func Version() {
+	  author := "Bernhard Haubold"
+	  email := "haubold@evolbio.mpg.de"
+	  license := "Gnu General Public License, " +
+		  "https://www.gnu.org/licenses/gpl.html"
+	  clio.PrintInfo(name, version, date,
+		  author, email, license)
+	  os.Exit(0)
+  }
+#+end_src
+#+begin_src latex
+  We declare the variables \ty{version} and \ty{date}, which ought to be
+  injected at compile time.
+#+end_src
+#+begin_src go <<Variables, Pa. \ref{pa:util}>>=
+  var version, date string
+#+end_src
+#+begin_src latex 
+  We import \ty{clio} and \ty{os}.
+#+end_src
+#+begin_src go <<Imports, Pa. \ref{pa:util}>>=
+  "github.com/evolbioinf/clio"
+  "os"
+#+end_src
+#+begin_src latex
+  \section{\ty{Open}}
+  !\ty{Open} opens a file with error checking.
+#+end_src
+#+begin_src go <<Functions, Pa. \ref{pa:util}>>=
+  func Open(file string) *os.File {
+	  f, err := os.Open(file)
+	  if err != nil {
+		  fmt.Fprintf(os.Stderr, "couldn't open %s\n", file)
+		  os.Exit(1)
+	  }
+	  return f
+  }
+#+end_src
+#+begin_src latex
+  We import \ty{fmt} and \ty{os}.
+#+end_src
+#+begin_src go <<Imports, Pa. \ref{pa:util}>>=
+  "fmt"
+  "os"
+#+end_src
+#+begin_export latex
+\section{\ty{Name}}
+!\ty{Name} sets the program name. It also customizes the error
+!messages generated via the \ty{log} package by prefixing them with
+!the program name.
+#+end_export
+#+begin_src go <<Functions, Pa. \ref{pa:util}>>=
+  func Name(n string) {
+	  name = n
+	  m := fmt.Sprintf("%s: ", name)
+	  log.SetPrefix(m)
+	  log.SetFlags(0)
+  }
+#+end_src
+#+begin_export latex
+We declare the global variable \ty{name}.
+#+end_export
+#+begin_src go <<Variables, Pa. \ref{pa:util}>>=
+  var name string
+#+end_src
+#+begin_export latex
+We import \ty{log}.
+#+end_export
+#+begin_src go <<Imports, Pa. \ref{pa:util}>>=
+  "log"
+#+end_src
+#+begin_export latex
+\section{\ty{Check}}
+!\ty{Check} checks an error and exits with message if the error isn't
+!\ty{nil}.
+#+end_export
+#+begin_src go <<Functions, Pa. \ref{pa:util}>>=
+  func Check(e error) {
+	  if e != nil {
+		  log.Fatal(e)
+	  }
+  }
+#+end_src
+#+begin_src latex
+  We are done with the \ty{util} package, time to test it.
+  \section{Testing}
+  Our testing code for \ty{util} contains hooks for imports and the
+  logic of the testing function.
+#+end_src
+#+begin_src go <<util_test.go>>=
+  package util
+
+  import (
+	  "testing"
+	  //<<Testing imports, Pa. \ref{pa:util}>>
+  )
+
+  func TestUtil(t *testing.T) {
+	  //<<Testing, Pa. \ref{pa:util}>>
+  }
+#+end_src
+#+begin_src latex
+  There is only one function we can sensibly test, \ty{Open}. So we open
+  a test file and read the string ``success'' from it.
+#+end_src
+#+begin_src go <<Testing, Pa. \ref{pa:util}>>=
+  f := Open("r.txt")
+  defer f.Close()
+  sc := bufio.NewScanner(f)
+  if !sc.Scan() {
+	  t.Error("scan failed")
+  }
+  get := sc.Text()
+  want := "success"
+  if get != want {
+	  t.Errorf("get:\n%s\nwant:\n%s\n", get, want)
+  }
+#+end_src
+#+begin_src latex
+  We import \ty{bufio}.
+#+end_src
+#+begin_src go <<Testing imports, Pa. \ref{pa:util}>>=
+  "bufio"
+#+end_src

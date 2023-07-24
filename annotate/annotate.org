@@ -1,34 +1,46 @@
 #+begin_src latex
   \section*{Introduction}
-  The program \ty{annotate} reads a list of genome intervals and a file
-  of reference genes, and returns the genes that intersect the
-  intervals. The genes files are distributed via the UCSC genome
-  browser, for example \ty{hsRefGene.txt} available from
-  \begin{verbatim}
-  http://hgdownload.soe.ucsc.edu/goldenPath/hg38/\
-  database/refGene.txt.gz
-  \end{verbatim}
+  The program \ty{annotate} reads a list of genome intervals and an
+  annotation file in GFF format. The GFF format consists of the
+  following nine columns:
+  \begin{enumerate}
+  \item Chromosome, e. g. NC\_000007.14
+  \item Source, e. g. BestRefSeq
+  \item Type, e. g. gene
+  \item Start, e. g. 27092993
+  \item End, e. g. 27096000
+  \item Score, no example available
+  \item Strand, $+$ or $-$
+  \item Phase, no example available
+  \item Attributes, e. g. ID=gene-HOXA1;Dbxref=GeneID:3198,...;Name=HOXA1;...
+  \end{enumerate}
+  Comment lines are marked by a hash in the first position.
 
-  Table~\ref{tab:an}A gives example gene data, Table~\ref{tab:an}B is a
-  single interval, and Table~\ref{tab:an}C shows the result when
-  intersecting the interval with the genes. Multiple sets of intervals
-  are separated by single blanks.
+  Given the interval file and the GFF file, \ty{annotate} returns the
+  genes that intersect the intervals in a table consisting of four
+  columns, chromosome, start, end, and comma-separated gene IDs. Instead
+  of gene IDs, \ty{annotate} can also return the gene names, also known
+  as ``symbols''. 
 
-  \begin{table}
-    \caption{Gene coordinates (\textbf{A}), an interval (\textbf{B}),
-      and the result of intersecting the genes with the interval,
-      \textbf{C}.}\label{tab:an}
+  Consider the six genes, $g_1,...,g_6$ in Figure~\ref{fig:iv}. The
+  interval $[s,e]$ intersects four of them, $g_5$, $g_4$, $g_3$, and
+  $g_2$. However, instead of intersecting whole genes, we can instead
+  intersect their promoters. Depending on the promoter length, $g_6$
+  might now also intersect the interval, and so might $g_1$, as it is on
+  the reverse strand. By default \ty{annotate} intersects
+  promoters. These are assumed to have the same length for all genes,
+  which can be set by the user.
+
+  \begin{figure}[ht]
     \begin{center}
-      \begin{tabular}{c}
-	\textbf{A}\\
-	\input{anTab1}\\\\
-	\textbf{B}\\
-	 \input{anTab2}\\\\
-	\textbf{C}\\
-	\input{anTab3}
-      \end{tabular}
+      \input{../annotate/iv}
     \end{center}
-  \end{table}
+    \caption{Cartoon of a focus interval, $[s,e]$, and six genes,
+      $g_1,...,g_6$; the program \ty{annotate} finds the genes, or their
+      promoters, that intersect one or more focus
+      intervals.}\label{fig:iv}
+  \end{figure}
+
 
   \section*{Implementation}
   The outline of \ty{annotate} has hooks for types, methods, functions,
@@ -48,23 +60,30 @@
   }	
 #+end_src
 #+begin_src latex
-  In the main function we set the usage, declare the options, parse the
-  options, and parse the input files.
+  In the main function we set the program name, its usage, declare the
+  options, parse the options, and parse the input files.
 #+end_src
 #+begin_src go <<Main function, Ch.~\ref{ch:an}>>=
+  util.Name("annotate")
   //<<Set usage, Ch.~\ref{ch:an}>>
   //<<Declare options, Ch.~\ref{ch:an}>>
   //<<Parse options, Ch.~\ref{ch:an}>>
   //<<Parse input files, Ch.~\ref{ch:an}>>
+#+end_src
+#+begin_export latex
+We import \ty{util}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
+  "github.com/evolbioinf/gin/util"
 #+end_src
 #+begin_src latex
   The usage consists of three parts, the actual usage message, an
   explanation of the purpose of \ty{annotate}, and an example command.
 #+end_src
 #+begin_src go <<Set usage, Ch.~\ref{ch:an}>>=
-  u := "annotate [-h] [option]... refGene.txt [intervals.txt]..."
+  u := "annotate [-h] [option]... foo.gff [intervals.txt]..."
   p := "Annotate genome intervals with intersecting genes."
-  e := "annotate hsRefGene.txt inv.txt"
+  e := "annotate genomic.gff iv.txt"
   clio.Usage(u, p, e)
 #+end_src
 #+begin_src latex
@@ -78,9 +97,7 @@
   the full transcript instead of the promoter, \ty{-t}. The user can
   also set the promoter length, \ty{-l}, get gene symbols instead of
   accessions, \ty{-s}, and print the accessions or symbols in a single
-  column, \ty{-c}. There is also fast gene lookup, which relies on genes
-  not being proper subintervals of each other. This is not strictly
-  true, but most of the time.
+  column, \ty{-c}.
 #+end_src
 #+begin_src go <<Declare options, Ch.~\ref{ch:an}>>=
   var optV = flag.Bool("v", false, "print program version " +
@@ -90,9 +107,8 @@
   var optL = flag.Int("l", 2000, "promoter length")
   var optS = flag.Bool("s", false, "gene symbols instead of " +
 	  "accessions")
-  var optC = flag.Bool("c", false, "print accessions or symbols " +
-	  "in a single column")
-  var optF = flag.Bool("f", false, "fast gene lookup")
+  var optC = flag.Bool("c", false, "print accessions " +
+	  "or symbols in a single column")
 #+end_src
 #+begin_src latex
   We import \ty{flag}.
@@ -101,20 +117,14 @@
   "flag"
 #+end_src
 #+begin_src latex
-  We parse the options, and respond to \ty{-v}, as this stops the
-  program. 
+  We parse the options, and begin by checking whether the user requested
+  the version, as this stops the program.
 #+end_src
 #+begin_src go <<Parse options, Ch.~\ref{ch:an}>>=
   flag.Parse()
   if *optV {
-	  util.PrintInfo("annotate")
+	  util.Version()
   }
-#+end_src
-#+begin_src latex
-  We import \ty{util}.
-#+end_src
-#+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
-  "github.com/evolbioinf/biobox/util"
 #+end_src
 #+begin_src latex
   The remaining tokens on the command line are taken as file names. The
@@ -126,17 +136,16 @@
   The interval files are parsed by the function \ty{scan}, which takes
   the variable holding the genes as an argument. The intersecting
   intervals are written to a table using a buffered writer. So we
-  construct one and also pass it as the an argument of \ty{scan}. The
-  table has a header, which we construct and pass as argument. The
-  format of the table we print is determined by \ty{-c}, so we pass that
-  as well. During the scan can may use the fast method for gene lookup
-  (\ty{-f}), our last option.
+  construct a buffered writer and also pass it as an argument of
+  \ty{scan}. The table has a header, which we construct and pass as
+  argument. The format of the table we print is determined by \ty{-c},
+  so we pass that as well.
 #+end_src
 #+begin_src go <<Parse input files, Ch.~\ref{ch:an}>>=
   files := flag.Args()
   genes := make(map[string][]*interval, 0)
   if len(files) < 1 {
-	  m := "please supply a file with reference genes"
+	  m := "please supply a GFF file"
 	  log.Fatal(m)
   } else {
 	  //<<Read genes, Ch.~\ref{ch:an}>>
@@ -144,63 +153,64 @@
   files = files[1:]
   w := bufio.NewWriter(os.Stdout)
   //<<Construct header, Ch.~\ref{ch:an}>>
-  clio.ParseFiles(files, scan, genes, w, header, *optC, *optF)
+  clio.ParseFiles(files, scan, genes, w, header, *optC)
 #+end_src
 #+begin_src latex
-  We import \ty{log} and \ty{bufio}.
+  We import \ty{log}, \ty{bufio}, and \ty{os}.
 #+end_src
 #+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
   "log"
   "bufio"
+  "os"
 #+end_src
 #+begin_src latex
-  Before we read the intervals, we declare an interval.
+  Before we read the intervals, we declare an interval as consisting of
+  a start, an end, and an identifier.
 #+end_src
 #+begin_src go <<Types, Ch.~\ref{ch:an}>>=
   type interval struct {
 	  start, end int
-	  acc string
+	  id string
   }
 #+end_src
 #+begin_src latex
-  We open the reference gene file and scan its rows, each of which
-  contains a gene that we store. Then we sort the stored genes.
+  We open the annotation file and iterate over its lines. We skip
+  any annotation lines starting with a hash and store the genes. Then we
+  sort the genes.
 #+end_src
 #+begin_src go <<Read genes, Ch.~\ref{ch:an}>>=
-  f, err := os.Open(files[0])
-  if err != nil {
-	  log.Fatalf("can't open %s", files[0])
-  }
-  defer f.Close()
+  f := util.Open(files[0])
   sc := bufio.NewScanner(f)
   for sc.Scan() {
+	  t := sc.Text()
+	  if t[0] == '#' { continue }
 	  //<<Store gene, Ch.~\ref{ch:an}>>
   }
+  f.Close()
   //<<Sort genes, Ch.~\ref{ch:an}>>
 #+end_src
 #+begin_src latex
-  We import \ty{os} and \ty{bufio}.
+  We import \ty{util} and \ty{bufio}.
 #+end_src
 #+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
-  "os"
+  "github.com/evolbioinf/gin/util"
   "bufio"
 #+end_src
 #+begin_src latex
-  The genes are specified in columns 2 through 6 of the reference gene
-  file. These contain the accession, the chromosome, the strand, the
-  transcription start site, and the transcription end site. From these
-  data we determine the gene interval before we store the gene. If this
-  is the first gene on the chromosome, we allocate the slice of genes.
+  As described in the Introduction, the genes are specified in the
+  annotation file, where column 3 states the annotation type. We're only
+  interested in genes. From the gene annotations we determine the gene
+  interval before add the gene to the appropriate slice.
 #+end_src
 #+begin_src go <<Store gene, Ch.~\ref{ch:an}>>=
-  gene := new(interval)
   fields := strings.Fields(sc.Text())
-  //<<Extract gene information, Ch.~\ref{ch:an}>>
-  //<<Determine interval, Ch.~\ref{ch:an}>>
-  if genes[chr] == nil {
-	  genes[chr] = make([]*interval, 0)
+  if fields[2] == "gene" {
+	  gene := new(interval)
+	  chr := fields[0]
+	  //<<Extract gene information, Ch.~\ref{ch:an}>>
+	  //<<Determine gene interval, Ch.~\ref{ch:an}>>
+	  //<<Add gene to slice, Chr.~\ref{ch:an}>>
   }
-  genes[chr] = append(genes[chr], gene)
 #+end_src
 #+begin_src latex
   We import \ty{strings}.
@@ -209,88 +219,155 @@
   "strings"
 #+end_src
 #+begin_src latex
-  A row in the output table either ends in symbols or in accessions. We
-  construct the header accordingly.
-#+end_src
-#+begin_src go <<Construct header, Ch.~\ref{ch:an}>>=
-  header := "#Chr\tStart\tEnd\t"
-  if *optS {
-	  header += "Sym...\n"
-  } else {
-	  header += "Acc...\n"
-  }
-#+end_src
-#+begin_src latex
-  We extract the gene information. The accession is either the actual
-  accession or the gene symbol, the transcription start and end is
-  converted from string to integer.
+  We extract the gene information. The transcription start and end are
+  converted from columns 4 and 5, the strand from column 6. Column 9
+  yields the attributes. We extract the gene ID from the attributes and
+  set it.
 #+end_src
 #+begin_src go <<Extract gene information, Ch.~\ref{ch:an}>>=
-  gene.acc = fields[1]
+  tss, err := strconv.Atoi(fields[3])
+  if err != nil { log.Fatal(err.Error()) }
+  tes, err := strconv.Atoi(fields[4])
+  if err != nil { log.Fatal(err.Error()) }
+  str := fields[6]
+  attributes := strings.Split(fields[8], ";")
+  //<<Set gene ID, Ch.~\ref{ch:an}>>
+#+end_src
+#+begin_export latex
+We import \ty{strconv}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
+  "strconv"
+#+end_src
+#+begin_export latex
+The gene ID we store is either the actual gene ID or the gene name,
+which is often also called the gene ``symbol''. So we get the gene ID
+and the gene name before we set the ID.
+#+end_export
+#+begin_src go <<Set gene ID, Ch.~\ref{ch:an}>>=
+  var gid, name string
+  //<<Get gene ID and name, Ch.~\ref{ch:an}>>
+  gene.id = gid
   if *optS {
-	  gene.acc = fields[12]
+	  gene.id = name
   }
-  chr := fields[2]
-  str := fields[3]
-  tss, err := strconv.Atoi(fields[4])
-  if err != nil { log.Fatal(err.Error()) }
-  tes, err := strconv.Atoi(fields[5])
-  if err != nil { log.Fatal(err.Error()) }
+#+end_src
+#+begin_export latex
+We iterate over the attributes and search for the keys ``Name'' and
+``Dbxref''. The value of ``Name'' is just that. The value of
+``Dbxref'' is a set of comma-separated IDs among which we search for
+the gene ID.
+#+end_export
+#+begin_src go <<Get gene ID and name, Ch.~\ref{ch:an}>>=
+  for _, attribute := range attributes {
+	  arr := strings.Split(attribute, "=")
+	  if arr[0] == "Name" {
+		  name = arr[1]
+	  }
+	  if arr[0] == "Dbxref" {
+		  ids := strings.Split(arr[1], ",")
+		  //<<Search for gene ID, Ch.~\ref{ch:an}>>
+	  }
+  }
+#+end_src
+#+begin_export latex
+A gene ID has the format k:v, so we split the IDs at the first colon
+and look for GeneID. If we find it, we store it and break. If we don't
+find it, something is wrong and we bail with message.
+#+end_export
+#+begin_src go <<Search for gene ID, Ch.~\ref{ch:an}>>=
+  for _, id := range ids {
+	  arr := strings.Split(id, ":")
+	  if arr[0] == "GeneID" {
+		  gid = arr[1]
+		  break
+	  }
+  }
+  if gid == "" {
+	  log.Fatal("couldn't find GeneID")
+  }
 #+end_src
 #+begin_src latex
-  The interval is either the promoter or the transcript.
+  The gene interval is either the promoter or the transcript.
 #+end_src
-#+begin_src go <<Determine interval, Ch.~\ref{ch:an}>>=
+#+begin_src go <<Determine gene interval, Ch.~\ref{ch:an}>>=
   if *optT {
-	  //<<Get interval from transcript, Ch.~\ref{ch:an}>>
+	  //<<Get gene interval from transcript, Ch.~\ref{ch:an}>>
   } else {
-	  //<<Get interval from promoter, Ch.~\ref{ch:an}>>
+	  //<<Get gene interval from promoter, Ch.~\ref{ch:an}>>
   }
+#+end_src
+#+begin_src latex
+  If the transcript is the relevant gene interval, we read the start and
+  end from the TSS and the TES.
+#+end_src
+#+begin_src go <<Get gene interval from transcript, Ch.~\ref{ch:an}>>=
+  gene.start = tss
+  gene.end = tes
 #+end_src
 #+begin_src latex
   If the gene is located on the plus strand, the promoter is upstream of
   the TSS, otherwise, it is downstream of the TES.
 #+end_src
-#+begin_src go <<Get interval from promoter, Ch.~\ref{ch:an}>>=
-  if strings.Index(str, "+") != -1 {
-	  gene.end = tss
+#+begin_src go <<Get gene interval from promoter, Ch.~\ref{ch:an}>>=
+  if str == "+" {
 	  gene.start = tss - *optL + 1
+	  gene.end = tss
   } else {
 	  gene.start = tes
 	  gene.end = tes + *optL - 1
   }
 #+end_src
 #+begin_src latex
-  If the transcript is the relevant interval, we read the start and end
-  from the TSS and the TES.
-#+end_src
-#+begin_src go <<Get interval from transcript, Ch.~\ref{ch:an}>>=
-  gene.start = tss
-  gene.end = tes
-#+end_src
-#+begin_src latex
-  To sort the genes we just read, we declare the type \ty{ivSlice} that
-  wrap an interval slice.
+  To sort the gene intervals we just read, we declare the type \ty{ivSlice} that
+  wraps an interval slice.
 #+end_src
 #+begin_src go <<Types, Ch.~\ref{ch:an}>>=
   type ivSlice []*interval
 #+end_src
 #+begin_src latex
   We implement the methods of the \ty{sort} interface, \ty{Len},
-  \ty{Less}, and \ty{Swap} on \ty{ivSlice}.
+  \ty{Less}, and \ty{Swap} on \ty{ivSlice}. The method \ty{Less}
+  determines the sorting order. The desired sorting order depends on our
+  method for picking intersecting genes. Focus on the interval $[s,e]$
+  and the genes $g_1,...,g_6$ in Figure~\ref{fig:iv}. Moving from left
+  to right, we search for the
+  first gene that intersects the interval, $g_2$. Then we walk to the right until we find
+  the first gene that starts to the right of $e$, $g_6$. This requires that
+  we sort the genes with two keys. The primary key is the start
+  position, by which we sort them in ascending order. The secondary key
+  is the end position, by which we also sort them in ascending order, as
+  shown for $g_5$ and $g_6$, which start at the same position.
 #+end_src
 #+begin_src go <<Methods, Ch.~\ref{ch:an}>>=
   func (s ivSlice) Len() int { return len(s) }
   func (s ivSlice) Less(i, j int) bool {
+	  if s[i].start == s[j].start {
+		  return s[i].end < s[j].end
+	  }
 	  return s[i].start < s[j].start
   }
   func (s ivSlice) Swap(i, j int) {
 	  s[i], s[j] = s[j], s[i]
   }
 #+end_src
+#+begin_export latex
+If our ``gene'' is at least one nucleotide long, we add it to the
+appropriate slice of genes for its chromosome. If the gene is the
+first on its chromosome, we allocate the slice before storing the
+gene in it.
+#+end_export
+#+begin_src go <<Add gene to slice, Chr.~\ref{ch:an}>>=
+  if gene.end - gene.start >= 0 {
+	  if genes[chr] == nil {
+		  genes[chr] = make([]*interval, 0)
+	  }
+	  genes[chr] = append(genes[chr], gene)
+  }
+#+end_src
 #+begin_src latex
   Now we can sort the genes per chromosome by casting them to
-  \ty{ivSlice} and sorting.
+  \ty{ivSlice}.
 #+end_src
 #+begin_src go <<Sort genes, Ch.~\ref{ch:an}>>=
   for _, v := range genes {
@@ -303,6 +380,18 @@
 #+end_src
 #+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
   "sort"
+#+end_src
+#+begin_src latex
+  A row in the output table either ends in symbols or in IDs. We
+  construct the header accordingly.
+#+end_src
+#+begin_src go <<Construct header, Ch.~\ref{ch:an}>>=
+  header := "#Chr\tStart\tEnd\t"
+  if *optS {
+	  header += "Sym...\n"
+  } else {
+	  header += "ID...\n"
+  }
 #+end_src
 #+begin_src latex
   Inside scan, we retrieve the arguments just passed, print a header for
@@ -335,7 +424,6 @@
   w := args[1].(*bufio.Writer)
   header := args[2].(string)
   col := args[3].(bool)
-  fast := args[4].(bool)
 #+end_src
 #+begin_src latex
   While scanning intervals, a new set of intervals might start, marked
@@ -368,32 +456,22 @@
   if err != nil { log.Fatal(err.Error()) }
 #+end_src
 #+begin_src latex
-  We import \ty{strconv}.
-#+end_src
-#+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
-  "strconv"
-#+end_src
-#+begin_src latex
-  We reset the gene map, iterate over the genes that might intersect
-  our interval, and collect their accessions. If any accessions were
-  collected, we print the now annotated interval.
+  We reset the gene map, iterate over the genes that might intersect our
+  interval, and collect their IDs. If any IDs were collected, we print
+  the now annotated interval.
 #+end_src
 #+begin_src go <<Intersect interval with genes, Ch.~\ref{ch:an}>>=
   g := genes[chr]
   n := len(g)
-  acc := ""
+  gid := ""
   //<<Reset gene map, Ch.~\ref{ch:an}>>
   //<<Collect accessions, Ch.~\ref{ch:an}>>
-  if acc != "" {
+  if gid != "" {
 	  //<<Print annotated interval, Ch.~\ref{ch:an}>>
   }
 #+end_src
 #+begin_src latex
-  We reset the gene map before we iterate across the intersecting genes
-  and collect their unique accessions.
-#+end_src
-#+begin_src latex
-  We reset the gene map by deleting all its entries.
+  We reset the gene map by deleting its entries.
 #+end_src
 #+begin_src go <<Reset gene map, Ch.~\ref{ch:an}>>=
   for k, _ := range gm {
@@ -401,67 +479,41 @@
   }
 #+end_src
 #+begin_src latex
-  We either use the faster method for looking up the intersecting genes
-  or the slower, more accurate one. Both start from the first position
-  beyond the last intersecting gene, from where we move to the
-  left. Accessions are separated by commas, except for the first one,
-  which is separated by a tab. So we count the intersecting genes to
-  distinguish between the first and all subsequent ones.
+  To look up the intersecting genes, we start from the leftmost gene
+  that intersects the focus interval, $g_2$ in Figure~\ref{fig:iv}. From
+  there we walk to the right.
+
 #+end_src
 #+begin_src go <<Collect accessions, Ch.~\ref{ch:an}>>=
   i := sort.Search(n, func(i int) bool {
-	  return g[i].start >= e
+	  return g[i].end >= s
   })
-  i--
-  gc := 0
-  //<<Fast search, Ch.~\ref{ch:an}>>
-  if ! fast {
-	  //<<Slow search, Ch.~\ref{ch:an}>>
-  }
+  //<<Walk right in gene array, Ch.~\ref{ch:an}>>
 #+end_src
 #+begin_src latex
-  In the fast search, we walk to the left until we reach the first gene
-  whose end is to the left of the intersection start.
+  We walk to the right along the gene array until we reach the first
+  gene whose start is to the right of the interval end, $g_6$ in
+  Figure~\ref{fig:iv}.
 #+end_src
-#+begin_src go <<Fast search, Ch.~\ref{ch:an}>>=
-  for i >= 0 && g[i].end >= s {
-	  gc++
-	  if !gm[g[i].acc] {
-		  //<<Add accession, Ch.~\ref{ch:an}>>
+#+begin_src go <<Walk right in gene array, Ch.~\ref{ch:an}>>=
+  for i < len(g) && g[i].start <= e {
+	  if !gm[g[i].id] {
+		  //<<Add ID, Ch.~\ref{ch:an}>>
 	  }
-	  i--
+	  i++
   }
 #+end_src
 #+begin_src latex
-  We end the fast search on a non-overlapping gene. But there is no
-  guarantee that there aren't more overlapping genes somewhere to the
-  left of that. So the slow search continues the search to the first
-  gene in the list. This is bound to be excessive, but guaranteed to be
-  correct.
+  We add the gene ID to the gene map and to the ID string. The first
+  entry in the string is separated by a tab, all subsequent ones by a
+  comma.
 #+end_src
-#+begin_src go <<Slow search, Ch.~\ref{ch:an}>>=
-  i--
-  for i >= 0 {
-	  if g[i].start <= e && g[i].end >= s {
-		  gc++
-		  if !gm[g[i].acc] {
-			  //<<Add accession, Ch.~\ref{ch:an}>>
-		  }
-	  }
-	  i--
-  }
-#+end_src
-#+begin_src latex
-  We add the accession to the gene map and to the accession string. The
-  first entry in the string is separated by a tab, all subsequent ones
-  by a comma.
-#+end_src
-#+begin_src go <<Add accession, Ch.~\ref{ch:an}>>=
-  gm[g[i].acc] = true
-  if gc > 1 {
-	  acc += ("," + g[i].acc)
+#+begin_src go <<Add ID, Ch.~\ref{ch:an}>>=
+  gm[g[i].id] = true
+  if gid == "" {
+	  gid += ("\t" + g[i].id)
   } else {
-	  acc += ("\t" + g[i].acc)
+	  gid += ("," + g[i].id)
   }
 #+end_src
 #+begin_src latex
@@ -470,13 +522,13 @@
 #+end_src
 #+begin_src go <<Print annotated interval, Ch.~\ref{ch:an}>>=
   if col {
-	  fields := strings.Split(acc, ",")
+	  fields := strings.Split(gid, ",")
 	  for _, f := range fields {
 		  if f[0] == '\t' { f = f[1:] }
 		  fmt.Fprintf(w, "%s\n", f)
 	  }
   } else {
-	  fmt.Fprintf(w, "%s\t%d\t%d%s\n", chr, s, e, acc)
+	  fmt.Fprintf(w, "%s\t%d\t%d%s\n", chr, s, e, gid)
   }
 #+end_src
 #+begin_src latex
@@ -519,26 +571,50 @@
 #+begin_src go <<Testing imports, Ch.~\ref{ch:an}>>=
   "os/exec"
 #+end_src
-#+begin_src latex
-  We run four tests. The first three are on the large data set in
-  \ty{i1.txt}, the fourth on two segments out of this data set to test
-  the analysis of multiple lists of intervals stored in \ty{i2}.
+#+begin_export latex
+Our tests run on the toy data illustrated in Figure~\ref{fig:iv}. So
+we set the input data files for the toy data. Then we test the options
+for transcripts and promoters, followed by tests of various promoter
+lengths.
+#+end_export
+#+begin_src go <<Tests on toy data, Ch.~\ref{ch:an}>>=
+    g := "../data/toy.gff"
+    i := "../data/toyIv.txt"
+    //<<Test transcripts and promoters, Ch.~\ref{ch:an}>>
+    //<<Test promoter lengths, Ch.~\ref{ch:an}>>
 #+end_src
-#+begin_src go <<Construct tests, Ch.~\ref{ch:an}>>=
-  g := "../data/hsRefGene.txt"
-  i1 := "../data/i1.txt"
-  i2 := "../data/i2.txt"
-  test := exec.Command("./annotate", "-s", g, i1)
+#+begin_export latex
+We write four tests for the promoter and transcript options. The first
+test runs with all options on default, the second with symbols as
+output, the third with transcripts as input, and the fourth with the
+output in a single column.
+#+end_export
+#+begin_src go <<Test transcripts and promoters, Ch.~\ref{ch:an}>>=
+  test := exec.Command("./annotate", g, i)
   tests = append(tests, test)
-  test  = exec.Command("./annotate", "-s", "-t", g, i1)
+  test = exec.Command("./annotate", "-s", g, i)
   tests = append(tests, test)
-  test = exec.Command("./annotate", "-s", "-f", g, i1)
+  test = exec.Command("./annotate", "-t", g, i)
   tests = append(tests, test)
-  test = exec.Command("./annotate", "-s", "-t", g, i2)
+  test = exec.Command("./annotate", "-c", g, i)
+  tests = append(tests, test)
+#+end_src
+#+begin_export latex
+We write four tests with promoter lengths ranging from zero to 3.
+#+end_export
+#+begin_src go <<Test promoter lengths, Ch.~\ref{ch:an}>>=
+  test = exec.Command("./annotate", "-l", "0", g, i)
+  tests = append(tests, test)
+  test = exec.Command("./annotate", "-l", "1", g, i)
+  tests = append(tests, test)
+  test = exec.Command("./annotate", "-l", "2", g, i)
+  tests = append(tests, test)
+  test = exec.Command("./annotate", "-l", "3", g, i)
+  tests = append(tests, test)
 #+end_src
 #+begin_src latex
   When running a test, we compare what we get with what we want, which
-  is stored in files \ty{r1.txt}, \ty{r2.txt}, and \ty{r3.txt}.
+  is stored in files \ty{r1.txt}, \ty{r2.txt},..., \ty{r8.txt}.
 #+end_src
 #+begin_src go <<Run test, Ch.~\ref{ch:an}>>=
   get, err := test.Output()

@@ -6,7 +6,7 @@ EXE = shuffle
 all: $(EXE)
 
 $(EXE): $(EXE).go
-	go build -ldflags "-X github.com/evolbioinf/biobox/util.version=$(VERSION) -X github.com/evolbioinf/biobox/util.date=$(DATE)" $(EXE).go
+	go build -ldflags "-X github.com/evolbioinf/gin/util.version=$(VERSION) -X github.com/evolbioinf/gin/util.date=$(DATE)" $(EXE).go
 $(EXE).go: $(EXE).org
 	bash ../scripts/org2nw $(EXE).org | notangle -R$(EXE).go | gofmt > $(EXE).go
 test: $(EXE) $(EXE)_test.go
