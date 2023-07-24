@@ -1,6 +1,6 @@
 #+begin_src latex
   \section*{Introduction}
-  The program \ty{shuffle} reads list of focus intervals that is
+  The program \ty{shuffle} reads list of focus intervals that it
   shuffles among a list of template intervals and then prints the
   shuffled intervals. For example, the templates might look like
   Table~\ref{tab:sh}A. Notice that a chromosome can consist of an
@@ -11,13 +11,12 @@
   intervals are preserved, but they can be placed anywhere on any of the
   templates. This means the chromosome designations on the focus
   intervals play no role in their assignment. I have kept them in the
-  interval format to make it easier for us to keep track of what's going
-  on.
+  interval format to make it easier to keep track of what's going on.
 
   \begin{table}
     \begin{tabular}{cc}
       \textbf{A} & \textbf{B}\\
-      \input{sh1} & \input{sh2}\\
+      \input{sh1} & \input{sh2}\\\\
       \textbf{C}\\
       \input{sh3}
     \end{tabular}
@@ -25,6 +24,15 @@
       (\textbf{B}) are shuffled twice among the templates to give
       (\textbf{C}).}\label{tab:sh}
   \end{table}
+
+  We read the template intervals from the ``region'' annotation in the
+  corresponding GFF file. Here is a slightly edited example of a region
+  entry:
+  \begin{verbatim}
+  chr1 . region 1 11 . + . ID=chr1:1..11;Dbxref=taxon9606;...
+  \end{verbatim}
+  So we read the chromosome, or region name, from column 1, the start
+  from column 4, and the end from column 5.
   \section*{Implementation}
   The outline of our program has hooks for imports, types, functions,
   and the logic of the main function.
@@ -42,24 +50,31 @@
   }
 #+end_src
 #+begin_src latex
-  In the main function, we set the usage, declare the options, parse the
-  options, and parse the input files.
+  In the main function, we set the program name and itsc' usage, declare
+  the options, parse the options, and parse the input files.
 #+end_src
 #+begin_src go <<Main function, Ch.~\ref{ch:sh}>>=
+  util.Name("shuffle")
   //<<Set usage, Ch.~\ref{ch:sh}>>
   //<<Declare options, Ch.~\ref{ch:sh}>>
   //<<Parse options, Ch.~\ref{ch:sh}>>
   //<<Parse input files, Ch.~\ref{ch:sh}>>
+#+end_src
+#+begin_export latex
+We import \ty{util}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
+  "github.com/evolbioinf/gin/util"
 #+end_src
 #+begin_src latex
   The usage consists of the actual usage message, an explanation of the
   purpose of \ty{shuffle}, and an example command.
 #+end_src
 #+begin_src go <<Set usage, Ch.~\ref{ch:sh}>>=
-  u := "shuffle [-h] [option]... templates.txt [focus.txt]..."
+  u := "shuffle [-h] [option]... foo.gff [focus.txt]..."
   p := "Shuffle a set of focus intervals among the " +
 	  "template intervals."
-  e := "shuffle -n 10000 tmpl.txt f1.txt"
+  e := "shuffle -n 10000 genomic.gff f1.txt"
   clio.Usage(u, p, e)
 #+end_src
 #+begin_src latex
@@ -92,15 +107,9 @@
 #+begin_src go <<Parse options, Ch.~\ref{ch:sh}>>=
   flag.Parse()
   if *optV {
-	  util.PrintInfo("shuffle")
+	  util.Version()
   }
   //<<Seed random number generator, Ch.~\ref{ch:sh}>>
-#+end_src
-#+begin_src latex
-  We import \ty{util}.
-#+end_src
-#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
-  "github.com/evolbioinf/biobox/util"
 #+end_src
 #+begin_src latex
   If the user didn't set a seed, we take the current time.
@@ -148,48 +157,62 @@
   }
 #+end_src
 #+begin_src latex
-  To read the templates, we open the template file and iterate across
-  its lines, each of which represents a template. We can directly set
-  the template chromosome, setting the template coordinates requires a
-  bit more work.
+  In the relevant GFF file each ``region'' represents a template we
+  iterate over the lines and analyze each one.
 #+end_src
 #+begin_src go <<Read templates, Ch.~\ref{ch:sh}>>=
-  file, err := os.Open(files[0])
-  if err != nil {
-	  log.Fatalf("can't open %q", files[0])
-  }
+  file := util.Open(files[0])
   defer file.Close()
   sc := bufio.NewScanner(file)
   for sc.Scan() {
-	  fields := strings.Fields(sc.Text())
-	  t := &interval{chr: fields[0]}
-	  //<<Set template start and end, Ch.~\ref{ch:sh}>>
-	  templates = append(templates, t)
+	  line := sc.Text()
+	  //<<Analyze input line, Ch.~\ref{ch:sh}>>
   }
 #+end_src
 #+begin_src latex
-  We import \ty{os}, \ty{bufio}, and \ty{strings}.
+  We import \ty{bufio}.
 #+end_src
 #+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
-  "os"
   "bufio"
+#+end_src
+#+begin_export latex
+We skip comment lines and split the remaining lines into fields. If we
+are dealing with a region, we can read off the template chromosome
+directly, while the start and end positions require a bit more
+work. Having secured the template attributes, we store it.
+#+end_export
+#+begin_src go <<Analyze input line, Ch.~\ref{ch:sh}>>=
+  if line[0] == '#' {
+	  continue
+  }
+  fields := strings.Fields(line)
+  if fields[2] == "region" {
+	  template := &interval{chr: fields[0]}
+	  //<<Set template start and end, Ch.~\ref{ch:sh}>>
+	  templates = append(templates, template)
+  }
+#+end_src
+#+begin_export latex
+We import \ty{strings}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
   "strings"
 #+end_src
 #+begin_src latex
-  We get the start and end of the template by converting the second and
-  third field of the input line to integers.
+  We get the start and end of the template by converting the fourth and
+  fifth field of the input line to integers.
 #+end_src
 #+begin_src go <<Set template start and end, Ch.~\ref{ch:sh}>>=
-  s, err := strconv.Atoi(fields[1])
+  s, err := strconv.Atoi(fields[3])
   if err != nil {
-	  log.Fatalf("can't read %q", fields[1])
+	  log.Fatalf("can't read %q", fields[3])
   }
-  t.start = s
-  e, err := strconv.Atoi(fields[2])
+  template.start = s
+  e, err := strconv.Atoi(fields[4])
   if err != nil {
-	  log.Fatalf("can't read %q", fields[2])
+	  log.Fatalf("can't read %q", fields[4])
   }
-  t.end = e
+  template.end = e
 #+end_src
 #+begin_src latex
   We import \ty{strconv}.
@@ -225,7 +248,7 @@
   without any special formatting, to make this as fast as possible. Then
   we call \ty{scan} on each of the focus interval files, with a rather
   long list of arguments consisting of the number of iterations, the
-  templates, the pick file, the random number generator, the indicator
+  templates, the pick array, the random number generator, the indicator
   of the first data set, and the tab writer.
 #+end_src
 #+begin_src go <<Parse input files, Ch.~\ref{ch:sh}>>=
@@ -235,10 +258,15 @@
   clio.ParseFiles(files, scan, *optN, templates,
 	  pick, ran, &first, w)
 #+end_src
+#+begin_export latex
+We import \ty{os}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
+  "os"
+#+end_src
 #+begin_src latex
   We are now ready to implement the function \ty{scan}. Inside it, we
-  first retrieve its arguments, then collect the focus intervals, and
-  shuffle them.
+  retrieve its arguments, collect the focus intervals, and shuffle them.
 #+end_src
 #+begin_src go <<Functions, Ch.~\ref{ch:sh}>>=
   func scan(r io.Reader, args ...interface{}) {
@@ -273,29 +301,32 @@
   intervals := make([]*interval, 0)
   for sc.Scan() {
 	  fields := strings.Fields(sc.Text())
-	  in := new(interval)
+	  iv := new(interval)
 	  //<<Find start and end of focus interval, Ch.~\ref{ch:sh}>>
-	  intervals = append(intervals, in)
+	  intervals = append(intervals, iv)
   }
 #+end_src
+#+begin_export latex
+The start position of a focus interval is in column 2, the end in
+column 3.
+#+end_export
 #+begin_src go <<Find start and end of focus interval, Ch.~\ref{ch:sh}>>=
   s, err := strconv.Atoi(fields[1])
   if err != nil {
 	  log.Fatalf("can't read %q", fields[1])
   }
-  in.start = s
+  iv.start = s
   e, err := strconv.Atoi(fields[2])
   if err != nil {
 	  log.Fatalf("can't read %q", fields[2])
   }
-  in.end = e
+  iv.end = e
 #+end_src
 #+begin_src latex
   We shuffle the set of intervals $n$ times. Each of the $n$ sets is
   preceded by a blank line, except for the first, where we just note
-  that the next one won't be the first. After each of the $n$
-  iterations, we flush the tab writer so that the result of each
-  iteration its is formatted as an independent table.
+  that the next one won't be the first. After the $n$ iterations we
+  flush the tab writer.
 #+end_src
 #+begin_src go <<Shuffle intervals, Ch.~\ref{ch:sh}>>=
   for i := 0; i < n; i++ {
@@ -304,7 +335,7 @@
 	  } else {
 		  fmt.Fprintf(w, "\n")
 	  }
-	  for _, in := range  intervals {
+	  for _, iv := range  intervals {
 		  //<<Shuffle template, Ch.~\ref{ch:sh}>>
 	  }
   }
@@ -334,6 +365,7 @@
   r := ran.Float64()
   i := sort.SearchFloat64s(pick, r)
   template := templates[i]
+  tl := template.end - template.start + 1
 #+end_src
 #+begin_src latex
   We import \ty{sort}.
@@ -342,24 +374,28 @@
   "sort"
 #+end_src
 #+begin_src latex
-  We pick a position on the template or take the whole template if it is
-  shorter than the interval.
+  We pick a midpoint and calculate the start and end of the new
+  interval. If the start is to the left of the template or the end to
+  the right, we crop to the relevant template boundary.
 #+end_src
 #+begin_src go <<Pick position on template, Ch.~\ref{ch:sh}>>=
-  il := in.end - in.start + 1
-  tl := template.end - template.start + 1
+  m := ran.Intn(tl)
+  il := iv.end - iv.start + 1
+  d := int(math.Round(float64(il) / 2.0))
+  s := m - d
+  e := m + d - 1
+  if s < 0 { s = 0 }
+  if e >= tl { e = tl - 1 }
   c := template.chr
-  var s, e int
-  if il >= tl {
-	  s = template.start
-	  e = template.end
-  } else {
-	  s = template.start + ran.Intn(tl - il)
-	  e  = s + il - 1
-  }
+#+end_src
+#+begin_export latex
+We import \ty{math}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:sh}>>=
+  "math"
 #+end_src
 #+begin_src latex
-  We print the shuffled interval to the tab writer.
+  We print the shuffled interval.
 #+end_src
 #+begin_src go <<Print shuffled interval, Ch.~\ref{ch:sh}>>=
   fmt.Fprintf(w, "%s\t%d\t%d\n", c, s, e)
@@ -389,13 +425,15 @@
   //<<Run test, Ch.~\ref{ch:sh}>>
 #+end_src
 #+begin_src latex
-  We run the program on a small set of templates (\ty{tmpl.txt}) and
-  focus intervals (\ty{iv.txt}). We use an external seed for the random
-  number generator so we can reproduce our results.
+  We run \ty{shuffle} with 20 iterations on our toy GFF file and the toy
+  focus intervals. We use an external seed for the random number
+  generator so we can reproduce our results.
 #+end_src
 #+begin_src go <<Construct test, Ch.~\ref{ch:sh}>>=
-  test := exec.Command("./shuffle", "-s", "13",
-	  "-n", "2", "tmpl.txt", "iv.txt")
+  g := "../data/toy.gff"
+  i := "../data/toyIv.txt"
+  test := exec.Command("./shuffle", "-s", "3",
+	  "-n", "20", g, i)
 #+end_src
 #+begin_src latex
   We import \ty{exec}.

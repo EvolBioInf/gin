@@ -1,6 +1,9 @@
+# A comment line starts with a hash.
+chr1 . region 1 11 . + . ID=chr1:1..11;Dbxref=taxon9606;chromosome=1;mol_type=genomic DNA
 chr1 . gene  1  2 . - . ID=gene-g1;Dbxref=GeneID:1,HGNC:HGNC:1;Name=g1;description=g1
 chr1 . gene  1  4 . + . ID=gene-g2;Dbxref=GeneID:2,HGNC:HGNC:2;Name=g2;description=g2
 chr1 . gene  4  5 . + . ID=gene-g3;Dbxref=GeneID:3,HGNC:HGNC:3;Name=g3;description=g3
 chr1 . gene  6  7 . + . ID=gene-g4;Dbxref=GeneID:4,HGNC:HGNC:4;Name=g4;description=g4
 chr1 . gene  8  9 . + . ID=gene-g5;Dbxref=GeneID:5,HGNC:HGNC:5;Name=g5;description=g5
 chr1 . gene 10 11 . + . ID=gene-g6;Dbxref=GeneID:6,HGNC:HGNC:6;Name=g6;description=g6
+chr2 . region 1 20 . + . ID=chr2:1..20;Dbxref=taxon9606;chromosome=2;mol_type=genomic DNA
