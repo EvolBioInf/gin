@@ -106,9 +106,9 @@ We import \ty{util}.
 	  "instead of promoter")
   var optL = flag.Int("l", 2000, "promoter length")
   var optS = flag.Bool("s", false, "gene symbols instead of " +
-	  "accessions")
-  var optC = flag.Bool("c", false, "print accessions " +
-	  "or symbols in a single column")
+	  "gene IDs")
+  var optC = flag.Bool("c", false, "print gene IDs " +
+	  "or gene symbols in a single column")
 #+end_src
 #+begin_src latex
   We import \ty{flag}.
