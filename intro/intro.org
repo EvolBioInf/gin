@@ -1,24 +1,29 @@
 #+begin_export latex
 The package \ty{gin} contains programs for investigating the
 functional content of genome intervals. The package consists of three
-programs, \ty{annotate} annotates a set of intervals, \ty{shuffle}
-shuffles a set of intervals, and \ty{ego} tests for GO term enrichment
-among an observed set of gene IDs.
+programs, \ty{annotate} annotates a set of intervals with genes,
+\ty{shuffle} shuffles a set of intervals across a genome, and \ty{ego}
+tests for GO term enrichment among an observed set of gene IDs.
 
-To use these programs, we first annotate a list of intervals using the
-GFF file corresponding to the genome investigated. Such GFF files can
-be downloaded using the \ty{datasets}
+To use these programs, we first annotate a list of intervals with
+intersecting genes using the GFF file corresponding to the genome
+investigated. GFF files can be downloaded using the \ty{datasets}
 tool\footnote{\ty{www.ncbi.nlm.nih.gov/datasets}}. However, only the
-GFF file of an organism's \emph{reference} genome contains the gene
-information we need. So the intervals and the GFF file should both be
-based on the reference genome. Let's take as an example the human
-reference genome. It is best downloaded in \emph{dehydrated} form. The
-downloaded data package is compressed, or zipped, so we unzip and
-rehydrate it.
+GFF file of an organism's \emph{reference} genome appears to contain
+the gene information we need. So the intervals and the GFF file should
+both be based on the reference genome. Let's take as an example the
+human reference genome. Its GFF file is best downloaded in
+\emph{dehydrated} form.
 #+end_export
 #+begin_src sh <<cli>>=
   datasets download genome taxon human --reference \
-	   --include genome,gff3 --dehydrated
+	   --include gff3 --dehydrated
+#+end_src
+#+begin_export latex
+The downloaded data package is compressed, or zipped, so we unzip and
+rehydrate it.
+#+end_export
+#+begin_src sh <<cli>>=
   unzip ncbi_dataset.zip
   datasets rehydrate --directory .
 #+end_src
@@ -27,28 +32,29 @@ Now we can annotate a list of intervals in some file \ty{iv.txt} and
 from that compute the observed list of gene IDs.
 #+end_export
 #+begin_src sh <<cli>>=
-  annotate -c ncbi_dataset/data/GCF_000001405/genomic.gff \
+  annotate -c ncbi_dataset/data/GCF_000001405.40/genomic.gff \
 	   iv.txt > obsId.txt
 #+end_src
 #+begin_export latex
-Now we test for enrichment of GO terms among the symbols contained in
-\ty{obsId.txt} by shuffling the observed intervals. We do this, say,
-$10^5$ times, reannotate the shuffled intervals, and compare the
-observed gene counts per GO accessions with that expected from the
-shuffled samples in the program \ty{ego}
-#+end_export
-#+begin_src sh <<cli>>=
-  shuffle -n 100000 genomic.gff iv.txt |
-      annotate -c genomic.gff |
-      ego -g gene2go obsId.txt
-#+end_src
-#+begin_export latex
-The program \ty{ego} maps gene IDs to GO terms using the file
-\ty{gene2go}, which is also provided by the NCBI and can be downloaded
-with \ty{wget}, for example. The downloaded file is compressed, this
-time with \ty{gzip}, so we unzip it with \ty{gunzip}.
+We test for enrichment of GO terms using the program \ty{ego}, which
+maps gene IDs to GO terms using the file \ty{gene2go}. This is also
+provided by the NCBI and can be downloaded with \ty{wget}, for
+example. The downloaded file is compressed, this time with \ty{gzip},
+so we unzip it with \ty{gunzip}.
 #+end_export
 #+begin_src sh <<cli>>=
   wget ftp.ncbi.nih.gov/gene/DATA/gene2go.gz
   gunzip gene2go.gz
+#+end_src
+#+begin_export latex
+With the connection between gene IDs and GO IDs in hand, we test for
+enrichment by shuffling the observed intervals. We do this, say,
+$10^5$ times, annotate the shuffled intervals, and finally use
+\ty{ego} to compare the observed gene counts per GO accessions with
+that expected from the shuffled samples in the program \ty{ego}
+#+end_export
+#+begin_src sh <<cli>>=
+  shuffle -n 100000 genomic.gff iv.txt |
+      annotate -c genomic.gff |
+      ego -o gene2go obsId.txt
 #+end_src
