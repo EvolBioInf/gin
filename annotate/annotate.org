@@ -1,8 +1,8 @@
 #+begin_src latex
   \section*{Introduction}
   The program \ty{annotate} reads a list of genome intervals and an
-  annotation file in GFF format. The GFF format consists of the
-  following nine columns:
+  annotation file in GFF format and returns the genes that intersect the
+  interval. The GFF format consists of the following nine columns:
   \begin{enumerate}
   \item Chromosome, e. g. NC\_000007.14
   \item Source, e. g. BestRefSeq
@@ -16,19 +16,17 @@
   \end{enumerate}
   Comment lines are marked by a hash in the first position.
 
-  Given the interval file and the GFF file, \ty{annotate} returns the
-  genes that intersect the intervals in a table consisting of four
+  The intersecting genes are returned in a table consisting of four
   columns, chromosome, start, end, and comma-separated gene IDs. Instead
   of gene IDs, \ty{annotate} can also return the gene names, also known
-  as ``symbols''. 
+  as ``symbols''.
 
   Consider the six genes, $g_1,...,g_6$ in Figure~\ref{fig:iv}. The
   interval $[s,e]$ intersects four of them, $g_5$, $g_4$, $g_3$, and
-  $g_2$. However, instead of intersecting whole genes, we can instead
-  intersect their promoters. Depending on the promoter length, $g_6$
-  might now also intersect the interval, and so might $g_1$, as it is on
-  the reverse strand. By default \ty{annotate} intersects
-  promoters. These are assumed to have the same length for all genes,
+  $g_2$. However, by default \ty{annotate} intersects promoters rather
+  than genes. Depending on the promoter length, $g_6$ might now also
+  intersect the interval, and so might $g_1$, as it is on the reverse
+  strand. Promoters are assumed to have the same length for all genes,
   which can be set by the user.
 
   \begin{figure}[ht]
@@ -129,7 +127,7 @@ We import \ty{util}.
 #+begin_src latex
   The remaining tokens on the command line are taken as file names. The
   first of these is interpreted as the file of reference genes. If it
-  exists, we read it, if not, we bail with a friendly message. The genes
+  exists, we read it; if not, we bail with a friendly message. The genes
   are read into slices of intervals indexed by the chromosomes they
   belong to.
 
@@ -174,9 +172,9 @@ We import \ty{util}.
   }
 #+end_src
 #+begin_src latex
-  We open the annotation file and iterate over its lines. We skip
-  any annotation lines starting with a hash and store the genes. Then we
-  sort the genes.
+  We open the annotation file and iterate over its lines. We skip any
+  lines starting with a hash and store the genes. Then we sort the
+  genes.
 #+end_src
 #+begin_src go <<Read genes, Ch.~\ref{ch:an}>>=
   f := util.Open(files[0])
@@ -197,10 +195,10 @@ We import \ty{util}.
   "bufio"
 #+end_src
 #+begin_src latex
-  As described in the Introduction, the genes are specified in the
-  annotation file, where column 3 states the annotation type. We're only
-  interested in genes. From the gene annotations we determine the gene
-  interval before add the gene to the appropriate slice.
+  As described in the Introduction, the genes are specified a GFF file,
+  where column 3 states the annotation type. We're only interested in
+  genes. From the gene annotations we determine the gene interval before
+  add the gene to the appropriate slice.
 #+end_src
 #+begin_src go <<Store gene, Ch.~\ref{ch:an}>>=
   fields := strings.Fields(sc.Text())
@@ -328,16 +326,16 @@ find it, something is wrong and we bail with message.
 #+begin_src latex
   We implement the methods of the \ty{sort} interface, \ty{Len},
   \ty{Less}, and \ty{Swap} on \ty{ivSlice}. The method \ty{Less}
-  determines the sorting order. The desired sorting order depends on our
-  method for picking intersecting genes. Focus on the interval $[s,e]$
-  and the genes $g_1,...,g_6$ in Figure~\ref{fig:iv}. Moving from left
-  to right, we search for the
-  first gene that intersects the interval, $g_2$. Then we walk to the right until we find
-  the first gene that starts to the right of $e$, $g_6$. This requires that
-  we sort the genes with two keys. The primary key is the start
-  position, by which we sort them in ascending order. The secondary key
-  is the end position, by which we also sort them in ascending order, as
-  shown for $g_5$ and $g_6$, which start at the same position.
+  determines the sorting order. The desired order depends on our method
+  for picking intersecting genes. Focus on the interval $[s,e]$ and the
+  genes $g_1,...,g_6$ in Figure~\ref{fig:iv}. Moving from left to right,
+  we search for the first gene that intersects the interval, $g_2$. Then
+  we walk to the right until we find the first gene that starts to the
+  right of $e$, $g_6$. This requires that we sort the genes with two
+  keys. The primary key is the start position, by which we sort them in
+  ascending order. The secondary key is the end position, by which we
+  also sort them in ascending order, as shown for $g_1$ and $g_2$, which
+  start at the same position, but $g_1$ ends earlier.
 #+end_src
 #+begin_src go <<Methods, Ch.~\ref{ch:an}>>=
   func (s ivSlice) Len() int { return len(s) }
@@ -354,8 +352,8 @@ find it, something is wrong and we bail with message.
 #+begin_export latex
 If our ``gene'' is at least one nucleotide long, we add it to the
 appropriate slice of genes for its chromosome. If the gene is the
-first on its chromosome, we allocate the slice before storing the
-gene in it.
+first on its chromosome, we allocate the slice of genes before storing
+the current gene in it.
 #+end_export
 #+begin_src go <<Add gene to slice, Chr.~\ref{ch:an}>>=
   if gene.end - gene.start >= 0 {
@@ -382,32 +380,28 @@ gene in it.
   "sort"
 #+end_src
 #+begin_src latex
-  A row in the output table either ends in symbols or in IDs. We
-  construct the header accordingly.
+  In single column mode our table header is a just blank line. Otherwise
+  it consists of column headers for chromosome, start, and end. This is
+  followed either by a set of symbols or IDs.
 #+end_src
 #+begin_src go <<Construct header, Ch.~\ref{ch:an}>>=
-  header := "#Chr\tStart\tEnd\t"
-  if *optS {
-	  header += "Sym...\n"
-  } else {
-	  header += "ID...\n"
+  header := "\n"
+  if !*optC {
+	  header = "#Chr\tStart\tEnd\t"
+	  if *optS {
+		  header += "Sym...\n"
+	  } else {
+		  header += "ID...\n"
+	  }
   }
 #+end_src
 #+begin_src latex
-  Inside scan, we retrieve the arguments just passed, print a header for
-  the new annotations unless the output is single column, and iterate
-  over the intervals. At the end of each file, we flush the writer.
+  Inside scan, we retrieve the arguments just passed and scan the file.
 #+end_src
 #+begin_src go <<Functions, Ch.~\ref{ch:an}>>=
   func scan(r io.Reader, args ...interface{}) {
 	  //<<Retrieve arguments, Ch.~\ref{ch:an}>>
-	  sc := bufio.NewScanner(r)
-	  gm := make(map[string]bool)
-	  if !col { fmt.Fprint(w, header) }
-	  for sc.Scan() {
-		  //<<Scan interval, Ch.~\ref{ch:an}>>
-	  }
-	  w.Flush()
+	  //<<Scan file, Ch.~\ref{ch:an}>>
   }
 #+end_src
 #+begin_src latex
@@ -417,7 +411,9 @@ gene in it.
   "io"
 #+end_src
 #+begin_src latex
-  We retrieve the arguments passed to \ty{scan} using type assertion.
+  We retrieve the map between chromosomes and genes, the output writer,
+  the header for each set of annotations, and whether or not we print
+  the output in a single column.
 #+end_src
 #+begin_src go <<Retrieve arguments, Ch.~\ref{ch:an}>>=
   genes := args[0].(map[string][]*interval)
@@ -425,19 +421,58 @@ gene in it.
   header := args[2].(string)
   col := args[3].(bool)
 #+end_src
+#+begin_export latex
+We construct the scanner for scanning the file.
+#+end_export
+#+begin_src go <<Scan file, Ch.~\ref{ch:an}>>=
+  sc := bufio.NewScanner(r)
+#+end_src
+#+begin_export latex
+We import \ty{bufio}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
+  "bufio"
+#+end_src
+#+begin_export latex
+For each interval we scan, we collect the gene IDs, so we allocate a
+slice to hold them.
+#+end_export
+#+begin_src go <<Scan file, Ch.~\ref{ch:an}>>=
+  ids := make([]string, 0)
+#+end_src
+#+begin_export latex
+In single column mode the header would be a blank line, which is
+superfluous at the beginning of the output. But if we are not in
+single column mode, we precede the scan by printing the header of our
+annotation table.
+#+end_export
+#+begin_src go <<Scan file, Ch.~\ref{ch:an}>>=
+  if !col {
+	  fmt.Fprint(w, header)
+  }
+#+end_src
+#+begin_export latex
+We scan each interval. If it is annotated by any IDs, we print the
+annotated interval. At the end we flush the writer.
+#+end_export
+#+begin_src go <<Scan file, Ch.~\ref{ch:an}>>=
+  for sc.Scan() {
+	  //<<Scan interval, Ch.~\ref{ch:an}>>
+	  if len(ids) > 0 {
+		  //<<Print annotated interval, Ch.~\ref{ch:an}>>
+	  }
+  }
+  w.Flush()
+#+end_src
 #+begin_src latex
   While scanning intervals, a new set of intervals might start, marked
-  by an empty line. In that case, we write a new header, unless we are
-  asked to print the annotations in a single column, in which case we
-  print a blank. Each interval is then intersected with the genes.
+  by an empty line. In that case, we write a new header and skip ahead
+  to the next input line. If, on the other hand, we did read a proper
+  line, we extract the interval from it and intersect it with the genes.
 #+end_src
 #+begin_src go <<Scan interval, Ch.~\ref{ch:an}>>=
   if len(sc.Text()) == 0 {
-	  if col {
-		  fmt.Fprint(w, "\n")
-	  } else {
-		  fmt.Fprint(w, header)
-	  }
+	  fmt.Fprint(w, header)
 	  continue
   }
   //<<Extract interval, Ch.~\ref{ch:an}>>
@@ -456,86 +491,74 @@ gene in it.
   if err != nil { log.Fatal(err.Error()) }
 #+end_src
 #+begin_src latex
-  We reset the gene map, iterate over the genes that might intersect our
-  interval, and collect their IDs. If any IDs were collected, we print
-  the now annotated interval.
+  We intersect the current interval with genes in two steps. First, we
+  look up the initial intersecting gene, then we look up the remaining
+  intersecting genes.
 #+end_src
 #+begin_src go <<Intersect interval with genes, Ch.~\ref{ch:an}>>=
+  //<<Look up initial intersecting gene, Ch.~\ref{ch:an}>>
+  //<<Look up remaining intersecting genes, Ch.~\ref{ch:an}>>
+#+end_src
+#+begin_export latex
+To look up the initial intersecting gene, we pick the genes associated
+with the current chromosome. Then we search for the leftmost gene that
+intersects the focus interval, $g_2$ in Figure~\ref{fig:iv}.
+#+end_export
+#+begin_src go <<Look up initial intersecting gene, Ch.~\ref{ch:an}>>=
   g := genes[chr]
-  n := len(g)
-  gid := ""
-  //<<Reset gene map, Ch.~\ref{ch:an}>>
-  //<<Collect accessions, Ch.~\ref{ch:an}>>
-  if gid != "" {
-	  //<<Print annotated interval, Ch.~\ref{ch:an}>>
-  }
-#+end_src
-#+begin_src latex
-  We reset the gene map by deleting its entries.
-#+end_src
-#+begin_src go <<Reset gene map, Ch.~\ref{ch:an}>>=
-  for k, _ := range gm {
-	  delete(gm, k)
-  }
-#+end_src
-#+begin_src latex
-  To look up the intersecting genes, we start from the leftmost gene
-  that intersects the focus interval, $g_2$ in Figure~\ref{fig:iv}. From
-  there we walk to the right.
-
-#+end_src
-#+begin_src go <<Collect accessions, Ch.~\ref{ch:an}>>=
-  i := sort.Search(n, func(i int) bool {
+  i := sort.Search(len(g), func(i int) bool {
 	  return g[i].end >= s
   })
-  //<<Walk right in gene array, Ch.~\ref{ch:an}>>
 #+end_src
-#+begin_src latex
-  We walk to the right along the gene array until we reach the first
-  gene whose start is to the right of the interval end, $g_6$ in
-  Figure~\ref{fig:iv}.
-#+end_src
-#+begin_src go <<Walk right in gene array, Ch.~\ref{ch:an}>>=
+#+begin_export latex
+From our current position in the genes array we walk to the right
+until we reach the first gene whose start is to the right of the
+interval end, $g_6$ in Figure~\ref{fig:iv}. The genes we encounter
+along the way correspond to the desired IDs. So before starting our
+walk along the slice of genes, we empty the list of IDs obtained in
+the last round and then collect those we encounter during our walk.
+#+end_export
+#+begin_src go <<Look up remaining intersecting genes, Ch.~\ref{ch:an}>>=
+  ids = ids[:0]
   for i < len(g) && g[i].start <= e {
-	  if !gm[g[i].id] {
-		  //<<Add ID, Ch.~\ref{ch:an}>>
-	  }
+	  ids = append(ids, g[i].id)
 	  i++
   }
 #+end_src
 #+begin_src latex
-  We add the gene ID to the gene map and to the ID string. The first
-  entry in the string is separated by a tab, all subsequent ones by a
-  comma.
-#+end_src
-#+begin_src go <<Add ID, Ch.~\ref{ch:an}>>=
-  gm[g[i].id] = true
-  if gid == "" {
-	  gid += ("\t" + g[i].id)
-  } else {
-	  gid += ("," + g[i].id)
-  }
-#+end_src
-#+begin_src latex
-  We print the annotated interval to the tab writer. If \ty{-c} was set,
-  we just print a single column.
+  We print the annotated interval either in row mode or in column mode.
 #+end_src
 #+begin_src go <<Print annotated interval, Ch.~\ref{ch:an}>>=
-  if col {
-	  fields := strings.Split(gid, ",")
-	  for _, f := range fields {
-		  if f[0] == '\t' { f = f[1:] }
-		  fmt.Fprintf(w, "%s\n", f)
-	  }
+  if !col {
+	  //<<Print interval in row mode, Ch.~\ref{ch:an}>>
   } else {
-	  fmt.Fprintf(w, "%s\t%d\t%d%s\n", chr, s, e, gid)
+	  //<<Print interval in column mode, Ch.~\ref{ch:an}>>
   }
+#+end_src
+#+begin_export latex
+In row mode, we print the chromosome, start, and end, followed by the
+IDs separated by commas.
+#+end_export
+#+begin_src go <<Print interval in row mode, Ch.~\ref{ch:an}>>=
+  fmt.Fprintf(w, "%s\t%d\t%d\t%s", chr, s, e, ids[0])
+  for i := 1; i < len(ids); i++ {
+	  fmt.Fprintf(w, ",%s", ids[i])
+  }
+  fmt.Fprint(w, "\n")
 #+end_src
 #+begin_src latex
   We import \ty{fmt}.
 #+end_src
 #+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
   "fmt"
+#+end_src
+#+begin_export latex
+In column mode we just print a column of IDs.
+#+end_export
+#+begin_src go <<Print interval in column mode, Ch.~\ref{ch:an}>>=
+  for _, id := range ids {
+	  fmt.Fprintf(w, "%s\n", id)
+  }
 #+end_src
 #+begin_src latex
   We've finished writing \ty{annotate}, so let's test it.
