@@ -726,12 +726,14 @@ We print the symbols as a blank-delimited list.
 #+end_src
 #+begin_src latex
   We sort the results and print the terms with minimum occupancy to a
-  table.
+  table. In the table header we also pass the number of iterations to
+  help with downstream analyses.
 #+end_src
 #+begin_src go <<Report enrichment analysis, Ch.~\ref{ch:eg}>>=
   sort.Sort(GOslice(GOterms))
   w := tabwriter.NewWriter(os.Stdout, 1, 0, 2, ' ', 0)
-  fmt.Fprintf(w, "#GO\tO\tE\tO/E\tP\tCategory\tDescription\n")
+  fmt.Fprintf(w, "#GO\tO\tE\tO/E\tP(n=%.1e)\t", float64(n))
+  fmt.Fprint(w, "Category\tDescription\n")
   for _, g := range GOterms {
 	  if int(g.o) < minOcc { continue }
 	  fmt.Fprintf(w,
