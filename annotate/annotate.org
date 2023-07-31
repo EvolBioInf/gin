@@ -1,44 +1,49 @@
 #+begin_src latex
-  \section*{Introduction}
-  The program \ty{annotate} reads a list of genome intervals and an
-  annotation file in GFF format and returns the genes that intersect the
-  interval. The GFF format consists of the following nine columns:
-  \begin{enumerate}
-  \item Chromosome, e. g. NC\_000007.14
-  \item Source, e. g. BestRefSeq
-  \item Type, e. g. gene
-  \item Start, e. g. 27092993
-  \item End, e. g. 27096000
-  \item Score, no example available
-  \item Strand, $+$ or $-$
-  \item Phase, no example available
-  \item Attributes, e. g. ID=gene-HOXA1;Dbxref=GeneID:3198,...;Name=HOXA1;...
-  \end{enumerate}
-  Comment lines are marked by a hash in the first position.
+    \section*{Introduction}
+    The program \ty{annotate} reads a list of genome intervals and an
+    annotation file in GFF format and returns the genes that intersect the
+    interval. The GFF format consists of the following nine columns:
+    \begin{enumerate}
+    \item Chromosome, e. g. NC\_000007.14
+    \item Source, e. g. BestRefSeq
+    \item Type, e. g. gene
+    \item Start, e. g. 27092993
+    \item End, e. g. 27096000
+    \item Score, no example available
+    \item Strand, $+$ or $-$
+    \item Phase, no example available
+    \item Attributes, e. g. ID=gene-HOXA1;Dbxref=GeneID:3198,...;Name=HOXA1;...
+    \end{enumerate}
+    Comment lines are marked by a leading hash.
 
-  The intersecting genes are returned in a table consisting of four
-  columns, chromosome, start, end, and comma-separated gene IDs. Instead
-  of gene IDs, \ty{annotate} can also return the gene names, also known
-  as ``symbols''.
+    The intersecting genes are returned in a table consisting of four
+    columns, chromosome, start, end, and comma-separated gene IDs. Instead
+    of gene IDs, \ty{annotate} can also return the gene names, or
+    ``symbols''. And instead of output in four ann, \ty{annotate} can
+    return IDs or symbols in a single column.
 
-  Consider the six genes, $g_1,...,g_6$ in Figure~\ref{fig:iv}. The
-  interval $[s,e]$ intersects four of them, $g_5$, $g_4$, $g_3$, and
-  $g_2$. However, by default \ty{annotate} intersects promoters rather
-  than genes. Depending on the promoter length, $g_6$ might now also
-  intersect the interval, and so might $g_1$, as it is on the reverse
-  strand. Promoters are assumed to have the same length for all genes,
-  which can be set by the user.
+    The central action of \ty{annotate} is to intersect two sets of
+    intervals, the intervals to be annotated, I call them ``focus
+    intervals'', and the intervals representing genes. To see how
+    intersecting these two types of intervals works, consider the focus
+    interval $[s,e]$, and the six genes, $g_1,...,g_6$ in
+    Figure~\ref{fig:iv}. The focus interval intersects four genes, $g_5$,
+    $g_4$, $g_3$, and $g_2$. However, by default \ty{annotate} intersects
+    promoters rather than whole genes. Promoters are modeled as intervals
+    of some constant length upstream of the transcription start
+    site. Depending on the promoter length, which can be set by the user,
+    $g_6$ might now also intersect the interval, and so might $g_1$, as it
+    is on the reverse strand.
 
-  \begin{figure}[ht]
-    \begin{center}
-      \input{../annotate/iv}
-    \end{center}
-    \caption{Cartoon of a focus interval, $[s,e]$, and six genes,
-      $g_1,...,g_6$; the program \ty{annotate} finds the genes, or their
-      promoters, that intersect one or more focus
-      intervals.}\label{fig:iv}
-  \end{figure}
-
+    \begin{figure}[ht]
+      \begin{center}
+	\input{../annotate/iv}
+      \end{center}
+      \caption{Cartoon of a focus interval, $[s,e]$, and six genes,
+	$g_1,...,g_6$; the program \ty{annotate} finds the genes, or their
+	promoters, that intersect one or more focus
+	intervals.}\label{fig:iv}
+    \end{figure}
 
   \section*{Implementation}
   The outline of \ty{annotate} has hooks for types, methods, functions,
@@ -94,8 +99,8 @@ We import \ty{util}.
   Apart from the version, \ty{-v}, we declare an option for intersecting
   the full transcript instead of the promoter, \ty{-t}. The user can
   also set the promoter length, \ty{-l}, get gene symbols instead of
-  accessions, \ty{-s}, and print the accessions or symbols in a single
-  column, \ty{-c}.
+  IDs, \ty{-s}, and print the IDs or symbols in a single column,
+  \ty{-c}.
 #+end_src
 #+begin_src go <<Declare options, Ch.~\ref{ch:an}>>=
   var optV = flag.Bool("v", false, "print program version " +
@@ -115,7 +120,7 @@ We import \ty{util}.
   "flag"
 #+end_src
 #+begin_src latex
-  We parse the options, and begin by checking whether the user requested
+  We parse the options and immediately check whether the user requested
   the version, as this stops the program.
 #+end_src
 #+begin_src go <<Parse options, Ch.~\ref{ch:an}>>=
@@ -126,10 +131,10 @@ We import \ty{util}.
 #+end_src
 #+begin_src latex
   The remaining tokens on the command line are taken as file names. The
-  first of these is interpreted as the file of reference genes. If it
-  exists, we read it; if not, we bail with a friendly message. The genes
-  are read into slices of intervals indexed by the chromosomes they
-  belong to.
+  first of these is interpreted as the GFF file of annotations,
+  especially gene annotations. If the GFF file exists, we read it; if
+  not, we bail with a friendly message. The genes are read into slices
+  of intervals indexed by the sequences they belong to.
 
   The interval files are parsed by the function \ty{scan}, which takes
   the variable holding the genes as an argument. The intersecting
@@ -188,26 +193,18 @@ We import \ty{util}.
   //<<Sort genes, Ch.~\ref{ch:an}>>
 #+end_src
 #+begin_src latex
-  We import \ty{util} and \ty{bufio}.
-#+end_src
-#+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
-  "github.com/evolbioinf/gin/util"
-  "bufio"
-#+end_src
-#+begin_src latex
-  As described in the Introduction, the genes are specified a GFF file,
-  where column 3 states the annotation type. We're only interested in
-  genes. From the gene annotations we determine the gene interval before
-  add the gene to the appropriate slice.
+  As described in the Introduction, column 3 in a GFF file states the
+  annotation type. We're only interested in genes. From the gene
+  annotations we determine the gene interval before adding it to the
+  appropriate slice.
 #+end_src
 #+begin_src go <<Store gene, Ch.~\ref{ch:an}>>=
   fields := strings.Fields(sc.Text())
   if fields[2] == "gene" {
 	  gene := new(interval)
-	  chr := fields[0]
 	  //<<Extract gene information, Ch.~\ref{ch:an}>>
 	  //<<Determine gene interval, Ch.~\ref{ch:an}>>
-	  //<<Add gene to slice, Chr.~\ref{ch:an}>>
+	  //<<Add gene to interval slice, Chr.~\ref{ch:an}>>
   }
 #+end_src
 #+begin_src latex
@@ -217,19 +214,26 @@ We import \ty{util}.
   "strings"
 #+end_src
 #+begin_src latex
-  We extract the gene information. The transcription start and end are
-  converted from columns 4 and 5, the strand from column 6. Column 9
-  yields the attributes. We extract the gene ID from the attributes and
-  set it.
+  We extract the gene information consisting of transcription start and
+  end, strand, and ID.
 #+end_src
 #+begin_src go <<Extract gene information, Ch.~\ref{ch:an}>>=
+  //<<Extract TSS and TES, Ch.~\ref{ch:an}>>
+  //<<Extract strand, Ch.~\ref{ch:an}>>
+  //<<Extract ID, Ch.~\ref{ch:an}>>
+#+end_src
+#+begin_export latex
+The transcription start and end are in columns 4 and 5, respectively.
+#+end_export
+#+begin_src go <<Extract TSS and TES, Ch.~\ref{ch:an}>>=
   tss, err := strconv.Atoi(fields[3])
-  if err != nil { log.Fatal(err.Error()) }
+  if err != nil {
+	  log.Fatal(err)
+  }
   tes, err := strconv.Atoi(fields[4])
-  if err != nil { log.Fatal(err.Error()) }
-  str := fields[6]
-  attributes := strings.Split(fields[8], ";")
-  //<<Set gene ID, Ch.~\ref{ch:an}>>
+  if err != nil {
+	  log.Fatal(err)
+  }
 #+end_src
 #+begin_export latex
 We import \ty{strconv}.
@@ -238,11 +242,19 @@ We import \ty{strconv}.
   "strconv"
 #+end_src
 #+begin_export latex
-The gene ID we store is either the actual gene ID or the gene name,
-which is often also called the gene ``symbol''. So we get the gene ID
-and the gene name before we set the ID.
+The strand is in column 7.
 #+end_export
-#+begin_src go <<Set gene ID, Ch.~\ref{ch:an}>>=
+#+begin_src go <<Extract strand, Ch.~\ref{ch:an}>>=
+  strand := fields[6]
+#+end_src
+#+begin_export latex
+The gene ID is part of the attributes kept in column 9. The individual
+attributes are separated by semicolons. We store either the actual
+gene ID or the gene name, also known as ``symbol''. So we get the gene
+ID and the gene name before we set the ID.
+#+end_export
+#+begin_src go <<Extract ID, Ch.~\ref{ch:an}>>=
+  attributes := strings.Split(fields[8], ";")
   var gid, name string
   //<<Get gene ID and name, Ch.~\ref{ch:an}>>
   gene.id = gid
@@ -269,9 +281,10 @@ the gene ID.
   }
 #+end_src
 #+begin_export latex
-A gene ID has the format k:v, so we split the IDs at the first colon
-and look for GeneID. If we find it, we store it and break. If we don't
-find it, something is wrong and we bail with message.
+A gene ID consists of a key and a value separated by a colon, k:v. So
+we split the IDs at the first colon and look for the key
+``GeneID''. If we find it, we store it and break. If we don't find it,
+something is wrong and we bail with message.
 #+end_export
 #+begin_src go <<Search for gene ID, Ch.~\ref{ch:an}>>=
   for _, id := range ids {
@@ -308,7 +321,7 @@ find it, something is wrong and we bail with message.
   the TSS, otherwise, it is downstream of the TES.
 #+end_src
 #+begin_src go <<Get gene interval from promoter, Ch.~\ref{ch:an}>>=
-  if str == "+" {
+  if strand == "+" {
 	  gene.start = tss - *optL + 1
 	  gene.end = tss
   } else {
@@ -327,15 +340,16 @@ find it, something is wrong and we bail with message.
   We implement the methods of the \ty{sort} interface, \ty{Len},
   \ty{Less}, and \ty{Swap} on \ty{ivSlice}. The method \ty{Less}
   determines the sorting order. The desired order depends on our method
-  for picking intersecting genes. Focus on the interval $[s,e]$ and the
-  genes $g_1,...,g_6$ in Figure~\ref{fig:iv}. Moving from left to right,
-  we search for the first gene that intersects the interval, $g_2$. Then
-  we walk to the right until we find the first gene that starts to the
-  right of $e$, $g_6$. This requires that we sort the genes with two
-  keys. The primary key is the start position, by which we sort them in
-  ascending order. The secondary key is the end position, by which we
-  also sort them in ascending order, as shown for $g_1$ and $g_2$, which
-  start at the same position, but $g_1$ ends earlier.
+  for picking intersecting genes. Consider again the focus interval
+  $[s,e]$ and the genes $g_1,...,g_6$ in Figure~\ref{fig:iv}. Moving
+  from left to right, we search for the first gene that intersects the
+  interval, $g_2$. Then we walk to the right until we find the first
+  gene that starts to the right of $e$, $g_6$. This requires that we
+  sort the genes with two keys. The primary key is the start position,
+  by which we sort them in ascending order. The secondary key is the end
+  position, by which we also sort them in ascending order, as shown for
+  $g_1$ and $g_2$, which start at the same position, but $g_1$ ends
+  earlier.
 #+end_src
 #+begin_src go <<Methods, Ch.~\ref{ch:an}>>=
   func (s ivSlice) Len() int { return len(s) }
@@ -350,12 +364,12 @@ find it, something is wrong and we bail with message.
   }
 #+end_src
 #+begin_export latex
-If our ``gene'' is at least one nucleotide long, we add it to the
+If our gene interval is at least one nucleotide long, we add it to the
 appropriate slice of genes for its chromosome. If the gene is the
 first on its chromosome, we allocate the slice of genes before storing
 the current gene in it.
 #+end_export
-#+begin_src go <<Add gene to slice, Chr.~\ref{ch:an}>>=
+#+begin_src go <<Add gene to interval to slice, Chr.~\ref{ch:an}>>=
   if gene.end - gene.start >= 0 {
 	  if genes[chr] == nil {
 		  genes[chr] = make([]*interval, 0)
@@ -411,9 +425,9 @@ the current gene in it.
   "io"
 #+end_src
 #+begin_src latex
-  We retrieve the map between chromosomes and genes, the output writer,
-  the header for each set of annotations, and whether or not we print
-  the output in a single column.
+  We retrieve the four arguments we passed, the map between chromosomes
+  and genes, the output writer, the header for each set of annotations,
+  and whether or not we print the output in a single column.
 #+end_src
 #+begin_src go <<Retrieve arguments, Ch.~\ref{ch:an}>>=
   genes := args[0].(map[string][]*interval)
