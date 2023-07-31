@@ -183,12 +183,18 @@ We import \ty{bufio}.
   }
 #+end_src
 #+begin_src latex
-  In the GO file, the gene ID is in column 2, the GO ID in column 3, the
-  description of the GO term in column 6, and its category in column
-  8.
+  We check the GO file has eight columns and bail otherwise.  The gene
+  ID is in column 2, the GO ID in column 3, the description of the GO
+  term in column 6, and its category in column 8.
 #+end_src
 #+begin_src go <<Extract GO attributes, Ch.~\ref{ch:eg}>>=
   fields := strings.Split(sc.Text(), "\t")
+  if len(fields) != 8 {
+	  m := "gene2go file has %d columns instead of " +
+		  "the expected 8; are you using " +
+		  "the correct file?"
+	  log.Fatalf(m, len(fields))
+  }
   geneId := fields[1]
   goId := fields[2]
   goDescr := fields[5]
@@ -235,8 +241,9 @@ We import \ty{strings}.
 #+end_src
 #+begin_export latex
 To fill our map between gene IDs and gene symbols, we allocate it and
-scan the GFF file supplied by the user. We skip comments and
-concentrate on genes, for which we store the symbol.
+scan the GFF file supplied by the user. We skip comments, check the
+number of columns, and concentrate on genes, for which we store the
+symbol.
 #+end_export
 #+begin_src go <<Fill \ty{id2sym}, Ch.~\ref{ch:eg}>>=
   id2sym = make(map[string]string)
@@ -245,10 +252,21 @@ concentrate on genes, for which we store the symbol.
   for sc.Scan() {
 	  t := sc.Text()
 	  if t[0] == '#' { continue }
-	  fields := strings.Fields(t)
+	  fields := strings.Split(t, "\t")
+	  //<<Check number of fields, Ch.~\ref{ch:eg}>>
 	  if fields[2] == "gene" {
 		  //<<Store gene symbol, Ch.~\ref{ch:eg}>>
 	  }
+  }
+#+end_src
+#+begin_export latex
+There should be nine fields and we bail if we find something else.
+#+end_export
+#+begin_src go <<Check number of fields, Ch.~\ref{ch:eg}>>=
+  if len(fields) != 9 {
+	  m := "expecting 9 fields in GFF file, " +
+		  "but you have %d"
+	  log.Fatalf(m, len(fields))
   }
 #+end_src
 #+begin_export latex
