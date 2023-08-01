@@ -204,7 +204,7 @@ We import \ty{util}.
 	  gene := new(interval)
 	  //<<Extract gene information, Ch.~\ref{ch:an}>>
 	  //<<Determine gene interval, Ch.~\ref{ch:an}>>
-	  //<<Add gene to interval slice, Chr.~\ref{ch:an}>>
+	  //<<Add gene to interval slice, Ch.~\ref{ch:an}>>
   }
 #+end_src
 #+begin_src latex
@@ -214,10 +214,11 @@ We import \ty{util}.
   "strings"
 #+end_src
 #+begin_src latex
-  We extract the gene information consisting of transcription start and
-  end, strand, and ID.
+  We extract the gene information consisting of chromosome,
+  transcription start and end, strand, and ID.
 #+end_src
 #+begin_src go <<Extract gene information, Ch.~\ref{ch:an}>>=
+  chr := fields[0]
   //<<Extract TSS and TES, Ch.~\ref{ch:an}>>
   //<<Extract strand, Ch.~\ref{ch:an}>>
   //<<Extract ID, Ch.~\ref{ch:an}>>
@@ -369,7 +370,7 @@ appropriate slice of genes for its chromosome. If the gene is the
 first on its chromosome, we allocate the slice of genes before storing
 the current gene in it.
 #+end_export
-#+begin_src go <<Add gene to interval to slice, Chr.~\ref{ch:an}>>=
+#+begin_src go <<Add gene to interval slice, Ch.~\ref{ch:an}>>=
   if gene.end - gene.start >= 0 {
 	  if genes[chr] == nil {
 		  genes[chr] = make([]*interval, 0)
