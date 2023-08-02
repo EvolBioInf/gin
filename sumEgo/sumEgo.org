@@ -40,6 +40,7 @@ the result.
 #+end_export
 #+begin_src go <<Main function, Ch.~\ref{ch:su}>>=
   util.Name("sumEgo")
+  //<<Set usage, Ch.~\ref{ch:su}>>
   //<<Declare options, Ch.~\ref{ch:su}>>
   //<<Parse options, Ch.~\ref{ch:su}>>
   //<<Parse input files, Ch.~\ref{ch:su}>>
@@ -50,6 +51,22 @@ We import \ty{util}
 #+end_export
 #+begin_src go <<Imports, Ch.~\ref{ch:su}>>=
   "github.com/evolbioinf/gin/util"
+#+end_src
+#+begin_export latex
+The usage consists of three parts, the actual usage message, an
+explanation of the purpose of \ty{sumEgo}, and an example command.
+#+end_export
+#+begin_src go <<Set usage, Ch.~\ref{ch:su}>>=
+  u := "sumEgo [-v|-h] [foo.txt]..."
+  p := "Summarize output files generated with ego."
+  e := "sumEgo ego*.txt"
+  clio.Usage(u, p, e)
+#+end_src
+#+begin_export latex
+We import \ty{clio}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:su}>>=
+  "github.com/evolbioinf/clio"
 #+end_src
 #+begin_export latex
 We declare only the version option, \ty{-v}.
@@ -132,12 +149,6 @@ declared.
   files := flag.Args()
   clio.ParseFiles(files, scan, g2e, g2p,
 	  &ns, g2n, &nt, g2o, g2c, g2d)
-#+end_src
-#+begin_export latex
-We import \ty{clio}.
-#+end_export
-#+begin_src go <<Imports, Ch.~\ref{ch:su}>>=
-  "github.com/evolbioinf/clio"
 #+end_src
 #+begin_export latex
 Inside \ty{scan} we retrieve the arguments just passed. Then we
