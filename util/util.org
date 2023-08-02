@@ -51,7 +51,8 @@
   func Open(file string) *os.File {
 	  f, err := os.Open(file)
 	  if err != nil {
-		  fmt.Fprintf(os.Stderr, "couldn't open %s\n", file)
+		  fmt.Fprintf(os.Stderr, "couldn't open %s\n",
+			  file)
 		  os.Exit(1)
 	  }
 	  return f
