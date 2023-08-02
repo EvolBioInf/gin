@@ -1,4 +1,4 @@
-src = annotate.tex shuffle.tex ego.tex intro.tex util.tex
+src = annotate.tex shuffle.tex ego.tex sumEgo.tex intro.tex util.tex
 
 all: $(src) ginDoc.pdf 
 %.tex:	../*/%.org ginDoc.tex

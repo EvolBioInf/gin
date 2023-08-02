@@ -1,0 +1,535 @@
+#+begin_export latex
+\section*{Introduction}
+The program \ty{sumEgo} summarizes \ty{ego} results obtained from the
+same input data. This allows pseudo-parallelization by running several
+analyses as background jobs, waiting for them to finish, and then
+summarizing their results with \ty{sumEgo}.
+#+end_export
+#+begin_src sh <<sumEgo.sh>>=
+  for a in $(seq 10)
+  do
+      nohup shuffle -n 1000000 genomic.gff iv.txt |
+	  annotate -c genomic.gff |
+	  ego -o gene2go obsId.txt > ego${a}.txt &
+  done
+  wait
+  sumEgo ego*.txt
+#+end_src
+#+begin_src latex
+  \section*{Implementation}
+  Our implementation of \ty{sumEgo} has hooks for imports, types,
+  methods, functions, and the logic of the main function.
+#+end_src
+#+begin_src go <<sumEgo.go>>=
+  package main
+
+  import (
+	  //<<Imports, Ch.~\ref{ch:su}>>
+  )
+  //<<Types, Ch.~\ref{ch:su}>>
+  //<<Methods, Ch.~\ref{ch:su}>>
+  //<<Functions, Ch.~\ref{ch:su}>>
+  func main() {
+	  //<<Main function, Ch.~\ref{ch:su}>>
+  }
+#+end_src
+#+begin_export latex
+In the main function we set the name of \ty{sumEgo} and its usage. Then
+we declare the options, parse them, parse the input files, and print
+the result.
+#+end_export
+#+begin_src go <<Main function, Ch.~\ref{ch:su}>>=
+  util.Name("sumEgo")
+  //<<Declare options, Ch.~\ref{ch:su}>>
+  //<<Parse options, Ch.~\ref{ch:su}>>
+  //<<Parse input files, Ch.~\ref{ch:su}>>
+  //<<Print result, Ch.~\ref{ch:su}>>
+#+end_src
+#+begin_export latex
+We import \ty{util}
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:su}>>=
+  "github.com/evolbioinf/gin/util"
+#+end_src
+#+begin_export latex
+We declare only the version option, \ty{-v}.
+#+end_export
+#+begin_src go <<Declare options, Ch.~\ref{ch:su}>>=
+  optV := flag.Bool("v", false, "version")
+#+end_src
+#+begin_export latex
+We import \ty{flag}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:su}>>=
+  "flag"
+#+end_src
+#+begin_export latex
+We parse the options and respond to a request for the version, as this
+also stops the program.
+#+end_export
+#+begin_src go <<Parse options, Ch.~\ref{ch:su}>>=
+  flag.Parse()
+  if *optV {
+	  util.Version()
+  }
+#+end_src
+#+begin_export latex
+We usually parse more than one file, so we need a mechanism for
+storing the results between parses. The simplest are variables for
+storing the \ty{ego} results from individual files. We declare these
+variables before iterating over the files.
+#+end_export
+#+begin_src go <<Parse input files, Ch.~\ref{ch:su}>>=
+  //<<Declare variables to store \ty{ego} output, Ch.~\ref{ch:su}>>
+  //<<Iterate over files, Ch.~\ref{ch:su}>>
+#+end_src
+#+begin_export latex
+The gist of our computation is to calculate averages of the expected
+occupancy and the $P$-values, so we declare maps between GO terms and
+these quantities.
+#+end_export
+#+begin_src go <<Declare variables to store \ty{ego} output, Ch.~\ref{ch:su}>>=
+  g2e := make(map[string]float64)
+  g2p := make(map[string]float64)
+#+end_src
+#+begin_export latex
+To calculate averages, we need to count the samples.
+#+end_export
+#+begin_src go <<Declare variables to store \ty{ego} output, Ch.~\ref{ch:su}>>=
+  ns := 0
+#+end_src
+#+begin_export latex
+However, $P$-values might be -1, so they can only be averaged over
+results that are not -1, which we count per GO term.
+#+end_export
+#+begin_src go <<Declare variables to store \ty{ego} output, Ch.~\ref{ch:su}>>=
+  g2n := make(map[string]int)
+#+end_src
+#+begin_export latex
+To interpret eventual -1 results, we need the total number of
+iterations.
+#+end_export
+#+begin_src go <<Declare variables to store \ty{ego} output, Ch.~\ref{ch:su}>>=
+  nt := 0.
+#+end_src
+#+begin_export latex
+We also store three quantities that do not change between samples, the
+observed occupancy, the category, and the description.
+#+end_export
+#+begin_src go <<Declare variables to store \ty{ego} output, Ch.~\ref{ch:su}>>=
+  g2o := make(map[string]int)
+  g2c := make(map[string]string)
+  g2d := make(map[string]string)
+#+end_src
+#+begin_export latex
+The remaining tokens on the command line are interpreted as the names
+of input files. They are passed to the method \ty{ParseFiles}, which
+applies the function \ty{scan} to each of them. The function
+\ty{scan}, in turn, takes as arguments the eight variables we just
+declared.
+#+end_export
+#+begin_src go <<Iterate over files, Ch.~\ref{ch:su}>>=
+  files := flag.Args()
+  clio.ParseFiles(files, scan, g2e, g2p,
+	  &ns, g2n, &nt, g2o, g2c, g2d)
+#+end_src
+#+begin_export latex
+We import \ty{clio}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:su}>>=
+  "github.com/evolbioinf/clio"
+#+end_src
+#+begin_export latex
+Inside \ty{scan} we retrieve the arguments just passed. Then we
+iterate over the input file and parse each line.
+#+end_export
+#+begin_src go <<Functions, Ch.~\ref{ch:su}>>=
+  func scan(r io.Reader, args ...interface{}) {
+	  //<<Retrieve arguments, Ch.~\ref{ch:su}>>
+	  sc := bufio.NewScanner(r)
+	  for sc.Scan() {
+		  line := sc.Text()
+		  //<<Parse line, Ch.~\ref{ch:su}>>
+	  }
+  }
+#+end_src
+#+begin_export latex
+We import \ty{io} and \ty{bufio}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:su}>>=
+  "bufio"
+  "io"
+#+end_src
+#+begin_export latex
+We retrieve the eight arguments we passed and assign them to their
+original names.
+#+end_export
+#+begin_src go <<Retrieve arguments, Ch.~\ref{ch:su}>>=
+  g2e := args[0].(map[string]float64)
+  g2p := args[1].(map[string]float64)
+  ns := args[2].(*int)
+  g2n := args[3].(map[string]int)
+  nt := args[4].(*float64)
+  g2o := args[5].(map[string]int)
+  g2c := args[6].(map[string]string)
+  g2d := args[7].(map[string]string)
+#+end_src
+#+begin_export latex
+We classify lines into headers and data. Headers start with a hash and
+data doesn't, but consists of at least seven fields. If we find a
+header, we increment the number of samples before analyzing it.
+#+end_export
+#+begin_src go <<Parse line, Ch.~\ref{ch:su}>>=
+  fields := strings.Fields(line)
+  if line[0] == '#' {
+	  (*ns)++
+	  //<<Analyze header, Ch.~\ref{ch:su}>>
+  } else if len(fields) >= 7 {
+	  //<<Analyze data, Ch.~\ref{ch:su}>>
+  }
+#+end_src
+#+begin_export latex
+We import \ty{strings}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:su}>>=
+  "strings"
+#+end_src
+#+begin_export latex
+A header line consists of seven entries, for example,
+\begin{verbatim}
+#GO O E O/E P(n=1.0e+02) Category Description
+\end{verbatim}
+The fifth entry, \verb-P(n=1.0e+02)-, indicates the number of
+iterations, which we extract and add to the total number of
+iterations.
+#+end_export
+#+begin_src go <<Analyze header, Ch.~\ref{ch:su}>>=
+  x := strings.Split(fields[4], "=")[1]
+  x = x[0:len(x)-1]
+  n, err := strconv.ParseFloat(x, 64)
+  if err != nil {
+	  log.Fatal(err)
+  }
+  (*nt) += n
+#+end_src
+#+begin_export latex
+We import \ty{strconv} and \ty{log}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:su}>>=
+  "strconv"
+  "log"
+#+end_src
+#+begin_export latex
+When analyzing a line of data, we first store the GO term located in
+the first column. Then we extract the observed and expected occupancy,
+the $P$ value, the category, and the description.
+#+end_export
+#+begin_src go <<Analyze data, Ch.~\ref{ch:su}>>=
+  gt := fields[0]
+  //<<Extract observed occupancy, Ch.~\ref{ch:su}>>
+  //<<Extract expected occupancy, Ch.~\ref{ch:su}>>
+  //<<Extract $P$ value, Ch.~\ref{ch:su}>>
+  //<<Extract category, Ch.~\ref{ch:su}>>
+  //<<Extract description, Ch.~\ref{ch:su}>>
+#+end_src
+#+begin_export latex
+We extract the observed occupancy from the second column, unless this
+was already done in a previous round.
+#+end_export
+#+begin_src go <<Extract observed occupancy, Ch.~\ref{ch:su}>>=
+  if g2o[gt] == 0 {
+	  o, err := strconv.Atoi(fields[1])
+	  if err != nil {
+		  log.Fatal(err)
+	  }
+	  g2o[gt] = o
+  }
+#+end_src
+#+begin_export latex
+We extract the expected occupancy from the third column and sum it up.
+#+end_export
+#+begin_src go <<Extract expected occupancy, Ch.~\ref{ch:su}>>=
+  e, err := strconv.ParseFloat(fields[2], 64)
+  if err != nil {
+	  log.Fatal(err)
+  }
+  g2e[gt] += e
+#+end_src
+#+begin_export latex
+We extract the $P$ value from the fifth column. If it isn't -1, we sum
+it up and increment the corresponding sample counter. Otherwise we add
+zero to the map, to make sure it contains the current GO term.
+#+end_export
+#+begin_src go <<Extract $P$ value, Ch.~\ref{ch:su}>>=
+  p, err := strconv.ParseFloat(fields[4], 64)
+  if err != nil {
+	  log.Fatal(err)
+  }
+  if p != -1.0 {
+	  g2p[gt] += p
+	  g2n[gt]++
+  } else {
+	  g2p[gt] += 0.0
+  }
+#+end_src
+#+begin_export latex
+We extract the category from the sixth column, unless we've already
+done that in a previous round.
+#+end_export
+#+begin_src go <<Extract category, Ch.~\ref{ch:su}>>=
+  if g2c[gt] == "" {
+	  g2c[gt] = fields[5]
+  }
+#+end_src
+#+begin_export latex
+We construct the description by joining the remaining columns, unless
+it's already done.
+#+end_export
+#+begin_src go <<Extract description, Ch.~\ref{ch:su}>>=
+  if g2d[gt] == "" {
+	  d := strings.Join(fields[6:], " ")
+	  g2d[gt] = d
+  }
+#+end_src
+#+begin_export latex
+We print the results in three steps, prepare the results, print the
+table header, and print the table itself. We print the table using a
+\ty{tabwriter}. So we construct one and flush it at the end.
+#+end_export
+#+begin_src go <<Print result, Ch.~\ref{ch:su}>>=
+  //<<Prepare results, Pr.~\ref{ch:su}>>
+  w := tabwriter.NewWriter(os.Stdout, 0, 1, 2, ' ', 0)
+  //<<Print header, Pr.~\ref{ch:su}>>
+  //<<Print table body, Pr.~\ref{ch:su}>>
+  w.Flush()
+#+end_src
+#+begin_export latex
+We import \ty{tabwriter} and \ty{os}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:su}>>=
+  "text/tabwriter"
+  "os"
+#+end_src
+#+begin_export latex
+Three statistics remain to be calculated in preparing the results, the
+average expected occupancy, the average fold change, and the average
+$P$ value. By way of preparation we also sort the results.
+#+end_export
+#+begin_src go <<Prepare results, Pr.~\ref{ch:su}>>=
+  //<<Calculate average expected occupancy, Ch.~\ref{ch:su}>>
+  //<<Calculate average fold change, Ch.~\ref{ch:su}>>
+  //<<Calculate average $P$ values, Ch.~\ref{ch:su}>>
+  //<<Sort results, Ch.~\ref{ch:su}>>
+#+end_src
+#+begin_export latex
+The expected average occupancy is the summed occupancy divided by the
+number of samples.
+#+end_export
+#+begin_src go <<Calculate average expected occupancy, Ch.~\ref{ch:su}>>=
+  for k, _ := range g2e {
+	  g2e[k] /= float64(ns)
+  }
+#+end_src
+#+begin_export latex
+The average fold change is the observed occupancy divided by the
+expected occupancy.
+#+end_export
+#+begin_src go <<Calculate average fold change, Ch.~\ref{ch:su}>>=
+  g2f := make(map[string]float64)
+  for k, v := range g2o {
+	  f := float64(v) / g2e[k]
+	  g2f[k] = f
+  }
+#+end_src
+#+begin_export latex
+The average $P$ value is the sum of $P$ values divided by the number
+of samples where the $P$ value wasn't -1. If this is zero, we set
+$P=-1$.
+#+end_export
+#+begin_src go <<Calculate average $P$ values, Ch.~\ref{ch:su}>>=
+  for k, v := range g2p {
+	  if g2n[k] > 0 {
+		  v /= float64(g2n[k])
+	  } else {
+		  v = -1.
+	  }
+	  g2p[k] = v
+  }
+#+end_src
+#+begin_export latex
+To sort the results, we declare a \ty{struct} to store them in.
+#+end_export
+#+begin_src go <<Types, Ch.~\ref{ch:su}>>=
+  type result struct {
+	  g, c, d string
+	  o int
+	  e, f, p float64
+  }
+#+end_src
+#+begin_export latex
+We also declare a sortable slice of results.
+#+end_export
+#+begin_src go <<Types, Ch.~\ref{ch:su}>>=
+  type resultSlice []*result
+#+end_src
+#+begin_export latex
+To make the slice of results sortable, we implement the three methods
+of the \ty{sort} interface, \ty{Len}, \ty{Swap}, and \ty{Less}. We
+begin with \ty{Len} and \ty{Less}, as these take their standard form.
+#+end_export
+#+begin_src go <<Methods, Ch.~\ref{ch:su}>>=
+  func(r resultSlice) Len() int {
+	  return len(r)
+  }
+  func(r resultSlice) Swap(i, j int) {
+	  r[i], r[j] = r[j], r[i]
+  }
+#+end_src
+#+begin_export latex
+The method \ty{Less} determines the sort order. Our primary sort key
+is the $P$ value. For identical $P$ values we sort by fold change in
+descending order. For identical fold change we sort by descending
+observed occupancy. If all else fails, we sort by GO accession.
+#+end_export
+#+begin_src go <<Methods, Ch.~\ref{ch:su}>>=
+  func (r resultSlice) Less(i, j int) bool {
+	  if r[i].p != r[j].p {
+		  return r[i].p < r[j].p
+	  }
+	  if r[i].f != r[j].f {
+		  return r[i].f > r[j].f
+	  }
+	  if r[i].o != r[j].o {
+		  return r[i].o > r[j].o
+	  }
+	  return r[i].g < r[j].g
+  }
+#+end_src
+#+begin_export latex
+We store the results in a slice, cast them to the sortable results
+slice, and sort them.
+#+end_export
+#+begin_src go <<Sort results, Ch.~\ref{ch:su}>>=
+  results := make([]*result, 0)
+  for k, v := range g2o {
+	  r := new(result)
+	  r.g = k
+	  r.o = v
+	  r.e = g2e[k]
+	  r.f = g2f[k]
+	  r.p = g2p[k]
+	  r.c = g2c[k]
+	  r.d = g2d[k]
+	  results = append(results, r)
+  }
+  sort.Sort(resultSlice(results))
+#+end_src
+#+begin_export latex
+We import \ty{sort}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:su}>>=
+  "sort"
+#+end_src
+#+begin_export latex
+We print the header with the total number of iterations.
+#+end_export
+#+begin_src go <<Print header, Pr.~\ref{ch:su}>>=
+  h := "#GO\tO\tE\tO/E\tP(n=%.1g)\t" +
+	  "Category\tDescription\n"
+  fmt.Fprintf(w, h, float64(nt))
+#+end_src
+#+begin_export latex
+We import \ty{fmt}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:su}>>=
+  "fmt"
+#+end_src
+#+begin_export latex
+We iterate over the sorted GO terms and print the seven fields in each
+table row.
+#+end_export
+#+begin_src go <<Print table body, Pr.~\ref{ch:su}>>=
+  for _, r := range results {
+	  fmt.Fprintf(w, "%s\t%d\t%.3g\t%.3g\t%.3g\t%s\t%s\n",
+			 r.g, r.o, r.e, r.f, r.p,r.c, r.d)
+  }
+#+end_src
+#+begin_export latex
+We're done with \ty{sumEgo}, time to test it.
+
+\section*{Testing}
+The outline of our testing program for \ty{sumEgo} has hooks for
+imports and the logic of the main function.
+#+end_export
+#+begin_src go <<sumEgo_test.go>>=
+  package main
+
+  import (
+	  "testing"
+	  //<<Testing imports, Ch.~\ref{ch:su}>>
+  )
+
+  func TestSumEgo(t *testing.T) {
+	  //<<Testing, Ch.~\ref{ch:su}>>
+  }
+#+end_src
+#+begin_export latex
+We construct a set of tests and iterate over them to run each one.
+#+end_export
+#+begin_src go <<Testing, Ch.~\ref{ch:su}>>=
+  tests := make([]*exec.Cmd, 0)
+  //<<Construct tests, Ch.~\ref{ch:su}>>
+  for i, test := range tests {
+	  //<<Run test, Ch.~\ref{ch:su}>>
+  }
+#+end_src
+#+begin_export latex
+We import \ty{exec}.
+#+end_export
+#+begin_src go <<Testing imports, Ch.~\ref{ch:su}>>=
+  "os/exec"
+#+end_src
+#+begin_export latex
+We construct three simple tests. The first takes one input file, the
+second two, the third three.
+#+end_export
+#+begin_src go <<Construct tests, Ch.~\ref{ch:su}>>=
+  i1 := "../data/ego1.txt"
+  i2 := "../data/ego2.txt"
+  i3 := "../data/ego3.txt"
+  test := exec.Command("./sumEgo", i1)
+  tests = append(tests, test)
+  test = exec.Command("./sumEgo", i1, i2)
+  tests = append(tests, test)
+  test = exec.Command("./sumEgo", i1, i2, i3)
+  tests = append(tests, test)
+#+end_src
+#+begin_export latex
+When running a test, we compare the output we get with the output we
+want, which is stored in files \ty{r1.txt}, \ty{r2.txt}, and
+\ty{r3.txt}.
+#+end_export
+#+begin_src go <<Run test, Ch.~\ref{ch:su}>>=
+  get, err := test.Output()
+  if err != nil {
+	  t.Error(err)
+  }
+  f := "r" + strconv.Itoa(i + 1) + ".txt"
+  want, err := os.ReadFile(f)
+  if err != nil {
+	  t.Error(err)
+  }
+  if !bytes.Equal(get, want) {
+	  t.Errorf("get:\n%s\nwant:\n%s\n", get, want)
+  }
+#+end_src
+#+begin_export latex
+We import \ty{strconv}, \ty{os}, and \ty{bytes}.
+#+end_export
+#+begin_src go <<Testing imports, Ch.~\ref{ch:su}>>=
+  "strconv"
+  "os"
+  "bytes"
+#+end_src
+
+

@@ -21,8 +21,10 @@ doc/ginDoc.*
 doc/ginDoc.ps
 doc/intro.tex
 doc/shuffle.tex
+doc/sumEgo.tex
 doc/util.tex
 ego/ego
+ego/sumEgo
 ego/time.sh
 intro/README.md
 intro/cli.sh
@@ -30,3 +32,7 @@ intro/iv.txt
 intro/ncbi_dataset*
 intro/obsId.txt
 shuffle/shuffle
+sumEgo/sumEgo
+sumEgo/makeInput.sh
+sumEgo/makeRes.sh
+sumEgo/sumEgo.sh

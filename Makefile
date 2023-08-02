@@ -1,4 +1,4 @@
-progs = annotate shuffle ego
+progs = annotate shuffle ego sumEgo
 packs = util
 
 all:
