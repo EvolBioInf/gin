@@ -59,6 +59,7 @@ GO:0006366  58   1.01  57.4  -1            Process    transcription by RNA polym
 GO:0001501  12   0.21  57.1  -1            Process    skeletal system development
 GO:0000977  27   0.48  56.2  -1            Function   RNA polymerase II regulatory region sequence-specific DNA binding
 GO:0000981  130  2.34  55.6  -1            Function   RNA polymerase II transcription factor activity, sequence-specific DNA binding
+GO:0030855  5    0.09  55.6  -1            Process    epithelial cell differentiation
 GO:0001205  6    0.11  54.5  -1            Function   transcriptional activator activity, RNA polymerase II distal enhancer sequence-specific DNA binding
 GO:0001947  6    0.11  54.5  -1            Process    heart looping
 GO:0000980  7    0.13  53.8  -1            Function   RNA polymerase II distal enhancer sequence-specific DNA binding
@@ -66,7 +67,6 @@ GO:0000978  36   0.67  53.7  -1            Function   RNA polymerase II proximal
 GO:0051216  10   0.19  52.6  -1            Process    cartilage development
 GO:0001085  5    0.1   50    -1            Function   RNA polymerase II transcription factor binding
 GO:0003705  5    0.1   50    -1            Function   transcription factor activity, RNA polymerase II distal enhancer sequence-specific binding
-GO:0030855  5    0.1   50    -1            Process    epithelial cell differentiation
 GO:0045596  5    0.1   50    -1            Process    negative regulation of cell differentiation
 GO:0007219  7    0.15  46.7  -1            Process    Notch signaling pathway
 GO:0071300  6    0.13  46.2  -1            Process    cellular response to retinoic acid
@@ -117,8 +117,8 @@ GO:0010468  5    0.29  17.2  -1            Process    regulation of gene express
 GO:0003677  37   2.15  17.2  -1            Function   DNA binding
 GO:0000790  7    0.43  16.3  -1            Component  nuclear chromatin
 GO:0008083  5    0.31  16.1  -1            Function   growth factor activity
+GO:0016604  6    0.38  15.8  -1            Component  nuclear body
 GO:0042127  6    0.38  15.8  -1            Process    regulation of cell proliferation
-GO:0016604  6    0.39  15.4  -1            Component  nuclear body
 GO:0008283  9    0.59  15.3  -1            Process    cell proliferation
 GO:0006367  5    0.34  14.7  -1            Process    transcription initiation from RNA polymerase II promoter
 GO:0008285  10   0.69  14.5  -1            Process    negative regulation of cell proliferation
@@ -134,32 +134,32 @@ GO:0032991  8    0.86  9.3   -1            Component  protein-containing complex
 GO:0055114  9    0.98  9.18  -1            Process    oxidation-reduction process
 GO:0010469  8    0.88  9.09  -1            Process    regulation of signaling receptor activity
 GO:0030054  8    0.89  8.99  -1            Component  cell junction
-GO:0007267  5    0.59  8.47  -1            Process    cell-cell signaling
+GO:0007267  5    0.58  8.62  -1            Process    cell-cell signaling
 GO:0046872  29   3.58  8.1   -1            Function   metal ion binding
 GO:0008270  10   1.28  7.81  -1            Function   zinc ion binding
 GO:0043065  5    0.69  7.25  -1            Process    positive regulation of apoptotic process
 GO:0005622  7    1.03  6.8   -1            Component  intracellular
 GO:0019901  5    0.78  6.41  -1            Function   protein kinase binding
-GO:0005515  108  17    6.36  -1            Function   protein binding
+GO:0005515  108  16.9  6.37  -1            Function   protein binding
 GO:0005730  8    1.31  6.11  -1            Component  nucleolus
 GO:0005575  5    0.83  6.02  -1            Component  cellular_component
 GO:0005615  17   2.95  5.76  -1            Component  extracellular space
 GO:0006915  5    0.96  5.21  -1            Process    apoptotic process
 GO:0008150  5    0.97  5.15  -1            Process    biological_process
 GO:0003674  6    1.24  4.84  -1            Function   molecular_function
-GO:0005737  33   7.27  4.54  -1            Component  cytoplasm
-GO:0005887  12   2.93  4.1   -1            Component  integral component of plasma membrane
-GO:0005829  32   8.45  3.79  -1            Component  cytosol
+GO:0005737  33   7.26  4.55  -1            Component  cytoplasm
+GO:0005887  12   2.92  4.11  -1            Component  integral component of plasma membrane
+GO:0005829  32   8.44  3.79  -1            Component  cytosol
 GO:0005794  6    1.66  3.61  -1            Component  Golgi apparatus
 GO:0005524  9    2.7   3.33  -1            Function   ATP binding
-GO:0005886  26   8.47  3.07  -1            Component  plasma membrane
+GO:0005886  26   8.46  3.07  -1            Component  plasma membrane
 GO:0005509  6    1.26  4.76  0.01          Function   calcium ion binding
-GO:0005576  14   3.39  4.13  0.01          Component  extracellular region
-GO:0007165  9    2.38  3.78  0.01          Process    signal transduction
+GO:0005576  14   3.38  4.14  0.01          Component  extracellular region
+GO:0007165  9    2.36  3.81  0.01          Process    signal transduction
 GO:0007186  8    2.18  3.67  0.01          Process    G-protein coupled receptor signaling pathway
 GO:0042802  6    1.66  3.61  0.01          Function   identical protein binding
-GO:0070062  10   3.69  2.71  0.01          Component  extracellular exosome
-GO:0016020  9    3.87  2.33  0.01          Component  membrane
+GO:0070062  10   3.68  2.72  0.01          Component  extracellular exosome
+GO:0016020  9    3.86  2.33  0.01          Component  membrane
 GO:0016021  14   6.73  2.08  0.02          Component  integral component of membrane
 GO:0004930  5    1.42  3.52  0.03          Function   G-protein coupled receptor activity
 GO:0005739  6    2.28  2.63  0.03          Component  mitochondrion

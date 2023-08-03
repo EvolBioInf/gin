@@ -47,12 +47,12 @@ GO:0042803  15   1.28  11.7  -1            Function   protein homodimerization a
 GO:0005654  56   5.38  10.4  -1            Component  nucleoplasm
 GO:0046872  29   3.58  8.1   -1            Function   metal ion binding
 GO:0008270  10   1.28  7.81  -1            Function   zinc ion binding
-GO:0005515  108  17    6.36  -1            Function   protein binding
+GO:0005515  108  16.9  6.37  -1            Function   protein binding
 GO:0005615  17   2.95  5.76  -1            Component  extracellular space
-GO:0005737  33   7.27  4.54  -1            Component  cytoplasm
-GO:0005887  12   2.93  4.1   -1            Component  integral component of plasma membrane
-GO:0005829  32   8.45  3.79  -1            Component  cytosol
-GO:0005886  26   8.47  3.07  -1            Component  plasma membrane
-GO:0005576  14   3.39  4.13  0.01          Component  extracellular region
-GO:0070062  10   3.69  2.71  0.01          Component  extracellular exosome
+GO:0005737  33   7.26  4.55  -1            Component  cytoplasm
+GO:0005887  12   2.92  4.11  -1            Component  integral component of plasma membrane
+GO:0005829  32   8.44  3.79  -1            Component  cytosol
+GO:0005886  26   8.46  3.07  -1            Component  plasma membrane
+GO:0005576  14   3.38  4.14  0.01          Component  extracellular region
+GO:0070062  10   3.68  2.72  0.01          Component  extracellular exosome
 GO:0016021  14   6.73  2.08  0.02          Component  integral component of membrane
