@@ -384,11 +384,13 @@ bail with message.
 #+end_src
 #+begin_src latex
   We scan the observed IDs, which we assume to be presented in a single
-  column. If there is more than one column, we bail with a message.
+  column. If there is more than one column, we bail with a message. To
+  ensure that each gene is counted only once, we store the gene IDs in a
+  map.
 #+end_src
 #+begin_src go <<Scan observed IDs file, Ch.~\ref{ch:eg}>>=
   sc = bufio.NewScanner(f)
-  ids := make([]string, 0)
+  ids := make(map[string]bool)
   for sc.Scan() {
 	  fields := strings.Fields(sc.Text())
 	  if len(fields) > 1 {
@@ -396,7 +398,7 @@ bail with message.
 			  "in a single column"
 		  log.Fatal(m)
 	  }
-	  ids = append(ids, fields[0])
+	  ids[fields[0]] = true
   }
 #+end_src
 #+begin_src latex
@@ -413,7 +415,7 @@ bail with message.
 #+end_src
 #+begin_src go <<Construct GO/sym table, Ch.~\ref{ch:eg}>>=
   g2s := make(map[string][]string)
-  for _, id := range ids {
+  for id, _ := range ids {
 	  sym := id2sym[id]
 	  gterms := id2go[id]
 	  //<<Iterate over GO terms for ID, Ch.~\ref{ch:eg}>>
@@ -550,10 +552,10 @@ We print the symbols as a blank-delimited list.
   we count.
 #+end_src
 #+begin_src go <<Functions, Ch.~\ref{ch:eg}>>=
-  func gid2go(ids []string,
+  func gid2go(ids map[string]bool,
 	  id2go map[string]map[string]bool) map[string]int {
 	  og := make(map[string]int)
-	  for _, id := range ids {
+	  for id, _ := range ids {
 		  //<<Count GO IDs for gene, Ch.~\ref{ch:eg}>>
 	  }
 	  return og
@@ -626,14 +628,14 @@ We print the symbols as a blank-delimited list.
 #+end_src
 #+begin_src go <<Prepare enrichment analysis, Ch.~\ref{ch:eg}>>=
   n := 0
-  ids := make([]string, 0)
+  ids := make(map[string]bool)
   expGOcounts := make(map[string]int)
   eCounts := make(map[string]int)
 #+end_src
 #+begin_src latex
   Whenever we encounter a blank line, we've traversed a sample. At that
   point we increment our sample counter, convert the IDs to GO counts,
-  analyze them, and reset the table of IDs.
+  analyze them, and reset the map of IDs.
 #+end_src
 #+begin_src go <<Analyze IDs, Ch.~\ref{ch:eg}>>=
   fields := strings.Fields(sc.Text())
@@ -644,9 +646,9 @@ We print the symbols as a blank-delimited list.
 	  n++
 	  eg := gid2go(ids, id2go)
 	  //<<Analyze GO counts, Ch.~\ref{ch:eg}>>
-	  ids = ids[:0]
+	  //<<Reset IDs, Ch.~\ref{ch:eg}>>
   } else {
-	  ids = append(ids, fields[0])
+	  ids[fields[0]] = true
   }
 #+end_src
 #+begin_src latex
@@ -663,6 +665,14 @@ We print the symbols as a blank-delimited list.
 	  if e >= o {
 		  eCounts[k]++
 	  }
+  }
+#+end_src
+#+begin_export latex
+To reset the map of IDs, we iterate over the keys and delete each one.
+#+end_export
+#+begin_src go <<Reset IDs, Ch.~\ref{ch:eg}>>=
+  for id, _ := range ids {
+	  delete(ids, id)
   }
 #+end_src
 #+begin_src latex
