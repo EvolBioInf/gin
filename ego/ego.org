@@ -765,8 +765,8 @@ To reset the map of IDs, we iterate over the keys and delete each one.
   for _, g := range GOterms {
 	  if int(g.o) < minOcc { continue }
 	  fmt.Fprintf(w,
-		  "%s\t%.3g\t%.3g\t%.3g\t%.3g\t%s\t%s\n",
-		  g.a, g.o, g.e, g.o/g.e, g.p, g.c, g.d)
+		  "%s\t%d\t%.3g\t%.3g\t%.3g\t%s\t%s\n",
+		  g.a, int(g.o), g.e, g.o/g.e, g.p, g.c, g.d)
   }
   w.Flush()
 #+end_src
