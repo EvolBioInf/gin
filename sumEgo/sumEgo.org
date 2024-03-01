@@ -187,7 +187,7 @@ original names.
 #+end_src
 #+begin_export latex
 We classify lines into headers and data. Headers start with a hash and
-data doesn't, but consists of at least seven fields. If we find a
+data doesn't, but consists of at least eight fields. If we find a
 header, we increment the number of samples before analyzing it.
 #+end_export
 #+begin_src go <<Parse line, Ch.~\ref{ch:su}>>=
@@ -195,7 +195,7 @@ header, we increment the number of samples before analyzing it.
   if line[0] == '#' {
 	  (*ns)++
 	  //<<Analyze header, Ch.~\ref{ch:su}>>
-  } else if len(fields) >= 7 {
+  } else if len(fields) >= 8 {
 	  //<<Analyze data, Ch.~\ref{ch:su}>>
   }
 #+end_src
@@ -206,13 +206,13 @@ We import \ty{strings}.
   "strings"
 #+end_src
 #+begin_export latex
-A header line consists of seven entries, for example,
+A header line consists of eight entries, for example,
 \begin{verbatim}
-#GO O E O/E P(n=1.0e+02) Category Description
+#GO O E O/E P_m(n=1.0e+02) P_p Category Description
 \end{verbatim}
-The fifth entry, \verb-P(n=1.0e+02)-, indicates the number of
-iterations, which we extract and add to the total number of
-iterations.
+The fifth entry, \verb-P_m(n=1.0e+02)-, indicates the number of
+iterations used to calculate the Monte-Carlo $P$-value, $\ppm$. We
+extract this number and add it to the total number of iterations.
 #+end_export
 #+begin_src go <<Analyze header, Ch.~\ref{ch:su}>>=
   x := strings.Split(fields[4], "=")[1]
