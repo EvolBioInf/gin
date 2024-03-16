@@ -853,13 +853,14 @@ of the indicator ``R'', followed by the GO accession, followed by the
 occupancy of that accession in the shuffles. So a row might look like
 this:
 \begin{verbatim}
-R GO:0046872 3 2 0 0 4...
+R GO:0005615 0 5 2 2 4 2 5 1 2 3 3 2 2 4 5 3 1 1 5 2 2...
 \end{verbatim}
 #+end_export
 #+begin_src go <<Print raw counts, Ch.~\ref{ch:eg}>>=
-  for term := range obsGOcounts {
-	  fmt.Printf("R %s", term)
-	  counts := eVals[term]
+  for _, term := range GOterms {
+	  a := term.a
+	  fmt.Printf("R %s", a)
+	  counts := eVals[a]
 	  for _, count := range counts {
 		  fmt.Printf(" %d", count)
 	  }
@@ -921,13 +922,13 @@ R GO:0046872 3 2 0 0 4...
 #+begin_export latex
 In our third test we also output the raw gene counts.
 #+end_export
-#+begin_src go
+#+begin_src go <<Construct tests, Ch.~\ref{ch:eg}>>=
   test = exec.Command("./ego", "-o", ge, "-r", ob, ra)
   tests = append(tests, test)
 #+end_src
 #+begin_src latex
   We run the test and compare what we get with what we want, which is
-  contained in \ty{r1.txt} and \ty{r2.txt}.
+  contained in \ty{r1.txt}, \ty{r2.txt}, and \ty{r3.txt}.
 #+end_src
 #+begin_src go <<Run test, Ch.~\ref{ch:eg}>>=
   get, err := test.Output()
