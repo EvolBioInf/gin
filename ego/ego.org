@@ -104,10 +104,11 @@ We import \ty{util}.
   "github.com/evolbioinf/clio"
 #+end_src
 #+begin_src latex
-  Apart from the version, \ty{-v}, we declare four options, the file
+  Apart from the version, \ty{-v}, we declare five options, the file
   containing the GO terms, \ty{-o}, the GFF file for printing the GO/sym
-  table, \ty{-g}, and the minimum occupancy of a GO term to be included
-  in the final result, \ty{-m}.
+  table, \ty{-g}, the minimum occupancy of a GO term to be included
+  in the final result, \ty{-m}, and whether to print the raw counts
+  instead of the default enrichment analysis.
 #+end_src
 #+begin_src go <<Declare options, Ch.~\ref{ch:eg}>>=
   var optV = flag.Bool("v", false, "version")
@@ -116,6 +117,7 @@ We import \ty{util}.
   var optG = flag.String("g", "",
 	  "GFF file to print GO/sym table")
   var optM = flag.Int("m", 10, "minimum occupancy of GO term")
+  var optR = flag.Bool("r", false, "print raw gene counts")
 #+end_src
 #+begin_src latex
   We import \ty{flag}.
@@ -584,13 +586,13 @@ We print the symbols as a blank-delimited list.
 #+begin_src go <<Parse input files, Ch.~\ref{ch:eg}>>=
   files = files[1:]
   clio.ParseFiles(files, scan, obsGOcounts,
-	  id2go, go2descr, go2cat, *optM)
+	  id2go, go2descr, go2cat, *optM, *optR)
 #+end_src
 #+begin_src latex
   Inside \ty{scan}, we retrieve the arguments, prepare the enrichment
   analysis, scan the file, and analyze the IDs. Once we have scanned all
   IDs, the last set of IDs still remains to be analyzed before we report
-  the enrichment analysis.
+  the enrichment analysis, perhaps followed by the raw gene counts.
 #+end_src
 #+begin_src go <<Functions, Ch.~\ref{ch:eg}>>=
   func scan(r io.Reader, args ...interface{}) {
@@ -602,6 +604,9 @@ We print the symbols as a blank-delimited list.
 	  }
 	  //<<Analyze last set of IDs, Ch.~\ref{ch:eg}>>
 	  //<<Report enrichment analysis, Ch.~\ref{ch:eg}>>
+	  if raw {
+		  //<<Print raw counts, Ch.~\ref{ch:eg}>>
+	  }
   }
 #+end_src
 #+begin_src latex
@@ -611,7 +616,7 @@ We print the symbols as a blank-delimited list.
   "io"
 #+end_src
 #+begin_src latex
-  We retrieve the five arguments passed to \ty{scan}.
+  We retrieve the six arguments passed to \ty{scan}.
 #+end_src
 #+begin_src go  <<Retrieve arguments, Ch.~\ref{ch:eg}>>=
   obsGOcounts := args[0].(map[string]int)
@@ -619,6 +624,7 @@ We print the symbols as a blank-delimited list.
   go2descr := args[2].(map[string]string)
   go2cat := args[3].(map[string]string)
   minOcc := args[4].(int)
+  raw := args[5].(bool)
 #+end_src
 #+begin_src latex
   The enrichment analysis depends on the number of samples we analyze
@@ -657,15 +663,13 @@ We print the symbols as a blank-delimited list.
   }
 #+end_src
 #+begin_src latex
-  We iterate over the GO terms found in the expected sample and
-  concentrate on those also contained in the observed sample. Their
-  occupancy is summed and terms where the expected occupancy is at least
-  as great as that observed are counted.
+  We iterate over the GO terms found in the observed sample. Their
+  occupancy is summed and stored. Moreover, terms where the expected
+  occupancy is at least as great as that observed are counted.
 #+end_src
 #+begin_src go <<Analyze GO counts, Ch.~\ref{ch:eg}>>=
-  for k, e := range eg {
-	  o := obsGOcounts[k]
-	  if o == 0 { continue }
+  for k, o := range obsGOcounts {
+	  e := eg[k]
 	  expGOcounts[k] += e
 	  eVals[k] = append(eVals[k], e)
 	  if e >= o {
@@ -842,6 +846,26 @@ We can now fill in the current GO term.
 #+begin_src go <<Imports, Ch.~\ref{ch:eg}>>=
   "sort"
 #+end_src
+#+begin_export latex
+The user might have opted to also output the raw gene counts. We do
+this by producing a potentially very large table with rows consisting
+of the indicator ``R'', followed by the GO accession, followed by the
+occupancy of that accession in the shuffles. So a row might look like
+this:
+\begin{verbatim}
+R GO:0046872 3 2 0 0 4...
+\end{verbatim}
+#+end_export
+#+begin_src go <<Print raw counts, Ch.~\ref{ch:eg}>>=
+  for term := range obsGOcounts {
+	  fmt.Printf("R %s", term)
+	  counts := eVals[term]
+	  for _, count := range counts {
+		  fmt.Printf(" %d", count)
+	  }
+	  fmt.Printf("\n")
+  }
+#+end_src
 #+begin_src latex
   We're finished writing \ty{ego}, so let's test it.
   \section*{Testing}
@@ -892,6 +916,13 @@ We can now fill in the current GO term.
 #+end_src
 #+begin_src go <<Construct tests, Ch.~\ref{ch:eg}>>=
   test = exec.Command("./ego", "-o", ge, "-m", "5", ob, ra)
+  tests = append(tests, test)
+#+end_src
+#+begin_export latex
+In our third test we also output the raw gene counts.
+#+end_export
+#+begin_src go
+  test = exec.Command("./ego", "-o", ge, "-r", ob, ra)
   tests = append(tests, test)
 #+end_src
 #+begin_src latex

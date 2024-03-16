@@ -1,11 +1,11 @@
 #GO         O    E     O/E   P_m(n=1.0e+02)  P_p       Category   Description
-GO:0021983  7    0.01  700   -1              NaN       Process    pituitary gland development
-GO:0001655  5    0.01  500   -1              NaN       Process    urogenital system development
-GO:0021527  5    0.01  500   -1              NaN       Process    spinal cord association neuron differentiation
-GO:0021796  5    0.01  500   -1              NaN       Process    cerebral cortex regionalization
-GO:0048646  5    0.01  500   -1              NaN       Process    anatomical structure formation involved in morphogenesis
-GO:0048935  5    0.01  500   -1              NaN       Process    peripheral nervous system neuron development
-GO:2000543  5    0.01  500   -1              NaN       Process    positive regulation of gastrulation
+GO:0021983  7    0.01  700   -1              0         Process    pituitary gland development
+GO:0001655  5    0.01  500   -1              0         Process    urogenital system development
+GO:0021527  5    0.01  500   -1              0         Process    spinal cord association neuron differentiation
+GO:0021796  5    0.01  500   -1              0         Process    cerebral cortex regionalization
+GO:0048646  5    0.01  500   -1              0         Process    anatomical structure formation involved in morphogenesis
+GO:0048935  5    0.01  500   -1              0         Process    peripheral nervous system neuron development
+GO:2000543  5    0.01  500   -1              0         Process    positive regulation of gastrulation
 GO:0030901  9    0.02  450   -1              0         Process    midbrain development
 GO:0048704  16   0.04  400   -1              0         Process    embryonic skeletal system morphogenesis
 GO:0042474  7    0.02  350   -1              0         Process    middle ear morphogenesis
@@ -28,7 +28,7 @@ GO:0048701  8    0.06  133   -1              0         Process    embryonic cran
 GO:0048706  8    0.06  133   -1              0         Process    embryonic skeletal system development
 GO:0071542  8    0.06  133   -1              0         Process    dopaminergic neuron differentiation
 GO:0001657  5    0.04  125   -1              0         Process    ureteric bud development
-GO:0048468  5    0.04  125   -1              1.07e-10  Process    cell development
+GO:0048468  5    0.04  125   -1              0         Process    cell development
 GO:0048536  6    0.05  120   -1              0         Process    spleen development
 GO:0030326  9    0.08  112   -1              0         Process    embryonic limb morphogenesis
 GO:0060021  9    0.08  112   -1              0         Process    roof of mouth development
@@ -36,7 +36,7 @@ GO:0042475  10   0.09  111   -1              0         Process    odontogenesis 
 GO:0042472  11   0.1   110   -1              0         Process    inner ear morphogenesis
 GO:0043565  61   0.58  105   -1              0         Function   sequence-specific DNA binding
 GO:0000987  5    0.05  100   -1              0         Function   proximal promoter sequence-specific DNA binding
-GO:0007224  5    0.05  100   -1              3.2e-14   Process    smoothened signaling pathway
+GO:0007224  5    0.05  100   -1              0         Process    smoothened signaling pathway
 GO:0043010  5    0.05  100   -1              0         Process    camera-type eye development
 GO:0045665  8    0.08  100   -1              0         Process    negative regulation of neuron differentiation
 GO:0048538  7    0.07  100   -1              0         Process    thymus development
@@ -67,7 +67,7 @@ GO:0000978  36   0.67  53.7  -1              0         Function   RNA polymerase
 GO:0051216  10   0.19  52.6  -1              0         Process    cartilage development
 GO:0001085  5    0.1   50    -1              0         Function   RNA polymerase II transcription factor binding
 GO:0003705  5    0.1   50    -1              0         Function   transcription factor activity, RNA polymerase II distal enhancer sequence-specific binding
-GO:0045596  5    0.1   50    -1              2.82e-06  Process    negative regulation of cell differentiation
+GO:0045596  5    0.1   50    -1              0         Process    negative regulation of cell differentiation
 GO:0007219  7    0.15  46.7  -1              0         Process    Notch signaling pathway
 GO:0071300  6    0.13  46.2  -1              0         Process    cellular response to retinoic acid
 GO:0045944  84   1.87  44.9  -1              0         Process    positive regulation of transcription by RNA polymerase II
@@ -101,14 +101,14 @@ GO:0006351  68   2.63  25.9  -1              0         Process    transcription,
 GO:0010628  14   0.55  25.5  -1              0         Process    positive regulation of gene expression
 GO:0046983  5    0.2   25    -1              0         Function   protein dimerization activity
 GO:0030154  24   0.98  24.5  -1              0         Process    cell differentiation
-GO:0035195  9    0.37  24.3  -1              1.04e-09  Process    gene silencing by miRNA
+GO:0035195  9    0.37  24.3  -1              0         Process    gene silencing by miRNA
 GO:0003682  22   0.95  23.2  -1              0         Function   chromatin binding
 GO:0001934  5    0.22  22.7  -1              0         Process    positive regulation of protein phosphorylation
 GO:0006338  5    0.22  22.7  -1              0         Process    chromatin remodeling
-GO:1903231  8    0.36  22.2  -1              1.99e-07  Function   mRNA binding involved in posttranscriptional gene silencing
+GO:1903231  8    0.36  22.2  -1              0         Function   mRNA binding involved in posttranscriptional gene silencing
 GO:0045892  19   0.93  20.4  -1              0         Process    negative regulation of transcription, DNA-templated
 GO:0003713  10   0.49  20.4  -1              0         Function   transcription coactivator activity
-GO:0016525  5    0.26  19.2  -1              1.78e-15  Process    negative regulation of angiogenesis
+GO:0016525  5    0.26  19.2  -1              0         Process    negative regulation of angiogenesis
 GO:0008284  18   0.94  19.1  -1              0         Process    positive regulation of cell proliferation
 GO:0001525  7    0.37  18.9  -1              0         Process    angiogenesis
 GO:0007601  6    0.32  18.8  -1              0         Process    visual perception
@@ -117,8 +117,8 @@ GO:0010468  5    0.29  17.2  -1              0         Process    regulation of 
 GO:0003677  37   2.15  17.2  -1              0         Function   DNA binding
 GO:0000790  7    0.43  16.3  -1              0         Component  nuclear chromatin
 GO:0008083  5    0.31  16.1  -1              0         Function   growth factor activity
-GO:0016604  6    0.38  15.8  -1              6.12e-13  Component  nuclear body
-GO:0042127  6    0.38  15.8  -1              4e-14     Process    regulation of cell proliferation
+GO:0016604  6    0.38  15.8  -1              2.22e-16  Component  nuclear body
+GO:0042127  6    0.38  15.8  -1              2.22e-16  Process    regulation of cell proliferation
 GO:0008283  9    0.59  15.3  -1              0         Process    cell proliferation
 GO:0006367  5    0.34  14.7  -1              0         Process    transcription initiation from RNA polymerase II promoter
 GO:0008285  10   0.69  14.5  -1              0         Process    negative regulation of cell proliferation
@@ -126,41 +126,41 @@ GO:0006355  19   1.34  14.2  -1              0         Process    regulation of 
 GO:0005634  126  9.05  13.9  -1              0         Component  nucleus
 GO:0046982  9    0.7   12.9  -1              0         Function   protein heterodimerization activity
 GO:0019899  7    0.55  12.7  -1              0         Function   enzyme binding
-GO:0042493  5    0.4   12.5  -1              1.87e-12  Process    response to drug
+GO:0042493  5    0.4   12.5  -1              8.18e-13  Process    response to drug
 GO:0042803  15   1.28  11.7  -1              0         Function   protein homodimerization activity
-GO:0010629  5    0.45  11.1  -1              6.6e-12   Process    negative regulation of gene expression
+GO:0010629  5    0.45  11.1  -1              1.78e-11  Process    negative regulation of gene expression
 GO:0005654  56   5.38  10.4  -1              0         Component  nucleoplasm
-GO:0032991  8    0.86  9.3   -1              4.44e-16  Component  protein-containing complex
+GO:0032991  8    0.86  9.3   -1              1.01e-12  Component  protein-containing complex
 GO:0055114  9    0.98  9.18  -1              0         Process    oxidation-reduction process
-GO:0010469  8    0.88  9.09  -1              2.51e-10  Process    regulation of signaling receptor activity
-GO:0030054  8    0.89  8.99  -1              0         Component  cell junction
-GO:0007267  5    0.58  8.62  -1              5.48e-07  Process    cell-cell signaling
+GO:0010469  8    0.88  9.09  -1              5.52e-11  Process    regulation of signaling receptor activity
+GO:0030054  8    0.89  8.99  -1              2.18e-14  Component  cell junction
+GO:0007267  5    0.58  8.62  -1              1.17e-07  Process    cell-cell signaling
 GO:0046872  29   3.58  8.1   -1              0         Function   metal ion binding
-GO:0008270  10   1.28  7.81  -1              0         Function   zinc ion binding
-GO:0043065  5    0.69  7.25  -1              9.9e-13   Process    positive regulation of apoptotic process
-GO:0005622  7    1.03  6.8   -1              1.68e-11  Component  intracellular
-GO:0019901  5    0.78  6.41  -1              1.12e-09  Function   protein kinase binding
+GO:0008270  10   1.28  7.81  -1              5.21e-14  Function   zinc ion binding
+GO:0043065  5    0.69  7.25  -1              4.15e-09  Process    positive regulation of apoptotic process
+GO:0005622  7    1.03  6.8   -1              2.38e-09  Component  intracellular
+GO:0019901  5    0.78  6.41  -1              2.22e-07  Function   protein kinase binding
 GO:0005515  108  16.9  6.37  -1              0         Function   protein binding
-GO:0005730  8    1.31  6.11  -1              3.21e-10  Component  nucleolus
-GO:0005575  5    0.83  6.02  -1              2.49e-05  Component  cellular_component
-GO:0005615  17   2.95  5.76  -1              1.42e-11  Component  extracellular space
-GO:0006915  5    0.96  5.21  -1              9.48e-07  Process    apoptotic process
-GO:0008150  5    0.97  5.15  -1              4.59e-07  Process    biological_process
-GO:0003674  6    1.24  4.84  -1              4.67e-07  Function   molecular_function
+GO:0005730  8    1.31  6.11  -1              1.36e-08  Component  nucleolus
+GO:0005575  5    0.83  6.02  -1              2.01e-05  Component  cellular_component
+GO:0005615  17   2.95  5.76  -1              5.85e-11  Component  extracellular space
+GO:0006915  5    0.96  5.21  -1              7.17e-06  Process    apoptotic process
+GO:0008150  5    0.97  5.15  -1              4.14e-06  Process    biological_process
+GO:0003674  6    1.24  4.84  -1              3.9e-06   Function   molecular_function
 GO:0005737  33   7.26  4.55  -1              0         Component  cytoplasm
-GO:0005887  12   2.92  4.11  -1              1.22e-07  Component  integral component of plasma membrane
-GO:0005829  32   8.44  3.79  -1              4.62e-14  Component  cytosol
-GO:0005794  6    1.66  3.61  -1              0.000314  Component  Golgi apparatus
-GO:0005524  9    2.7   3.33  -1              0.000249  Function   ATP binding
+GO:0005887  12   2.92  4.11  -1              5.83e-07  Component  integral component of plasma membrane
+GO:0005829  32   8.44  3.79  -1              2.04e-13  Component  cytosol
+GO:0005794  6    1.66  3.61  -1              0.000653  Component  Golgi apparatus
+GO:0005524  9    2.7   3.33  -1              0.000319  Function   ATP binding
 GO:0005886  26   8.46  3.07  -1              1.43e-08  Component  plasma membrane
-GO:0005509  6    1.26  4.76  0.01            9.35e-05  Function   calcium ion binding
-GO:0005576  14   3.38  4.14  0.01            3.96e-06  Component  extracellular region
-GO:0007165  9    2.36  3.81  0.01            1.41e-05  Process    signal transduction
-GO:0007186  8    2.18  3.67  0.01            0.000167  Process    G-protein coupled receptor signaling pathway
-GO:0042802  6    1.66  3.61  0.01            0.00053   Function   identical protein binding
-GO:0070062  10   3.68  2.72  0.01            0.00211   Component  extracellular exosome
-GO:0016020  9    3.86  2.33  0.01            0.00261   Component  membrane
+GO:0005509  6    1.26  4.76  0.01            7.68e-05  Function   calcium ion binding
+GO:0005576  14   3.38  4.14  0.01            6.31e-06  Component  extracellular region
+GO:0007165  9    2.36  3.81  0.01            3.6e-05   Process    signal transduction
+GO:0007186  8    2.18  3.67  0.01            0.00025   Process    G-protein coupled receptor signaling pathway
+GO:0042802  6    1.66  3.61  0.01            0.000694  Function   identical protein binding
+GO:0070062  10   3.68  2.72  0.01            0.00233   Component  extracellular exosome
+GO:0016020  9    3.86  2.33  0.01            0.00284   Component  membrane
 GO:0016021  14   6.73  2.08  0.02            0.00638   Component  integral component of membrane
-GO:0004930  5    1.42  3.52  0.03            0.00907   Function   G-protein coupled receptor activity
-GO:0005739  6    2.28  2.63  0.03            0.0126    Component  mitochondrion
-GO:0003723  5    2.02  2.48  0.06            0.0274    Function   RNA binding
+GO:0004930  5    1.42  3.52  0.03            0.00572   Function   G-protein coupled receptor activity
+GO:0005739  6    2.28  2.63  0.03            0.0124    Component  mitochondrion
+GO:0003723  5    2.02  2.48  0.06            0.0253    Function   RNA binding
