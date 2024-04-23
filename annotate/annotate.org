@@ -132,9 +132,13 @@ We import \ty{util}.
 #+begin_src latex
   The remaining tokens on the command line are taken as file names. The
   first of these is interpreted as the GFF file of annotations,
-  especially gene annotations. If the GFF file exists, we read it; if
-  not, we bail with a friendly message. The genes are read into slices
-  of intervals indexed by the sequences they belong to.
+  especially gene annotations. If the GFF file doesn't exists, we read
+  it; if not, we bail with a friendly message. Otherwise, we read
+  it. But before we embark on this potentially time-consuming task, we
+  check that all files supplied by the user exist. Then the genes are
+  read into slices of intervals indexed by the sequences they belong
+  to. When we're done with the GFF file, we reduce the file list to the
+  interval files (if any).
 
   The interval files are parsed by the function \ty{scan}, which takes
   the variable holding the genes as an argument. The intersecting
@@ -150,9 +154,9 @@ We import \ty{util}.
   if len(files) < 1 {
 	  m := "please supply a GFF file"
 	  log.Fatal(m)
-  } else {
-	  //<<Read genes, Ch.~\ref{ch:an}>>
   }
+  //<<Check existence of additional files, Ch.~\ref{ch:an}>>
+  //<<Read genes, Ch.~\ref{ch:an}>>
   files = files[1:]
   w := bufio.NewWriter(os.Stdout)
   //<<Construct header, Ch.~\ref{ch:an}>>
@@ -166,9 +170,21 @@ We import \ty{util}.
   "bufio"
   "os"
 #+end_src
+#+begin_export latex
+We check the existence of all files supplied by the user.
+#+end_export
+#+begin_src go <<Check existence of additional files, Ch.~\ref{ch:an}>>=
+  for _, file := range files {
+	  _, err := os.Stat(file)
+	  if err != nil {
+		  log.Fatal(err)
+	  }
+  }
+#+end_src
 #+begin_src latex
-  Before we read the intervals, we declare an interval as consisting of
-  a start, an end, and an identifier.
+  Genes are modeled as intervals. So before we read the genes, we
+  declare an interval as consisting of a start, an end, and an
+  identifier.
 #+end_src
 #+begin_src go <<Types, Ch.~\ref{ch:an}>>=
   type interval struct {
@@ -615,7 +631,7 @@ we set the input data files for the toy data. Then we test the options
 for transcripts and promoters, followed by tests of various promoter
 lengths.
 #+end_export
-#+begin_src go <<Tests on toy data, Ch.~\ref{ch:an}>>=
+#+begin_src go <<Construct tests, Ch.~\ref{ch:an}>>=
     g := "../data/toy.gff"
     i := "../data/toyIv.txt"
     //<<Test transcripts and promoters, Ch.~\ref{ch:an}>>
