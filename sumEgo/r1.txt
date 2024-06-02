@@ -41,16 +41,12 @@ GO:0008284  18   0.833   21.6  -1          Process    positive regulation of cel
 GO:0043066  16   0.947   16.9  -1          Process    negative regulation of apoptotic process
 GO:0003677  37   2.47    15    -1          Function   DNA binding
 GO:0008285  10   0.699   14.3  -1          Process    negative regulation of cell proliferation
-GO:0005634  126  9.09    13.9  -1          Component  nucleus
 GO:0006355  19   1.55    12.3  -1          Process    regulation of transcription, DNA-templated
 GO:0042803  15   1.38    10.9  -1          Function   protein homodimerization activity
-GO:0005654  56   5.44    10.3  -1          Component  nucleoplasm
 GO:0046872  29   3.8     7.63  -1          Function   metal ion binding
 GO:0008270  10   1.39    7.19  -1          Function   zinc ion binding
 GO:0005515  108  16.7    6.47  -1          Function   protein binding
 GO:0005615  17   2.75    6.18  -1          Component  extracellular space
-GO:0005737  33   7.6     4.34  -1          Component  cytoplasm
-GO:0005829  32   8.44    3.79  -1          Component  cytosol
 GO:0005886  26   8.28    3.14  -1          Component  plasma membrane
 GO:0005576  14   3.26    4.29  0.0002      Component  extracellular region
 GO:0005887  12   2.96    4.05  0.0009      Component  integral component of plasma membrane
