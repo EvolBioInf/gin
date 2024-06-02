@@ -7,4 +7,4 @@ h=$(history | tail | grep update)
 if [[ $h == "" ]]; then
     sudo apt update
 fi
-sudo apt -y install golang make
+sudo apt -y install golang make tar wget
