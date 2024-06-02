@@ -10,6 +10,10 @@ all:
 		make -C $$prog; \
 		cp $$prog/$$prog bin; \
 	done
+tangle:
+	for pack in $(packs) $(progs); do \
+		make tangle -C $$pack; \
+	done
 .PHONY: doc test
 doc:
 	make -C doc
@@ -19,6 +23,6 @@ clean:
 	done
 test:
 	echo test
-	for prog in $(progs) $(packs); do \
+	for prog in $(packs) $(progs); do \
 		make test -C $$prog; \
 	done

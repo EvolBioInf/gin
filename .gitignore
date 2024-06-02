@@ -1,4 +1,3 @@
-*/*.go
 annotate/annotate
 annotate/largeTest.sh
 annotate/makeRes.sh
@@ -15,6 +14,7 @@ doc/*.log
 doc/*.pdf
 doc/*.toc
 doc/annotate.tex
+doc/date.txt
 doc/ego.tex
 doc/gin.*
 !doc/gin.tex
@@ -22,6 +22,7 @@ doc/intro.tex
 doc/shuffle.tex
 doc/sumEgo.tex
 doc/util.tex
+doc/version.txt
 ego/ego
 ego/sumEgo
 ego/time.sh

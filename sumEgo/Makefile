@@ -1,11 +1,11 @@
-VERSION = $(shell git describe)
-DATE := $(shell git log | grep Date | head -n 1 | sed -r 's/Date: +[A-Z][a-z]+ ([A-Z][a-z]+) ([0-9]+) [^ ]+ ([0-9]+) .+/\2_\1_\3/')
+VERSION = $(shell bash ../scripts/getVersion.sh)
+DATE := $(shell bash ../scripts/getDate.sh)
 
 EXE = sumEgo
 
 all: $(EXE) sumEgo.sh
 
-$(EXE): $(EXE).go
+$(EXE):
 	go build -ldflags "-X github.com/evolbioinf/gin/util.version=$(VERSION) -X github.com/evolbioinf/gin/util.date=$(DATE)" $(EXE).go
 $(EXE).go: $(EXE).org
 	bash ../scripts/org2nw $(EXE).org | notangle -R$(EXE).go | gofmt > $(EXE).go
@@ -13,6 +13,7 @@ test: $(EXE) $(EXE)_test.go sumEgo.sh
 	go test -v
 $(EXE)_test.go: $(EXE).org
 	bash ../scripts/org2nw $(EXE).org | notangle -R$(EXE)_test.go | gofmt > $(EXE)_test.go
+tangle: $(EXE).go $(EXE)_test.go sumEgo.sh
 sumEgo.sh: $(EXE).org
 	bash ../scripts/org2nw $(EXE).org | notangle -RsumEgo.sh > sumEgo.sh
 clean:
