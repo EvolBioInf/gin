@@ -5,7 +5,7 @@ annotate/r10.txt
 annotate/r11.txt
 annotate/r9.txt
 bin/*
-data/genomic.gff
+data
 doc/*.aux
 doc/*.bbl
 doc/*.blg

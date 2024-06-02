@@ -21,8 +21,12 @@ clean:
 	for prog in $(progs) $(packs) doc; do \
 		make clean -C $$prog; \
 	done
-test:
+test: data
 	echo test
 	for prog in $(packs) $(progs); do \
 		make test -C $$prog; \
 	done
+data:
+	wget https://owncloud.gwdg.de/index.php/s/CWqpvOYCtMvqyop/download
+	tar -xvzf download
+	rm download
