@@ -72,10 +72,10 @@ func scan(r io.Reader, args ...interface{}) {
 }
 func (s ivSlice) Len() int { return len(s) }
 func (s ivSlice) Less(i, j int) bool {
-	if s[i].start == s[j].start {
-		return s[i].end < s[j].end
+	if s[i].end == s[j].end {
+		return s[i].start < s[j].start
 	}
-	return s[i].start < s[j].start
+	return s[i].end < s[j].end
 }
 func (s ivSlice) Swap(i, j int) {
 	s[i], s[j] = s[j], s[i]

@@ -1,8 +1,9 @@
 #+begin_src latex
     \section*{Introduction}
     The program \ty{annotate} reads a list of genome intervals and an
-    annotation file in GFF format and returns the genes that intersect the
-    interval. The GFF format consists of the following nine columns:
+    annotation file in GFF format and returns the genes that intersect
+    the intervals. The GFF format consists of the following nine
+    columns:
     \begin{enumerate}
     \item Chromosome, e. g. NC\_000007.14
     \item Source, e. g. BestRefSeq
@@ -17,9 +18,9 @@
     Comment lines are marked by a leading hash.
 
     The intersecting genes are returned in a table consisting of four
-    columns, chromosome, start, end, and comma-separated gene IDs. Instead
-    of gene IDs, \ty{annotate} can also return the gene names, or
-    ``symbols''. And instead of output in four ann, \ty{annotate} can
+    columns, chromosome, start, end, and comma-separated gene
+    IDs. Instead of gene IDs, \ty{annotate} can also return the gene
+    names, or ``symbols''. And instead of output in four columns, it can
     return IDs or symbols in a single column.
 
     The central action of \ty{annotate} is to intersect two sets of
@@ -360,21 +361,20 @@ something is wrong and we bail with message.
   for picking intersecting genes. Consider again the focus interval
   $[s,e]$ and the genes $g_1,...,g_6$ in Figure~\ref{fig:iv}. Moving
   from left to right, we search for the first gene that intersects the
-  interval, $g_2$. Then we walk to the right until we find the first
-  gene that starts to the right of $e$, $g_6$. This requires that we
-  sort the genes with two keys. The primary key is the start position,
-  by which we sort them in ascending order. The secondary key is the end
-  position, by which we also sort them in ascending order, as shown for
-  $g_1$ and $g_2$, which start at the same position, but $g_1$ ends
-  earlier.
+  interval, i.e. the first gene whose end is greater than $s$, which is
+  $g_2$. Then we walk to the right until we find the first gene that
+  starts to the right of $e$, $g_6$. This requires that we sort the
+  genes with two keys. The primary key is the end position, by which we
+  sort them in ascending order. The secondary key is the start position,
+  by which we also sort them in ascending order.
 #+end_src
 #+begin_src go <<Methods, Ch.~\ref{ch:an}>>=
   func (s ivSlice) Len() int { return len(s) }
   func (s ivSlice) Less(i, j int) bool {
-	  if s[i].start == s[j].start {
-		  return s[i].end < s[j].end
+	  if s[i].end == s[j].end {
+		  return s[i].start < s[j].start
 	  }
-	  return s[i].start < s[j].start
+	  return s[i].end < s[j].end
   }
   func (s ivSlice) Swap(i, j int) {
 	  s[i], s[j] = s[j], s[i]
