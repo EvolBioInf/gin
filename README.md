@@ -11,16 +11,29 @@ MS-Windows or the [Ubuntu Docker
 container](https://hub.docker.com/_/ubuntu), you can clone the
 repository and change into it.
 
-`git clone https://github.com/evolbioinf/gin`  
-`cd gin`
+```
+git clone https://github.com/evolbioinf/gin
+cd gin
+```
 
 Then install the additional dependencies by running the script
 [`setup.sh`](scripts/setup.sh).
 
-`bash scripts/setup.sh`
+```
+bash scripts/setup.sh
+```
 
 Make the programs.
 
-`make`
+```
+make
+```
 
-The directory `bin` now contains the binaries.
+The directory `bin` now contains the binaries. You can also download
+example data into the directory `data` and test the programs on it.
+
+```
+make test
+```
+
+
