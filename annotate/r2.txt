@@ -1,2 +1,2 @@
 #Chr	Start	End	Sym...
-chr1	3	8	g3,g4,g5,g6,g1
+chr1	3	8	g4,g5,g6,g7,g1

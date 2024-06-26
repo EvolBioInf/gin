@@ -27,7 +27,7 @@
     intervals, the intervals to be annotated, I call them ``focus
     intervals'', and the intervals representing genes. To see how
     intersecting these two types of intervals works, consider the focus
-    interval $[s,e]$, and the six genes, $g_1,...,g_6$ in
+    interval $[s,e]$, and the seven genes, $g_1,...,g_7$ in
     Figure~\ref{fig:iv}. The focus interval intersects four genes, $g_5$,
     $g_4$, $g_3$, and $g_2$. However, by default \ty{annotate} intersects
     promoters rather than whole genes. Promoters are modeled as intervals
@@ -40,10 +40,10 @@
       \begin{center}
 	\input{../annotate/iv}
       \end{center}
-      \caption{Cartoon of a focus interval, $[s,e]$, and six genes,
-	$g_1,...,g_6$; the program \ty{annotate} finds the genes, or their
-	promoters, that intersect one or more focus
-	intervals.}\label{fig:iv}
+      \caption{Cartoon of a focus interval, $[s,e]$, and seven genes,
+	$g_1,...,g_7$; the program \ty{annotate} finds the genes, that
+	intersect one or more focus intervals either directly or via
+	their promoters.}\label{fig:iv}
     \end{figure}
 
   \section*{Implementation}
