@@ -12,6 +12,7 @@ gin.pdf: $(src) ../annotate/iv.tex ../ego/egoTab[123].tex
 	latex gin
 	dvips gin -o -q
 	ps2pdf -dALLOWPSTRANSPARENCY gin.ps
+publish: gin.pdf
 	if [ -d /mnt/c/Users/haubold/ownCloud\ -\ haubold@evolbio.mpg.de@owncloud.gwdg.de/docs/ ]; then \
 		cp gin.pdf /mnt/c/Users/haubold/ownCloud\ -\ haubold@evolbio.mpg.de@owncloud.gwdg.de/docs/; \
 	fi
