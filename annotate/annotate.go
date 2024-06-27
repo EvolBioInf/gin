@@ -22,9 +22,10 @@ type ivSlice []*interval
 
 func scan(r io.Reader, args ...interface{}) {
 	genes := args[0].(map[string][]*interval)
-	w := args[1].(*bufio.Writer)
-	header := args[2].(string)
-	col := args[3].(bool)
+	maxGeneLengths := args[1].(map[string]int)
+	w := args[2].(*bufio.Writer)
+	header := args[3].(string)
+	col := args[4].(bool)
 	sc := bufio.NewScanner(r)
 	ids := make([]string, 0)
 	if !col {
@@ -49,9 +50,16 @@ func scan(r io.Reader, args ...interface{}) {
 		i := sort.Search(len(g), func(i int) bool {
 			return g[i].end >= s
 		})
+		mgl := maxGeneLengths[chr]
 		ids = ids[:0]
-		for i < len(g) && g[i].start <= e {
-			ids = append(ids, g[i].id)
+		for i < len(g) {
+			d := g[i].start - e + 1
+			if d > mgl {
+				break
+			}
+			if g[i].start <= e {
+				ids = append(ids, g[i].id)
+			}
 			i++
 		}
 		if len(ids) > 0 {
@@ -72,9 +80,6 @@ func scan(r io.Reader, args ...interface{}) {
 }
 func (s ivSlice) Len() int { return len(s) }
 func (s ivSlice) Less(i, j int) bool {
-	if s[i].end == s[j].end {
-		return s[i].start < s[j].start
-	}
 	return s[i].end < s[j].end
 }
 func (s ivSlice) Swap(i, j int) {
@@ -100,10 +105,8 @@ func main() {
 		util.Version()
 	}
 	files := flag.Args()
-	genes := make(map[string][]*interval, 0)
 	if len(files) < 1 {
-		m := "please supply a GFF file"
-		log.Fatal(m)
+		log.Fatal("please supply a GFF file")
 	}
 	for _, file := range files {
 		_, err := os.Stat(file)
@@ -111,6 +114,7 @@ func main() {
 			log.Fatal(err)
 		}
 	}
+	genes := make(map[string][]*interval)
 	f := util.Open(files[0])
 	sc := bufio.NewScanner(f)
 	for sc.Scan() {
@@ -181,9 +185,20 @@ func main() {
 		is := ivSlice(v)
 		sort.Sort(is)
 	}
+	maxGeneLengths := make(map[string]int)
+	for chr, gs := range genes {
+		maxGeneLengths[chr] = -1
+		for _, g := range gs {
+			l := g.end - g.start + 1
+			if maxGeneLengths[chr] < l {
+				maxGeneLengths[chr] = l
+			}
+		}
+	}
 	files = files[1:]
 	w := bufio.NewWriter(os.Stdout)
-	header := "\n"
+	header := ""
+	header = "\n"
 	if !*optC {
 		header = "#Chr\tStart\tEnd\t"
 		if *optS {
@@ -192,5 +207,6 @@ func main() {
 			header += "ID...\n"
 		}
 	}
-	clio.ParseFiles(files, scan, genes, w, header, *optC)
+	clio.ParseFiles(files, scan, genes, maxGeneLengths,
+		w, header, *optC)
 }

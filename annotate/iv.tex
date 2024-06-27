@@ -1,4 +1,4 @@
-\begin{pspicture}(0,-2)(10,2.5)
+\begin{pspicture}(0,-2)(11,2.5)
   \cnode*(0.5,0){2pt}{na}
   \cnode*(1.5,0){2pt}{nb}
   \ncline{->}{na}{nb}\naput{$g_2$}
@@ -20,10 +20,13 @@
   \cnode*(9,1){2pt}{n11}
   \cnode*(10,1){2pt}{n12}
   \ncline{->}{n11}{n12}\naput{$g_7$}
+  \cnode*(5,0){2pt}{g8a}
+  \cnode*(11,0){2pt}{g8b}
+  \ncline{->}{g8a}{g8b}\naput{$g_8$}
   \cnode*(2,2){2pt}{n13}
   \cnode*(7,2){2pt}{n14}
   \ncline{n13}{n14}\naput{focus interval}
   \rput(2,2.3){$s$}
   \rput(7,2.3){$e$}
-  \psaxes[Ox=1](0,-2)(10,-2)
+  \psaxes[Ox=1](0,-2)(11,-2)
 \end{pspicture}

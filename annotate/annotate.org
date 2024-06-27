@@ -21,27 +21,40 @@
     columns, chromosome, start, end, and comma-separated gene
     IDs. Instead of gene IDs, \ty{annotate} can also return the gene
     names, or ``symbols''. And instead of output in four columns, it can
-    return IDs or symbols in a single column.
+    return the IDs or symbols in a single column.
 
     The central action of \ty{annotate} is to intersect two sets of
     intervals, the intervals to be annotated, I call them ``focus
     intervals'', and the intervals representing genes. To see how
     intersecting these two types of intervals works, consider the focus
-    interval $[s,e]$, and the seven genes, $g_1,...,g_7$ in
-    Figure~\ref{fig:iv}. The focus interval intersects four genes, $g_5$,
-    $g_4$, $g_3$, and $g_2$. However, by default \ty{annotate} intersects
-    promoters rather than whole genes. Promoters are modeled as intervals
-    of some constant length upstream of the transcription start
-    site. Depending on the promoter length, which can be set by the user,
-    $g_6$ might now also intersect the interval, and so might $g_1$, as it
-    is on the reverse strand.
+    interval $[s,e]$, and the eight genes, $g_1,...,g_8$ in
+    Figure~\ref{fig:iv}. The focus interval intersects five genes,
+    $g_3$, $g_4$, $g_5$, $g_6$, and $g_8$. However, by default
+    \ty{annotate} intersects promoters rather than whole
+    genes. Promoters are modeled as intervals of some constant length
+    upstream of the transcription start site. Depending on the promoter
+    length, which can be set by the user, $g_6$ might now also intersect
+    the interval, and so might $g_1$, as it is on the reverse strand.
+
+    To find the genes or promoters that intersect a given focus
+    interval, we sort the genes by their end positions, which induces
+    the order $g_1, g_2,...,g_8$ shown in Figure~\ref{fig:iv}. Then we
+    look up the leftmost gene whose end is greater or equal to $s$,
+    which is $g_3$ in our example. From a given starting gene, $g_i$, we
+    move to the right to find all overlapping genes. Since any gene
+    $g_{i+n}$ can overlap the focus interval, it might seem we have to
+    scan all genes to the right of $g_i$. However, we can do better by
+    realizing that we can stop once we have found a gene whose start is
+    further from $e$ than the length of the longest gene in the
+    list. This means we need for each chromosome the length of the
+    longest gene it contains.
 
     \begin{figure}[ht]
       \begin{center}
 	\input{../annotate/iv}
       \end{center}
-      \caption{Cartoon of a focus interval, $[s,e]$, and seven genes,
-	$g_1,...,g_7$; the program \ty{annotate} finds the genes, that
+      \caption{Cartoon of a focus interval, $[s,e]$, and eight genes,
+	$g_1,...,g_8$; the program \ty{annotate} finds the genes that
 	intersect one or more focus intervals either directly or via
 	their promoters.}\label{fig:iv}
     \end{figure}
@@ -131,50 +144,25 @@ We import \ty{util}.
   }
 #+end_src
 #+begin_src latex
-  The remaining tokens on the command line are taken as file names. The
-  first of these is interpreted as the GFF file of annotations,
-  especially gene annotations. If the GFF file doesn't exists, we read
-  it; if not, we bail with a friendly message. Otherwise, we read
-  it. But before we embark on this potentially time-consuming task, we
-  check that all files supplied by the user exist. Then the genes are
-  read into slices of intervals indexed by the sequences they belong
-  to. When we're done with the GFF file, we reduce the file list to the
-  interval files (if any).
-
-  The interval files are parsed by the function \ty{scan}, which takes
-  the variable holding the genes as an argument. The intersecting
-  intervals are written to a table using a buffered writer. So we
-  construct a buffered writer and also pass it as an argument of
-  \ty{scan}. The table has a header, which we construct and pass as
-  argument. The format of the table we print is determined by \ty{-c},
-  so we pass that as well.
+  The remaining tokens on the command line are taken as file names. We
+  check the existence of the corresponding files. Then we deal with the
+  genes, before we deal with the intervals.
 #+end_src
 #+begin_src go <<Parse input files, Ch.~\ref{ch:an}>>=
   files := flag.Args()
-  genes := make(map[string][]*interval, 0)
-  if len(files) < 1 {
-	  m := "please supply a GFF file"
-	  log.Fatal(m)
-  }
-  //<<Check existence of additional files, Ch.~\ref{ch:an}>>
-  //<<Read genes, Ch.~\ref{ch:an}>>
-  files = files[1:]
-  w := bufio.NewWriter(os.Stdout)
-  //<<Construct header, Ch.~\ref{ch:an}>>
-  clio.ParseFiles(files, scan, genes, w, header, *optC)
-#+end_src
-#+begin_src latex
-  We import \ty{log}, \ty{bufio}, and \ty{os}.
-#+end_src
-#+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
-  "log"
-  "bufio"
-  "os"
+  //<<Check existence of input files, Ch.~\ref{ch:an}>>
+  //<<Deal with genes, Ch.~\ref{ch:an}>>
+  //<<Deal with intervals, Ch.~\ref{ch:an}>>
 #+end_src
 #+begin_export latex
-We check the existence of all files supplied by the user.
+The first file supplied by the user is the GFF file. We bail with a
+friendly message if the user didn't supply one. Then we check the
+existence of all input files.
 #+end_export
-#+begin_src go <<Check existence of additional files, Ch.~\ref{ch:an}>>=
+#+begin_src go <<Check existence of input files, Ch.~\ref{ch:an}>>=
+  if len(files) < 1 {
+	  log.Fatal("please supply a GFF file")
+  }
   for _, file := range files {
 	  _, err := os.Stat(file)
 	  if err != nil {
@@ -182,9 +170,28 @@ We check the existence of all files supplied by the user.
 	  }
   }
 #+end_src
+#+begin_export latex
+We import \ty{log} and \ty{os}.
+#+end_export
+#+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
+  "log"
+  "os"
+#+end_src
+#+begin_export latex
+We store genes as slices of pointers to intervals indexed by their
+chromosome. So we construct such a map between chromosome names and
+intervals before reading the genes. In addition, we store the maximum
+gene lengths in a map indexed by chromosome names. So we construct
+such a map before calculating the maximum gene lengths.
+#+end_export
+#+begin_src go <<Deal with genes, Ch.~\ref{ch:an}>>=
+  genes := make(map[string][]*interval)
+  //<<Read genes, Ch.~\ref{ch:an}>>
+  maxGeneLengths := make(map[string]int)
+  //<<Calculate maximum gene lengths, Ch.~\ref{ch:an}>>
+#+end_src
 #+begin_src latex
-  Genes are modeled as intervals. So before we read the genes, we
-  declare an interval as consisting of a start, an end, and an
+  We declare an interval as consisting of a start, an end, and an
   identifier.
 #+end_src
 #+begin_src go <<Types, Ch.~\ref{ch:an}>>=
@@ -357,23 +364,12 @@ something is wrong and we bail with message.
 #+begin_src latex
   We implement the methods of the \ty{sort} interface, \ty{Len},
   \ty{Less}, and \ty{Swap} on \ty{ivSlice}. The method \ty{Less}
-  determines the sorting order. The desired order depends on our method
-  for picking intersecting genes. Consider again the focus interval
-  $[s,e]$ and the genes $g_1,...,g_6$ in Figure~\ref{fig:iv}. Moving
-  from left to right, we search for the first gene that intersects the
-  interval, i.e. the first gene whose end is greater than $s$, which is
-  $g_2$. Then we walk to the right until we find the first gene that
-  starts to the right of $e$, $g_6$. This requires that we sort the
-  genes with two keys. The primary key is the end position, by which we
-  sort them in ascending order. The secondary key is the start position,
-  by which we also sort them in ascending order.
+  determines the sorting order. As explained at the beginning of this
+  chapter, we sort by ascending gene end.
 #+end_src
 #+begin_src go <<Methods, Ch.~\ref{ch:an}>>=
   func (s ivSlice) Len() int { return len(s) }
   func (s ivSlice) Less(i, j int) bool {
-	  if s[i].end == s[j].end {
-		  return s[i].start < s[j].start
-	  }
 	  return s[i].end < s[j].end
   }
   func (s ivSlice) Swap(i, j int) {
@@ -410,13 +406,47 @@ the current gene in it.
 #+begin_src go <<Imports, Ch.~\ref{ch:an}>>=
   "sort"
 #+end_src
+#+begin_export latex
+The last step in dealing with the genes is to calculate their maximum
+lengths.
+#+end_export
+#+begin_src go <<Calculate maximum gene lengths, Ch.~\ref{ch:an}>>=
+  for chr, gs := range genes {
+	  maxGeneLengths[chr] = -1
+	  for _, g := range gs {
+		  l := g.end - g.start + 1
+		  if maxGeneLengths[chr] < l {
+			  maxGeneLengths[chr] = l
+		  }
+	  }
+  }
+#+end_src
+#+begin_export latex
+We have finished dealing with genes and move on to deal with the
+intervals contained in the remaining files. The interval files are
+parsed by the function \ty{scan}, which takes the variable holding the
+genes and their maximum lengths as arguments. The intersecting
+intervals are written to a table using a buffered writer. So we
+construct a buffered writer, which we also pass as an argument of
+\ty{scan}. The table has a header, which we construct and pass. The
+format of the table we print is determined by \ty{-c}, which we pass
+as well.
+#+end_export
+#+begin_src go <<Deal with intervals, Ch.~\ref{ch:an}>>=
+  files = files[1:]
+  w := bufio.NewWriter(os.Stdout)
+  header := ""
+  //<<Construct header, Ch.~\ref{ch:an}>>
+  clio.ParseFiles(files, scan, genes, maxGeneLengths,
+	  w, header, *optC)
+#+end_src
 #+begin_src latex
   In single column mode our table header is a just blank line. Otherwise
   it consists of column headers for chromosome, start, and end. This is
   followed either by a set of symbols or IDs.
 #+end_src
 #+begin_src go <<Construct header, Ch.~\ref{ch:an}>>=
-  header := "\n"
+  header = "\n"
   if !*optC {
 	  header = "#Chr\tStart\tEnd\t"
 	  if *optS {
@@ -442,15 +472,17 @@ the current gene in it.
   "io"
 #+end_src
 #+begin_src latex
-  We retrieve the four arguments we passed, the map between chromosomes
-  and genes, the output writer, the header for each set of annotations,
-  and whether or not we print the output in a single column.
+  We retrieve the five arguments we passed, the maps between chromosomes
+  and genes and between chromosomes and maximum gene lengths, the output
+  writer, the header for each set of annotations, and whether or not we
+  print the output in a single column.
 #+end_src
 #+begin_src go <<Retrieve arguments, Ch.~\ref{ch:an}>>=
   genes := args[0].(map[string][]*interval)
-  w := args[1].(*bufio.Writer)
-  header := args[2].(string)
-  col := args[3].(bool)
+  maxGeneLengths := args[1].(map[string]int)
+  w := args[2].(*bufio.Writer)
+  header := args[3].(string)
+  col := args[4].(bool)
 #+end_src
 #+begin_export latex
 We construct the scanner for scanning the file.
@@ -532,8 +564,9 @@ annotated interval. At the end we flush the writer.
 #+end_src
 #+begin_export latex
 To look up the initial intersecting gene, we pick the genes associated
-with the current chromosome. Then we search for the leftmost gene that
-intersects the focus interval, $g_2$ in Figure~\ref{fig:iv}.
+with the current chromosome. Then we search for the leftmost gene
+whose end is greater than the start of the focus interval, $g_3$ in
+Figure~\ref{fig:iv}.
 #+end_export
 #+begin_src go <<Look up initial intersecting gene, Ch.~\ref{ch:an}>>=
   g := genes[chr]
@@ -543,16 +576,24 @@ intersects the focus interval, $g_2$ in Figure~\ref{fig:iv}.
 #+end_src
 #+begin_export latex
 From our current position in the genes array we walk to the right
-until we reach the first gene whose start is to the right of the
-interval end, $g_6$ in Figure~\ref{fig:iv}. The genes we encounter
-along the way correspond to the desired IDs. So before starting our
-walk along the slice of genes, we empty the list of IDs obtained in
-the last round and then collect those we encounter during our walk.
+until we reach the first gene whose end is further from $e$ than the
+length of the longest gene (Figure~\ref{fig:iv}). The genes we
+encounter along the way are superset of the desired IDs. So before
+starting our walk along the slice of genes, we empty the list of IDs
+obtained in the last round and then collect those we encounter during
+our walk.
 #+end_export
 #+begin_src go <<Look up remaining intersecting genes, Ch.~\ref{ch:an}>>=
+  mgl := maxGeneLengths[chr]
   ids = ids[:0]
-  for i < len(g) && g[i].start <= e {
-	  ids = append(ids, g[i].id)
+  for i < len(g) {
+	  d := g[i].start - e + 1
+	  if d > mgl {
+		  break
+	  }
+	  if g[i].start <= e {
+		  ids = append(ids, g[i].id)
+	  }
 	  i++
   }
 #+end_src
