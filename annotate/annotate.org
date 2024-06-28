@@ -33,21 +33,23 @@
     \ty{annotate} intersects promoters rather than whole
     genes. Promoters are modeled as intervals of some constant length
     upstream of the transcription start site. Depending on the promoter
-    length, which can be set by the user, $g_6$ might now also intersect
+    length, which can be set by the user, $g_7$ might now also intersect
     the interval, and so might $g_1$, as it is on the reverse strand.
 
     To find the genes or promoters that intersect a given focus
     interval, we sort the genes by their end positions, which induces
     the order $g_1, g_2,...,g_8$ shown in Figure~\ref{fig:iv}. Then we
     look up the leftmost gene whose end is greater or equal to $s$,
-    which is $g_3$ in our example. From a given starting gene, $g_i$, we
-    move to the right to find all overlapping genes. Since any gene
-    $g_{i+n}$ can overlap the focus interval, it might seem we have to
-    scan all genes to the right of $g_i$. However, we can do better by
-    realizing that we can stop once we have found a gene whose start is
-    further from $e$ than the length of the longest gene in the
-    list. This means we need for each chromosome the length of the
-    longest gene it contains.
+    which may or may not be an intersecting gene. In our example, the
+    leftmost gene whose end is greater than $s$ is $g_3$, which happens
+    to also be intersecting. From a given starting gene, $g_i$, we move
+    to the right to find all overlapping genes. Since any gene $g_{i+n}$
+    can overlap the focus interval, it might seem we have to scan all
+    genes to the right of $g_i$. However, we can do better by realizing
+    that we can stop once we have found a gene whose start is further
+    from $e$ than the length of the longest gene in the list. This means
+    we need for each chromosome the length of the longest gene it
+    contains.
 
     \begin{figure}[ht]
       \begin{center}
@@ -178,11 +180,12 @@ We import \ty{log} and \ty{os}.
   "os"
 #+end_src
 #+begin_export latex
-We store genes as slices of pointers to intervals indexed by their
-chromosome. So we construct such a map between chromosome names and
-intervals before reading the genes. In addition, we store the maximum
-gene lengths in a map indexed by chromosome names. So we construct
-such a map before calculating the maximum gene lengths.
+We store genes as slices of pointers to intervals. Since intervals are
+tied to chromosomes, we need one slice of intervals per chromosome. So
+we construct such a map between chromosome names and intervals before
+reading the genes. In addition, we store the maximum gene lengths in a
+map also indexed by chromosome names. We construct such a map before
+calculating the maximum gene lengths.
 #+end_export
 #+begin_src go <<Deal with genes, Ch.~\ref{ch:an}>>=
   genes := make(map[string][]*interval)
@@ -217,10 +220,10 @@ such a map before calculating the maximum gene lengths.
   //<<Sort genes, Ch.~\ref{ch:an}>>
 #+end_src
 #+begin_src latex
-  As described in the Introduction, column 3 in a GFF file states the
-  annotation type. We're only interested in genes. From the gene
-  annotations we determine the gene interval before adding it to the
-  appropriate slice.
+  As described in the Introduction of this chapter, column 3 in a GFF
+  file states the annotation type. We're only interested in genes. From
+  the gene annotations we determine the gene interval before adding it
+  to the appropriate slice.
 #+end_src
 #+begin_src go <<Store gene, Ch.~\ref{ch:an}>>=
   fields := strings.Fields(sc.Text())
@@ -364,7 +367,7 @@ something is wrong and we bail with message.
 #+begin_src latex
   We implement the methods of the \ty{sort} interface, \ty{Len},
   \ty{Less}, and \ty{Swap} on \ty{ivSlice}. The method \ty{Less}
-  determines the sorting order. As explained at the beginning of this
+  determines the sorting order. As explained at the beginning of the
   chapter, we sort by ascending gene end.
 #+end_src
 #+begin_src go <<Methods, Ch.~\ref{ch:an}>>=
@@ -424,13 +427,11 @@ lengths.
 #+begin_export latex
 We have finished dealing with genes and move on to deal with the
 intervals contained in the remaining files. The interval files are
-parsed by the function \ty{scan}, which takes the variable holding the
-genes and their maximum lengths as arguments. The intersecting
-intervals are written to a table using a buffered writer. So we
-construct a buffered writer, which we also pass as an argument of
-\ty{scan}. The table has a header, which we construct and pass. The
-format of the table we print is determined by \ty{-c}, which we pass
-as well.
+parsed by the function \ty{scan}, which takes the genes and their
+maximum lengths as arguments. The intersecting intervals are written
+to a table using a buffered writer, which we also pass as an argument
+of \ty{scan}, together with the table's header. The format of the
+table we print is determined by \ty{-c}, which we pass as well.
 #+end_export
 #+begin_src go <<Deal with intervals, Ch.~\ref{ch:an}>>=
   files = files[1:]
@@ -473,7 +474,7 @@ as well.
 #+end_src
 #+begin_src latex
   We retrieve the five arguments we passed, the maps between chromosomes
-  and genes and between chromosomes and maximum gene lengths, the output
+  and genes, and between chromosomes and maximum gene lengths, the output
   writer, the header for each set of annotations, and whether or not we
   print the output in a single column.
 #+end_src
@@ -555,20 +556,20 @@ annotated interval. At the end we flush the writer.
 #+end_src
 #+begin_src latex
   We intersect the current interval with genes in two steps. First, we
-  look up the initial intersecting gene, then we look up the remaining
-  intersecting genes.
+  look up the initial potentially intersecting gene, then we look up the
+  remaining potentially intersecting genes.
 #+end_src
 #+begin_src go <<Intersect interval with genes, Ch.~\ref{ch:an}>>=
-  //<<Look up initial intersecting gene, Ch.~\ref{ch:an}>>
-  //<<Look up remaining intersecting genes, Ch.~\ref{ch:an}>>
+  //<<Look up initial potentially intersecting gene, Ch.~\ref{ch:an}>>
+  //<<Look up remaining potentially intersecting genes, Ch.~\ref{ch:an}>>
 #+end_src
 #+begin_export latex
-To look up the initial intersecting gene, we pick the genes associated
-with the current chromosome. Then we search for the leftmost gene
-whose end is greater than the start of the focus interval, $g_3$ in
-Figure~\ref{fig:iv}.
+To look up the initial potentially intersecting gene, we pick the
+genes associated with the current chromosome. Then we search for the
+leftmost gene whose end is greater than the start of the focus
+interval, $g_3$ in Figure~\ref{fig:iv}.
 #+end_export
-#+begin_src go <<Look up initial intersecting gene, Ch.~\ref{ch:an}>>=
+#+begin_src go <<Look up initial potentially intersecting gene, Ch.~\ref{ch:an}>>=
   g := genes[chr]
   i := sort.Search(len(g), func(i int) bool {
 	  return g[i].end >= s
@@ -578,12 +579,12 @@ Figure~\ref{fig:iv}.
 From our current position in the genes array we walk to the right
 until we reach the first gene whose end is further from $e$ than the
 length of the longest gene (Figure~\ref{fig:iv}). The genes we
-encounter along the way are superset of the desired IDs. So before
-starting our walk along the slice of genes, we empty the list of IDs
-obtained in the last round and then collect those we encounter during
-our walk.
+encounter along the way are a superset of the desired IDs of
+intersecting genes. So before starting our walk along the slice of
+genes, we empty the list of IDs obtained in the last round and then
+collect those we encounter during our walk.
 #+end_export
-#+begin_src go <<Look up remaining intersecting genes, Ch.~\ref{ch:an}>>=
+#+begin_src go <<Look up remaining potentially intersecting genes, Ch.~\ref{ch:an}>>=
   mgl := maxGeneLengths[chr]
   ids = ids[:0]
   for i < len(g) {
@@ -608,8 +609,8 @@ our walk.
   }
 #+end_src
 #+begin_export latex
-In row mode, we print the chromosome, start, and end, followed by the
-IDs separated by commas.
+In row mode, we print the chromosome, start and end positions,
+followed by the IDs separated by commas.
 #+end_export
 #+begin_src go <<Print interval in row mode, Ch.~\ref{ch:an}>>=
   fmt.Fprintf(w, "%s\t%d\t%d\t%s", chr, s, e, ids[0])
