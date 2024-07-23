@@ -122,8 +122,8 @@ func main() {
 		if t[0] == '#' {
 			continue
 		}
-		fields := strings.Fields(sc.Text())
-		if fields[2] == "gene" {
+		fields := strings.Split(sc.Text(), "\t")
+		if len(fields) > 2 && fields[2] == "gene" {
 			gene := new(interval)
 			chr := fields[0]
 			tss, err := strconv.Atoi(fields[3])

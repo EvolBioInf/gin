@@ -3,7 +3,7 @@
     The program \ty{annotate} reads a list of genome intervals and an
     annotation file in GFF format and returns the genes that intersect
     the intervals. The GFF format consists of the following nine
-    columns:
+    tab-delimited columns:
     \begin{enumerate}
     \item Chromosome, e. g. NC\_000007.14
     \item Source, e. g. BestRefSeq
@@ -226,8 +226,8 @@ calculating the maximum gene lengths.
   to the appropriate slice.
 #+end_src
 #+begin_src go <<Store gene, Ch.~\ref{ch:an}>>=
-  fields := strings.Fields(sc.Text())
-  if fields[2] == "gene" {
+  fields := strings.Split(sc.Text(), "\t")
+  if len(fields) > 2 && fields[2] == "gene" {
 	  gene := new(interval)
 	  //<<Extract gene information, Ch.~\ref{ch:an}>>
 	  //<<Determine gene interval, Ch.~\ref{ch:an}>>
