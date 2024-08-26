@@ -2,8 +2,9 @@
 ## Description
 Annotate arbitrary genome intervals with genes and carry out
 functional enrichment analysis with Monte Carlo test.
-## Author
-[Bernhard Haubold](http://guanine.evolbio.mpg.de/), `haubold@evolbio.mpg.de`
+## Authors
+[Bernhard Haubold](http://guanine.evolbio.mpg.de/)
+and [Beatriz Vieira Mourato](https://beatrizvm.github.io/) 
 ## Make the Programs
 If you are on an Ubuntu system like Ubuntu on
 [wsl](https://learn.microsoft.com/en-us/windows/wsl/install) under
