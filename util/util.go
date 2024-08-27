@@ -13,8 +13,8 @@ var name string
 
 // Version prints program information and exits.
 func Version() {
-	author := "Bernhard Haubold"
-	email := "haubold@evolbio.mpg.de"
+	author := "Bernhard Haubold,Beatriz Vieira Mourato"
+	email := "haubold@evolbio.mpg.de,mourato@evolbio.mpg.de"
 	license := "Gnu General Public License, " +
 		"https://www.gnu.org/licenses/gpl.html"
 	clio.PrintInfo(name, version, date,
